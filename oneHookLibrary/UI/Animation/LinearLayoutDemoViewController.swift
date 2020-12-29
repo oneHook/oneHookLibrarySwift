@@ -6,6 +6,8 @@ class LinearLayoutDemoViewController: BaseScrollableDemoViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        toolbarTitle = "LinearLayout Demo"
+
         contentLinearLayout.addSubview(EDLabel().apply {
             $0.text = "Horizontal LinearLayout"
             $0.marginBottom = Dimens.marginMedium

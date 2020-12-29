@@ -43,6 +43,12 @@ class MenuViewController: UIViewController {
             })
         ]))
 
+        uiModels.append(MenuSectionUIModel(name: "Views", items: [
+            MenuItemUIModel(name: "OdometerLabel", makeController: {
+                OdometerDemoViewController()
+            })
+        ]))
+
         menuTableView.dataSource = self
         menuTableView.delegate = self
     }
