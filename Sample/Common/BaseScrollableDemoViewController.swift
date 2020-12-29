@@ -29,12 +29,17 @@ class BaseScrollableDemoViewController: BaseDemoViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        let size = contentLinearLayout.sizeThatFits(CGSize(width: view.bounds.width, height: CGFloat.greatestFiniteMagnitude))
-        contentLinearLayout.frame = CGRect(origin: .zero, size: CGSize(width: view.bounds.width, height: size.height))
-        scrollView.contentSize = CGSize(width: 1, height: size.height)
+        contentLinearLayout.bounds = CGRect(origin: .zero, size: CGSize(width: view.bounds.width, height: 0))
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        invalidateContentInset()
+    }
+
+    func invalidateContentInset() {
+        let size = contentLinearLayout.sizeThatFits(CGSize(width: view.bounds.width, height: CGFloat.greatestFiniteMagnitude))
+        contentLinearLayout.frame = CGRect(origin: .zero, size: CGSize(width: view.bounds.width, height: size.height))
+        scrollView.contentSize = CGSize(width: 1, height: size.height)
     }
 }

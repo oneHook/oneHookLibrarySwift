@@ -46,6 +46,9 @@ class MenuViewController: UIViewController {
         uiModels.append(MenuSectionUIModel(name: "Views", items: [
             MenuItemUIModel(name: "OdometerLabel", makeController: {
                 OdometerDemoViewController()
+            }),
+            MenuItemUIModel(name: "DateWidget", makeController: {
+                DateWidgetDemoViewController()
             })
         ]))
 
@@ -56,6 +59,13 @@ class MenuViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         menuTableView.contentInset = UIEdgeInsets(top: toolbar.bounds.height, left: 0, bottom: 0, right: 0)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        let controller = DateWidgetDemoViewController()
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 

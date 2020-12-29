@@ -93,6 +93,9 @@
 		D3A0F8DE259B9D3B008B2D36 /* OdometerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F8DD259B9D3B008B2D36 /* OdometerLabel.swift */; };
 		D3A0F8E5259B9D76008B2D36 /* OdometerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F8E1259B9D51008B2D36 /* OdometerDemoViewController.swift */; };
 		D3A0F8EC259BA121008B2D36 /* EDSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F8EB259BA121008B2D36 /* EDSlider.swift */; };
+		D3A0F8F5259BAC67008B2D36 /* DateWidgetDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F8F1259BAC5F008B2D36 /* DateWidgetDemoViewController.swift */; };
+		D3A0F8FC259BACB0008B2D36 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F8FB259BACB0008B2D36 /* MonthView.swift */; };
+		D3A0F902259BB576008B2D36 /* RowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F901259BB576008B2D36 /* RowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -216,6 +219,9 @@
 		D3A0F8DD259B9D3B008B2D36 /* OdometerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OdometerLabel.swift; sourceTree = "<group>"; };
 		D3A0F8E1259B9D51008B2D36 /* OdometerDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdometerDemoViewController.swift; sourceTree = "<group>"; };
 		D3A0F8EB259BA121008B2D36 /* EDSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDSlider.swift; sourceTree = "<group>"; };
+		D3A0F8F1259BAC5F008B2D36 /* DateWidgetDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateWidgetDemoViewController.swift; sourceTree = "<group>"; };
+		D3A0F8FB259BACB0008B2D36 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
+		D3A0F901259BB576008B2D36 /* RowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +354,7 @@
 			children = (
 				D3A0F859259AD404008B2D36 /* Base */,
 				D3A0F81C259AD152008B2D36 /* Layout */,
+				D3A0F8FA259BAC9E008B2D36 /* DateWidget */,
 				D3A0F7EC259ACB49008B2D36 /* Generators */,
 				D3A0F81F259AD1A9008B2D36 /* EDLabel.swift */,
 				D3A0F824259AD1B2008B2D36 /* EDImageView.swift */,
@@ -408,6 +415,7 @@
 				D3A0F6A9259ABD83008B2D36 /* GridLayout.swift */,
 				D3A0F6B1259ABD83008B2D36 /* FlowLayout.swift */,
 				D3A0F6B2259ABD83008B2D36 /* EqualWeightLayout.swift */,
+				D3A0F901259BB576008B2D36 /* RowLayout.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -437,6 +445,7 @@
 			children = (
 				D3A0F895259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift */,
 				D3A0F8E1259B9D51008B2D36 /* OdometerDemoViewController.swift */,
+				D3A0F8F1259BAC5F008B2D36 /* DateWidgetDemoViewController.swift */,
 			);
 			path = SampleControllers;
 			sourceTree = "<group>";
@@ -449,6 +458,14 @@
 				D3A0F8CB259B8F40008B2D36 /* BaseScrollableDemoViewController.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		D3A0F8FA259BAC9E008B2D36 /* DateWidget */ = {
+			isa = PBXGroup;
+			children = (
+				D3A0F8FB259BACB0008B2D36 /* MonthView.swift */,
+			);
+			path = DateWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -595,6 +612,7 @@
 				D3A0F8D8259B9C61008B2D36 /* BaseDemoViewController.swift in Sources */,
 				D3A0F896259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift in Sources */,
 				D3A0F7D7259AC820008B2D36 /* Tracking.swift in Sources */,
+				D3A0F8F5259BAC67008B2D36 /* DateWidgetDemoViewController.swift in Sources */,
 				D3A0F8CC259B8F40008B2D36 /* BaseScrollableDemoViewController.swift in Sources */,
 				D3A0F8E5259B9D76008B2D36 /* OdometerDemoViewController.swift in Sources */,
 				D3A0F661259ABC7A008B2D36 /* MenuViewController.swift in Sources */,
@@ -635,6 +653,7 @@
 				D3A0F78A259ABEB5008B2D36 /* UINavigationControllerUtility.swift in Sources */,
 				D3A0F790259ABEB5008B2D36 /* WeakArray.swift in Sources */,
 				D3A0F765259ABE9C008B2D36 /* FrameLayout.swift in Sources */,
+				D3A0F902259BB576008B2D36 /* RowLayout.swift in Sources */,
 				D3A0F792259ABEB5008B2D36 /* NumberUtility.swift in Sources */,
 				D3A0F77F259ABEB5008B2D36 /* DateUtility.swift in Sources */,
 				D3A0F7EF259ACB55008B2D36 /* ButtonGenerator.swift in Sources */,
@@ -649,6 +668,7 @@
 				D3A0F79C259ABEB5008B2D36 /* DiffUtility.swift in Sources */,
 				D3A0F760259ABE9C008B2D36 /* EDMapView.swift in Sources */,
 				D3A0F750259ABE78008B2D36 /* FadeTransitionAnimation.swift in Sources */,
+				D3A0F8FC259BACB0008B2D36 /* MonthView.swift in Sources */,
 				D3A0F83F259AD32E008B2D36 /* EDTextField.swift in Sources */,
 				D3A0F7F6259ACB83008B2D36 /* ViewGenerator.swift in Sources */,
 				D3A0F791259ABEB5008B2D36 /* ColorUtility.swift in Sources */,
