@@ -8,7 +8,6 @@ class LinearLayoutDemoViewController: BaseScrollableDemoViewController {
 
         contentLinearLayout.addSubview(EDLabel().apply {
             $0.text = "Horizontal LinearLayout"
-            $0.marginTop = Dimens.marginMedium
             $0.marginBottom = Dimens.marginMedium
         })
 
