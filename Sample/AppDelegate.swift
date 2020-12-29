@@ -9,7 +9,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window = UIWindow(frame: UIScreen.main.bounds)
         let menuController = MenuViewController()
-        window?.rootViewController = menuController
+        let mainController = UINavigationController(rootViewController: menuController).apply {
+            $0.navigationBar.isHidden = true
+        }
+        window?.rootViewController = mainController
         window?.makeKeyAndVisible()
         return true
     }

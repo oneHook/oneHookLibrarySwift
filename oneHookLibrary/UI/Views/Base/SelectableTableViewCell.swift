@@ -2,6 +2,20 @@ import UIKit
 
 open class SelectableTableViewCell: UITableViewCell {
 
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        commonInit()
+    }
+
+    required public init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+
+    open func commonInit() {
+        selectionStyle = .none
+    }
+
     open var highlightBackgroundColor: UIColor {
         SharedCustomization.defaultCellBackgroundSelected
     }
