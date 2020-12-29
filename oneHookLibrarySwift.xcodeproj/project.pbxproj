@@ -96,6 +96,7 @@
 		D3A0F8F5259BAC67008B2D36 /* DateWidgetDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F8F1259BAC5F008B2D36 /* DateWidgetDemoViewController.swift */; };
 		D3A0F8FC259BACB0008B2D36 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F8FB259BACB0008B2D36 /* MonthView.swift */; };
 		D3A0F902259BB576008B2D36 /* RowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F901259BB576008B2D36 /* RowLayout.swift */; };
+		D3A0F907259BF195008B2D36 /* BarGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F906259BF195008B2D36 /* BarGraphView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,6 +223,7 @@
 		D3A0F8F1259BAC5F008B2D36 /* DateWidgetDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateWidgetDemoViewController.swift; sourceTree = "<group>"; };
 		D3A0F8FB259BACB0008B2D36 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
 		D3A0F901259BB576008B2D36 /* RowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowLayout.swift; sourceTree = "<group>"; };
+		D3A0F906259BF195008B2D36 /* BarGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarGraphView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -376,6 +378,7 @@
 				D3A0F6B8259ABD83008B2D36 /* SwitchView.swift */,
 				D3A0F881259AD525008B2D36 /* GradientView.swift */,
 				D3A0F8DD259B9D3B008B2D36 /* OdometerLabel.swift */,
+				D3A0F906259BF195008B2D36 /* BarGraphView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 				D3A0F789259ABEB5008B2D36 /* Collection+Extensions.swift in Sources */,
 				D3A0F871259AD4C5008B2D36 /* Highlightable.swift in Sources */,
 				D3A0F8B8259B88A4008B2D36 /* AttributeStringUtility.swift in Sources */,
+				D3A0F907259BF195008B2D36 /* BarGraphView.swift in Sources */,
 				D3A0F832259AD21A008B2D36 /* EDScrollView.swift in Sources */,
 				D3A0F8B2259B8855008B2D36 /* EDSearchBar.swift in Sources */,
 				D3A0F878259AD4E6008B2D36 /* TappableBaseView.swift in Sources */,
