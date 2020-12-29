@@ -5,7 +5,7 @@ class BaseDemoViewController: UIViewController {
 
     var toolbarTitle: String = "" {
         didSet {
-            toolbar.centerLabel.getOrMake().text = title
+            toolbar.centerLabel.getOrMake().text = toolbarTitle
         }
     }
 

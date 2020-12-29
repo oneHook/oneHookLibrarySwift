@@ -18,6 +18,13 @@ class BaseScrollableDemoViewController: BaseDemoViewController {
         view.insertSubview(scrollView, belowSubview: toolbar)
         scrollView.addSubview(contentLinearLayout)
         view.backgroundColor = .white
+        scrollView.contentInset = UIEdgeInsets(
+            top: toolbar.intrinsicContentSize.height,
+            left: 0,
+            bottom: 0,
+            right: 0
+        )
+        scrollView.contentOffset = CGPoint(x: 0, y: -toolbar.intrinsicContentSize.height)
     }
 
     override func viewWillLayoutSubviews() {
@@ -29,6 +36,5 @@ class BaseScrollableDemoViewController: BaseDemoViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        scrollView.contentInset = UIEdgeInsets(top: toolbar.bounds.height, left: 0, bottom: 0, right: 0)
     }
 }

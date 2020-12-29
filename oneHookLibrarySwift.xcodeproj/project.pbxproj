@@ -92,6 +92,7 @@
 		D3A0F8D8259B9C61008B2D36 /* BaseDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F8D7259B9C61008B2D36 /* BaseDemoViewController.swift */; };
 		D3A0F8DE259B9D3B008B2D36 /* OdometerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F8DD259B9D3B008B2D36 /* OdometerLabel.swift */; };
 		D3A0F8E5259B9D76008B2D36 /* OdometerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F8E1259B9D51008B2D36 /* OdometerDemoViewController.swift */; };
+		D3A0F8EC259BA121008B2D36 /* EDSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F8EB259BA121008B2D36 /* EDSlider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -214,6 +215,7 @@
 		D3A0F8D7259B9C61008B2D36 /* BaseDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDemoViewController.swift; sourceTree = "<group>"; };
 		D3A0F8DD259B9D3B008B2D36 /* OdometerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OdometerLabel.swift; sourceTree = "<group>"; };
 		D3A0F8E1259B9D51008B2D36 /* OdometerDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdometerDemoViewController.swift; sourceTree = "<group>"; };
+		D3A0F8EB259BA121008B2D36 /* EDSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -358,6 +360,7 @@
 				D3A0F6A6259ABD83008B2D36 /* EDMapView.swift */,
 				D3A0F6AD259ABD83008B2D36 /* EDToolbar.swift */,
 				D3A0F8B1259B8855008B2D36 /* EDSearchBar.swift */,
+				D3A0F8EB259BA121008B2D36 /* EDSlider.swift */,
 				D3A0F6A2259ABD83008B2D36 /* InfiniteScrollerView.swift */,
 				D3A0F6BA259ABD83008B2D36 /* ControllerHostView.swift */,
 				D3A0F6AB259ABD83008B2D36 /* TagLabel.swift */,
@@ -641,6 +644,7 @@
 				D3A0F795259ABEB5008B2D36 /* DictionaryUtility.swift in Sources */,
 				D3A0F7C9259AC6A2008B2D36 /* Dimens.swift in Sources */,
 				D3A0F781259ABEB5008B2D36 /* ImageUtility.swift in Sources */,
+				D3A0F8EC259BA121008B2D36 /* EDSlider.swift in Sources */,
 				D3A0F75D259ABE9C008B2D36 /* EDButton.swift in Sources */,
 				D3A0F79C259ABEB5008B2D36 /* DiffUtility.swift in Sources */,
 				D3A0F760259ABE9C008B2D36 /* EDMapView.swift in Sources */,
