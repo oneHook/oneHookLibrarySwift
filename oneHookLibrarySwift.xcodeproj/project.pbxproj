@@ -84,6 +84,7 @@
 		D3A0F878259AD4E6008B2D36 /* TappableBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F876259AD4E6008B2D36 /* TappableBaseView.swift */; };
 		D3A0F883259AD525008B2D36 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F881259AD525008B2D36 /* GradientView.swift */; };
 		D3A0F88B259AD593008B2D36 /* AnimationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F889259AD593008B2D36 /* AnimationConstants.swift */; };
+		D3A0F896259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F895259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -198,6 +199,7 @@
 		D3A0F876259AD4E6008B2D36 /* TappableBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableBaseView.swift; sourceTree = "<group>"; };
 		D3A0F881259AD525008B2D36 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		D3A0F889259AD593008B2D36 /* AnimationConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationConstants.swift; sourceTree = "<group>"; };
+		D3A0F895259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LinearLayoutDemoViewController.swift; path = oneHookLibrary/UI/Animation/LinearLayoutDemoViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +256,7 @@
 				D3A0F667259ABC7A008B2D36 /* LaunchScreen.storyboard */,
 				D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */,
 				D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */,
+				D3A0F894259AD8BD008B2D36 /* SampleControllers */,
 			);
 			path = Sample;
 			sourceTree = "<group>";
@@ -408,6 +411,14 @@
 			path = Styles;
 			sourceTree = "<group>";
 		};
+		D3A0F894259AD8BD008B2D36 /* SampleControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D3A0F895259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift */,
+			);
+			path = SampleControllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -549,6 +560,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3A0F896259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift in Sources */,
 				D3A0F7D7259AC820008B2D36 /* Tracking.swift in Sources */,
 				D3A0F661259ABC7A008B2D36 /* MenuViewController.swift in Sources */,
 				D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */,
