@@ -43,6 +43,12 @@ class MenuViewController: UIViewController {
             })
         ]))
 
+        uiModels.append(MenuSectionUIModel(name: "Widget", items: [
+            MenuItemUIModel(name: "Controller Host", makeController: {
+                ControllerHostDemoViewController()
+            })
+        ]))
+
         uiModels.append(MenuSectionUIModel(name: "Views", items: [
             MenuItemUIModel(name: "OdometerLabel", makeController: {
                 OdometerDemoViewController()

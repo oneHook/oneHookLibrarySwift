@@ -23,4 +23,8 @@ class BaseDemoViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
     }
+
+    deinit {
+        print("DEINIT: \(String(describing: self))")
+    }
 }

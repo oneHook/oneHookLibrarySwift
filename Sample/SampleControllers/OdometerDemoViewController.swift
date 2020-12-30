@@ -95,8 +95,8 @@ class OdometerDemoViewController: BaseScrollableDemoViewController {
 
         dateOdometerLabel.textAlignment = .center
         updateDateLabel()
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
-            self.updateDateLabel()
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] (timer) in
+            self?.updateDateLabel()
         })
 
         currencyLabel.textAlignment = .right

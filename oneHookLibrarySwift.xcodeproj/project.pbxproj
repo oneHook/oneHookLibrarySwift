@@ -99,6 +99,7 @@
 		D3A0F907259BF195008B2D36 /* BarGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F906259BF195008B2D36 /* BarGraphView.swift */; };
 		D3A0F914259CDCDF008B2D36 /* BarGraphDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F90A259BF1F5008B2D36 /* BarGraphDemoViewController.swift */; };
 		D3A0F918259CDD29008B2D36 /* EDSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F917259CDD29008B2D36 /* EDSegmentedControl.swift */; };
+		D3A0F921259CEE9B008B2D36 /* ControllerHostDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F91D259CEE8E008B2D36 /* ControllerHostDemoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -228,6 +229,7 @@
 		D3A0F906259BF195008B2D36 /* BarGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarGraphView.swift; sourceTree = "<group>"; };
 		D3A0F90A259BF1F5008B2D36 /* BarGraphDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarGraphDemoViewController.swift; sourceTree = "<group>"; };
 		D3A0F917259CDD29008B2D36 /* EDSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDSegmentedControl.swift; sourceTree = "<group>"; };
+		D3A0F91D259CEE8E008B2D36 /* ControllerHostDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerHostDemoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -455,6 +457,7 @@
 				D3A0F8E1259B9D51008B2D36 /* OdometerDemoViewController.swift */,
 				D3A0F8F1259BAC5F008B2D36 /* DateWidgetDemoViewController.swift */,
 				D3A0F90A259BF1F5008B2D36 /* BarGraphDemoViewController.swift */,
+				D3A0F91D259CEE8E008B2D36 /* ControllerHostDemoViewController.swift */,
 			);
 			path = SampleControllers;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				D3A0F661259ABC7A008B2D36 /* MenuViewController.swift in Sources */,
 				D3A0F8C6259B8C1A008B2D36 /* SimpleTableViewCell.swift in Sources */,
 				D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */,
+				D3A0F921259CEE9B008B2D36 /* ControllerHostDemoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
