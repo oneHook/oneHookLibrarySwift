@@ -8,9 +8,38 @@ private class SimpleViewController: UIViewController {
     }
 }
 
+private class SimpleDialogViewController: UIViewController {
+    override func loadView() {
+        view = FrameLayout()
+        view.backgroundColor = .clear
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.addSubview(FrameLayout().apply {
+            $0.backgroundColor = .red
+            $0.layer.cornerRadius = Dimens.standardCornerRadius
+            $0.layer.masksToBounds = true
+            $0.layoutGravity = .center
+            $0.layoutSize = CGSize(width: dp(150), height: dp(150))
+        })
+    }
+}
+
 class ControllerHostDemoViewController: BaseScrollableDemoViewController {
 
     private var controllerHost: ControllerHostView!
+    private var topMarginSlider = EDSlider().apply {
+        $0.value = 0
+        $0.minimumValue = 0
+        $0.maximumValue = 500
+    }
+    private let outsideDismissSwitch = SwitchView().apply {
+        $0.isOn = true
+    }
+    private let dragDismissSwitch = SwitchView().apply {
+        $0.isOn = true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +58,42 @@ class ControllerHostDemoViewController: BaseScrollableDemoViewController {
             $0.setTitle("Present", for: .normal)
             $0.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         })
+
+        contentLinearLayout.addSubview(StackLayout().apply {
+            $0.padding = Dimens.marginMedium
+            $0.orientation = .vertical
+            $0.spacing = Dimens.marginMedium
+
+            $0.addSubview(EDLabel().apply {
+                $0.font = UIFont.boldSystemFont(ofSize: 16)
+                $0.text = "Top Margin"
+            })
+
+            $0.addSubview(topMarginSlider.apply {
+                $0.layoutGravity = [.fillHorizontal]
+            })
+
+            $0.addSubview(EDLabel().apply {
+                $0.font = UIFont.boldSystemFont(ofSize: 16)
+                $0.text = "Allow Tap Outside to Dismiss"
+            })
+            $0.addSubview(outsideDismissSwitch)
+
+            $0.addSubview(EDLabel().apply {
+                $0.font = UIFont.boldSystemFont(ofSize: 16)
+                $0.text = "Allow Drag to Dismiss"
+            })
+            $0.addSubview(dragDismissSwitch)
+        })
+
+        contentLinearLayout.addSubview(EDButton().apply {
+            $0.layoutGravity = [.fillHorizontal]
+            $0.marginTop = Dimens.marginMedium
+            $0.tag = 1
+            $0.setTitleColor(.black, for: .normal)
+            $0.setTitle("Present Dialog", for: .normal)
+            $0.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
+        })
     }
 
     override func viewWillLayoutSubviews() {
@@ -39,8 +104,11 @@ class ControllerHostDemoViewController: BaseScrollableDemoViewController {
     @objc private func buttonPressed(sender: UIControl) {
         switch sender.tag {
         case 0:
+            controllerHost.contentTopMargin = CGFloat(topMarginSlider.value)
             controllerHost.present(SimpleViewController())
-            break
+        case 1:
+            controllerHost.contentTopMargin = 0
+            controllerHost.present(SimpleDialogViewController())
         default:
             break
         }
@@ -54,10 +122,10 @@ extension ControllerHostDemoViewController: ControllerHostViewDelegate {
     }
 
     func controllerShouldDismissTapOutside(controller: UIViewController) -> Bool {
-        true
+        outsideDismissSwitch.isOn
     }
 
     func controllerShouldDismissByDrag(controller: UIViewController, location: CGPoint) -> Bool {
-        false
+        dragDismissSwitch.isOn
     }
 }
