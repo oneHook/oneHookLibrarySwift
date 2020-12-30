@@ -101,6 +101,7 @@
 		D3A0F918259CDD29008B2D36 /* EDSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F917259CDD29008B2D36 /* EDSegmentedControl.swift */; };
 		D3A0F921259CEE9B008B2D36 /* ControllerHostDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F91D259CEE8E008B2D36 /* ControllerHostDemoViewController.swift */; };
 		D3A0F92A259CF1BE008B2D36 /* ProgressBarDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F926259CF1BA008B2D36 /* ProgressBarDemoViewController.swift */; };
+		D3A0F930259CF39A008B2D36 /* EDCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F92F259CF39A008B2D36 /* EDCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -232,6 +233,7 @@
 		D3A0F917259CDD29008B2D36 /* EDSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDSegmentedControl.swift; sourceTree = "<group>"; };
 		D3A0F91D259CEE8E008B2D36 /* ControllerHostDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerHostDemoViewController.swift; sourceTree = "<group>"; };
 		D3A0F926259CF1BA008B2D36 /* ProgressBarDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarDemoViewController.swift; sourceTree = "<group>"; };
+		D3A0F92F259CF39A008B2D36 /* EDCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,6 +375,7 @@
 				D3A0F830259AD21A008B2D36 /* EDScrollView.swift */,
 				D3A0F6B3259ABD83008B2D36 /* EDButton.swift */,
 				D3A0F838259AD314008B2D36 /* EDTableView.swift */,
+				D3A0F92F259CF39A008B2D36 /* EDCollectionView.swift */,
 				D3A0F842259AD346008B2D36 /* EDDatePicker.swift */,
 				D3A0F6A6259ABD83008B2D36 /* EDMapView.swift */,
 				D3A0F6AD259ABD83008B2D36 /* EDToolbar.swift */,
@@ -681,6 +684,7 @@
 				D3A0F795259ABEB5008B2D36 /* DictionaryUtility.swift in Sources */,
 				D3A0F7C9259AC6A2008B2D36 /* Dimens.swift in Sources */,
 				D3A0F781259ABEB5008B2D36 /* ImageUtility.swift in Sources */,
+				D3A0F930259CF39A008B2D36 /* EDCollectionView.swift in Sources */,
 				D3A0F8EC259BA121008B2D36 /* EDSlider.swift in Sources */,
 				D3A0F75D259ABE9C008B2D36 /* EDButton.swift in Sources */,
 				D3A0F79C259ABEB5008B2D36 /* DiffUtility.swift in Sources */,
