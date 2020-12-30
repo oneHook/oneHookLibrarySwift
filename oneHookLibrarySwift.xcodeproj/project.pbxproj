@@ -100,6 +100,7 @@
 		D3A0F914259CDCDF008B2D36 /* BarGraphDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F90A259BF1F5008B2D36 /* BarGraphDemoViewController.swift */; };
 		D3A0F918259CDD29008B2D36 /* EDSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F917259CDD29008B2D36 /* EDSegmentedControl.swift */; };
 		D3A0F921259CEE9B008B2D36 /* ControllerHostDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F91D259CEE8E008B2D36 /* ControllerHostDemoViewController.swift */; };
+		D3A0F92A259CF1BE008B2D36 /* ProgressBarDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F926259CF1BA008B2D36 /* ProgressBarDemoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -230,6 +231,7 @@
 		D3A0F90A259BF1F5008B2D36 /* BarGraphDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarGraphDemoViewController.swift; sourceTree = "<group>"; };
 		D3A0F917259CDD29008B2D36 /* EDSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDSegmentedControl.swift; sourceTree = "<group>"; };
 		D3A0F91D259CEE8E008B2D36 /* ControllerHostDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerHostDemoViewController.swift; sourceTree = "<group>"; };
+		D3A0F926259CF1BA008B2D36 /* ProgressBarDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarDemoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -458,6 +460,7 @@
 				D3A0F8F1259BAC5F008B2D36 /* DateWidgetDemoViewController.swift */,
 				D3A0F90A259BF1F5008B2D36 /* BarGraphDemoViewController.swift */,
 				D3A0F91D259CEE8E008B2D36 /* ControllerHostDemoViewController.swift */,
+				D3A0F926259CF1BA008B2D36 /* ProgressBarDemoViewController.swift */,
 			);
 			path = SampleControllers;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				D3A0F8CC259B8F40008B2D36 /* BaseScrollableDemoViewController.swift in Sources */,
 				D3A0F8E5259B9D76008B2D36 /* OdometerDemoViewController.swift in Sources */,
 				D3A0F661259ABC7A008B2D36 /* MenuViewController.swift in Sources */,
+				D3A0F92A259CF1BE008B2D36 /* ProgressBarDemoViewController.swift in Sources */,
 				D3A0F8C6259B8C1A008B2D36 /* SimpleTableViewCell.swift in Sources */,
 				D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */,
 				D3A0F921259CEE9B008B2D36 /* ControllerHostDemoViewController.swift in Sources */,

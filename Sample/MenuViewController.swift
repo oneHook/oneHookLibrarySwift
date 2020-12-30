@@ -58,6 +58,9 @@ class MenuViewController: UIViewController {
             }),
             MenuItemUIModel(name: "BarGraph", makeController: {
                 BarGraphDemoViewController()
+            }),
+            MenuItemUIModel(name: "ProgressBar", makeController: {
+                ProgressBarDemoViewController()
             })
         ]))
 
