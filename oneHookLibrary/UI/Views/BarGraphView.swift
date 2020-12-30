@@ -1,24 +1,24 @@
 import UIKit
 
-struct BarGraphItem {
-    var title: String?
-    var attributedTitle: NSAttributedString?
-    var value: Int
+public struct BarGraphItem {
+    public var title: String?
+    public var attributedTitle: NSAttributedString?
+    public var value: Int
 
-    init(title: String, value: Int) {
+    public init(title: String, value: Int) {
         self.title = title
         self.value = value
     }
 
-    init(attributedTitle: NSAttributedString, value: Int) {
+    public init(attributedTitle: NSAttributedString, value: Int) {
         self.attributedTitle = attributedTitle
         self.value = value
     }
 }
 
-typealias ValueAdjustBlock = (Int, [Int]) -> Int
-typealias BarColorAdjustBlock = (BarGraphItem, [BarGraphItem]) -> UIColor
-typealias ScaleValueAdjustBlock = (Int) -> String
+public typealias ValueAdjustBlock = (Int, [Int]) -> Int
+public typealias BarColorAdjustBlock = (BarGraphItem, [BarGraphItem]) -> UIColor
+public typealias ScaleValueAdjustBlock = (Int) -> String
 
 open class BarGraphView: BaseView {
 
@@ -59,16 +59,16 @@ open class BarGraphView: BaseView {
         }
     }
 
-    var barColor = UIColor.red
-    var horizontalLineColor = UIColor.darkGray
+    public var barColor = UIColor.red
+    public var horizontalLineColor = UIColor.darkGray
 
-    var scaleLabelFont = UIFont.systemFont(ofSize: 10)
-    var titleLabelFont = UIFont.systemFont(ofSize: 10)
+    public var scaleLabelFont = UIFont.systemFont(ofSize: 10)
+    public var titleLabelFont = UIFont.systemFont(ofSize: 10)
 
-    var minValueAdjustBlock: ValueAdjustBlock?
-    var maxValueAdjustBlock: ValueAdjustBlock?
-    var barColorAdjustBlock: BarColorAdjustBlock?
-    var scaleValueAdjustBlock: ScaleValueAdjustBlock?
+    public var minValueAdjustBlock: ValueAdjustBlock?
+    public var maxValueAdjustBlock: ValueAdjustBlock?
+    public var barColorAdjustBlock: BarColorAdjustBlock?
+    public var scaleValueAdjustBlock: ScaleValueAdjustBlock?
 
     /* Data Models */
     private var bars = [BarGraphItem]()
@@ -85,7 +85,7 @@ open class BarGraphView: BaseView {
     private var recycledBarLayers = [CAShapeLayer]()
     private var recycledLabels = [UILabel]()
 
-    func updateBars(bars: [BarGraphItem]) {
+    public func updateBars(bars: [BarGraphItem]) {
         guard bars.count == self.bars.count else {
             fatalError("For update, before and after count must match")
         }
@@ -127,7 +127,7 @@ open class BarGraphView: BaseView {
         self.setNeedsLayout()
     }
 
-    func setBars(bars: [BarGraphItem]) {
+    public func setBars(bars: [BarGraphItem]) {
         self.bars.removeAll()
         self.bars.append(contentsOf: bars)
 

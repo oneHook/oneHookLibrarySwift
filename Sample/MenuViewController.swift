@@ -15,7 +15,7 @@ class MenuViewController: UIViewController {
 
     let toolbar = ViewGenerator.toolbar().apply {
         $0.layoutGravity = [.top, .fillHorizontal]
-        $0.centerLabel.getOrMake().text = "Sample"
+        $0.centerLabel.getOrMake().text = "oneHook Samples"
         $0.backgroundColor = UIColor(hex: "F2F2F2")
     }
 
@@ -49,6 +49,9 @@ class MenuViewController: UIViewController {
             }),
             MenuItemUIModel(name: "DateWidget", makeController: {
                 DateWidgetDemoViewController()
+            }),
+            MenuItemUIModel(name: "BarGraph", makeController: {
+                BarGraphDemoViewController()
             })
         ]))
 

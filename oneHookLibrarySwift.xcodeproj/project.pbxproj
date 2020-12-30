@@ -97,6 +97,8 @@
 		D3A0F8FC259BACB0008B2D36 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F8FB259BACB0008B2D36 /* MonthView.swift */; };
 		D3A0F902259BB576008B2D36 /* RowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F901259BB576008B2D36 /* RowLayout.swift */; };
 		D3A0F907259BF195008B2D36 /* BarGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F906259BF195008B2D36 /* BarGraphView.swift */; };
+		D3A0F914259CDCDF008B2D36 /* BarGraphDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F90A259BF1F5008B2D36 /* BarGraphDemoViewController.swift */; };
+		D3A0F918259CDD29008B2D36 /* EDSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F917259CDD29008B2D36 /* EDSegmentedControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,6 +226,8 @@
 		D3A0F8FB259BACB0008B2D36 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
 		D3A0F901259BB576008B2D36 /* RowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowLayout.swift; sourceTree = "<group>"; };
 		D3A0F906259BF195008B2D36 /* BarGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarGraphView.swift; sourceTree = "<group>"; };
+		D3A0F90A259BF1F5008B2D36 /* BarGraphDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarGraphDemoViewController.swift; sourceTree = "<group>"; };
+		D3A0F917259CDD29008B2D36 /* EDSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDSegmentedControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -369,6 +373,7 @@
 				D3A0F6A6259ABD83008B2D36 /* EDMapView.swift */,
 				D3A0F6AD259ABD83008B2D36 /* EDToolbar.swift */,
 				D3A0F8B1259B8855008B2D36 /* EDSearchBar.swift */,
+				D3A0F917259CDD29008B2D36 /* EDSegmentedControl.swift */,
 				D3A0F8EB259BA121008B2D36 /* EDSlider.swift */,
 				D3A0F6A2259ABD83008B2D36 /* InfiniteScrollerView.swift */,
 				D3A0F6BA259ABD83008B2D36 /* ControllerHostView.swift */,
@@ -449,6 +454,7 @@
 				D3A0F895259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift */,
 				D3A0F8E1259B9D51008B2D36 /* OdometerDemoViewController.swift */,
 				D3A0F8F1259BAC5F008B2D36 /* DateWidgetDemoViewController.swift */,
+				D3A0F90A259BF1F5008B2D36 /* BarGraphDemoViewController.swift */,
 			);
 			path = SampleControllers;
 			sourceTree = "<group>";
@@ -616,6 +622,7 @@
 				D3A0F896259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift in Sources */,
 				D3A0F7D7259AC820008B2D36 /* Tracking.swift in Sources */,
 				D3A0F8F5259BAC67008B2D36 /* DateWidgetDemoViewController.swift in Sources */,
+				D3A0F914259CDCDF008B2D36 /* BarGraphDemoViewController.swift in Sources */,
 				D3A0F8CC259B8F40008B2D36 /* BaseScrollableDemoViewController.swift in Sources */,
 				D3A0F8E5259B9D76008B2D36 /* OdometerDemoViewController.swift in Sources */,
 				D3A0F661259ABC7A008B2D36 /* MenuViewController.swift in Sources */,
@@ -677,6 +684,7 @@
 				D3A0F791259ABEB5008B2D36 /* ColorUtility.swift in Sources */,
 				D3A0F773259ABE9C008B2D36 /* EqualWeightLayout.swift in Sources */,
 				D3A0F787259ABEB5008B2D36 /* OptionalBuilder.swift in Sources */,
+				D3A0F918259CDD29008B2D36 /* EDSegmentedControl.swift in Sources */,
 				D3A0F75E259ABE9C008B2D36 /* ProgressBar.swift in Sources */,
 				D3A0F86C259AD4B7008B2D36 /* Tappable.swift in Sources */,
 				D3A0F767259ABE9C008B2D36 /* ControllerHostView.swift in Sources */,
@@ -864,14 +872,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H73M3C8BGK;
+				DEVELOPMENT_TEAM = DP5KEW26A9;
 				INFOPLIST_FILE = Sample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = oneHook.oneHookLibrarySample;
+				PRODUCT_BUNDLE_IDENTIFIER = oneHook.Sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -885,14 +893,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H73M3C8BGK;
+				DEVELOPMENT_TEAM = DP5KEW26A9;
 				INFOPLIST_FILE = Sample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = oneHook.oneHookLibrarySample;
+				PRODUCT_BUNDLE_IDENTIFIER = oneHook.Sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
