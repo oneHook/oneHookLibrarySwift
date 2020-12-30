@@ -78,8 +78,31 @@ class FrameLayoutLayoutDemoViewController: BaseScrollableDemoViewController {
                 $0.marginEnd = Dimens.marginMedium
             })
         })
-        
 
+        contentLinearLayout.addSubview(FrameLayout().apply {
+            $0.marginTop = Dimens.marginMedium
+            $0.layoutGravity = [.fillHorizontal]
+            $0.layoutSize = CGSize(width: 1, height: dp(150))
+            $0.padding = dp(10)
+            $0.backgroundColor = .gray
 
+            $0.addSubview(makeLabel().apply {
+                $0.text = "FillV/Top"
+                $0.layoutGravity = [.fillVertical, .start]
+                $0.marginEnd = Dimens.marginMedium
+            })
+
+            $0.addSubview(makeLabel().apply {
+                $0.text = "FillV/CenterJ"
+                $0.layoutGravity = [.fillVertical, .centerHorizontal]
+                $0.marginEnd = Dimens.marginMedium
+            })
+
+            $0.addSubview(makeLabel().apply {
+                $0.text = "FillV/Bottom"
+                $0.layoutGravity = [.fillVertical, .end]
+                $0.marginEnd = Dimens.marginMedium
+            })
+        })
     }
 }
