@@ -38,8 +38,11 @@ class MenuViewController: UIViewController {
         view.addSubview(toolbar)
 
         uiModels.append(MenuSectionUIModel(name: "Layout", items: [
-            MenuItemUIModel(name: "Linear Layout", makeController: {
+            MenuItemUIModel(name: "LinearLayout", makeController: {
                 LinearLayoutDemoViewController()
+            }),
+            MenuItemUIModel(name: "FrameLayout", makeController: {
+                FrameLayoutLayoutDemoViewController()
             })
         ]))
 

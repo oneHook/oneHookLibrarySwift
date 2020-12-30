@@ -102,6 +102,7 @@
 		D3A0F921259CEE9B008B2D36 /* ControllerHostDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F91D259CEE8E008B2D36 /* ControllerHostDemoViewController.swift */; };
 		D3A0F92A259CF1BE008B2D36 /* ProgressBarDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F926259CF1BA008B2D36 /* ProgressBarDemoViewController.swift */; };
 		D3A0F930259CF39A008B2D36 /* EDCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F92F259CF39A008B2D36 /* EDCollectionView.swift */; };
+		D3A0F93D259D043A008B2D36 /* FrameLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F935259D0423008B2D36 /* FrameLayoutDemoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -234,6 +235,7 @@
 		D3A0F91D259CEE8E008B2D36 /* ControllerHostDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerHostDemoViewController.swift; sourceTree = "<group>"; };
 		D3A0F926259CF1BA008B2D36 /* ProgressBarDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarDemoViewController.swift; sourceTree = "<group>"; };
 		D3A0F92F259CF39A008B2D36 /* EDCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDCollectionView.swift; sourceTree = "<group>"; };
+		D3A0F935259D0423008B2D36 /* FrameLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameLayoutDemoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -459,6 +461,7 @@
 			isa = PBXGroup;
 			children = (
 				D3A0F895259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift */,
+				D3A0F935259D0423008B2D36 /* FrameLayoutDemoViewController.swift */,
 				D3A0F8E1259B9D51008B2D36 /* OdometerDemoViewController.swift */,
 				D3A0F8F1259BAC5F008B2D36 /* DateWidgetDemoViewController.swift */,
 				D3A0F90A259BF1F5008B2D36 /* BarGraphDemoViewController.swift */,
@@ -630,6 +633,7 @@
 				D3A0F8D8259B9C61008B2D36 /* BaseDemoViewController.swift in Sources */,
 				D3A0F896259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift in Sources */,
 				D3A0F7D7259AC820008B2D36 /* Tracking.swift in Sources */,
+				D3A0F93D259D043A008B2D36 /* FrameLayoutDemoViewController.swift in Sources */,
 				D3A0F8F5259BAC67008B2D36 /* DateWidgetDemoViewController.swift in Sources */,
 				D3A0F914259CDCDF008B2D36 /* BarGraphDemoViewController.swift in Sources */,
 				D3A0F8CC259B8F40008B2D36 /* BaseScrollableDemoViewController.swift in Sources */,
