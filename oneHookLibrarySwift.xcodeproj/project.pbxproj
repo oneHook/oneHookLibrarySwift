@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D322AE02259D707C00134636 /* LinearProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE01259D707C00134636 /* LinearProgressBar.swift */; };
 		D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */; };
 		D3A0F661259ABC7A008B2D36 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */; };
 		D3A0F666259ABC7A008B2D36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A0F665259ABC7A008B2D36 /* Assets.xcassets */; };
@@ -27,7 +28,6 @@
 		D3A0F753259ABE7D008B2D36 /* SheetTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F699259ABD83008B2D36 /* SheetTransitionAnimation.swift */; };
 		D3A0F75C259ABE9C008B2D36 /* InfiniteScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F6A2259ABD83008B2D36 /* InfiniteScrollerView.swift */; };
 		D3A0F75D259ABE9C008B2D36 /* EDButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F6B3259ABD83008B2D36 /* EDButton.swift */; };
-		D3A0F75E259ABE9C008B2D36 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F6AF259ABD83008B2D36 /* ProgressBar.swift */; };
 		D3A0F760259ABE9C008B2D36 /* EDMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F6A6259ABD83008B2D36 /* EDMapView.swift */; };
 		D3A0F762259ABE9C008B2D36 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F6B8259ABD83008B2D36 /* SwitchView.swift */; };
 		D3A0F763259ABE9C008B2D36 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F6A9259ABD83008B2D36 /* GridLayout.swift */; };
@@ -137,6 +137,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D322AE01259D707C00134636 /* LinearProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearProgressBar.swift; sourceTree = "<group>"; };
 		D3A0F659259ABC7A008B2D36 /* oneHookLibrarySwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oneHookLibrarySwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -177,7 +178,6 @@
 		D3A0F6AC259ABD83008B2D36 /* FrameLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameLayout.swift; sourceTree = "<group>"; };
 		D3A0F6AD259ABD83008B2D36 /* EDToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EDToolbar.swift; sourceTree = "<group>"; };
 		D3A0F6AE259ABD83008B2D36 /* LinearLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearLayout.swift; sourceTree = "<group>"; };
-		D3A0F6AF259ABD83008B2D36 /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		D3A0F6B1259ABD83008B2D36 /* FlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 		D3A0F6B2259ABD83008B2D36 /* EqualWeightLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EqualWeightLayout.swift; sourceTree = "<group>"; };
 		D3A0F6B3259ABD83008B2D36 /* EDButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EDButton.swift; sourceTree = "<group>"; };
@@ -388,11 +388,11 @@
 				D3A0F6BA259ABD83008B2D36 /* ControllerHostView.swift */,
 				D3A0F6AB259ABD83008B2D36 /* TagLabel.swift */,
 				D3A0F6AA259ABD83008B2D36 /* RangeSlider.swift */,
-				D3A0F6AF259ABD83008B2D36 /* ProgressBar.swift */,
 				D3A0F6B8259ABD83008B2D36 /* SwitchView.swift */,
 				D3A0F881259AD525008B2D36 /* GradientView.swift */,
 				D3A0F8DD259B9D3B008B2D36 /* OdometerLabel.swift */,
 				D3A0F906259BF195008B2D36 /* BarGraphView.swift */,
+				D322AE01259D707C00134636 /* LinearProgressBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -697,11 +697,11 @@
 				D3A0F8FC259BACB0008B2D36 /* MonthView.swift in Sources */,
 				D3A0F83F259AD32E008B2D36 /* EDTextField.swift in Sources */,
 				D3A0F7F6259ACB83008B2D36 /* ViewGenerator.swift in Sources */,
+				D322AE02259D707C00134636 /* LinearProgressBar.swift in Sources */,
 				D3A0F791259ABEB5008B2D36 /* ColorUtility.swift in Sources */,
 				D3A0F773259ABE9C008B2D36 /* EqualWeightLayout.swift in Sources */,
 				D3A0F787259ABEB5008B2D36 /* OptionalBuilder.swift in Sources */,
 				D3A0F918259CDD29008B2D36 /* EDSegmentedControl.swift in Sources */,
-				D3A0F75E259ABE9C008B2D36 /* ProgressBar.swift in Sources */,
 				D3A0F86C259AD4B7008B2D36 /* Tappable.swift in Sources */,
 				D3A0F767259ABE9C008B2D36 /* ControllerHostView.swift in Sources */,
 				D3A0F77E259ABEB5008B2D36 /* UIScrollViewUtility.swift in Sources */,
