@@ -65,12 +65,12 @@ open class LinearProgressBar: BaseView {
     }
 
     public func updateProgress(key: String,
-                            progress: CGFloat,
-                            color: UIColor? = nil,
-                            cornerRadius: CGFloat? = nil,
-                            borderWidth: CGFloat? = nil,
-                            borderColor: UIColor? = nil,
-                            animated: Bool = true) {
+                               progress: CGFloat,
+                               color: UIColor? = nil,
+                               cornerRadius: CGFloat? = nil,
+                               borderWidth: CGFloat? = nil,
+                               borderColor: UIColor? = nil,
+                               animated: Bool = true) {
         guard
             let progressLayer = progressLayers[key],
             let layerInfo = layerInfos[key] else {
