@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D322AE02259D707C00134636 /* LinearProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE01259D707C00134636 /* LinearProgressBar.swift */; };
+		D322AE1325A284C900134636 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE1225A284C900134636 /* ProgressRing.swift */; };
 		D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */; };
 		D3A0F661259ABC7A008B2D36 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */; };
 		D3A0F666259ABC7A008B2D36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A0F665259ABC7A008B2D36 /* Assets.xcassets */; };
@@ -138,6 +139,7 @@
 
 /* Begin PBXFileReference section */
 		D322AE01259D707C00134636 /* LinearProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearProgressBar.swift; sourceTree = "<group>"; };
+		D322AE1225A284C900134636 /* ProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRing.swift; sourceTree = "<group>"; };
 		D3A0F659259ABC7A008B2D36 /* oneHookLibrarySwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oneHookLibrarySwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 				D3A0F8DD259B9D3B008B2D36 /* OdometerLabel.swift */,
 				D3A0F906259BF195008B2D36 /* BarGraphView.swift */,
 				D322AE01259D707C00134636 /* LinearProgressBar.swift */,
+				D322AE1225A284C900134636 /* ProgressRing.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				D3A0F78B259ABEB5008B2D36 /* KeyboardInputObserver.swift in Sources */,
 				D3A0F883259AD525008B2D36 /* GradientView.swift in Sources */,
 				D3A0F796259ABEB5008B2D36 /* ArrayUtility.swift in Sources */,
+				D322AE1325A284C900134636 /* ProgressRing.swift in Sources */,
 				D3A0F79B259ABEB5008B2D36 /* UserDefaults.swift in Sources */,
 				D3A0F826259AD1B2008B2D36 /* EDImageView.swift in Sources */,
 				D3A0F76B259ABE9C008B2D36 /* StackLayout.swift in Sources */,
