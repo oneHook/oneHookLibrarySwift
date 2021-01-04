@@ -64,6 +64,9 @@ class MenuViewController: UIViewController {
             }),
             MenuItemUIModel(name: "ProgressBar", makeController: {
                 ProgressBarDemoViewController()
+            }),
+            MenuItemUIModel(name: "Stagger Grid", makeController: {
+                StaggerGridLayoutDemoViewController()
             })
         ]))
 
@@ -79,8 +82,8 @@ class MenuViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-//        let controller = DateWidgetDemoViewController()
-//        navigationController?.pushViewController(controller, animated: true)
+        let controller = StaggerGridLayoutDemoViewController()
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 

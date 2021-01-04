@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D322AE02259D707C00134636 /* LinearProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE01259D707C00134636 /* LinearProgressBar.swift */; };
 		D322AE1325A284C900134636 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE1225A284C900134636 /* ProgressRing.swift */; };
+		D322AE1A25A3B77000134636 /* StaggerGridLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE1925A3B77000134636 /* StaggerGridLayoutDemoViewController.swift */; };
+		D322AE1F25A3CF8400134636 /* StaggeredCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE1E25A3CF8400134636 /* StaggeredCollectionViewLayout.swift */; };
 		D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */; };
 		D3A0F661259ABC7A008B2D36 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */; };
 		D3A0F666259ABC7A008B2D36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A0F665259ABC7A008B2D36 /* Assets.xcassets */; };
@@ -140,6 +142,8 @@
 /* Begin PBXFileReference section */
 		D322AE01259D707C00134636 /* LinearProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearProgressBar.swift; sourceTree = "<group>"; };
 		D322AE1225A284C900134636 /* ProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRing.swift; sourceTree = "<group>"; };
+		D322AE1925A3B77000134636 /* StaggerGridLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggerGridLayoutDemoViewController.swift; sourceTree = "<group>"; };
+		D322AE1E25A3CF8400134636 /* StaggeredCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggeredCollectionViewLayout.swift; sourceTree = "<group>"; };
 		D3A0F659259ABC7A008B2D36 /* oneHookLibrarySwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oneHookLibrarySwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -266,6 +270,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D322AE1D25A3CF6E00134636 /* CollectionViewLayout */ = {
+			isa = PBXGroup;
+			children = (
+				D322AE1E25A3CF8400134636 /* StaggeredCollectionViewLayout.swift */,
+			);
+			path = CollectionViewLayout;
+			sourceTree = "<group>";
+		};
 		D3A0F650259ABC7A008B2D36 = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +380,7 @@
 		D3A0F6A0259ABD83008B2D36 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D322AE1D25A3CF6E00134636 /* CollectionViewLayout */,
 				D3A0F859259AD404008B2D36 /* Base */,
 				D3A0F81C259AD152008B2D36 /* Layout */,
 				D3A0F8FA259BAC9E008B2D36 /* DateWidget */,
@@ -470,6 +483,7 @@
 				D3A0F90A259BF1F5008B2D36 /* BarGraphDemoViewController.swift */,
 				D3A0F91D259CEE8E008B2D36 /* ControllerHostDemoViewController.swift */,
 				D3A0F926259CF1BA008B2D36 /* ProgressBarDemoViewController.swift */,
+				D322AE1925A3B77000134636 /* StaggerGridLayoutDemoViewController.swift */,
 			);
 			path = SampleControllers;
 			sourceTree = "<group>";
@@ -642,6 +656,7 @@
 				D3A0F8CC259B8F40008B2D36 /* BaseScrollableDemoViewController.swift in Sources */,
 				D3A0F8E5259B9D76008B2D36 /* OdometerDemoViewController.swift in Sources */,
 				D3A0F661259ABC7A008B2D36 /* MenuViewController.swift in Sources */,
+				D322AE1A25A3B77000134636 /* StaggerGridLayoutDemoViewController.swift in Sources */,
 				D3A0F92A259CF1BE008B2D36 /* ProgressBarDemoViewController.swift in Sources */,
 				D3A0F8C6259B8C1A008B2D36 /* SimpleTableViewCell.swift in Sources */,
 				D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */,
@@ -699,6 +714,7 @@
 				D3A0F760259ABE9C008B2D36 /* EDMapView.swift in Sources */,
 				D3A0F750259ABE78008B2D36 /* FadeTransitionAnimation.swift in Sources */,
 				D3A0F8FC259BACB0008B2D36 /* MonthView.swift in Sources */,
+				D322AE1F25A3CF8400134636 /* StaggeredCollectionViewLayout.swift in Sources */,
 				D3A0F83F259AD32E008B2D36 /* EDTextField.swift in Sources */,
 				D3A0F7F6259ACB83008B2D36 /* ViewGenerator.swift in Sources */,
 				D322AE02259D707C00134636 /* LinearProgressBar.swift in Sources */,
