@@ -67,6 +67,9 @@ class MenuViewController: UIViewController {
             }),
             MenuItemUIModel(name: "Stagger Grid", makeController: {
                 StaggerGridLayoutDemoViewController()
+            }),
+            MenuItemUIModel(name: "Color Picker", makeController: {
+                ColorPickerViewDemoViewController()
             })
         ]))
 
@@ -81,9 +84,6 @@ class MenuViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-//        let controller = StaggerGridLayoutDemoViewController()
-//        navigationController?.pushViewController(controller, animated: true)
     }
 }
 

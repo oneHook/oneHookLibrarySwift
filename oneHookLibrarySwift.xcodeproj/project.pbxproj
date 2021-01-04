@@ -11,6 +11,8 @@
 		D322AE1325A284C900134636 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE1225A284C900134636 /* ProgressRing.swift */; };
 		D322AE1A25A3B77000134636 /* StaggerGridLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE1925A3B77000134636 /* StaggerGridLayoutDemoViewController.swift */; };
 		D322AE1F25A3CF8400134636 /* StaggeredCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE1E25A3CF8400134636 /* StaggeredCollectionViewLayout.swift */; };
+		D322AE2825A3D1C500134636 /* ColorPickerViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE2225A3D1AE00134636 /* ColorPickerViewDemoViewController.swift */; };
+		D322AE3025A3D5D600134636 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE2F25A3D5D600134636 /* ColorPickerView.swift */; };
 		D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */; };
 		D3A0F661259ABC7A008B2D36 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */; };
 		D3A0F666259ABC7A008B2D36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A0F665259ABC7A008B2D36 /* Assets.xcassets */; };
@@ -144,6 +146,8 @@
 		D322AE1225A284C900134636 /* ProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRing.swift; sourceTree = "<group>"; };
 		D322AE1925A3B77000134636 /* StaggerGridLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggerGridLayoutDemoViewController.swift; sourceTree = "<group>"; };
 		D322AE1E25A3CF8400134636 /* StaggeredCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggeredCollectionViewLayout.swift; sourceTree = "<group>"; };
+		D322AE2225A3D1AE00134636 /* ColorPickerViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewDemoViewController.swift; sourceTree = "<group>"; };
+		D322AE2F25A3D5D600134636 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		D3A0F659259ABC7A008B2D36 /* oneHookLibrarySwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oneHookLibrarySwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -409,6 +413,7 @@
 				D3A0F906259BF195008B2D36 /* BarGraphView.swift */,
 				D322AE01259D707C00134636 /* LinearProgressBar.swift */,
 				D322AE1225A284C900134636 /* ProgressRing.swift */,
+				D322AE2F25A3D5D600134636 /* ColorPickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -484,6 +489,7 @@
 				D3A0F91D259CEE8E008B2D36 /* ControllerHostDemoViewController.swift */,
 				D3A0F926259CF1BA008B2D36 /* ProgressBarDemoViewController.swift */,
 				D322AE1925A3B77000134636 /* StaggerGridLayoutDemoViewController.swift */,
+				D322AE2225A3D1AE00134636 /* ColorPickerViewDemoViewController.swift */,
 			);
 			path = SampleControllers;
 			sourceTree = "<group>";
@@ -661,6 +667,7 @@
 				D3A0F8C6259B8C1A008B2D36 /* SimpleTableViewCell.swift in Sources */,
 				D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */,
 				D3A0F921259CEE9B008B2D36 /* ControllerHostDemoViewController.swift in Sources */,
+				D322AE2825A3D1C500134636 /* ColorPickerViewDemoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,6 +723,7 @@
 				D3A0F8FC259BACB0008B2D36 /* MonthView.swift in Sources */,
 				D322AE1F25A3CF8400134636 /* StaggeredCollectionViewLayout.swift in Sources */,
 				D3A0F83F259AD32E008B2D36 /* EDTextField.swift in Sources */,
+				D322AE3025A3D5D600134636 /* ColorPickerView.swift in Sources */,
 				D3A0F7F6259ACB83008B2D36 /* ViewGenerator.swift in Sources */,
 				D322AE02259D707C00134636 /* LinearProgressBar.swift in Sources */,
 				D3A0F791259ABEB5008B2D36 /* ColorUtility.swift in Sources */,

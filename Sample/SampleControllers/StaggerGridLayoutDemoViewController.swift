@@ -62,6 +62,7 @@ class StaggerGridLayoutDemoViewController: BaseDemoViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        toolbarTitle = "Staggered Grid"
         collectionView.disableAutomaticInsetAdjustment()
         view.insertSubview(collectionView.apply {
             $0.backgroundColor = .white
