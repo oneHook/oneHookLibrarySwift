@@ -82,8 +82,8 @@ class MenuViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        let controller = StaggerGridLayoutDemoViewController()
-        navigationController?.pushViewController(controller, animated: true)
+//        let controller = StaggerGridLayoutDemoViewController()
+//        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
