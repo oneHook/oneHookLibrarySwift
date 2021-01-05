@@ -52,6 +52,12 @@ class MenuViewController: UIViewController {
             }),
             MenuItemUIModel(name: "FlowLayout", makeController: {
                 FlowLayoutDemoViewController()
+            }),
+            MenuItemUIModel(name: "EqualWeightLayout", makeController: {
+                EqualWeightLayoutDemoViewController()
+            }),
+            MenuItemUIModel(name: "RowLayout", makeController: {
+                RowLayoutDemoViewController()
             })
         ]))
 

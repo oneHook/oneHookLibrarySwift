@@ -21,6 +21,8 @@
 		D322AE5E25A4D9AF00134636 /* GridLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE5825A4D99700134636 /* GridLayoutDemoViewController.swift */; };
 		D322AE6B25A4DCEE00134636 /* FlowLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE6725A4DCD100134636 /* FlowLayoutDemoViewController.swift */; };
 		D322AE7025A4DD2000134636 /* Faker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE6325A4DC7F00134636 /* Faker.swift */; };
+		D322AE7925A4DEDB00134636 /* EqualWeightLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE7525A4DED600134636 /* EqualWeightLayoutDemoViewController.swift */; };
+		D322AE8225A4DFE500134636 /* RowLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE7E25A4DFDE00134636 /* RowLayoutDemoViewController.swift */; };
 		D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */; };
 		D3A0F661259ABC7A008B2D36 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */; };
 		D3A0F666259ABC7A008B2D36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A0F665259ABC7A008B2D36 /* Assets.xcassets */; };
@@ -164,6 +166,8 @@
 		D322AE5825A4D99700134636 /* GridLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayoutDemoViewController.swift; sourceTree = "<group>"; };
 		D322AE6325A4DC7F00134636 /* Faker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Faker.swift; sourceTree = "<group>"; };
 		D322AE6725A4DCD100134636 /* FlowLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayoutDemoViewController.swift; sourceTree = "<group>"; };
+		D322AE7525A4DED600134636 /* EqualWeightLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualWeightLayoutDemoViewController.swift; sourceTree = "<group>"; };
+		D322AE7E25A4DFDE00134636 /* RowLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowLayoutDemoViewController.swift; sourceTree = "<group>"; };
 		D3A0F659259ABC7A008B2D36 /* oneHookLibrarySwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oneHookLibrarySwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -504,6 +508,8 @@
 				D322AE4625A4D48D00134636 /* StackLayoutDemoViewController.swift */,
 				D322AE5825A4D99700134636 /* GridLayoutDemoViewController.swift */,
 				D322AE6725A4DCD100134636 /* FlowLayoutDemoViewController.swift */,
+				D322AE7525A4DED600134636 /* EqualWeightLayoutDemoViewController.swift */,
+				D322AE7E25A4DFDE00134636 /* RowLayoutDemoViewController.swift */,
 				D3A0F8E1259B9D51008B2D36 /* OdometerDemoViewController.swift */,
 				D3A0F8F1259BAC5F008B2D36 /* DateWidgetDemoViewController.swift */,
 				D3A0F90A259BF1F5008B2D36 /* BarGraphDemoViewController.swift */,
@@ -679,11 +685,13 @@
 			files = (
 				D322AE5E25A4D9AF00134636 /* GridLayoutDemoViewController.swift in Sources */,
 				D3A0F8D8259B9C61008B2D36 /* BaseDemoViewController.swift in Sources */,
+				D322AE7925A4DEDB00134636 /* EqualWeightLayoutDemoViewController.swift in Sources */,
 				D3A0F896259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift in Sources */,
 				D3A0F7D7259AC820008B2D36 /* Tracking.swift in Sources */,
 				D3A0F93D259D043A008B2D36 /* FrameLayoutDemoViewController.swift in Sources */,
 				D322AE7025A4DD2000134636 /* Faker.swift in Sources */,
 				D3A0F8F5259BAC67008B2D36 /* DateWidgetDemoViewController.swift in Sources */,
+				D322AE8225A4DFE500134636 /* RowLayoutDemoViewController.swift in Sources */,
 				D3A0F914259CDCDF008B2D36 /* BarGraphDemoViewController.swift in Sources */,
 				D3A0F8CC259B8F40008B2D36 /* BaseScrollableDemoViewController.swift in Sources */,
 				D3A0F8E5259B9D76008B2D36 /* OdometerDemoViewController.swift in Sources */,
