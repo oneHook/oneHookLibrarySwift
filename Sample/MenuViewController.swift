@@ -16,12 +16,13 @@ class MenuViewController: UIViewController {
     let toolbar = ViewGenerator.toolbar().apply {
         $0.layoutGravity = [.top, .fillHorizontal]
         $0.centerLabel.getOrMake().text = "oneHook Samples"
-        $0.backgroundColor = UIColor(hex: "F2F2F2")
+        $0.centerLabel.getOrMake().textColor = .defaultTextColor
+        $0.backgroundColor = .defaultToolbarBackground
     }
 
     let menuTableView = EDTableView().apply {
         $0.layoutGravity = [.fill]
-        $0.backgroundColor = .white
+        $0.backgroundColor = .defaultBackgroundColor
         $0.register(SimpleTableViewCell.self, forCellReuseIdentifier: "Cell")
     }
 
@@ -33,7 +34,7 @@ class MenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .defaultBackgroundColor
         view.addSubview(menuTableView)
         view.addSubview(toolbar)
 

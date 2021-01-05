@@ -91,7 +91,7 @@ class ControllerHostDemoViewController: BaseScrollableDemoViewController {
             $0.layoutGravity = [.fillHorizontal]
             $0.marginTop = Dimens.marginMedium
             $0.tag = 1
-            $0.setTitleColor(.black, for: .normal)
+            $0.setTitleColor(.defaultTextColor, for: .normal)
             $0.setTitle("Present Dialog", for: .normal)
             $0.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         })
@@ -99,7 +99,7 @@ class ControllerHostDemoViewController: BaseScrollableDemoViewController {
         contentLinearLayout.addSubview(EDButton().apply {
             $0.layoutGravity = [.fillHorizontal]
             $0.tag = 0
-            $0.setTitleColor(.black, for: .normal)
+            $0.setTitleColor(.defaultTextColor, for: .normal)
             $0.setTitle("Present View Controller", for: .normal)
             $0.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         })

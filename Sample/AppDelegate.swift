@@ -1,11 +1,14 @@
 import UIKit
+import oneHookLibrary
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    internal var window: UIWindow?
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+        SharedCustomization.shared = SharedCustomizationImp()
 
         window = UIWindow(frame: UIScreen.main.bounds)
         let menuController = MenuViewController()

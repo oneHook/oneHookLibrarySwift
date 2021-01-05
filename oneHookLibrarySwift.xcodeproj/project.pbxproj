@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D30975FD25A5038800F94FC2 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30975FC25A5038800F94FC2 /* Colors.swift */; };
 		D322AE02259D707C00134636 /* LinearProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE01259D707C00134636 /* LinearProgressBar.swift */; };
 		D322AE1325A284C900134636 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE1225A284C900134636 /* ProgressRing.swift */; };
 		D322AE1A25A3B77000134636 /* StaggerGridLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE1925A3B77000134636 /* StaggerGridLayoutDemoViewController.swift */; };
@@ -152,6 +153,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D30975FC25A5038800F94FC2 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D322AE01259D707C00134636 /* LinearProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearProgressBar.swift; sourceTree = "<group>"; };
 		D322AE1225A284C900134636 /* ProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRing.swift; sourceTree = "<group>"; };
 		D322AE1925A3B77000134636 /* StaggerGridLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggerGridLayoutDemoViewController.swift; sourceTree = "<group>"; };
@@ -530,6 +532,7 @@
 				D3A0F8CB259B8F40008B2D36 /* BaseScrollableDemoViewController.swift */,
 				D322AE4F25A4D80400134636 /* Views.swift */,
 				D322AE6325A4DC7F00134636 /* Faker.swift */,
+				D30975FC25A5038800F94FC2 /* Colors.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D322AE5E25A4D9AF00134636 /* GridLayoutDemoViewController.swift in Sources */,
+				D30975FD25A5038800F94FC2 /* Colors.swift in Sources */,
 				D3A0F8D8259B9C61008B2D36 /* BaseDemoViewController.swift in Sources */,
 				D322AE7925A4DEDB00134636 /* EqualWeightLayoutDemoViewController.swift in Sources */,
 				D3A0F896259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift in Sources */,

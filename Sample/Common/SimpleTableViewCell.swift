@@ -12,14 +12,17 @@ class SimpleTableViewCell: SelectableTableViewCell {
 
     let titleLabel = EDLabel().apply {
         $0.font = UIFont.systemFont(ofSize: 15)
+        $0.textColor = .defaultTextColor
     }
 
     let subtitleLabel = EDLabel().apply {
         $0.font = UIFont.systemFont(ofSize: 12)
+        $0.textColor = .defaultTextColor
     }
 
     override func commonInit() {
         super.commonInit()
+        backgroundColor = .clear
         contentView.addSubview(stackLayout.apply {
             $0.addSubview(titleLabel)
             $0.addSubview(subtitleLabel)

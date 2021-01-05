@@ -11,7 +11,8 @@ class BaseDemoViewController: UIViewController {
 
     let toolbar = ViewGenerator.toolbar().apply {
         $0.layoutGravity = [.top, .fillHorizontal]
-        $0.backgroundColor = UIColor(hex: "F2F2F2")
+        $0.centerLabel.getOrMake().textColor = .defaultTextColor
+        $0.backgroundColor = .defaultToolbarBackground
     }
 
     override func loadView() {
@@ -21,7 +22,7 @@ class BaseDemoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .defaultBackgroundColor
     }
 
     deinit {
