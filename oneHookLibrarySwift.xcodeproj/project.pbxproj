@@ -13,6 +13,7 @@
 		D322AE1F25A3CF8400134636 /* StaggeredCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE1E25A3CF8400134636 /* StaggeredCollectionViewLayout.swift */; };
 		D322AE2825A3D1C500134636 /* ColorPickerViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE2225A3D1AE00134636 /* ColorPickerViewDemoViewController.swift */; };
 		D322AE3025A3D5D600134636 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE2F25A3D5D600134636 /* ColorPickerView.swift */; };
+		D322AE3725A4009500134636 /* ViewPagerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE3325A4008700134636 /* ViewPagerDemoViewController.swift */; };
 		D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */; };
 		D3A0F661259ABC7A008B2D36 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */; };
 		D3A0F666259ABC7A008B2D36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A0F665259ABC7A008B2D36 /* Assets.xcassets */; };
@@ -148,6 +149,7 @@
 		D322AE1E25A3CF8400134636 /* StaggeredCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggeredCollectionViewLayout.swift; sourceTree = "<group>"; };
 		D322AE2225A3D1AE00134636 /* ColorPickerViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewDemoViewController.swift; sourceTree = "<group>"; };
 		D322AE2F25A3D5D600134636 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		D322AE3325A4008700134636 /* ViewPagerDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPagerDemoViewController.swift; sourceTree = "<group>"; };
 		D3A0F659259ABC7A008B2D36 /* oneHookLibrarySwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oneHookLibrarySwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -490,6 +492,7 @@
 				D3A0F926259CF1BA008B2D36 /* ProgressBarDemoViewController.swift */,
 				D322AE1925A3B77000134636 /* StaggerGridLayoutDemoViewController.swift */,
 				D322AE2225A3D1AE00134636 /* ColorPickerViewDemoViewController.swift */,
+				D322AE3325A4008700134636 /* ViewPagerDemoViewController.swift */,
 			);
 			path = SampleControllers;
 			sourceTree = "<group>";
@@ -667,6 +670,7 @@
 				D3A0F8C6259B8C1A008B2D36 /* SimpleTableViewCell.swift in Sources */,
 				D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */,
 				D3A0F921259CEE9B008B2D36 /* ControllerHostDemoViewController.swift in Sources */,
+				D322AE3725A4009500134636 /* ViewPagerDemoViewController.swift in Sources */,
 				D322AE2825A3D1C500134636 /* ColorPickerViewDemoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
