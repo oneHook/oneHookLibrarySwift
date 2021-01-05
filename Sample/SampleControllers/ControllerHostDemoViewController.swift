@@ -105,10 +105,16 @@ class ControllerHostDemoViewController: BaseScrollableDemoViewController {
         switch sender.tag {
         case 0:
             controllerHost.contentTopMargin = CGFloat(topMarginSlider.value)
-            controllerHost.present(SimpleViewController())
+            controllerHost.present(
+                SimpleViewController(),
+                style: .init(blurEffect: .init(style: .regular))
+            )
         case 1:
             controllerHost.contentTopMargin = 0
-            controllerHost.present(SimpleDialogViewController())
+            controllerHost.present(
+                SimpleDialogViewController(),
+                style: .init(blurEffect: .init(style: .regular))
+            )
         default:
             break
         }

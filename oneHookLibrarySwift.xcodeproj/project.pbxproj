@@ -15,6 +15,7 @@
 		D322AE3025A3D5D600134636 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE2F25A3D5D600134636 /* ColorPickerView.swift */; };
 		D322AE3725A4009500134636 /* ViewPagerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE3325A4008700134636 /* ViewPagerDemoViewController.swift */; };
 		D322AE3D25A4CF2600134636 /* ViewPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE3C25A4CF2600134636 /* ViewPager.swift */; };
+		D322AE4125A4D04C00134636 /* EDVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE4025A4D04C00134636 /* EDVisualEffectView.swift */; };
 		D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */; };
 		D3A0F661259ABC7A008B2D36 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */; };
 		D3A0F666259ABC7A008B2D36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A0F665259ABC7A008B2D36 /* Assets.xcassets */; };
@@ -152,6 +153,7 @@
 		D322AE2F25A3D5D600134636 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		D322AE3325A4008700134636 /* ViewPagerDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPagerDemoViewController.swift; sourceTree = "<group>"; };
 		D322AE3C25A4CF2600134636 /* ViewPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPager.swift; sourceTree = "<group>"; };
+		D322AE4025A4D04C00134636 /* EDVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDVisualEffectView.swift; sourceTree = "<group>"; };
 		D3A0F659259ABC7A008B2D36 /* oneHookLibrarySwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oneHookLibrarySwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 				D3A0F8B1259B8855008B2D36 /* EDSearchBar.swift */,
 				D3A0F917259CDD29008B2D36 /* EDSegmentedControl.swift */,
 				D3A0F8EB259BA121008B2D36 /* EDSlider.swift */,
+				D322AE4025A4D04C00134636 /* EDVisualEffectView.swift */,
 				D3A0F6A2259ABD83008B2D36 /* InfiniteScrollerView.swift */,
 				D3A0F6BA259ABD83008B2D36 /* ControllerHostView.swift */,
 				D3A0F6AB259ABD83008B2D36 /* TagLabel.swift */,
@@ -744,6 +747,7 @@
 				D3A0F76F259ABE9C008B2D36 /* EDToolbar.swift in Sources */,
 				D3A0F784259ABEB5008B2D36 /* FileUtility.swift in Sources */,
 				D3A0F793259ABEB5008B2D36 /* KeyboardObserver.swift in Sources */,
+				D322AE4125A4D04C00134636 /* EDVisualEffectView.swift in Sources */,
 				D3A0F769259ABE9C008B2D36 /* LinearLayout.swift in Sources */,
 				D3A0F821259AD1A9008B2D36 /* EDLabel.swift in Sources */,
 				D3A0F777259ABE9C008B2D36 /* RangeSlider.swift in Sources */,

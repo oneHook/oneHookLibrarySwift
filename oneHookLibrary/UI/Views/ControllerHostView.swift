@@ -26,13 +26,16 @@ open class ControllerHostView: BaseView {
 
     public struct PresentationStyle {
         var dimColor: UIColor
+        var blurEffect: UIBlurEffect?
         var replaceTop: Bool
         var animationType: AnimationType
 
         public init(dimColor: UIColor = UIColor(white: 0, alpha: 0.8),
+                    blurEffect: UIBlurEffect? = nil,
                     replaceTop: Bool = false,
                     animationType: AnimationType = .bottom) {
             self.dimColor = dimColor
+            self.blurEffect = blurEffect
             self.replaceTop = replaceTop
             self.animationType = animationType
         }
@@ -70,7 +73,7 @@ open class ControllerHostView: BaseView {
 
     private weak var parentController: UIViewController?
     private var animations = [AnimationType]()
-    private var dimCovers = [BaseView]()
+    private var dimCovers = [UIView]()
     private var controllers = [UIViewController]() {
         didSet {
             /* If any controller is presented, we will allow
@@ -139,11 +142,18 @@ open class ControllerHostView: BaseView {
                                 style: PresentationStyle,
                                 completion: (() -> Void)? = nil) {
         let animation = style.animationType
-        let cover = BaseView().apply {
+
+        let cover = style.blurEffect.map {
+            EDVisualEffectView(effect: $0).apply {
+                $0.alpha = 0
+                $0.frame = bounds
+            }
+        } ?? BaseView().apply {
             $0.alpha = 0
             $0.frame = bounds
             $0.backgroundColor = style.dimColor
         }
+
         dimCovers.append(cover)
         addSubview(cover)
         controllers.append(viewController)
