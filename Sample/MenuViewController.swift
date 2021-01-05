@@ -70,6 +70,9 @@ class MenuViewController: UIViewController {
             }),
             MenuItemUIModel(name: "Color Picker", makeController: {
                 ColorPickerViewDemoViewController()
+            }),
+            MenuItemUIModel(name: "View Pager", makeController: {
+                ViewPagerDemoViewController()
             })
         ]))
 
@@ -84,9 +87,6 @@ class MenuViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        let controller = ViewPagerDemoViewController()
-        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
