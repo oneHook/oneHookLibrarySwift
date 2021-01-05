@@ -18,6 +18,7 @@
 		D322AE4125A4D04C00134636 /* EDVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE4025A4D04C00134636 /* EDVisualEffectView.swift */; };
 		D322AE4A25A4D4EC00134636 /* StackLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE4625A4D48D00134636 /* StackLayoutDemoViewController.swift */; };
 		D322AE5325A4D80600134636 /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE4F25A4D80400134636 /* Views.swift */; };
+		D322AE5E25A4D9AF00134636 /* GridLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE5825A4D99700134636 /* GridLayoutDemoViewController.swift */; };
 		D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */; };
 		D3A0F661259ABC7A008B2D36 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */; };
 		D3A0F666259ABC7A008B2D36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A0F665259ABC7A008B2D36 /* Assets.xcassets */; };
@@ -158,6 +159,7 @@
 		D322AE4025A4D04C00134636 /* EDVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDVisualEffectView.swift; sourceTree = "<group>"; };
 		D322AE4625A4D48D00134636 /* StackLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackLayoutDemoViewController.swift; sourceTree = "<group>"; };
 		D322AE4F25A4D80400134636 /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
+		D322AE5825A4D99700134636 /* GridLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayoutDemoViewController.swift; sourceTree = "<group>"; };
 		D3A0F659259ABC7A008B2D36 /* oneHookLibrarySwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oneHookLibrarySwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -496,6 +498,7 @@
 				D3A0F895259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift */,
 				D3A0F935259D0423008B2D36 /* FrameLayoutDemoViewController.swift */,
 				D322AE4625A4D48D00134636 /* StackLayoutDemoViewController.swift */,
+				D322AE5825A4D99700134636 /* GridLayoutDemoViewController.swift */,
 				D3A0F8E1259B9D51008B2D36 /* OdometerDemoViewController.swift */,
 				D3A0F8F1259BAC5F008B2D36 /* DateWidgetDemoViewController.swift */,
 				D3A0F90A259BF1F5008B2D36 /* BarGraphDemoViewController.swift */,
@@ -668,6 +671,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D322AE5E25A4D9AF00134636 /* GridLayoutDemoViewController.swift in Sources */,
 				D3A0F8D8259B9C61008B2D36 /* BaseDemoViewController.swift in Sources */,
 				D3A0F896259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift in Sources */,
 				D3A0F7D7259AC820008B2D36 /* Tracking.swift in Sources */,
