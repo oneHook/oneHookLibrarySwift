@@ -78,6 +78,9 @@ class MenuViewController: UIViewController {
             MenuItemUIModel(name: "BarGraph", makeController: {
                 BarGraphDemoViewController()
             }),
+            MenuItemUIModel(name: "LineGraph", makeController: {
+                LineGraphDemoViewController()
+            }),
             MenuItemUIModel(name: "ProgressBar", makeController: {
                 ProgressBarDemoViewController()
             }),
@@ -108,6 +111,9 @@ class MenuViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        let controller = LineGraphDemoViewController()
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
