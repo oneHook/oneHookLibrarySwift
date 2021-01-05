@@ -49,6 +49,9 @@ class MenuViewController: UIViewController {
             }),
             MenuItemUIModel(name: "GridLayout", makeController: {
                 GridLayoutDemoViewController()
+            }),
+            MenuItemUIModel(name: "FlowLayout", makeController: {
+                FlowLayoutDemoViewController()
             })
         ]))
 
