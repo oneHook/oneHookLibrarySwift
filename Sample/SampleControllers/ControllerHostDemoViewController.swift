@@ -40,6 +40,9 @@ class ControllerHostDemoViewController: BaseScrollableDemoViewController {
     private let dragDismissSwitch = SwitchView().apply {
         $0.isOn = true
     }
+    private let blurBackgroundSwitch = SwitchView().apply {
+        $0.isOn = true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,14 +53,6 @@ class ControllerHostDemoViewController: BaseScrollableDemoViewController {
         controllerHost.contentTopMargin = dp(200)
 
         view.addSubview(controllerHost)
-
-        contentLinearLayout.addSubview(EDButton().apply {
-            $0.layoutGravity = [.fillHorizontal]
-            $0.tag = 0
-            $0.setTitleColor(.black, for: .normal)
-            $0.setTitle("Present", for: .normal)
-            $0.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
-        })
 
         contentLinearLayout.addSubview(StackLayout().apply {
             $0.padding = Dimens.marginMedium
@@ -84,6 +79,12 @@ class ControllerHostDemoViewController: BaseScrollableDemoViewController {
                 $0.text = "Allow Drag to Dismiss"
             })
             $0.addSubview(dragDismissSwitch)
+
+            $0.addSubview(EDLabel().apply {
+                $0.font = UIFont.boldSystemFont(ofSize: 16)
+                $0.text = "Show blurred background"
+            })
+            $0.addSubview(blurBackgroundSwitch)
         })
 
         contentLinearLayout.addSubview(EDButton().apply {
@@ -92,6 +93,14 @@ class ControllerHostDemoViewController: BaseScrollableDemoViewController {
             $0.tag = 1
             $0.setTitleColor(.black, for: .normal)
             $0.setTitle("Present Dialog", for: .normal)
+            $0.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
+        })
+
+        contentLinearLayout.addSubview(EDButton().apply {
+            $0.layoutGravity = [.fillHorizontal]
+            $0.tag = 0
+            $0.setTitleColor(.black, for: .normal)
+            $0.setTitle("Present View Controller", for: .normal)
             $0.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         })
     }
@@ -105,16 +114,24 @@ class ControllerHostDemoViewController: BaseScrollableDemoViewController {
         switch sender.tag {
         case 0:
             controllerHost.contentTopMargin = CGFloat(topMarginSlider.value)
-            controllerHost.present(
-                SimpleViewController(),
-                style: .init(blurEffect: .init(style: .regular))
-            )
+            if blurBackgroundSwitch.isOn {
+                controllerHost.present(
+                    SimpleViewController(),
+                    style: .init(blurEffect: .init(style: .regular))
+                )
+            } else {
+                controllerHost.present(SimpleViewController())
+            }
         case 1:
             controllerHost.contentTopMargin = 0
-            controllerHost.present(
-                SimpleDialogViewController(),
-                style: .init(blurEffect: .init(style: .regular))
-            )
+            if blurBackgroundSwitch.isOn {
+                controllerHost.present(
+                    SimpleDialogViewController(),
+                    style: .init(blurEffect: .init(style: .regular))
+                )
+            } else {
+                controllerHost.present(SimpleDialogViewController())
+            }
         default:
             break
         }
