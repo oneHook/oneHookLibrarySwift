@@ -16,6 +16,8 @@
 		D322AE3725A4009500134636 /* ViewPagerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE3325A4008700134636 /* ViewPagerDemoViewController.swift */; };
 		D322AE3D25A4CF2600134636 /* ViewPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE3C25A4CF2600134636 /* ViewPager.swift */; };
 		D322AE4125A4D04C00134636 /* EDVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE4025A4D04C00134636 /* EDVisualEffectView.swift */; };
+		D322AE4A25A4D4EC00134636 /* StackLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE4625A4D48D00134636 /* StackLayoutDemoViewController.swift */; };
+		D322AE5325A4D80600134636 /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE4F25A4D80400134636 /* Views.swift */; };
 		D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */; };
 		D3A0F661259ABC7A008B2D36 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */; };
 		D3A0F666259ABC7A008B2D36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A0F665259ABC7A008B2D36 /* Assets.xcassets */; };
@@ -154,6 +156,8 @@
 		D322AE3325A4008700134636 /* ViewPagerDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPagerDemoViewController.swift; sourceTree = "<group>"; };
 		D322AE3C25A4CF2600134636 /* ViewPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPager.swift; sourceTree = "<group>"; };
 		D322AE4025A4D04C00134636 /* EDVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDVisualEffectView.swift; sourceTree = "<group>"; };
+		D322AE4625A4D48D00134636 /* StackLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackLayoutDemoViewController.swift; sourceTree = "<group>"; };
+		D322AE4F25A4D80400134636 /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
 		D3A0F659259ABC7A008B2D36 /* oneHookLibrarySwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oneHookLibrarySwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -491,6 +495,7 @@
 			children = (
 				D3A0F895259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift */,
 				D3A0F935259D0423008B2D36 /* FrameLayoutDemoViewController.swift */,
+				D322AE4625A4D48D00134636 /* StackLayoutDemoViewController.swift */,
 				D3A0F8E1259B9D51008B2D36 /* OdometerDemoViewController.swift */,
 				D3A0F8F1259BAC5F008B2D36 /* DateWidgetDemoViewController.swift */,
 				D3A0F90A259BF1F5008B2D36 /* BarGraphDemoViewController.swift */,
@@ -509,6 +514,7 @@
 				D3A0F8C5259B8C1A008B2D36 /* SimpleTableViewCell.swift */,
 				D3A0F8D7259B9C61008B2D36 /* BaseDemoViewController.swift */,
 				D3A0F8CB259B8F40008B2D36 /* BaseScrollableDemoViewController.swift */,
+				D322AE4F25A4D80400134636 /* Views.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -670,11 +676,13 @@
 				D3A0F914259CDCDF008B2D36 /* BarGraphDemoViewController.swift in Sources */,
 				D3A0F8CC259B8F40008B2D36 /* BaseScrollableDemoViewController.swift in Sources */,
 				D3A0F8E5259B9D76008B2D36 /* OdometerDemoViewController.swift in Sources */,
+				D322AE5325A4D80600134636 /* Views.swift in Sources */,
 				D3A0F661259ABC7A008B2D36 /* MenuViewController.swift in Sources */,
 				D322AE1A25A3B77000134636 /* StaggerGridLayoutDemoViewController.swift in Sources */,
 				D3A0F92A259CF1BE008B2D36 /* ProgressBarDemoViewController.swift in Sources */,
 				D3A0F8C6259B8C1A008B2D36 /* SimpleTableViewCell.swift in Sources */,
 				D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */,
+				D322AE4A25A4D4EC00134636 /* StackLayoutDemoViewController.swift in Sources */,
 				D3A0F921259CEE9B008B2D36 /* ControllerHostDemoViewController.swift in Sources */,
 				D322AE3725A4009500134636 /* ViewPagerDemoViewController.swift in Sources */,
 				D322AE2825A3D1C500134636 /* ColorPickerViewDemoViewController.swift in Sources */,

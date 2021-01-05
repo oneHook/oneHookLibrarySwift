@@ -43,6 +43,9 @@ class MenuViewController: UIViewController {
             }),
             MenuItemUIModel(name: "FrameLayout", makeController: {
                 FrameLayoutLayoutDemoViewController()
+            }),
+            MenuItemUIModel(name: "StackLayout", makeController: {
+                StackLayoutDemoViewController()
             })
         ]))
 
