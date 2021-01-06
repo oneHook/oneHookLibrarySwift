@@ -11,10 +11,8 @@ class LineGraphDemoViewController: BaseScrollableDemoViewController {
     }
 
     let graph2 = LineGraphView().apply {
-        $0.padding = Dimens.marginMedium
-        $0.layer.borderWidth = dp(2)
-        $0.layer.borderColor = UIColor.white.cgColor
-        $0.setGradientColor(topColor: UIColor.red, bottomColor: UIColor.blue)
+        $0.marginTop = Dimens.marginLarge
+        $0.setGradientColor(topColor: UIColor.red, bottomColor: UIColor.black)
     }
 
     let randomButton = EDButton().apply {
@@ -31,10 +29,12 @@ class LineGraphDemoViewController: BaseScrollableDemoViewController {
             $0.margin = Dimens.marginLarge
             $0.addTarget(self, action: #selector(randomButtonPressed), for: .touchUpInside)
         })
+
+        randomButtonPressed()
     }
 
     @objc private func randomButtonPressed() {
-        var numbers = Array.init(repeating: 0, count: 50)
+        var numbers = Array.init(repeating: 0, count: 20)
         for i in numbers.indices {
             numbers[i] = Int.random(in: 3..<20)
         }
