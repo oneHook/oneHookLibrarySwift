@@ -39,17 +39,17 @@ class LineGraphDemoViewController: BaseScrollableDemoViewController {
             numbers[i] = Int.random(in: 3..<20)
         }
         
-        graph1.uiModel = LineGraphUIModel(
+        graph1.bind(LineGraphUIModel(
             numbers: numbers,
             minValue: -5,
             maxValue: 25,
             smooth: true
-        )
-        graph2.uiModel = LineGraphUIModel(
+        ), animated: true)
+        graph2.bind(LineGraphUIModel(
             numbers: numbers,
             minValue: -5,
             maxValue: 25,
             smooth: false
-        )
+        ), animated: false)
     }
 }

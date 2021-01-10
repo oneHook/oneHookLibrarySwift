@@ -26,17 +26,14 @@ open class LineGraphView: BaseView {
         $0.anchorPoint = .zero
     }
     private var needsRefresh = true
-    public var uiModel: LineGraphUIModel? {
-        didSet {
-            needsRefresh = true
-            refresh()
-        }
-    }
+    private var uiModel: LineGraphUIModel?
+    private var previousPath: CGPath?
 
     open override func commonInit() {
         super.commonInit()
         layer.addSublayer(gradient)
         gradient.addSublayer(maskLayer)
+        gradient.mask = maskLayer
     }
 
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -61,10 +58,10 @@ open class LineGraphView: BaseView {
             maskLayer.bounds = targetBound
             maskLayer.position = .init(x: paddingStart, y: paddingTop)
         }
-        refresh()
+        refresh(animated: false)
     }
 
-    private func refresh() {
+    private func refresh(animated: Bool) {
         guard
             needsRefresh,
             let uiModel = uiModel,
@@ -101,13 +98,30 @@ open class LineGraphView: BaseView {
         maskPath.addLine(to: .init(x: width + paddingStart, y: height + paddingTop))
         maskPath.addLine(to: .init(x: paddingStart, y: height + paddingTop))
 
-        maskLayer.path = maskPath
-        gradient.mask = maskLayer
-        needsRefresh = false
+        if !animated || previousPath == nil {
+            /* No previous state or animation is disabled */
+            maskLayer.path = maskPath
+        } else {
+            let animation = CABasicAnimation(keyPath: "path")
+            animation.fromValue = previousPath
+            animation.toValue = maskPath
+            animation.duration = 0.4
+            animation.fillMode = CAMediaTimingFillMode.forwards
+            animation.isRemovedOnCompletion = false
+            maskLayer.add(animation, forKey: "path")
+        }
+
+        previousPath = maskPath
     }
 
     public func setGradientColor(topColor: UIColor, bottomColor: UIColor) {
         gradient.colors = [topColor, bottomColor].map { $0.cgColor }
+    }
+
+    public func bind(_ uiModel: LineGraphUIModel, animated: Bool) {
+        needsRefresh = true
+        self.uiModel = uiModel
+        refresh(animated: animated)
     }
 }
 
