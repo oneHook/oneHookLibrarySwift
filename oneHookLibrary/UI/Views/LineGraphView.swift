@@ -25,12 +25,24 @@ open class LineGraphView: BaseView {
     private var maskLayer = CAShapeLayer().apply {
         $0.anchorPoint = .zero
     }
+    private var strokeLayer = CAShapeLayer().apply {
+        $0.strokeColor = UIColor.white.cgColor
+        $0.lineWidth = dp(2)
+        $0.anchorPoint = .zero
+    }
+
     private var needsRefresh = true
     private var uiModel: LineGraphUIModel?
-    private var previousPath: CGPath?
+    public var isOutlineVisible: Bool = true{
+        didSet {
+            strokeLayer.isHidden = !isOutlineVisible
+        }
+    }
+
 
     open override func commonInit() {
         super.commonInit()
+        layer.addSublayer(strokeLayer)
         layer.addSublayer(gradient)
         gradient.addSublayer(maskLayer)
         gradient.mask = maskLayer
@@ -73,6 +85,7 @@ open class LineGraphView: BaseView {
         let height = gradient.bounds.height
 
         let maskPath = CGMutablePath()
+        let strokePath = CGMutablePath()
         maskPath.move(to: .init(x: paddingStart, y: height + paddingTop))
 
         let segmentCount = CGFloat(uiModel.points.count)
@@ -88,9 +101,16 @@ open class LineGraphView: BaseView {
         }
 
         if uiModel.smooth {
-            maskPath.addPath(quadCurvedPathWithPoints(points).cgPath)
+            let path = quadCurvedPathWithPoints(points).cgPath
+            strokePath.addPath(path)
+            maskPath.addPath(path)
         } else {
             points.forEach {
+                if strokePath.isEmpty {
+                    strokePath.move(to: $0)
+                } else {
+                    strokePath.addLine(to: $0)
+                }
                 maskPath.addLine(to: $0)
             }
         }
@@ -98,20 +118,34 @@ open class LineGraphView: BaseView {
         maskPath.addLine(to: .init(x: width + paddingStart, y: height + paddingTop))
         maskPath.addLine(to: .init(x: paddingStart, y: height + paddingTop))
 
-        if !animated || previousPath == nil {
+        if !animated || maskLayer.path == nil {
             /* No previous state or animation is disabled */
             maskLayer.path = maskPath
+            strokeLayer.path = strokePath
         } else {
-            let animation = CABasicAnimation(keyPath: "path")
-            animation.fromValue = previousPath
-            animation.toValue = maskPath
-            animation.duration = 0.4
-            animation.fillMode = CAMediaTimingFillMode.forwards
-            animation.isRemovedOnCompletion = false
-            maskLayer.add(animation, forKey: "path")
-        }
+            CATransaction.begin()
+            let maskAnimation = CABasicAnimation(keyPath: "path")
+            maskAnimation.fromValue = maskLayer.path
+            maskAnimation.toValue = maskPath
+            maskAnimation.duration = 0.4
+            maskAnimation.fillMode = CAMediaTimingFillMode.forwards
+            maskAnimation.isRemovedOnCompletion = false
 
-        previousPath = maskPath
+            let strokeAnimation = CABasicAnimation(keyPath: "path")
+            strokeAnimation.fromValue = strokeLayer.path
+            strokeAnimation.toValue = strokePath
+            strokeAnimation.duration = 0.4
+            strokeAnimation.fillMode = CAMediaTimingFillMode.forwards
+            strokeAnimation.isRemovedOnCompletion = false
+
+            CATransaction.setCompletionBlock {
+                self.maskLayer.path = maskPath
+                self.strokeLayer.path = strokePath
+            }
+            maskLayer.add(maskAnimation, forKey: "path")
+            strokeLayer.add(strokeAnimation, forKey: "path")
+            CATransaction.commit()
+        }
     }
 
     public func setGradientColor(topColor: UIColor, bottomColor: UIColor) {
