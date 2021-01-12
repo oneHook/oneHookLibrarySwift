@@ -69,6 +69,12 @@ class MenuViewController: UIViewController {
         ]))
 
         uiModels.append(MenuSectionUIModel(name: "Views", items: [
+            MenuItemUIModel(name: "Infinite Scroll View", makeController: {
+                InfiniteScrollViewDemoViewController()
+            }),
+            MenuItemUIModel(name: "Time Picker View", makeController: {
+                TimePickerViewDemoViewController()
+            }),
             MenuItemUIModel(name: "OdometerLabel", makeController: {
                 OdometerDemoViewController()
             }),
