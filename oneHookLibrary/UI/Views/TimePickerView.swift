@@ -1,6 +1,6 @@
 import UIKit
 
-private class NumberScrollView: EDScrollView {
+private class NumberScrollView: EDScrollView, UIScrollViewDelegate {
 
     public var cellHeight = dp(50)
     public var selectedNumber = 0
@@ -17,6 +17,7 @@ private class NumberScrollView: EDScrollView {
         self.init()
         self.numberCount = numberCount
         addSubview(contentView)
+        delegate = self
     }
 
     private func generateLabel() -> EDLabel {
@@ -104,6 +105,13 @@ private class NumberScrollView: EDScrollView {
         self.contentSize = contentSize
         lastWidth = bounds.width
         lastHeight = bounds.height
+    }
+
+    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let targetIndex = targetContentOffset.pointee.y / cellHeight
+        let targetIndexRounded = round(targetIndex)
+        let snapY = cellHeight * (targetIndexRounded > targetIndex ? targetIndexRounded - 0.5 : targetIndexRounded + 0.5)
+        targetContentOffset.pointee = CGPoint(x: 0, y: snapY)
     }
 }
 
