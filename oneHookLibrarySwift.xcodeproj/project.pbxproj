@@ -359,6 +359,7 @@
 				D3A0F73E259ABE4B008B2D36 /* Info.plist */,
 				D3A0F696259ABD83008B2D36 /* UI */,
 				D3A0F676259ABD83008B2D36 /* Utility */,
+				D3DAB47625B1F875003748BA /* Script */,
 			);
 			path = oneHookLibrary;
 			sourceTree = "<group>";
@@ -561,6 +562,13 @@
 				D3A0F8FB259BACB0008B2D36 /* MonthView.swift */,
 			);
 			path = DateWidget;
+			sourceTree = "<group>";
+		};
+		D3DAB47625B1F875003748BA /* Script */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Script;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

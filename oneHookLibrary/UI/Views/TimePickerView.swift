@@ -2,6 +2,9 @@ import UIKit
 
 private class NumberScrollView: EDScrollView {
 
+    public var cellHeight = dp(50)
+    public var selectedNumber = 0
+
     private let contentView = LinearLayout().apply {
         $0.orientation = .vertical
     }
@@ -12,19 +15,13 @@ private class NumberScrollView: EDScrollView {
 
     convenience init(numberCount: Int) {
         self.init()
-
         self.numberCount = numberCount
-        for i in 0..<numberCount {
-            contentView.addSubview(generateLabel().apply {
-                $0.text = String(i)
-            })
-        }
         addSubview(contentView)
     }
 
     private func generateLabel() -> EDLabel {
         EDLabel().apply {
-            $0.layoutSize = CGSize(width: 0, height: dp(50))
+            $0.layoutSize = CGSize(width: 0, height: cellHeight)
             $0.layoutGravity = [.fillHorizontal]
             $0.font = UIFont.systemFont(ofSize: 20)
             $0.textColor = .black
@@ -32,23 +29,79 @@ private class NumberScrollView: EDScrollView {
         }
     }
 
+    private func fillScrollView() {
+        if contentView.subviews.count == 0 {
+            for i in 0..<numberCount {
+                contentView.addSubview(generateLabel().apply {
+                    $0.text = String(i)
+                })
+            }
+        }
+        let paddingCount = (contentView.subviews.count - numberCount) / 2
+        let requiredPadding = Int(ceil(bounds.height / cellHeight))
+        if paddingCount < requiredPadding {
+            for i in 0..<requiredPadding - paddingCount {
+                contentView.insertSubview(generateLabel().apply {
+                    $0.text = String(numberCount - paddingCount - i - 1)
+                }, belowSubview: contentView.subviews[0])
+                contentView.addSubview(generateLabel().apply {
+                    $0.text = String(paddingCount + i)
+                })
+            }
+        } else if paddingCount > requiredPadding{
+            for _ in 0..<paddingCount - requiredPadding {
+                contentView.subviews.first?.removeFromSuperview()
+                contentView.subviews.last?.removeFromSuperview()
+            }
+        }
+        scrollTo(number: selectedNumber, animated: false)
+    }
+
+    private func scrollTo(number: Int, animated: Bool) {
+        self.selectedNumber = number
+        let targetIndex = CGFloat(contentView.subviews.count - numberCount) / 2 + CGFloat(number)
+        setContentOffset(
+            CGPoint(
+                x: 0,
+                y: targetIndex * cellHeight - bounds.height / 2 + cellHeight / 2
+            ),
+            animated: animated)
+    }
+
+    private func checkContentOffset() {
+        let paddingHeight = CGFloat(contentView.subviews.count - numberCount) / 2 * cellHeight
+        let actualContentHeight = contentSize.height - 2 * paddingHeight
+        if contentOffset.y < paddingHeight / 2 {
+            contentOffset = CGPoint(x: 0, y: contentOffset.y + actualContentHeight)
+        } else if contentOffset.y > contentSize.height - paddingHeight / 2 - bounds.height {
+            contentOffset = CGPoint(x: 0, y: contentOffset.y - actualContentHeight)
+        }
+    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        if bounds.width != lastWidth || bounds.height != lastHeight {
-            let contentSize = contentView.sizeThatFits(
-                CGSize(width: bounds.width,
-                       height: CGFloat.greatestFiniteMagnitude)
-            )
-            contentView.frame = CGRect(origin: .zero,
-                                       size: CGSize(
-                                        width: bounds.width,
-                                        height: contentSize.height
-                                       )
-            )
-            self.contentSize = contentSize
-            print("XXX", contentSize)
+        guard
+            bounds.width > 0,
+            bounds.height > 0,
+            bounds.width != lastWidth,
+            bounds.height != lastHeight else {
+            checkContentOffset()
+            return
         }
+
+        fillScrollView()
+        let contentSize = contentView.sizeThatFits(
+            CGSize(width: bounds.width,
+                   height: CGFloat.greatestFiniteMagnitude)
+        )
+        contentView.frame = CGRect(origin: .zero,
+                                   size: CGSize(
+                                    width: bounds.width,
+                                    height: contentSize.height
+                                   )
+        )
+        self.contentSize = contentSize
         lastWidth = bounds.width
         lastHeight = bounds.height
     }
