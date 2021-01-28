@@ -118,8 +118,8 @@ class MenuViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        let controller = TimePickerViewDemoViewController()
-        navigationController?.pushViewController(controller, animated: true)
+//        let controller = TimePickerViewDemoViewController()
+//        navigationController?.pushViewController(controller, animated: true)
     }
 }
 

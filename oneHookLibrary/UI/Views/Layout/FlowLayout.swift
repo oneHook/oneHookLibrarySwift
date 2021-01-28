@@ -2,8 +2,8 @@ import UIKit
 
 open class FlowLayout: BaseView {
 
-    public var verticalSpacing: CGFloat = Dimens.marginSmall
-    public var horizontalSpacing: CGFloat = Dimens.marginSmall
+    public var verticalSpacing: CGFloat = 5
+    public var horizontalSpacing: CGFloat = 5
 
     override open func sizeThatFits(_ size: CGSize) -> CGSize {
         measure(size: size, shouldLayout: false)
@@ -85,7 +85,7 @@ open class FlowLayout: BaseView {
             let actualViewWidth = viewSize.width + view.marginStart + view.marginEnd
             let actualViewHeight = viewSize.height + view.marginTop + view.marginBottom
 
-            if currentLineViews.isEmpty && actualViewWidth >= width {
+            if currentLineViews.isEmpty && actualViewWidth >= paddingStart + width {
                 /* New line, edge case, view width already exceed the whole line */
                 if shouldLayout {
                     view.frame = CGRect(x: paddingStart + view.marginStart,
@@ -100,7 +100,7 @@ open class FlowLayout: BaseView {
                 maxX = max(maxX, paddingStart + view.marginStart + view.marginEnd + viewSize.width)
                 maxY = max(maxY, currY - verticalSpacing)
                 index += 1
-            } else if currentLineViews.isNotEmpty && currX + actualViewWidth > width {
+            } else if currentLineViews.isNotEmpty && currX + actualViewWidth > paddingStart + width {
                 /* Not enough space for current view, should go to new line */
                 measureLine()
             } else {
@@ -115,7 +115,7 @@ open class FlowLayout: BaseView {
         if currentLineViews.isNotEmpty {
             measureLine()
         }
-        return CGSize(width: maxX + paddingEnd,
-                      height: maxY + paddingBottom)
+        return CGSize(width: min(size.width, maxX + paddingEnd),
+                      height: min(size.height, maxY + paddingBottom))
     }
 }

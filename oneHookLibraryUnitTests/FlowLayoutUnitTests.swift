@@ -67,7 +67,7 @@ class FlowLayoutUnitTests: XCTestCase {
         view.marginBottom = 5
         XCTAssertEqual(layout.sizeThatFits(CGSize(width: 100,
                                                   height: 100)),
-                       CGSize(width: 100, height: 110))
+                       CGSize(width: 100, height: 100))
         layout.layoutSubviews()
         XCTAssertEqual(layout.subviews.map({ $0.frame }),
                        [CGRect(x: 5, y: 5, width: 90, height: 100)])
@@ -76,7 +76,7 @@ class FlowLayoutUnitTests: XCTestCase {
         layout.padding = 8
         XCTAssertEqual(layout.sizeThatFits(CGSize(width: 100,
                                                   height: 100)),
-                       CGSize(width: 100, height: 126))
+                       CGSize(width: 100, height: 100))
         layout.layoutSubviews()
         XCTAssertEqual(layout.subviews.map({ $0.frame }),
                        [CGRect(x: 13, y: 13, width: 74, height: 100)])
@@ -106,8 +106,16 @@ class FlowLayoutUnitTests: XCTestCase {
                        [CGRect(x: 0, y: 0, width: 20, height: 20),
                         CGRect(x: 30, y: 0, width: 20, height: 20)])
 
-        /* with margins */
+        /* only padding */
+        layout.padding = 5
+        XCTAssertEqual(layout.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude,
+                                                  height: CGFloat.greatestFiniteMagnitude)),
+                       CGSize(width: 60, height: 30))
 
+
+        /* with only margins */
+
+        layout.padding = 0
         view1.marginStart = 1
         view1.marginTop = 2
         view1.marginBottom = 3
@@ -175,7 +183,7 @@ class FlowLayoutUnitTests: XCTestCase {
 
         /* no padding, no margin */
         XCTAssertEqual(layout.sizeThatFits(CGSize(width: 100,
-                                                  height: 100)),
+                                                  height: CGFloat.greatestFiniteMagnitude)),
                        CGSize(width: 90, height: 140))
         layout.layoutSubviews()
         XCTAssertEqual(layout.subviews.map({ $0.frame }),
@@ -193,5 +201,42 @@ class FlowLayoutUnitTests: XCTestCase {
                         CGRect(x: 0, y: 50, width: 40, height: 40),
                         CGRect(x: 50, y: 50, width: 40, height: 40),
                         CGRect(x: 0, y: 100, width: 40, height: 40)])
+    }
+
+    func testExactMeasureCase() {
+        let layout = FlowLayout()
+        layout.horizontalSpacing = 10
+        layout.verticalSpacing = 10
+        layout.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+
+        layout.addSubview(BaseView().apply {
+            $0.layoutSize = CGSize(width: 20, height: 20)
+        })
+
+        layout.addSubview(BaseView().apply {
+            $0.layoutSize = CGSize(width: 20, height: 20)
+        })
+
+        layout.addSubview(BaseView().apply {
+            $0.layoutSize = CGSize(width: 20, height: 20)
+        })
+
+        XCTAssertEqual(layout.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude,
+                                                  height: CGFloat.greatestFiniteMagnitude)),
+                       CGSize(width: 80, height: 20))
+
+        XCTAssertEqual(layout.sizeThatFits(CGSize(width: 80,
+                                                  height: 20)),
+                       CGSize(width: 80, height: 20))
+
+        layout.padding = 10
+
+        XCTAssertEqual(layout.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude,
+                                                  height: CGFloat.greatestFiniteMagnitude)),
+                       CGSize(width: 100, height: 40))
+
+        XCTAssertEqual(layout.sizeThatFits(CGSize(width: 100,
+                                                  height: 40)),
+                       CGSize(width: 100, height: 40))
     }
 }
