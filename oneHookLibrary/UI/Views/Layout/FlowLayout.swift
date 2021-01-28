@@ -19,6 +19,8 @@ open class FlowLayout: BaseView {
                 shouldLayout: true)
     }
 
+    /// resulting measured width will never exceeds given size width
+    /// although in edge case one of the child may have width greater than given width
     private func measure(size: CGSize, shouldLayout: Bool) -> CGSize {
         let width = size.width - paddingStart - paddingEnd
         var currY: CGFloat = paddingTop
@@ -116,6 +118,6 @@ open class FlowLayout: BaseView {
             measureLine()
         }
         return CGSize(width: min(size.width, maxX + paddingEnd),
-                      height: min(size.height, maxY + paddingBottom))
+                      height: maxY + paddingBottom)
     }
 }
