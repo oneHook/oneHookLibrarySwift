@@ -9,7 +9,6 @@ extension UIColor {
     public static var ed_placeholderTextColor: UIColor { Theme.current.placeholderTextColor }
     public static var ed_cellBackgroundColor: UIColor { Theme.current.cellBackgroundColor }
     public static var ed_cellBackgroundColorHighlight: UIColor { Theme.current.cellBackgroundColorHighlight }
-
 }
 
 #endif
