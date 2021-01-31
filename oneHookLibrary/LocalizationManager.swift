@@ -1,6 +1,6 @@
 import UIKit
 
-// missing string not found in Lokalise
+// easier to find out unlocalized string
 public func missing(_ key: String, comment: String) -> String {
     comment
 }

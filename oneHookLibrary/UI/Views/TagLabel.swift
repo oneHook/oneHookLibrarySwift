@@ -26,7 +26,6 @@ open class TagLabel: StackLayout {
 
     public let titleLabel = EDLabel().apply {
         $0.textAlignment = .center
-        $0.textColor = SharedCustomization.defaultTextBlack
         $0.numberOfLines = 0
         $0.layoutGravity = .centerVertical
     }

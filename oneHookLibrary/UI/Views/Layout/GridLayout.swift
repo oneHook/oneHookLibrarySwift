@@ -12,7 +12,7 @@ open class GridLayout: BaseView {
     public var columnCount: Int = 2
     public var showDivider: Bool = false
 
-    public var dividerColor: UIColor = SharedCustomization.defaultTextBlack {
+    public var dividerColor: UIColor = .ed_dividerColor {
         didSet {
             for divider in dividers {
                 divider.backgroundColor = self.dividerColor.cgColor

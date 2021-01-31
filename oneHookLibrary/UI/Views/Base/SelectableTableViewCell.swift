@@ -17,11 +17,11 @@ open class SelectableTableViewCell: UITableViewCell {
     }
 
     open var highlightBackgroundColor: UIColor {
-        SharedCustomization.defaultCellBackgroundSelected
+        .ed_cellBackgroundColorHighlight
     }
 
     open var normalBackgroundColor: UIColor {
-        SharedCustomization.defaultBackgroundWhite
+        .ed_cellBackgroundColor
     }
 
     override open func setSelected(_ selected: Bool, animated: Bool) {

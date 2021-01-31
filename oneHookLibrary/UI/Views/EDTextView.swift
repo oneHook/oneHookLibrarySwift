@@ -112,7 +112,7 @@ open class EDTextView: UITextView, UITextViewDelegate {
         placeholderLabel.sizeToFit()
 
         placeholderLabel.font = self.font
-        placeholderLabel.textColor = SharedCustomization.defaultTextBlack
+        placeholderLabel.textColor = .ed_placeholderTextColor
         placeholderLabel.tag = 100
 
         placeholderLabel.isHidden = !self.text.isEmpty

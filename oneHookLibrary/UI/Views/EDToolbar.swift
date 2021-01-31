@@ -3,7 +3,7 @@ import UIKit
 public class EDToolbar: BaseView {
 
     public var contentContainerOffset = UIScreen.statusBarHeight
-    public var toolbarHeight = Dimens.toolbarHeightDefault
+    public var toolbarHeight = Dimens.toolbarHeightDefaultFixed
 
     public var contentContainer = FrameLayout().apply { (layout) in
         layout.backgroundColor = .clear
@@ -18,8 +18,8 @@ public class EDToolbar: BaseView {
 
     public lazy var centerLabel = optionalBuilder {
         EDLabel().apply({ (label) in
-            label.font = SharedCustomization.boldFont(size: SharedCustomization.fontSizeMedium)
-            label.textColor = SharedCustomization.defaultTextBlack
+            label.font = Fonts.bold(Fonts.fontSizeMedium)
+            label.textColor = .ed_toolbarTextColor
             label.textAlignment = .center
             self.labelContainer.addSubview(label)
         })
@@ -27,8 +27,8 @@ public class EDToolbar: BaseView {
 
     public lazy var leftLabel = optionalBuilder {
         EDLabel().apply({ (label) in
-            label.font = SharedCustomization.boldFont(size: SharedCustomization.fontSizeMedium)
-            label.textColor = SharedCustomization.defaultTextBlack
+            label.font = Fonts.bold(Fonts.fontSizeMedium)
+            label.textColor = .ed_toolbarTextColor
             label.layoutGravity = [.centerVertical, .start]
             label.marginStart = Dimens.marginMedium
             label.textAlignment = .left
@@ -38,7 +38,7 @@ public class EDToolbar: BaseView {
 
     public lazy var centerSubtitleLabel = optionalBuilder {
         EDLabel().apply({ (label) in
-            label.font = SharedCustomization.regularFont(size: SharedCustomization.fontSizeMedium)
+            label.font = Fonts.regular(Fonts.fontSizeMedium)
             label.textAlignment = .center
             label.textColor = UIColor.black
             label.marginTop = dp(4)
@@ -74,7 +74,7 @@ public class EDToolbar: BaseView {
 
     open override func commonInit() {
         super.commonInit()
-        backgroundColor = SharedCustomization.defaultBackgroundWhite
+        backgroundColor = .ed_toolbarBackgroundColor
         addSubview(contentContainer)
         contentContainer.addSubview(labelContainer)
     }

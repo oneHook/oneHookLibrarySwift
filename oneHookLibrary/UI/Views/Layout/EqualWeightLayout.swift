@@ -7,7 +7,7 @@ open class EqualWeightLayout: BaseView {
     public var spacing: CGFloat = 0
     public var dividerTopBottomPadding: CGFloat = dp(12)
     public var dividerWidth: CGFloat = dp(1)
-    public var dividerColor: UIColor = SharedCustomization.defaultTextBlack {
+    public var dividerColor: UIColor = .ed_dividerColor {
         didSet {
             for divider in dividers {
                 divider.backgroundColor = self.dividerColor.cgColor

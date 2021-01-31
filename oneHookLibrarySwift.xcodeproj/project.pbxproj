@@ -26,6 +26,10 @@
 		D322AE7025A4DD2000134636 /* Faker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE6325A4DC7F00134636 /* Faker.swift */; };
 		D322AE7925A4DEDB00134636 /* EqualWeightLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE7525A4DED600134636 /* EqualWeightLayoutDemoViewController.swift */; };
 		D322AE8225A4DFE500134636 /* RowLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE7E25A4DFDE00134636 /* RowLayoutDemoViewController.swift */; };
+		D3958B0725C746E7005D4920 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3958B0625C746E7005D4920 /* Theme.swift */; };
+		D3958B0B25C74738005D4920 /* DefaultTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3958B0A25C74738005D4920 /* DefaultTheme.swift */; };
+		D3958B1325C7475F005D4920 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3958B1225C7475F005D4920 /* Fonts.swift */; };
+		D3958B1725C7476E005D4920 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3958B1625C7476E005D4920 /* Colors.swift */; };
 		D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */; };
 		D3A0F661259ABC7A008B2D36 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */; };
 		D3A0F666259ABC7A008B2D36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A0F665259ABC7A008B2D36 /* Assets.xcassets */; };
@@ -83,7 +87,6 @@
 		D3A0F7C9259AC6A2008B2D36 /* Dimens.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F7C7259AC6A2008B2D36 /* Dimens.swift */; };
 		D3A0F7D7259AC820008B2D36 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F7D6259AC820008B2D36 /* Tracking.swift */; };
 		D3A0F7D8259AC820008B2D36 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F7D6259AC820008B2D36 /* Tracking.swift */; };
-		D3A0F7E1259AC8AB008B2D36 /* SharedCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F7DF259AC8AB008B2D36 /* SharedCustomization.swift */; };
 		D3A0F7EF259ACB55008B2D36 /* ButtonGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F7ED259ACB55008B2D36 /* ButtonGenerator.swift */; };
 		D3A0F7F6259ACB83008B2D36 /* ViewGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F7F4259ACB83008B2D36 /* ViewGenerator.swift */; };
 		D3A0F7FB259ACBA8008B2D36 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F7F9259ACBA8008B2D36 /* LocalizationManager.swift */; };
@@ -177,6 +180,10 @@
 		D322AE6725A4DCD100134636 /* FlowLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayoutDemoViewController.swift; sourceTree = "<group>"; };
 		D322AE7525A4DED600134636 /* EqualWeightLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualWeightLayoutDemoViewController.swift; sourceTree = "<group>"; };
 		D322AE7E25A4DFDE00134636 /* RowLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowLayoutDemoViewController.swift; sourceTree = "<group>"; };
+		D3958B0625C746E7005D4920 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		D3958B0A25C74738005D4920 /* DefaultTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTheme.swift; sourceTree = "<group>"; };
+		D3958B1225C7475F005D4920 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		D3958B1625C7476E005D4920 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D3A0F659259ABC7A008B2D36 /* oneHookLibrarySwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oneHookLibrarySwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -237,7 +244,6 @@
 		D3A0F73E259ABE4B008B2D36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3A0F7C7259AC6A2008B2D36 /* Dimens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimens.swift; sourceTree = "<group>"; };
 		D3A0F7D6259AC820008B2D36 /* Tracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracking.swift; sourceTree = "<group>"; };
-		D3A0F7DF259AC8AB008B2D36 /* SharedCustomization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedCustomization.swift; sourceTree = "<group>"; };
 		D3A0F7ED259ACB55008B2D36 /* ButtonGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonGenerator.swift; sourceTree = "<group>"; };
 		D3A0F7F4259ACB83008B2D36 /* ViewGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewGenerator.swift; sourceTree = "<group>"; };
 		D3A0F7F9259ACBA8008B2D36 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
@@ -369,10 +375,9 @@
 		D3A0F673259ABD28008B2D36 /* oneHookLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				D3A0F73E259ABE4B008B2D36 /* Info.plist */,
 				D3A0F73D259ABE4B008B2D36 /* oneHookLibrary.h */,
 				D3A0F7F9259ACBA8008B2D36 /* LocalizationManager.swift */,
-				D3A0F7DF259AC8AB008B2D36 /* SharedCustomization.swift */,
-				D3A0F73E259ABE4B008B2D36 /* Info.plist */,
 				D3A0F696259ABD83008B2D36 /* UI */,
 				D3A0F676259ABD83008B2D36 /* Utility */,
 				D3DAB47625B1F875003748BA /* Script */,
@@ -405,7 +410,7 @@
 		D3A0F696259ABD83008B2D36 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				D3A0F888259AD56D008B2D36 /* Styles */,
+				D3A0F888259AD56D008B2D36 /* Theme */,
 				D3A0F697259ABD83008B2D36 /* Animation */,
 				D3A0F6A0259ABD83008B2D36 /* Views */,
 			);
@@ -515,12 +520,16 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		D3A0F888259AD56D008B2D36 /* Styles */ = {
+		D3A0F888259AD56D008B2D36 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
+				D3958B0625C746E7005D4920 /* Theme.swift */,
+				D3958B0A25C74738005D4920 /* DefaultTheme.swift */,
 				D3A0F7C7259AC6A2008B2D36 /* Dimens.swift */,
+				D3958B1225C7475F005D4920 /* Fonts.swift */,
+				D3958B1625C7476E005D4920 /* Colors.swift */,
 			);
-			path = Styles;
+			path = Theme;
 			sourceTree = "<group>";
 		};
 		D3A0F894259AD8BD008B2D36 /* SampleControllers */ = {
@@ -785,9 +794,11 @@
 				D3A0F77F259ABEB5008B2D36 /* Date+Extensions.swift in Sources */,
 				D3A0F7EF259ACB55008B2D36 /* ButtonGenerator.swift in Sources */,
 				D3A0F7D8259AC820008B2D36 /* Tracking.swift in Sources */,
+				D3958B1325C7475F005D4920 /* Fonts.swift in Sources */,
 				D3A0F78D259ABEB5008B2D36 /* Math+Extensions.swift in Sources */,
 				D3A0F8DE259B9D3B008B2D36 /* OdometerLabel.swift in Sources */,
 				D3A0F795259ABEB5008B2D36 /* Dictionary+Extensions.swift in Sources */,
+				D3958B0B25C74738005D4920 /* DefaultTheme.swift in Sources */,
 				D3A0F7C9259AC6A2008B2D36 /* Dimens.swift in Sources */,
 				D3A0F781259ABEB5008B2D36 /* UIImage+Extensions.swift in Sources */,
 				D3A0F930259CF39A008B2D36 /* EDCollectionView.swift in Sources */,
@@ -806,6 +817,7 @@
 				D3A0F791259ABEB5008B2D36 /* UIColor+Extensions.swift in Sources */,
 				D3A0F773259ABE9C008B2D36 /* EqualWeightLayout.swift in Sources */,
 				D3A0F787259ABEB5008B2D36 /* OptionalBuilder.swift in Sources */,
+				D3958B1725C7476E005D4920 /* Colors.swift in Sources */,
 				D3A0F918259CDD29008B2D36 /* EDSegmentedControl.swift in Sources */,
 				D3A0F86C259AD4B7008B2D36 /* Tappable.swift in Sources */,
 				D3A0F767259ABE9C008B2D36 /* ControllerHostView.swift in Sources */,
@@ -815,6 +827,7 @@
 				D3A0F76F259ABE9C008B2D36 /* EDToolbar.swift in Sources */,
 				D3A0F784259ABEB5008B2D36 /* FileUtility.swift in Sources */,
 				D3A0F793259ABEB5008B2D36 /* KeyboardObserver.swift in Sources */,
+				D3958B0725C746E7005D4920 /* Theme.swift in Sources */,
 				D322AE4125A4D04C00134636 /* EDVisualEffectView.swift in Sources */,
 				D3A0F769259ABE9C008B2D36 /* LinearLayout.swift in Sources */,
 				D3A0F821259AD1A9008B2D36 /* EDLabel.swift in Sources */,
@@ -840,7 +853,6 @@
 				D322AE3D25A4CF2600134636 /* ViewPager.swift in Sources */,
 				D3A0F83A259AD314008B2D36 /* EDTableView.swift in Sources */,
 				D3A0F844259AD346008B2D36 /* EDDatePicker.swift in Sources */,
-				D3A0F7E1259AC8AB008B2D36 /* SharedCustomization.swift in Sources */,
 				D3A0F82B259AD1DD008B2D36 /* EDTextView.swift in Sources */,
 				D3A0F78E259ABEB5008B2D36 /* DeviceInfo.swift in Sources */,
 			);
