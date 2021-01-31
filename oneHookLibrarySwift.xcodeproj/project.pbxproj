@@ -44,7 +44,6 @@
 		D3A0F743259ABE4B008B2D36 /* oneHookLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D3A0F73B259ABE4B008B2D36 /* oneHookLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D3A0F750259ABE78008B2D36 /* FadeTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F698259ABD83008B2D36 /* FadeTransitionAnimation.swift */; };
 		D3A0F753259ABE7D008B2D36 /* SheetTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F699259ABD83008B2D36 /* SheetTransitionAnimation.swift */; };
-		D3A0F75C259ABE9C008B2D36 /* InfiniteScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F6A2259ABD83008B2D36 /* InfiniteScrollerView.swift */; };
 		D3A0F75D259ABE9C008B2D36 /* EDButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F6B3259ABD83008B2D36 /* EDButton.swift */; };
 		D3A0F760259ABE9C008B2D36 /* EDMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F6A6259ABD83008B2D36 /* EDMapView.swift */; };
 		D3A0F762259ABE9C008B2D36 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F6B8259ABD83008B2D36 /* SwitchView.swift */; };
@@ -210,7 +209,6 @@
 		D3A0F698259ABD83008B2D36 /* FadeTransitionAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransitionAnimation.swift; sourceTree = "<group>"; };
 		D3A0F699259ABD83008B2D36 /* SheetTransitionAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetTransitionAnimation.swift; sourceTree = "<group>"; };
 		D3A0F6A1259ABD83008B2D36 /* StackLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackLayout.swift; sourceTree = "<group>"; };
-		D3A0F6A2259ABD83008B2D36 /* InfiniteScrollerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollerView.swift; sourceTree = "<group>"; };
 		D3A0F6A6259ABD83008B2D36 /* EDMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EDMapView.swift; sourceTree = "<group>"; };
 		D3A0F6A9259ABD83008B2D36 /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		D3A0F6AA259ABD83008B2D36 /* RangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
@@ -447,7 +445,6 @@
 				D3A0F917259CDD29008B2D36 /* EDSegmentedControl.swift */,
 				D3A0F8EB259BA121008B2D36 /* EDSlider.swift */,
 				D322AE4025A4D04C00134636 /* EDVisualEffectView.swift */,
-				D3A0F6A2259ABD83008B2D36 /* InfiniteScrollerView.swift */,
 				D3A0F6BA259ABD83008B2D36 /* ControllerHostView.swift */,
 				D3A0F6AB259ABD83008B2D36 /* TagLabel.swift */,
 				D3A0F6AA259ABD83008B2D36 /* RangeSlider.swift */,
@@ -770,7 +767,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3A0F75C259ABE9C008B2D36 /* InfiniteScrollerView.swift in Sources */,
 				D3A0F78B259ABEB5008B2D36 /* KeyboardInputObserver.swift in Sources */,
 				D3A0F883259AD525008B2D36 /* GradientView.swift in Sources */,
 				D3A0F796259ABEB5008B2D36 /* Array+Extensions.swift in Sources */,
