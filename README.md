@@ -19,6 +19,10 @@ run the following command if you wish to check any latest release/change
 
 `git submodule update --remote --merge`
 
+## Samples
+
+open `oneHookLibrarySwift.xcodeproj` to run the samples
+
 # Features
 
 ## Kotlin Style Code
@@ -81,6 +85,10 @@ now with the asserts script, once you set it up in build phase, it will generate
 UIImage(named: R.Images.xxx)
 R.Strings.xxx
 ```
+
+### Instruction
+
+coming soon
 
 ## Declarative UI Building
 
