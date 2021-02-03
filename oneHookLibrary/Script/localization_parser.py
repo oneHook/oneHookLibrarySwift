@@ -11,8 +11,7 @@ ASSET_LOG_FILE = 'assets_log.txt'
 
 # Code Generation Template
 
-R_TEMPLATE_PART1 = '''import SharedLibrary
-
+R_TEMPLATE_PART1 = '''
 extension R {
     class Strings {'''
     

@@ -125,6 +125,10 @@
 		D3A0F93D259D043A008B2D36 /* FrameLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F935259D0423008B2D36 /* FrameLayoutDemoViewController.swift */; };
 		D3A9E25525CB2F1300722555 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D3A9E25425CB2F1300722555 /* README.md */; };
 		D3A9E27225CB3EF900722555 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E27125CB3EF900722555 /* AppTheme.swift */; };
+		D3A9E27825CB61D900722555 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A9E27725CB61D900722555 /* Colors.xcassets */; };
+		D3A9E28325CB650F00722555 /* ImageAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E28125CB650E00722555 /* ImageAssets.swift */; };
+		D3A9E28425CB650F00722555 /* ColorAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E28225CB650E00722555 /* ColorAssets.swift */; };
+		D3A9E28825CB651B00722555 /* R.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E28725CB651B00722555 /* R.swift */; };
 		D3DAB22625AD5808003748BA /* InfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */; };
 		D3DAB22D25AD593C003748BA /* InfiniteScrollViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */; };
 		D3DAB23325ADFC45003748BA /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB23225ADFC45003748BA /* TimePickerView.swift */; };
@@ -288,6 +292,10 @@
 		D3A9E25325CB2F0A00722555 /* assets_script.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = assets_script.py; sourceTree = "<group>"; };
 		D3A9E25425CB2F1300722555 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D3A9E27125CB3EF900722555 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		D3A9E27725CB61D900722555 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		D3A9E28125CB650E00722555 /* ImageAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAssets.swift; sourceTree = "<group>"; };
+		D3A9E28225CB650E00722555 /* ColorAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorAssets.swift; sourceTree = "<group>"; };
+		D3A9E28725CB651B00722555 /* R.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.swift; sourceTree = "<group>"; };
 		D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollView.swift; sourceTree = "<group>"; };
 		D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewDemoViewController.swift; sourceTree = "<group>"; };
 		D3DAB23225ADFC45003748BA /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -371,8 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				D3A0F66A259ABC7A008B2D36 /* Info.plist */,
-				D3A0F665259ABC7A008B2D36 /* Assets.xcassets */,
-				D3A0F667259ABC7A008B2D36 /* LaunchScreen.storyboard */,
+				D3A9E27C25CB63C400722555 /* Assets */,
 				D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */,
 				D3A9E27125CB3EF900722555 /* AppTheme.swift */,
 				D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */,
@@ -588,6 +595,19 @@
 			path = DateWidget;
 			sourceTree = "<group>";
 		};
+		D3A9E27C25CB63C400722555 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				D3A9E28725CB651B00722555 /* R.swift */,
+				D3A9E28225CB650E00722555 /* ColorAssets.swift */,
+				D3A9E28125CB650E00722555 /* ImageAssets.swift */,
+				D3A0F667259ABC7A008B2D36 /* LaunchScreen.storyboard */,
+				D3A0F665259ABC7A008B2D36 /* Assets.xcassets */,
+				D3A9E27725CB61D900722555 /* Colors.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		D3DAB47625B1F875003748BA /* Script */ = {
 			isa = PBXGroup;
 			children = (
@@ -617,6 +637,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3A0F66D259ABC7A008B2D36 /* Build configuration list for PBXNativeTarget "oneHookLibrarySwift" */;
 			buildPhases = (
+				D3A9E27B25CB62DA00722555 /* Generate Assets */,
 				D3A0F655259ABC7A008B2D36 /* Sources */,
 				D3A0F656259ABC7A008B2D36 /* Frameworks */,
 				D3A0F657259ABC7A008B2D36 /* Resources */,
@@ -715,6 +736,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3A9E25525CB2F1300722555 /* README.md in Resources */,
+				D3A9E27825CB61D900722555 /* Colors.xcassets in Resources */,
 				D3A0F669259ABC7A008B2D36 /* LaunchScreen.storyboard in Resources */,
 				D3A0F666259ABC7A008B2D36 /* Assets.xcassets in Resources */,
 			);
@@ -735,6 +757,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D3A9E27B25CB62DA00722555 /* Generate Assets */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Assets";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Color Assets parser\npython3 ${SRCROOT}/oneHookLibrary/Script/color_assets_script.py ${SRCROOT}/Sample/Assets/Colors.xcassets ${SRCROOT}/Sample/Assets/Colors.xcassets/DarkMode ${SRCROOT}/Sample/Assets\n\n# Image Assets parser\npython3 ${SRCROOT}/oneHookLibrary/Script/assets_script.py ${SRCROOT}/Sample/Assets/Assets.xcassets ${SRCROOT}/Sample/Assets/ImageAssets.swift Image\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D3A0F655259ABC7A008B2D36 /* Sources */ = {
@@ -763,11 +806,14 @@
 				D322AE1A25A3B77000134636 /* StaggerGridLayoutDemoViewController.swift in Sources */,
 				D3A0F92A259CF1BE008B2D36 /* ProgressBarDemoViewController.swift in Sources */,
 				D3A9E27225CB3EF900722555 /* AppTheme.swift in Sources */,
+				D3A9E28325CB650F00722555 /* ImageAssets.swift in Sources */,
 				D3A0F8C6259B8C1A008B2D36 /* SimpleTableViewCell.swift in Sources */,
+				D3A9E28425CB650F00722555 /* ColorAssets.swift in Sources */,
 				D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */,
 				D322AE4A25A4D4EC00134636 /* StackLayoutDemoViewController.swift in Sources */,
 				D3A0F921259CEE9B008B2D36 /* ControllerHostDemoViewController.swift in Sources */,
 				D322AE3725A4009500134636 /* ViewPagerDemoViewController.swift in Sources */,
+				D3A9E28825CB651B00722555 /* R.swift in Sources */,
 				D322AE2825A3D1C500134636 /* ColorPickerViewDemoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,8 +1,8 @@
 import os
 from typing import List
 
-ASSETS_FOLDER = 'edealer-ios/eDealer/Assets/Assets.xcassets'
-DESTINATION = 'edealer-ios/eDealer/Assets/ImageAssets.swift'
+ASSETS_FOLDER = ''
+DESTINATION = ''
 CLASS_NAME = 'Image'
 TEMPLATE = 'static let {} = "{}"'
 TEMPLATE_EXTENSION = """extension {} {{
@@ -110,7 +110,7 @@ if __name__ == '__main__':
         TEMPLATE_EXTENSION = 'public ' + TEMPLATE_EXTENSION
         CLASS_PREFIX = 'public ' + CLASS_PREFIX
     else:
-        TEMPLATE_EXTENSION = 'import SharedLibrary\n\n' + TEMPLATE_EXTENSION
+        TEMPLATE_EXTENSION = '\n' + TEMPLATE_EXTENSION
 
     tree = {}
     images = []
