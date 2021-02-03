@@ -437,8 +437,8 @@
 		D3A0F6A0259ABD83008B2D36 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D322AE1D25A3CF6E00134636 /* CollectionViewLayout */,
 				D3A0F859259AD404008B2D36 /* Base */,
+				D322AE1D25A3CF6E00134636 /* CollectionViewLayout */,
 				D3A0F81C259AD152008B2D36 /* Layout */,
 				D3A0F8FA259BAC9E008B2D36 /* DateWidget */,
 				D3A0F7EC259ACB49008B2D36 /* Generators */,
