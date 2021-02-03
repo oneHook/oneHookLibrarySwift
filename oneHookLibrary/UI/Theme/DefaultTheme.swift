@@ -18,10 +18,10 @@ open class DefaultTheme: ThemeProtocol {
     open var lineSpacingMedium: CGFloat = 5
     open var lineSpacingLarge: CGFloat = 6
 
-    open var fontRegular = UIFont.systemFont(ofSize: UIFont.systemFontSize).fontName
-    open var fontSemiBold = UIFont.systemFont(ofSize: UIFont.systemFontSize).fontName
-    open var fontBold = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize).fontName
-    open var fontExtraBold = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize).fontName
+    open var fontRegular = "AppleSDGothicNeo-Regular"
+    open var fontSemiBold = "AppleSDGothicNeo-SemiBold"
+    open var fontBold = "AppleSDGothicNeo-Medium"
+    open var fontExtraBold = "AppleSDGothicNeo-Bold"
 
     open func regularFont(size: CGFloat) -> UIFont {
         UIFont(name: fontRegular, size: size)!

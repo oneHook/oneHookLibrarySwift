@@ -124,6 +124,7 @@
 		D3A0F930259CF39A008B2D36 /* EDCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F92F259CF39A008B2D36 /* EDCollectionView.swift */; };
 		D3A0F93D259D043A008B2D36 /* FrameLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F935259D0423008B2D36 /* FrameLayoutDemoViewController.swift */; };
 		D3A9E25525CB2F1300722555 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D3A9E25425CB2F1300722555 /* README.md */; };
+		D3A9E27225CB3EF900722555 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E27125CB3EF900722555 /* AppTheme.swift */; };
 		D3DAB22625AD5808003748BA /* InfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */; };
 		D3DAB22D25AD593C003748BA /* InfiniteScrollViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */; };
 		D3DAB23325ADFC45003748BA /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB23225ADFC45003748BA /* TimePickerView.swift */; };
@@ -286,6 +287,7 @@
 		D3A9E25225CB2F0A00722555 /* localization_parser.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = localization_parser.py; sourceTree = "<group>"; };
 		D3A9E25325CB2F0A00722555 /* assets_script.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = assets_script.py; sourceTree = "<group>"; };
 		D3A9E25425CB2F1300722555 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D3A9E27125CB3EF900722555 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollView.swift; sourceTree = "<group>"; };
 		D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewDemoViewController.swift; sourceTree = "<group>"; };
 		D3DAB23225ADFC45003748BA /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 				D3A0F665259ABC7A008B2D36 /* Assets.xcassets */,
 				D3A0F667259ABC7A008B2D36 /* LaunchScreen.storyboard */,
 				D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */,
+				D3A9E27125CB3EF900722555 /* AppTheme.swift */,
 				D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */,
 				D3A0F8C4259B8C0A008B2D36 /* Common */,
 				D3A0F894259AD8BD008B2D36 /* SampleControllers */,
@@ -759,6 +762,7 @@
 				D322AE6B25A4DCEE00134636 /* FlowLayoutDemoViewController.swift in Sources */,
 				D322AE1A25A3B77000134636 /* StaggerGridLayoutDemoViewController.swift in Sources */,
 				D3A0F92A259CF1BE008B2D36 /* ProgressBarDemoViewController.swift in Sources */,
+				D3A9E27225CB3EF900722555 /* AppTheme.swift in Sources */,
 				D3A0F8C6259B8C1A008B2D36 /* SimpleTableViewCell.swift in Sources */,
 				D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */,
 				D322AE4A25A4D4EC00134636 /* StackLayoutDemoViewController.swift in Sources */,
