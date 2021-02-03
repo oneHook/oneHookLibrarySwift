@@ -123,6 +123,7 @@
 		D3A0F92A259CF1BE008B2D36 /* ProgressBarDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F926259CF1BA008B2D36 /* ProgressBarDemoViewController.swift */; };
 		D3A0F930259CF39A008B2D36 /* EDCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F92F259CF39A008B2D36 /* EDCollectionView.swift */; };
 		D3A0F93D259D043A008B2D36 /* FrameLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F935259D0423008B2D36 /* FrameLayoutDemoViewController.swift */; };
+		D3A9E25525CB2F1300722555 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D3A9E25425CB2F1300722555 /* README.md */; };
 		D3DAB22625AD5808003748BA /* InfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */; };
 		D3DAB22D25AD593C003748BA /* InfiniteScrollViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */; };
 		D3DAB23325ADFC45003748BA /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB23225ADFC45003748BA /* TimePickerView.swift */; };
@@ -280,6 +281,11 @@
 		D3A0F926259CF1BA008B2D36 /* ProgressBarDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarDemoViewController.swift; sourceTree = "<group>"; };
 		D3A0F92F259CF39A008B2D36 /* EDCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDCollectionView.swift; sourceTree = "<group>"; };
 		D3A0F935259D0423008B2D36 /* FrameLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameLayoutDemoViewController.swift; sourceTree = "<group>"; };
+		D3A9E25025CB2F0A00722555 /* color_search.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = color_search.py; sourceTree = "<group>"; };
+		D3A9E25125CB2F0A00722555 /* color_assets_script.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = color_assets_script.py; sourceTree = "<group>"; };
+		D3A9E25225CB2F0A00722555 /* localization_parser.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = localization_parser.py; sourceTree = "<group>"; };
+		D3A9E25325CB2F0A00722555 /* assets_script.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = assets_script.py; sourceTree = "<group>"; };
+		D3A9E25425CB2F1300722555 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollView.swift; sourceTree = "<group>"; };
 		D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewDemoViewController.swift; sourceTree = "<group>"; };
 		D3DAB23225ADFC45003748BA /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -341,6 +347,7 @@
 		D3A0F650259ABC7A008B2D36 = {
 			isa = PBXGroup;
 			children = (
+				D3A9E25425CB2F1300722555 /* README.md */,
 				D3A0F71F259ABDE6008B2D36 /* oneHookLibraryUnitTests */,
 				D3A0F673259ABD28008B2D36 /* oneHookLibrary */,
 				D3A0F65B259ABC7A008B2D36 /* Sample */,
@@ -581,6 +588,10 @@
 		D3DAB47625B1F875003748BA /* Script */ = {
 			isa = PBXGroup;
 			children = (
+				D3A9E25325CB2F0A00722555 /* assets_script.py */,
+				D3A9E25125CB2F0A00722555 /* color_assets_script.py */,
+				D3A9E25025CB2F0A00722555 /* color_search.py */,
+				D3A9E25225CB2F0A00722555 /* localization_parser.py */,
 			);
 			path = Script;
 			sourceTree = "<group>";
@@ -700,6 +711,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3A9E25525CB2F1300722555 /* README.md in Resources */,
 				D3A0F669259ABC7A008B2D36 /* LaunchScreen.storyboard in Resources */,
 				D3A0F666259ABC7A008B2D36 /* Assets.xcassets in Resources */,
 			);
