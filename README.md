@@ -88,7 +88,25 @@ R.Strings.xxx
 
 ### Instruction
 
-coming soon
+1. install [Python3](https://www.python.org/downloads/)
+2. Create a new file and define a empty class R
+3. Add a new run script to your target and use the following, replace the path with your own
+4. Just run, code will be auto generated
+
+```
+COLOR_SCRIPT_LOCATION="${SRCROOT}/oneHookLibrary/Script/color_assets_script.py"
+COLOR_ASSET_LOCATION="${SRCROOT}/Sample/Assets/Colors.xcassets"
+DARK_COLOR_ASSET_LOCATION="${SRCROOT}/Sample/Assets/Colors.xcassets/DarkMode"
+COLOR_CLASS_LOCATION="${SRCROOT}/Sample/Assets"
+
+python3 ${COLOR_SCRIPT_LOCATION} ${COLOR_ASSET_LOCATION} ${DARK_COLOR_ASSET_LOCATION} ${COLOR_CLASS_LOCATION}
+
+IMAGE_SCRIPT_LOCATION="${SRCROOT}/oneHookLibrary/Script/assets_script.py"
+IMAGE_ASSETS_LOCATION="${SRCROOT}/Sample/Assets/Assets.xcassets"
+IMAGE_CLASS_LOCATION="${SRCROOT}/Sample/Assets/ImageAssets.swift Image"
+
+python3 ${IMAGE_SCRIPT_LOCATION} ${IMAGE_ASSETS_LOCATION} ${IMAGE_CLASS_LOCATION}
+```
 
 ## Declarative UI Building
 

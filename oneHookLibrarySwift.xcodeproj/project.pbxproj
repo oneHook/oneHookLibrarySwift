@@ -775,7 +775,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Color Assets parser\npython3 ${SRCROOT}/oneHookLibrary/Script/color_assets_script.py ${SRCROOT}/Sample/Assets/Colors.xcassets ${SRCROOT}/Sample/Assets/Colors.xcassets/DarkMode ${SRCROOT}/Sample/Assets\n\n# Image Assets parser\npython3 ${SRCROOT}/oneHookLibrary/Script/assets_script.py ${SRCROOT}/Sample/Assets/Assets.xcassets ${SRCROOT}/Sample/Assets/ImageAssets.swift Image\n";
+			shellScript = "COLOR_SCRIPT_LOCATION=\"${SRCROOT}/oneHookLibrary/Script/color_assets_script.py\"\nCOLOR_ASSET_LOCATION=\"${SRCROOT}/Sample/Assets/Colors.xcassets\"\nDARK_COLOR_ASSET_LOCATION=\"${SRCROOT}/Sample/Assets/Colors.xcassets/DarkMode\"\nCOLOR_CLASS_LOCATION=\"${SRCROOT}/Sample/Assets\"\n\n# Color Assets parser\npython3 ${COLOR_SCRIPT_LOCATION} ${COLOR_ASSET_LOCATION} ${DARK_COLOR_ASSET_LOCATION} ${COLOR_CLASS_LOCATION}\n\nIMAGE_SCRIPT_LOCATION=\"${SRCROOT}/oneHookLibrary/Script/assets_script.py\"\nIMAGE_ASSETS_LOCATION=\"${SRCROOT}/Sample/Assets/Assets.xcassets\"\nIMAGE_CLASS_LOCATION=\"${SRCROOT}/Sample/Assets/ImageAssets.swift Image\"\n\n# Image Assets parser\npython3 ${IMAGE_SCRIPT_LOCATION} ${IMAGE_ASSETS_LOCATION} ${IMAGE_CLASS_LOCATION}\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
