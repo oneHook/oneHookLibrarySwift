@@ -5,6 +5,8 @@ oneHookLibrary is a very ambiguous Library that aim to make iOS development even
 - [Kotlin Style Code](#kotlin-style-code)
 - [Assets Script](#assets-script)
 - [Declarative UI Building](#declarative-ui-building)
+- [Layout Parameters](#layout-parameters])
+- [Layout Classes](#layout-classes)
 - [Other Utilities](#other-utilities)
 
 ## Integration Guide
@@ -155,6 +157,28 @@ class SimpleTableViewCell: SelectableTableViewCell {
     }
 }
 ```
+
+## Layout Parameters
+
+We extends all Views and Controls with layout parameters to work with our [layout classes](#layout-classes)
+
+- `padding`  refers to the space between an element and the content inside it. 
+- `margin` is the space around an element and 
+- `layoutGravity` specifies how a view should be placed in its parent view
+- `layoutSize` prefered size of this view, when it's provided, measured size will be ignored
+- `layoutWeight` used by `LinearLayout` to determine the size ratio between muliple views.
+- `shouldSkip` if set to true, layout classes will ignore this child
+
+## Layout Classes
+
+We introduced various layout view classes such as
+
+- `LinearLayout` - basically `HStack` `VStack` in `SwiftUI`, layout children either horizontally and vertically and each child can decide its gravity 
+- `FrameLayout` - layout multiple children by using `layoutGravity` from each child
+- `FlowLayout` - puts children in a row, sized at their preferred size. If the horizontal space in the container is too small to put all the components in one row, the FlowLayout class uses multiple rows.
+- `StackLayout` - Similar to LinearLayout, but always have specific spacing between two children.
+- `EqualWeightLayout` - Layout each child with equal width, always distribute children in one row
+- `GridLayout` - Layout children with equal width with given column count children per row
 
 ## Other Utilities
 
