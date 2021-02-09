@@ -131,6 +131,8 @@
 		D3A9E28825CB651B00722555 /* R.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E28725CB651B00722555 /* R.swift */; };
 		D3A9E32425D2040200722555 /* TabLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E32325D2040200722555 /* TabLayoutView.swift */; };
 		D3A9E32B25D206BF00722555 /* TabbarDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E32725D2069900722555 /* TabbarDemoViewController.swift */; };
+		D3A9E33525D3058D00722555 /* RadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E33425D3058D00722555 /* RadioButtonView.swift */; };
+		D3A9E33E25D305E100722555 /* MiscViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E33825D305C000722555 /* MiscViewDemoViewController.swift */; };
 		D3DAB22625AD5808003748BA /* InfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */; };
 		D3DAB22D25AD593C003748BA /* InfiniteScrollViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */; };
 		D3DAB23325ADFC45003748BA /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB23225ADFC45003748BA /* TimePickerView.swift */; };
@@ -300,6 +302,8 @@
 		D3A9E28725CB651B00722555 /* R.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.swift; sourceTree = "<group>"; };
 		D3A9E32325D2040200722555 /* TabLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabLayoutView.swift; sourceTree = "<group>"; };
 		D3A9E32725D2069900722555 /* TabbarDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarDemoViewController.swift; sourceTree = "<group>"; };
+		D3A9E33425D3058D00722555 /* RadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonView.swift; sourceTree = "<group>"; };
+		D3A9E33825D305C000722555 /* MiscViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscViewDemoViewController.swift; sourceTree = "<group>"; };
 		D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollView.swift; sourceTree = "<group>"; };
 		D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewDemoViewController.swift; sourceTree = "<group>"; };
 		D3DAB23225ADFC45003748BA /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -486,6 +490,7 @@
 				D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */,
 				D3DAB23225ADFC45003748BA /* TimePickerView.swift */,
 				D3A9E32325D2040200722555 /* TabLayoutView.swift */,
+				D3A9E33425D3058D00722555 /* RadioButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -576,6 +581,7 @@
 				D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */,
 				D3DAB23625AE01B9003748BA /* TimePickerViewDemoViewController.swift */,
 				D3A9E32725D2069900722555 /* TabbarDemoViewController.swift */,
+				D3A9E33825D305C000722555 /* MiscViewDemoViewController.swift */,
 			);
 			path = SampleControllers;
 			sourceTree = "<group>";
@@ -797,6 +803,7 @@
 				D3A0F896259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift in Sources */,
 				D3A0F7D7259AC820008B2D36 /* Tracking.swift in Sources */,
 				D3A0F93D259D043A008B2D36 /* FrameLayoutDemoViewController.swift in Sources */,
+				D3A9E33E25D305E100722555 /* MiscViewDemoViewController.swift in Sources */,
 				D322AE7025A4DD2000134636 /* Faker.swift in Sources */,
 				D3A0F8F5259BAC67008B2D36 /* DateWidgetDemoViewController.swift in Sources */,
 				D3A9E32B25D206BF00722555 /* TabbarDemoViewController.swift in Sources */,
@@ -855,6 +862,7 @@
 				D3A0F76B259ABE9C008B2D36 /* StackLayout.swift in Sources */,
 				D3A0F774259ABE9C008B2D36 /* FlowLayout.swift in Sources */,
 				D3A0F863259AD48F008B2D36 /* SelectableTableViewCell.swift in Sources */,
+				D3A9E33525D3058D00722555 /* RadioButtonView.swift in Sources */,
 				D3A0F78A259ABEB5008B2D36 /* UINavigationController+Extensions.swift in Sources */,
 				D3A0F790259ABEB5008B2D36 /* WeakArray.swift in Sources */,
 				D3A0F765259ABE9C008B2D36 /* FrameLayout.swift in Sources */,
