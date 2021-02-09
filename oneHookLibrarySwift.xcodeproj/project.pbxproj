@@ -129,6 +129,8 @@
 		D3A9E28325CB650F00722555 /* ImageAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E28125CB650E00722555 /* ImageAssets.swift */; };
 		D3A9E28425CB650F00722555 /* ColorAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E28225CB650E00722555 /* ColorAssets.swift */; };
 		D3A9E28825CB651B00722555 /* R.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E28725CB651B00722555 /* R.swift */; };
+		D3A9E32425D2040200722555 /* TabLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E32325D2040200722555 /* TabLayoutView.swift */; };
+		D3A9E32B25D206BF00722555 /* TabbarDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E32725D2069900722555 /* TabbarDemoViewController.swift */; };
 		D3DAB22625AD5808003748BA /* InfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */; };
 		D3DAB22D25AD593C003748BA /* InfiniteScrollViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */; };
 		D3DAB23325ADFC45003748BA /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB23225ADFC45003748BA /* TimePickerView.swift */; };
@@ -296,6 +298,8 @@
 		D3A9E28125CB650E00722555 /* ImageAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAssets.swift; sourceTree = "<group>"; };
 		D3A9E28225CB650E00722555 /* ColorAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorAssets.swift; sourceTree = "<group>"; };
 		D3A9E28725CB651B00722555 /* R.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.swift; sourceTree = "<group>"; };
+		D3A9E32325D2040200722555 /* TabLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabLayoutView.swift; sourceTree = "<group>"; };
+		D3A9E32725D2069900722555 /* TabbarDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarDemoViewController.swift; sourceTree = "<group>"; };
 		D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollView.swift; sourceTree = "<group>"; };
 		D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewDemoViewController.swift; sourceTree = "<group>"; };
 		D3DAB23225ADFC45003748BA /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -481,6 +485,7 @@
 				D309760025A51AF200F94FC2 /* LineGraphView.swift */,
 				D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */,
 				D3DAB23225ADFC45003748BA /* TimePickerView.swift */,
+				D3A9E32325D2040200722555 /* TabLayoutView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -570,6 +575,7 @@
 				D309760425A51B0100F94FC2 /* LineGraphDemoViewController.swift */,
 				D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */,
 				D3DAB23625AE01B9003748BA /* TimePickerViewDemoViewController.swift */,
+				D3A9E32725D2069900722555 /* TabbarDemoViewController.swift */,
 			);
 			path = SampleControllers;
 			sourceTree = "<group>";
@@ -793,6 +799,7 @@
 				D3A0F93D259D043A008B2D36 /* FrameLayoutDemoViewController.swift in Sources */,
 				D322AE7025A4DD2000134636 /* Faker.swift in Sources */,
 				D3A0F8F5259BAC67008B2D36 /* DateWidgetDemoViewController.swift in Sources */,
+				D3A9E32B25D206BF00722555 /* TabbarDemoViewController.swift in Sources */,
 				D322AE8225A4DFE500134636 /* RowLayoutDemoViewController.swift in Sources */,
 				D3A0F914259CDCDF008B2D36 /* BarGraphDemoViewController.swift in Sources */,
 				D3DAB23A25AE01E8003748BA /* TimePickerViewDemoViewController.swift in Sources */,
@@ -852,6 +859,7 @@
 				D3A0F790259ABEB5008B2D36 /* WeakArray.swift in Sources */,
 				D3A0F765259ABE9C008B2D36 /* FrameLayout.swift in Sources */,
 				D3A0F902259BB576008B2D36 /* RowLayout.swift in Sources */,
+				D3A9E32425D2040200722555 /* TabLayoutView.swift in Sources */,
 				D3A0F792259ABEB5008B2D36 /* NumberUtility.swift in Sources */,
 				D3A0F77F259ABEB5008B2D36 /* Date+Extensions.swift in Sources */,
 				D3A0F7EF259ACB55008B2D36 /* ButtonGenerator.swift in Sources */,
