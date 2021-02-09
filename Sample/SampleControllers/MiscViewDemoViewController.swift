@@ -38,6 +38,20 @@ class MiscViewDemoViewController: BaseScrollableDemoViewController {
             $0.circleHighlightColor = .yellow
             $0.backgroundHighlightColor = .blue
         })
+
+        contentLinearLayout.addSubview(EDLabel.h2().apply {
+            $0.margin = Dimens.marginMedium
+            $0.text = "Radio Button"
+        })
+
+        contentLinearLayout.addSubview(RadioButtonView().apply {
+            $0.layoutGravity = .centerHorizontal
+        })
+        contentLinearLayout.addSubview(RadioButtonView().apply {
+            $0.marginTop = Dimens.marginMedium
+            $0.setImage(UIImage(named: R.Image.ic_checkmark))
+            $0.layoutGravity = .centerHorizontal
+        })
     }
 
 }
