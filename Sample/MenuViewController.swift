@@ -65,6 +65,9 @@ class MenuViewController: UIViewController {
         uiModels.append(MenuSectionUIModel(name: "Widget", items: [
             MenuItemUIModel(name: "Controller Host", makeController: {
                 ControllerHostDemoViewController()
+            }),
+            MenuItemUIModel(name: "Toolbar", makeController: {
+                ToolbarDemoViewController()
             })
         ]))
 

@@ -133,6 +133,7 @@
 		D3A9E32B25D206BF00722555 /* TabbarDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E32725D2069900722555 /* TabbarDemoViewController.swift */; };
 		D3A9E33525D3058D00722555 /* RadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E33425D3058D00722555 /* RadioButtonView.swift */; };
 		D3A9E33E25D305E100722555 /* MiscViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E33825D305C000722555 /* MiscViewDemoViewController.swift */; };
+		D3A9E3CC25D3409400722555 /* ToolbarDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E3C825D3408500722555 /* ToolbarDemoViewController.swift */; };
 		D3DAB22625AD5808003748BA /* InfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */; };
 		D3DAB22D25AD593C003748BA /* InfiniteScrollViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */; };
 		D3DAB23325ADFC45003748BA /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB23225ADFC45003748BA /* TimePickerView.swift */; };
@@ -304,6 +305,7 @@
 		D3A9E32725D2069900722555 /* TabbarDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarDemoViewController.swift; sourceTree = "<group>"; };
 		D3A9E33425D3058D00722555 /* RadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonView.swift; sourceTree = "<group>"; };
 		D3A9E33825D305C000722555 /* MiscViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscViewDemoViewController.swift; sourceTree = "<group>"; };
+		D3A9E3C825D3408500722555 /* ToolbarDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarDemoViewController.swift; sourceTree = "<group>"; };
 		D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollView.swift; sourceTree = "<group>"; };
 		D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewDemoViewController.swift; sourceTree = "<group>"; };
 		D3DAB23225ADFC45003748BA /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -582,6 +584,7 @@
 				D3DAB23625AE01B9003748BA /* TimePickerViewDemoViewController.swift */,
 				D3A9E32725D2069900722555 /* TabbarDemoViewController.swift */,
 				D3A9E33825D305C000722555 /* MiscViewDemoViewController.swift */,
+				D3A9E3C825D3408500722555 /* ToolbarDemoViewController.swift */,
 			);
 			path = SampleControllers;
 			sourceTree = "<group>";
@@ -819,6 +822,7 @@
 				D322AE6B25A4DCEE00134636 /* FlowLayoutDemoViewController.swift in Sources */,
 				D322AE1A25A3B77000134636 /* StaggerGridLayoutDemoViewController.swift in Sources */,
 				D3A0F92A259CF1BE008B2D36 /* ProgressBarDemoViewController.swift in Sources */,
+				D3A9E3CC25D3409400722555 /* ToolbarDemoViewController.swift in Sources */,
 				D3A9E27225CB3EF900722555 /* AppTheme.swift in Sources */,
 				D3A9E28325CB650F00722555 /* ImageAssets.swift in Sources */,
 				D3A0F8C6259B8C1A008B2D36 /* SimpleTableViewCell.swift in Sources */,

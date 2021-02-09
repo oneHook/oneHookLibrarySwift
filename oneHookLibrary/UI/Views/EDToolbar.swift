@@ -9,20 +9,51 @@ public class EDToolbar: BaseView {
         layout.backgroundColor = .clear
     }
 
-    private var labelContainer = LinearLayout().apply { (layout) in
-        layout.orientation = .vertical
-        layout.layoutGravity = .center
-        layout.marginStart = dp(64)
-        layout.marginEnd = dp(64)
+    private lazy var centerContainer = optionalBuilder {
+        LinearLayout().apply {
+            $0.orientation = .horizontal
+            $0.layoutGravity = .center
+            $0.marginStart = dp(64)
+            $0.marginEnd = dp(64)
+            self.contentContainer.addSubview($0)
+        }
+    }
+
+    private lazy var labelContainer = optionalBuilder {
+        LinearLayout().apply {
+            $0.orientation = .vertical
+            $0.layoutGravity = .centerVertical
+            self.centerContainer.getOrMake().addSubview($0)
+        }
+    }
+
+    public lazy var centerImageView = optionalBuilder {
+        EDImageView().apply {
+            $0.layoutGravity = .centerVertical
+            self.centerContainer.getOrMake().insertSubview($0, at: 0)
+            $0.marginEnd = Dimens.marginMedium
+        }
     }
 
     public lazy var centerLabel = optionalBuilder {
-        EDLabel().apply({ (label) in
-            label.font = Fonts.bold(Fonts.fontSizeMedium)
-            label.textColor = .ed_toolbarTextColor
-            label.textAlignment = .center
-            self.labelContainer.addSubview(label)
-        })
+        EDLabel().apply {
+            $0.layoutGravity = .centerHorizontal
+            $0.font = Fonts.bold(Fonts.fontSizeMedium)
+            $0.textAlignment = .center
+            $0.textColor = .ed_toolbarTextColor
+            self.labelContainer.getOrMake().addSubview($0)
+        }
+    }
+
+    public lazy var centerSubtitleLabel = optionalBuilder {
+        EDLabel().apply {
+            $0.layoutGravity = .centerHorizontal
+            $0.font = Fonts.regular(Fonts.fontSizeMedium)
+            $0.textAlignment = .center
+            $0.textColor = .ed_toolbarTextColor
+            $0.marginTop = dp(4)
+            self.labelContainer.getOrMake().addSubview($0)
+        }
     }
 
     public lazy var leftLabel = optionalBuilder {
@@ -33,16 +64,6 @@ public class EDToolbar: BaseView {
             label.marginStart = Dimens.marginMedium
             label.textAlignment = .left
             self.contentContainer.addSubview(label)
-        })
-    }
-
-    public lazy var centerSubtitleLabel = optionalBuilder {
-        EDLabel().apply({ (label) in
-            label.font = Fonts.regular(Fonts.fontSizeMedium)
-            label.textAlignment = .center
-            label.textColor = UIColor.black
-            label.marginTop = dp(4)
-            self.labelContainer.addSubview(label)
         })
     }
 
@@ -76,7 +97,6 @@ public class EDToolbar: BaseView {
         super.commonInit()
         backgroundColor = .ed_toolbarBackgroundColor
         addSubview(contentContainer)
-        contentContainer.addSubview(labelContainer)
     }
 
     open override func layoutSubviews() {
