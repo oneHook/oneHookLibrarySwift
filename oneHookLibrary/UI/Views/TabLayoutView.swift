@@ -18,9 +18,9 @@ public struct TabItemUIModel {
     }
 }
 
-public class TabItemView: FrameLayout {
+open class TabItemView: FrameLayout {
 
-    private let stackLayout = StackLayout().apply {
+    public let stackLayout = StackLayout().apply {
         $0.layoutGravity = .center
     }
 
@@ -43,7 +43,7 @@ public class TabItemView: FrameLayout {
         bind(uiModel)
     }
 
-    public override func commonInit() {
+    open override func commonInit() {
         super.commonInit()
         addSubview(stackLayout)
     }
@@ -69,7 +69,7 @@ public class TabItemView: FrameLayout {
     }
 }
 
-public class TabLayoutView: BaseControl {
+open class TabLayoutView: BaseControl {
 
     public var tabHeight = CGFloat(50)
 
@@ -93,7 +93,7 @@ public class TabLayoutView: BaseControl {
 
     public var indicatorHeight = dp(4) {
         didSet {
-            setSelectedIndex(_selectedIndex, animated: false)
+            _setSelectedIndex(_selectedIndex)
         }
     }
 
@@ -116,21 +116,31 @@ public class TabLayoutView: BaseControl {
     }
 
     public func addTab(_ tabView: TabItemView) {
-        _tabViews.append(tabView)
-        addSubview(tabView)
+        tabView.also {
+            _tabViews.append($0)
+            addSubview($0)
+            $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tabItemViewTapped(tapRec:))))
+        }
         bringSubviewToFront(indicatorView)
         invalidateTabTintColors()
     }
 
+    private var lastWidth: CGFloat = 0
+    private var lastHeight: CGFloat = 0
     public override func layoutSubviews() {
         super.layoutSubviews()
 
+        guard lastWidth != bounds.width || lastHeight != bounds.height else {
+            return
+        }
         let tabCount = CGFloat(_tabViews.count)
         let tabWidth = bounds.width / tabCount
         _tabViews.enumerated().forEach { (index, view) in
             view.frame = CGRect(x: CGFloat(index) * tabWidth, y: 0, width: tabWidth, height: tabHeight)
         }
-        setSelectedIndex(_selectedIndex, animated: false)
+        _setSelectedIndex(_selectedIndex)
+        lastWidth = bounds.width
+        lastHeight = bounds.height
     }
 
     public override func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -144,6 +154,16 @@ public class TabLayoutView: BaseControl {
     }
 
     public func setSelectedIndex(_ index: CGFloat, animated: Bool) {
+        if animated {
+            UIView.animate(withDuration: .defaultAnimation, animations: {
+                self._setSelectedIndex(index)
+            })
+        } else {
+            _setSelectedIndex(index)
+        }
+    }
+
+    private func _setSelectedIndex(_ index: CGFloat) {
         let tabCount = CGFloat(_tabViews.count)
         let tabWidth = bounds.width / tabCount
         indicatorView.bounds = CGRect(origin: .zero, size: CGSize(width: tabWidth, height: indicatorHeight))
@@ -162,5 +182,15 @@ public class TabLayoutView: BaseControl {
 
     private func invalidateTabTintColors() {
         indicatorView.backgroundColor = indicatorColor ?? tintColorHighlight
+    }
+
+    @objc private func tabItemViewTapped(tapRec: UITapGestureRecognizer) {
+        guard
+            let tabItemView = tapRec.view as? TabItemView,
+            let index = tabViews.firstIndex(of: tabItemView) else {
+            return
+        }
+        setSelectedIndex(CGFloat(index), animated: true)
+        sendActions(for: .valueChanged)
     }
 }
