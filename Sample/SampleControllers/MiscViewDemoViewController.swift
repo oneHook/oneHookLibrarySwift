@@ -3,12 +3,6 @@ import UIKit
 
 class MiscViewDemoViewController: BaseScrollableDemoViewController {
 
-    let tagLabel = TagLabel().apply {
-        $0.layoutGravity = [.centerHorizontal]
-        $0.imageView.image = MiscViewDemoViewController.createIcon()
-        $0.titleLabel.text = "Eagle"
-    }
-
     private static func createIcon() -> UIImage {
         UIImage(color: .blue,
                 size: CGSize(width: dp(10), height: dp(10)))!.withRenderingMode(.alwaysTemplate)
@@ -24,7 +18,18 @@ class MiscViewDemoViewController: BaseScrollableDemoViewController {
             $0.text = "TagLabel"
         })
 
-        contentLinearLayout.addSubview(tagLabel)
+        contentLinearLayout.addSubview(TagLabel().apply {
+            $0.layoutGravity = [.centerHorizontal]
+            $0.imageView.image = MiscViewDemoViewController.createIcon()
+            $0.titleLabel.text = "Eagle"
+        })
+
+        contentLinearLayout.addSubview(TagLabel().apply {
+            $0.iconPosition = .right
+            $0.layoutGravity = [.centerHorizontal]
+            $0.imageView.image = MiscViewDemoViewController.createIcon()
+            $0.titleLabel.text = "Eagle"
+        })
 
         contentLinearLayout.addSubview(EDLabel.h2().apply {
             $0.margin = Dimens.marginMedium
