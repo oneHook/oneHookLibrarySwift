@@ -75,6 +75,9 @@ class MenuViewController: UIViewController {
             MenuItemUIModel(name: "Misc Views", makeController: {
                 MiscViewDemoViewController()
             }),
+            MenuItemUIModel(name: "Digit Input View", makeController: {
+                DigitInputViewDemoViewController()
+            }),
             MenuItemUIModel(name: "Tab bar layout view", makeController: {
                 TabbarDemoViewController()
             }),
@@ -127,13 +130,13 @@ class MenuViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-//        let controller = TimePickerViewDemoViewController()
-//        navigationController?.pushViewController(controller, animated: true)
+        //        let controller = TimePickerViewDemoViewController()
+        //        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
 extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         uiModels.count
     }

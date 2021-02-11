@@ -134,6 +134,8 @@
 		D3A9E33525D3058D00722555 /* RadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E33425D3058D00722555 /* RadioButtonView.swift */; };
 		D3A9E33E25D305E100722555 /* MiscViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E33825D305C000722555 /* MiscViewDemoViewController.swift */; };
 		D3A9E3CC25D3409400722555 /* ToolbarDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E3C825D3408500722555 /* ToolbarDemoViewController.swift */; };
+		D3A9E3EA25D480C600722555 /* DigitInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E3E925D480C600722555 /* DigitInputView.swift */; };
+		D3A9E3F125D483BD00722555 /* DigitInputViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E3ED25D4839000722555 /* DigitInputViewDemoViewController.swift */; };
 		D3DAB22625AD5808003748BA /* InfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */; };
 		D3DAB22D25AD593C003748BA /* InfiniteScrollViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */; };
 		D3DAB23325ADFC45003748BA /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB23225ADFC45003748BA /* TimePickerView.swift */; };
@@ -306,6 +308,8 @@
 		D3A9E33425D3058D00722555 /* RadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonView.swift; sourceTree = "<group>"; };
 		D3A9E33825D305C000722555 /* MiscViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscViewDemoViewController.swift; sourceTree = "<group>"; };
 		D3A9E3C825D3408500722555 /* ToolbarDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarDemoViewController.swift; sourceTree = "<group>"; };
+		D3A9E3E925D480C600722555 /* DigitInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitInputView.swift; sourceTree = "<group>"; };
+		D3A9E3ED25D4839000722555 /* DigitInputViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitInputViewDemoViewController.swift; sourceTree = "<group>"; };
 		D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollView.swift; sourceTree = "<group>"; };
 		D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewDemoViewController.swift; sourceTree = "<group>"; };
 		D3DAB23225ADFC45003748BA /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -493,6 +497,7 @@
 				D3DAB23225ADFC45003748BA /* TimePickerView.swift */,
 				D3A9E32325D2040200722555 /* TabLayoutView.swift */,
 				D3A9E33425D3058D00722555 /* RadioButtonView.swift */,
+				D3A9E3E925D480C600722555 /* DigitInputView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -585,6 +590,7 @@
 				D3A9E32725D2069900722555 /* TabbarDemoViewController.swift */,
 				D3A9E33825D305C000722555 /* MiscViewDemoViewController.swift */,
 				D3A9E3C825D3408500722555 /* ToolbarDemoViewController.swift */,
+				D3A9E3ED25D4839000722555 /* DigitInputViewDemoViewController.swift */,
 			);
 			path = SampleControllers;
 			sourceTree = "<group>";
@@ -801,6 +807,7 @@
 			files = (
 				D322AE5E25A4D9AF00134636 /* GridLayoutDemoViewController.swift in Sources */,
 				D30975FD25A5038800F94FC2 /* Colors.swift in Sources */,
+				D3A9E3F125D483BD00722555 /* DigitInputViewDemoViewController.swift in Sources */,
 				D3A0F8D8259B9C61008B2D36 /* BaseDemoViewController.swift in Sources */,
 				D322AE7925A4DEDB00134636 /* EqualWeightLayoutDemoViewController.swift in Sources */,
 				D3A0F896259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift in Sources */,
@@ -917,6 +924,7 @@
 				D3A0F782259ABEB5008B2D36 /* ViewUtility.swift in Sources */,
 				D3A0F762259ABE9C008B2D36 /* SwitchView.swift in Sources */,
 				D3A0F785259ABEB5008B2D36 /* Extension.swift in Sources */,
+				D3A9E3EA25D480C600722555 /* DigitInputView.swift in Sources */,
 				D3A0F76D259ABE9C008B2D36 /* TagLabel.swift in Sources */,
 				D3A0F753259ABE7D008B2D36 /* SheetTransitionAnimation.swift in Sources */,
 				D3A0F85C259AD40C008B2D36 /* BaseView.swift in Sources */,
