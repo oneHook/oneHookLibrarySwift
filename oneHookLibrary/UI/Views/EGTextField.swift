@@ -2,6 +2,18 @@ import UIKit
 
 public class EGTextField: EDTextField {
 
+    public var borderColorNormal: UIColor? {
+        didSet {
+            invalidate()
+        }
+    }
+
+    public var borderColorHighlight: UIColor? {
+        didSet {
+            invalidate()
+        }
+    }
+
     public lazy var rightContainer = optionalBuilder {
         StackLayout().apply {
             $0.orientation = .horizontal
@@ -47,6 +59,28 @@ public class EGTextField: EDTextField {
                 width: result.width - rightViewSize.width - paddingEnd,
                 height: result.height
             )
+        }
+    }
+
+    @discardableResult
+    open override func resignFirstResponder() -> Bool {
+        let rv = super.resignFirstResponder()
+        invalidate()
+        return rv
+    }
+
+    @discardableResult
+    open override func becomeFirstResponder() -> Bool {
+        let rv = super.becomeFirstResponder()
+        invalidate()
+        return rv
+    }
+
+    private func invalidate() {
+        if isFirstResponder {
+            layer.borderColor = (borderColorHighlight ?? borderColorNormal)?.cgColor
+        } else {
+            layer.borderColor = borderColorNormal?.cgColor
         }
     }
 }
