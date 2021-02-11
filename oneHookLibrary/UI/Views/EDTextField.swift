@@ -19,15 +19,19 @@ open class EDTextField: UITextField {
     }
 
     open override func sizeToFit() {
-
         bounds = CGRect(origin: .zero, size: sizeThatFits(CGSize.max))
     }
 
-    override open func drawText(in rect: CGRect) {
-        let insets = UIEdgeInsets(top: paddingTop,
-                                  left: paddingStart,
-                                  bottom: paddingBottom,
-                                  right: paddingEnd)
-        super.drawText(in: rect.inset(by: insets))
+    open override func textRect(forBounds bounds: CGRect) -> CGRect {
+        CGRect(
+            x: bounds.origin.x + paddingStart,
+            y: bounds.origin.y + paddingTop,
+            width: bounds.size.width - paddingStart - paddingEnd,
+            height: bounds.size.height - paddingTop - paddingBottom
+        )
+    }
+
+    open override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        textRect(forBounds: bounds)
     }
 }

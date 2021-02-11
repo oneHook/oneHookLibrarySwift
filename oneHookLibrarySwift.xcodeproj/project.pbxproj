@@ -136,6 +136,8 @@
 		D3A9E3CC25D3409400722555 /* ToolbarDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E3C825D3408500722555 /* ToolbarDemoViewController.swift */; };
 		D3A9E3EA25D480C600722555 /* DigitInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E3E925D480C600722555 /* DigitInputView.swift */; };
 		D3A9E3F125D483BD00722555 /* DigitInputViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E3ED25D4839000722555 /* DigitInputViewDemoViewController.swift */; };
+		D3A9E3FE25D4E95F00722555 /* EGTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E3FD25D4E95F00722555 /* EGTextField.swift */; };
+		D3A9E40525D4E9CD00722555 /* EGTextFieldDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E40125D4E9C700722555 /* EGTextFieldDemoViewController.swift */; };
 		D3DAB22625AD5808003748BA /* InfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */; };
 		D3DAB22D25AD593C003748BA /* InfiniteScrollViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */; };
 		D3DAB23325ADFC45003748BA /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB23225ADFC45003748BA /* TimePickerView.swift */; };
@@ -310,6 +312,8 @@
 		D3A9E3C825D3408500722555 /* ToolbarDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarDemoViewController.swift; sourceTree = "<group>"; };
 		D3A9E3E925D480C600722555 /* DigitInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitInputView.swift; sourceTree = "<group>"; };
 		D3A9E3ED25D4839000722555 /* DigitInputViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitInputViewDemoViewController.swift; sourceTree = "<group>"; };
+		D3A9E3FD25D4E95F00722555 /* EGTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EGTextField.swift; sourceTree = "<group>"; };
+		D3A9E40125D4E9C700722555 /* EGTextFieldDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EGTextFieldDemoViewController.swift; sourceTree = "<group>"; };
 		D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollView.swift; sourceTree = "<group>"; };
 		D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewDemoViewController.swift; sourceTree = "<group>"; };
 		D3DAB23225ADFC45003748BA /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -498,6 +502,7 @@
 				D3A9E32325D2040200722555 /* TabLayoutView.swift */,
 				D3A9E33425D3058D00722555 /* RadioButtonView.swift */,
 				D3A9E3E925D480C600722555 /* DigitInputView.swift */,
+				D3A9E3FD25D4E95F00722555 /* EGTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -591,6 +596,7 @@
 				D3A9E33825D305C000722555 /* MiscViewDemoViewController.swift */,
 				D3A9E3C825D3408500722555 /* ToolbarDemoViewController.swift */,
 				D3A9E3ED25D4839000722555 /* DigitInputViewDemoViewController.swift */,
+				D3A9E40125D4E9C700722555 /* EGTextFieldDemoViewController.swift */,
 			);
 			path = SampleControllers;
 			sourceTree = "<group>";
@@ -820,6 +826,7 @@
 				D322AE8225A4DFE500134636 /* RowLayoutDemoViewController.swift in Sources */,
 				D3A0F914259CDCDF008B2D36 /* BarGraphDemoViewController.swift in Sources */,
 				D3DAB23A25AE01E8003748BA /* TimePickerViewDemoViewController.swift in Sources */,
+				D3A9E40525D4E9CD00722555 /* EGTextFieldDemoViewController.swift in Sources */,
 				D3DAB22D25AD593C003748BA /* InfiniteScrollViewDemoViewController.swift in Sources */,
 				D3A0F8CC259B8F40008B2D36 /* BaseScrollableDemoViewController.swift in Sources */,
 				D309760825A51B0C00F94FC2 /* LineGraphDemoViewController.swift in Sources */,
@@ -876,6 +883,7 @@
 				D3A9E33525D3058D00722555 /* RadioButtonView.swift in Sources */,
 				D3A0F78A259ABEB5008B2D36 /* UINavigationController+Extensions.swift in Sources */,
 				D3A0F790259ABEB5008B2D36 /* WeakArray.swift in Sources */,
+				D3A9E3FE25D4E95F00722555 /* EGTextField.swift in Sources */,
 				D3A0F765259ABE9C008B2D36 /* FrameLayout.swift in Sources */,
 				D3A0F902259BB576008B2D36 /* RowLayout.swift in Sources */,
 				D3A9E32425D2040200722555 /* TabLayoutView.swift in Sources */,

@@ -75,6 +75,9 @@ class MenuViewController: UIViewController {
             MenuItemUIModel(name: "Misc Views", makeController: {
                 MiscViewDemoViewController()
             }),
+            MenuItemUIModel(name: "EGTextField", makeController: {
+                EGTextFieldDemoViewController()
+            }),
             MenuItemUIModel(name: "Digit Input View", makeController: {
                 DigitInputViewDemoViewController()
             }),
@@ -130,8 +133,8 @@ class MenuViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        //        let controller = TimePickerViewDemoViewController()
-        //        navigationController?.pushViewController(controller, animated: true)
+                let controller = EGTextFieldDemoViewController()
+                navigationController?.pushViewController(controller, animated: true)
     }
 }
 
