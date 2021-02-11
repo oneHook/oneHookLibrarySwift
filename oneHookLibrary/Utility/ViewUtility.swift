@@ -33,16 +33,16 @@ extension UIButton {
     }
 }
 
-extension UIView {
+public extension UIView {
 
-    public func applyDefaultTextShadow() {
+    func applyDefaultTextShadow() {
         self.layer.shadowOffset = CGSize.zero
         self.layer.shadowColor = UIColor(white: 0, alpha: 0.55).cgColor
         self.layer.shadowOpacity = 0.75
         self.layer.shadowRadius = dp(3)
     }
 
-    public func applyDefaultShadow() {
+    func applyDefaultShadow() {
         self.layer.shadowOffset = CGSize.zero
         self.layer.shadowColor = UIColor(white: 0, alpha: 0.55).cgColor
         self.layer.shadowOpacity = 0.75
@@ -84,5 +84,14 @@ public extension UIView {
         } else {
             return nil
         }
+    }
+}
+
+public extension UIView {
+    func shake() {
+        self.transform = CGAffineTransform(translationX: 20, y: 0)
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
+            self.transform = CGAffineTransform.identity
+        }, completion: nil)
     }
 }

@@ -121,6 +121,7 @@ open class DigitInputView: BaseControl {
         }) {
             currentIndex = index
         }
+        shake()
     }
 
     @discardableResult
