@@ -32,6 +32,8 @@ class DigitInputViewDemoViewController: BaseScrollableDemoViewController, DigitI
 
         digitInputView1.delegate = self
         digitInputView2.delegate = self
+
+        digitInputView1.becomeFirstResponder()
     }
 
     func digitInputView(_: DigitInputView, numberDidChange number: String) {

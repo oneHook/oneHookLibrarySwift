@@ -8,6 +8,7 @@ open class DigitInputView: BaseControl {
 
     public struct UIModel {
         let pattern: String
+        let patternNoDash: String
         let font: UIFont
         let textColorPlaceholder: UIColor
         let textColorNormal: UIColor
@@ -31,6 +32,7 @@ open class DigitInputView: BaseControl {
                     spacing: CGFloat = dp(8),
                     dashWidth: CGFloat = dp(10)) {
             self.pattern = pattern
+            self.patternNoDash = String(pattern.filter { $0 != "-" })
             self.font = font
             self.textColorPlaceholder = textColorPlaceholder
             self.textColorNormal = textColorNormal
@@ -113,12 +115,26 @@ open class DigitInputView: BaseControl {
     }
 
     @objc func touched(_ sender: UITapGestureRecognizer) {
-        becomeFirstResponder()
+        super.becomeFirstResponder()
         if let index = numberLabels.firstIndex(where: {
             $0.frame.contains(sender.location(in: self))
         }) {
             currentIndex = index
         }
+    }
+
+    @discardableResult
+    open override func resignFirstResponder() -> Bool {
+        let rv = super.resignFirstResponder()
+        invalidate()
+        return rv
+    }
+
+    @discardableResult
+    open override func becomeFirstResponder() -> Bool {
+        let rv = super.becomeFirstResponder()
+        invalidate()
+        return rv
     }
 
     open override var canBecomeFirstResponder: Bool {
@@ -152,6 +168,11 @@ open class DigitInputView: BaseControl {
         }
     }
 
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        CGSize(width: size.width, height: uiModel.font.lineHeight + 2 * Dimens.marginMedium)
+    }
+
+
     private func invalidate() {
         for (i, numberLabel) in numberLabels.enumerated() {
             if i == currentIndex && isFirstResponder {
@@ -168,10 +189,10 @@ open class DigitInputView: BaseControl {
         }
         for i in self.rawText.count..<self.numberLabels.count {
             numberLabels[i].also {
-                if uiModel.pattern[i] == "X" {
+                if uiModel.patternNoDash[i] == "X" {
                     numberLabels[i].text = ""
                 } else {
-                    numberLabels[i].text = String(uiModel.pattern[i])
+                    numberLabels[i].text = String(uiModel.patternNoDash[i])
                 }
                 $0.textColor = uiModel.textColorPlaceholder
             }
@@ -182,17 +203,6 @@ open class DigitInputView: BaseControl {
             numberDidChange: rawText
         )
     }
-
-    open override func sizeThatFits(_ size: CGSize) -> CGSize {
-        CGSize(width: size.width, height: uiModel.font.lineHeight + 2 * Dimens.marginMedium)
-    }
-
-    open override func resignFirstResponder() -> Bool {
-        let rv = super.resignFirstResponder()
-        invalidate()
-        return rv
-    }
-
 }
 
 extension DigitInputView: UIKeyInput {
