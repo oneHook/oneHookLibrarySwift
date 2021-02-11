@@ -176,7 +176,6 @@ open class TabLayoutView: BaseControl {
             } else {
                 view.setColor(UIColor.blend(fromColor: tintColorNormal, toColor: tintColorHighlight, step: abs(offset)), progress: abs(offset))
             }
-
         }
     }
 

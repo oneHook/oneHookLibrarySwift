@@ -138,6 +138,8 @@
 		D3A9E3F125D483BD00722555 /* DigitInputViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E3ED25D4839000722555 /* DigitInputViewDemoViewController.swift */; };
 		D3A9E3FE25D4E95F00722555 /* EGTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E3FD25D4E95F00722555 /* EGTextField.swift */; };
 		D3A9E40525D4E9CD00722555 /* EGTextFieldDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E40125D4E9C700722555 /* EGTextFieldDemoViewController.swift */; };
+		D3A9E40E25D590AB00722555 /* ConversationInputDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E40A25D5909D00722555 /* ConversationInputDemoViewController.swift */; };
+		D3A9E41425D593D300722555 /* ConversationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E41325D593D300722555 /* ConversationInputView.swift */; };
 		D3DAB22625AD5808003748BA /* InfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */; };
 		D3DAB22D25AD593C003748BA /* InfiniteScrollViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */; };
 		D3DAB23325ADFC45003748BA /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB23225ADFC45003748BA /* TimePickerView.swift */; };
@@ -314,6 +316,8 @@
 		D3A9E3ED25D4839000722555 /* DigitInputViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitInputViewDemoViewController.swift; sourceTree = "<group>"; };
 		D3A9E3FD25D4E95F00722555 /* EGTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EGTextField.swift; sourceTree = "<group>"; };
 		D3A9E40125D4E9C700722555 /* EGTextFieldDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EGTextFieldDemoViewController.swift; sourceTree = "<group>"; };
+		D3A9E40A25D5909D00722555 /* ConversationInputDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationInputDemoViewController.swift; sourceTree = "<group>"; };
+		D3A9E41325D593D300722555 /* ConversationInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationInputView.swift; sourceTree = "<group>"; };
 		D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollView.swift; sourceTree = "<group>"; };
 		D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewDemoViewController.swift; sourceTree = "<group>"; };
 		D3DAB23225ADFC45003748BA /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -503,6 +507,7 @@
 				D3A9E33425D3058D00722555 /* RadioButtonView.swift */,
 				D3A9E3E925D480C600722555 /* DigitInputView.swift */,
 				D3A9E3FD25D4E95F00722555 /* EGTextField.swift */,
+				D3A9E41325D593D300722555 /* ConversationInputView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -597,6 +602,7 @@
 				D3A9E3C825D3408500722555 /* ToolbarDemoViewController.swift */,
 				D3A9E3ED25D4839000722555 /* DigitInputViewDemoViewController.swift */,
 				D3A9E40125D4E9C700722555 /* EGTextFieldDemoViewController.swift */,
+				D3A9E40A25D5909D00722555 /* ConversationInputDemoViewController.swift */,
 			);
 			path = SampleControllers;
 			sourceTree = "<group>";
@@ -816,6 +822,7 @@
 				D3A9E3F125D483BD00722555 /* DigitInputViewDemoViewController.swift in Sources */,
 				D3A0F8D8259B9C61008B2D36 /* BaseDemoViewController.swift in Sources */,
 				D322AE7925A4DEDB00134636 /* EqualWeightLayoutDemoViewController.swift in Sources */,
+				D3A9E40E25D590AB00722555 /* ConversationInputDemoViewController.swift in Sources */,
 				D3A0F896259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift in Sources */,
 				D3A0F7D7259AC820008B2D36 /* Tracking.swift in Sources */,
 				D3A0F93D259D043A008B2D36 /* FrameLayoutDemoViewController.swift in Sources */,
@@ -874,6 +881,7 @@
 				D3A0F883259AD525008B2D36 /* GradientView.swift in Sources */,
 				D3A0F796259ABEB5008B2D36 /* Array+Extensions.swift in Sources */,
 				D322AE1325A284C900134636 /* ProgressRing.swift in Sources */,
+				D3A9E41425D593D300722555 /* ConversationInputView.swift in Sources */,
 				D3A0F79B259ABEB5008B2D36 /* UserDefaults.swift in Sources */,
 				D3A0F826259AD1B2008B2D36 /* EDImageView.swift in Sources */,
 				D3DAB22625AD5808003748BA /* InfiniteScrollView.swift in Sources */,
