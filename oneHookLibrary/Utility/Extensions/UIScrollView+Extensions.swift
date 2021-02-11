@@ -31,4 +31,12 @@ extension UIScrollView {
             )
         }
     }
+
+    public var topOffset: CGPoint {
+        CGPoint(x: 0, y: -contentInset.top)
+    }
+    
+    public var bottomOffset: CGPoint {
+        CGPoint(x: 0, y: contentSize.height - bounds.height + contentInset.bottom)
+    }
 }

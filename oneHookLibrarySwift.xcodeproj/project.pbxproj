@@ -140,6 +140,9 @@
 		D3A9E40525D4E9CD00722555 /* EGTextFieldDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E40125D4E9C700722555 /* EGTextFieldDemoViewController.swift */; };
 		D3A9E40E25D590AB00722555 /* ConversationInputDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E40A25D5909D00722555 /* ConversationInputDemoViewController.swift */; };
 		D3A9E41425D593D300722555 /* ConversationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E41325D593D300722555 /* ConversationInputView.swift */; };
+		D3A9E43725D5C09800722555 /* MyConversationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E43125D5C09400722555 /* MyConversationInputView.swift */; };
+		D3A9E44225D5C0D500722555 /* ConversationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E43E25D5C0CF00722555 /* ConversationModels.swift */; };
+		D3A9E44925D5CE2600722555 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A9E44525D5CE1C00722555 /* ConversationCell.swift */; };
 		D3DAB22625AD5808003748BA /* InfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */; };
 		D3DAB22D25AD593C003748BA /* InfiniteScrollViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */; };
 		D3DAB23325ADFC45003748BA /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB23225ADFC45003748BA /* TimePickerView.swift */; };
@@ -318,6 +321,9 @@
 		D3A9E40125D4E9C700722555 /* EGTextFieldDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EGTextFieldDemoViewController.swift; sourceTree = "<group>"; };
 		D3A9E40A25D5909D00722555 /* ConversationInputDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationInputDemoViewController.swift; sourceTree = "<group>"; };
 		D3A9E41325D593D300722555 /* ConversationInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationInputView.swift; sourceTree = "<group>"; };
+		D3A9E43125D5C09400722555 /* MyConversationInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyConversationInputView.swift; sourceTree = "<group>"; };
+		D3A9E43E25D5C0CF00722555 /* ConversationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationModels.swift; sourceTree = "<group>"; };
+		D3A9E44525D5CE1C00722555 /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollView.swift; sourceTree = "<group>"; };
 		D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewDemoViewController.swift; sourceTree = "<group>"; };
 		D3DAB23225ADFC45003748BA /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -579,6 +585,7 @@
 		D3A0F894259AD8BD008B2D36 /* SampleControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D3A9E43025D5C07D00722555 /* ConversationDemo */,
 				D3A0F895259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift */,
 				D3A0F935259D0423008B2D36 /* FrameLayoutDemoViewController.swift */,
 				D322AE4625A4D48D00134636 /* StackLayoutDemoViewController.swift */,
@@ -602,7 +609,6 @@
 				D3A9E3C825D3408500722555 /* ToolbarDemoViewController.swift */,
 				D3A9E3ED25D4839000722555 /* DigitInputViewDemoViewController.swift */,
 				D3A9E40125D4E9C700722555 /* EGTextFieldDemoViewController.swift */,
-				D3A9E40A25D5909D00722555 /* ConversationInputDemoViewController.swift */,
 			);
 			path = SampleControllers;
 			sourceTree = "<group>";
@@ -639,6 +645,17 @@
 				D3A9E27725CB61D900722555 /* Colors.xcassets */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		D3A9E43025D5C07D00722555 /* ConversationDemo */ = {
+			isa = PBXGroup;
+			children = (
+				D3A9E44525D5CE1C00722555 /* ConversationCell.swift */,
+				D3A9E43E25D5C0CF00722555 /* ConversationModels.swift */,
+				D3A9E43125D5C09400722555 /* MyConversationInputView.swift */,
+				D3A9E40A25D5909D00722555 /* ConversationInputDemoViewController.swift */,
+			);
+			path = ConversationDemo;
 			sourceTree = "<group>";
 		};
 		D3DAB47625B1F875003748BA /* Script */ = {
@@ -821,10 +838,12 @@
 				D30975FD25A5038800F94FC2 /* Colors.swift in Sources */,
 				D3A9E3F125D483BD00722555 /* DigitInputViewDemoViewController.swift in Sources */,
 				D3A0F8D8259B9C61008B2D36 /* BaseDemoViewController.swift in Sources */,
+				D3A9E44925D5CE2600722555 /* ConversationCell.swift in Sources */,
 				D322AE7925A4DEDB00134636 /* EqualWeightLayoutDemoViewController.swift in Sources */,
 				D3A9E40E25D590AB00722555 /* ConversationInputDemoViewController.swift in Sources */,
 				D3A0F896259AD8EB008B2D36 /* LinearLayoutDemoViewController.swift in Sources */,
 				D3A0F7D7259AC820008B2D36 /* Tracking.swift in Sources */,
+				D3A9E43725D5C09800722555 /* MyConversationInputView.swift in Sources */,
 				D3A0F93D259D043A008B2D36 /* FrameLayoutDemoViewController.swift in Sources */,
 				D3A9E33E25D305E100722555 /* MiscViewDemoViewController.swift in Sources */,
 				D322AE7025A4DD2000134636 /* Faker.swift in Sources */,
@@ -843,6 +862,7 @@
 				D322AE6B25A4DCEE00134636 /* FlowLayoutDemoViewController.swift in Sources */,
 				D322AE1A25A3B77000134636 /* StaggerGridLayoutDemoViewController.swift in Sources */,
 				D3A0F92A259CF1BE008B2D36 /* ProgressBarDemoViewController.swift in Sources */,
+				D3A9E44225D5C0D500722555 /* ConversationModels.swift in Sources */,
 				D3A9E3CC25D3409400722555 /* ToolbarDemoViewController.swift in Sources */,
 				D3A9E27225CB3EF900722555 /* AppTheme.swift in Sources */,
 				D3A9E28325CB650F00722555 /* ImageAssets.swift in Sources */,

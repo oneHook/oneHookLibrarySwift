@@ -27,7 +27,7 @@ open class ConversationInputView: LinearLayout {
     }
 
     public override func sizeThatFits(_ size: CGSize) -> CGSize {
-        let calculatedHeight = lastTextViewHeight
+        let calculatedHeight = lastTextViewHeight + paddingTop + paddingBottom
         return CGSize(
             width: size.width,
             height: min(maximumHeight, max(minimumHeight, calculatedHeight))
