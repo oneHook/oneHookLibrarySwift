@@ -9,15 +9,10 @@ class ConversationCell: SelectableTableViewCell {
                 linearLayout.layer.transform = CATransform3DIdentity
                 avatarImageView.layer.transform = CATransform3DIdentity
                 conversationTextLabel.layer.transform = CATransform3DIdentity
-//                avatarImageView.marginStart = 0
-//
             } else {
                 linearLayout.layer.transform = CATransform3DMakeScale(-1, 1, 1)
                 avatarImageView.layer.transform = CATransform3DMakeScale(-1, 1, 1)
                 conversationTextLabel.layer.transform = CATransform3DMakeScale(-1, 1, 1)
-
-//                avatarImageView.marginStart = Dimens.marginMedium
-//                avatarImageView.marginEnd = 0
             }
         }
     }

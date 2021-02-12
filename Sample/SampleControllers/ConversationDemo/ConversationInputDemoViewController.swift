@@ -12,6 +12,7 @@ class ConversationInputDemoViewController: BaseDemoViewController, KeyboardObser
         $0.register(ConversationCell.self, forCellReuseIdentifier: "Cell")
         $0.keyboardDismissMode = .onDrag
         $0.layer.transform = CATransform3DMakeScale(-1, -1, 1)
+        $0.separatorStyle = .none
     }
 
     private lazy var conversationInputView = MyConversationInputView().apply {
