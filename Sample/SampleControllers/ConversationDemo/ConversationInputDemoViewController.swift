@@ -10,9 +10,10 @@ class ConversationInputDemoViewController: BaseDemoViewController, KeyboardObser
     let tableView = EDTableView().apply {
         $0.layoutGravity = [.fill]
         $0.register(ConversationCell.self, forCellReuseIdentifier: "Cell")
-        $0.keyboardDismissMode = .onDrag
+        $0.keyboardDismissMode = .interactive
         $0.layer.transform = CATransform3DMakeScale(-1, -1, 1)
         $0.separatorStyle = .none
+        $0.showsVerticalScrollIndicator = false
     }
 
     private lazy var conversationInputView = MyConversationInputView().apply {
@@ -24,6 +25,9 @@ class ConversationInputDemoViewController: BaseDemoViewController, KeyboardObser
                 self.layoutInputView()
                 self.tableView.setContentOffset(self.tableView.topOffset, animated: false)
             })
+        }
+        $0.willSendByEnter = { [weak self] (text) in
+            self?.sendMessage(text: text)
         }
     }
 
@@ -72,11 +76,28 @@ class ConversationInputDemoViewController: BaseDemoViewController, KeyboardObser
 
     func keyboardWillAnimate() {
         layoutInputView()
-        tableView.setContentOffset(tableView.topOffset, animated: false)
+        if keyboardObserver.keyboardIsVisible {
+            tableView.setContentOffset(tableView.topOffset, animated: false)
+        }
     }
 
     func keyboardDidAnimate(_ finished: Bool) {
 
+    }
+
+    func sendMessage(text: String) {
+        conversationInputView.clearInput()
+        guard text.isNotEmpty else {
+            return
+        }
+
+        let model = ConversationItemUIModel(direction: .left, text: text)
+        items.insert(model, at: 0)
+        tableView.performBatchUpdates {
+            tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .top)
+        } completion: { (_) in
+
+        }
     }
 }
 

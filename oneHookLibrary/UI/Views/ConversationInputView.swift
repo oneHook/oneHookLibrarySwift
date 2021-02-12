@@ -5,6 +5,7 @@ open class ConversationInputView: LinearLayout {
     public var minimumHeight: CGFloat = dp(50)
     public var maximumHeight: CGFloat = dp(80)
     public var requiresHeight: ((CGFloat) -> Void)?
+    public var willSendByEnter: ((String) -> Void)?
 
     private var scrollView: UIScrollView?
     private var lastTextViewHeight: CGFloat = 0
@@ -76,5 +77,14 @@ extension ConversationInputView: UITextViewDelegate {
 //            }
             setNeedsLayout()
         }
+    }
+
+    public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n",
+           let willSendByEnter = willSendByEnter {
+            willSendByEnter(textView.text)
+            return false
+        }
+        return true
     }
 }
