@@ -22,27 +22,27 @@ extension UIColor {
     }
 
     public func autoDarker(by percentage: CGFloat = 30.0) -> UIColor {
-//        if #available(iOS 13.0, *) {
-//            if EDWindow.shared.traitCollection.userInterfaceStyle == .light {
-//                return darker(by: percentage)
-//            } else {
-//                return lighter(by: percentage)
-//            }
-//        } else {
+        if #available(iOS 13.0, *) {
+            if !Theme.current.isDarkMode {
+                return darker(by: percentage)
+            } else {
+                return lighter(by: percentage)
+            }
+        } else {
             return darker(by: percentage)
-//        }
+        }
     }
 
     public func autoLighter(by percentage: CGFloat = 30.0) -> UIColor {
-//        if #available(iOS 13.0, *) {
-//            if EDWindow.shared.traitCollection.userInterfaceStyle == .light {
-//                return lighter(by: percentage)
-//            } else {
-//                return darker(by: percentage)
-//            }
-//        } else {
+        if #available(iOS 13.0, *) {
+            if !Theme.current.isDarkMode {
+                return lighter(by: percentage)
+            } else {
+                return darker(by: percentage)
+            }
+        } else {
             return lighter(by: percentage)
-//        }
+        }
     }
 
     public func adjust(by percentage: CGFloat = 30.0) -> UIColor {

@@ -9,10 +9,14 @@ class BaseDemoViewController: UIViewController {
         }
     }
 
-    let toolbar = ViewGenerator.toolbar().apply {
+    lazy var toolbar = ViewGenerator.toolbar().apply {
         $0.layoutGravity = [.top, .fillHorizontal]
         $0.centerLabel.getOrMake().textColor = .defaultTextColor
         $0.backgroundColor = .defaultToolbarBackground
+        $0.leftNavigationButton.getOrMake().also {
+            $0.setImage(UIImage(named: R.Image.ic_arrow_back), for: .normal)
+            $0.addTarget(self, action: #selector(onBackTap) , for: .touchUpInside)
+        }
     }
 
     override func loadView() {
@@ -27,5 +31,9 @@ class BaseDemoViewController: UIViewController {
 
     deinit {
         print("DEINIT: \(String(describing: self))")
+    }
+
+    @objc private func onBackTap() {
+        navigationController?.popViewController(animated: true)
     }
 }
