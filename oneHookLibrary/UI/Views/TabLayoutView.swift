@@ -149,11 +149,12 @@ open class TabLayoutView: BaseControl {
         }
         return CGSize(
             width: size.width,
-            height: tabHeight
+            height: tabHeight + paddingBottom
         )
     }
 
     public func setSelectedIndex(_ index: CGFloat, animated: Bool) {
+        _selectedIndex = index
         if animated {
             UIView.animate(withDuration: .defaultAnimation, animations: {
                 self._setSelectedIndex(index)
@@ -167,7 +168,7 @@ open class TabLayoutView: BaseControl {
         let tabCount = CGFloat(_tabViews.count)
         let tabWidth = bounds.width / tabCount
         indicatorView.bounds = CGRect(origin: .zero, size: CGSize(width: tabWidth, height: indicatorHeight))
-        indicatorView.center = CGPoint(x: (index + 0.5) * tabWidth, y: bounds.height - indicatorHeight / 2)
+        indicatorView.center = CGPoint(x: (index + 0.5) * tabWidth, y: tabHeight - indicatorHeight / 2)
 
         _tabViews.enumerated().forEach { (viewIndex, view) in
             let offset = CGFloat(viewIndex) - index

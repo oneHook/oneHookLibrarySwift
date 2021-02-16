@@ -13,6 +13,7 @@ open class ViewPager<ViewType: UIView>: BaseView, UIScrollViewDelegate {
     private var _visibleViews = [Int: UIView]()
     private var _currentIndex: Int = 0
 
+    public var onScroll: ((CGFloat) -> Void)?
     public var horizontalSpacing = CGFloat(10)
 
     public weak var datasource: BaseViewPagerDatasource? {
@@ -128,6 +129,7 @@ open class ViewPager<ViewType: UIView>: BaseView, UIScrollViewDelegate {
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         checkScrollViewContentOffset()
+        onScroll?(scrollView.contentOffset.x / scrollView.bounds.width)
     }
 
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -138,5 +140,10 @@ open class ViewPager<ViewType: UIView>: BaseView, UIScrollViewDelegate {
         if !decelerate {
             checkScrollViewContentOffset()
         }
+    }
+
+    public func setSelectedIndex(_ index: Int, animated: Bool) {
+        let offsetX = CGFloat(index) * scrollView.bounds.width
+        scrollView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: animated)
     }
 }
