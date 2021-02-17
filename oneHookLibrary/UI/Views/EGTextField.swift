@@ -19,7 +19,7 @@ public class EGTextField: EDTextField {
 
     public var borderWidth: CGFloat = dp(1) {
         didSet {
-            borderLayer.borderWidth = borderWidth
+            borderLayer.lineWidth = borderWidth
         }
     }
 
