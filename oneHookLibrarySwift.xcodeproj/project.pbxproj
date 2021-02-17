@@ -26,6 +26,7 @@
 		D322AE7025A4DD2000134636 /* Faker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE6325A4DC7F00134636 /* Faker.swift */; };
 		D322AE7925A4DEDB00134636 /* EqualWeightLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE7525A4DED600134636 /* EqualWeightLayoutDemoViewController.swift */; };
 		D322AE8225A4DFE500134636 /* RowLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE7E25A4DFDE00134636 /* RowLayoutDemoViewController.swift */; };
+		D3673ED625DB79BF00A3ABF9 /* EGSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3673ED525DB79BF00A3ABF9 /* EGSegmentedControl.swift */; };
 		D3958B0725C746E7005D4920 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3958B0625C746E7005D4920 /* Theme.swift */; };
 		D3958B0B25C74738005D4920 /* DefaultTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3958B0A25C74738005D4920 /* DefaultTheme.swift */; };
 		D3958B1325C7475F005D4920 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3958B1225C7475F005D4920 /* Fonts.swift */; };
@@ -200,6 +201,7 @@
 		D322AE6725A4DCD100134636 /* FlowLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayoutDemoViewController.swift; sourceTree = "<group>"; };
 		D322AE7525A4DED600134636 /* EqualWeightLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualWeightLayoutDemoViewController.swift; sourceTree = "<group>"; };
 		D322AE7E25A4DFDE00134636 /* RowLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowLayoutDemoViewController.swift; sourceTree = "<group>"; };
+		D3673ED525DB79BF00A3ABF9 /* EGSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EGSegmentedControl.swift; sourceTree = "<group>"; };
 		D3958B0625C746E7005D4920 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		D3958B0A25C74738005D4920 /* DefaultTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTheme.swift; sourceTree = "<group>"; };
 		D3958B1225C7475F005D4920 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -514,6 +516,7 @@
 				D3A9E3E925D480C600722555 /* DigitInputView.swift */,
 				D3A9E3FD25D4E95F00722555 /* EGTextField.swift */,
 				D3A9E41325D593D300722555 /* ConversationInputView.swift */,
+				D3673ED525DB79BF00A3ABF9 /* EGSegmentedControl.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -956,6 +959,7 @@
 				D322AE4125A4D04C00134636 /* EDVisualEffectView.swift in Sources */,
 				D3A0F769259ABE9C008B2D36 /* LinearLayout.swift in Sources */,
 				D3A0F821259AD1A9008B2D36 /* EDLabel.swift in Sources */,
+				D3673ED625DB79BF00A3ABF9 /* EGSegmentedControl.swift in Sources */,
 				D3A0F777259ABE9C008B2D36 /* RangeSlider.swift in Sources */,
 				D3A0F782259ABEB5008B2D36 /* ViewUtility.swift in Sources */,
 				D3A0F762259ABE9C008B2D36 /* SwitchView.swift in Sources */,
