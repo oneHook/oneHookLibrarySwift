@@ -190,7 +190,7 @@ open class TabLayoutView: BaseControl {
             let index = tabViews.firstIndex(of: tabItemView) else {
             return
         }
-        setSelectedIndex(CGFloat(index), animated: true)
+        setSelectedIndex(CGFloat(index), animated: false)
         sendActions(for: .valueChanged)
     }
 }
