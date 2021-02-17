@@ -1,6 +1,6 @@
 import UIKit
 
-open class EGSegmentedControl: BaseControl {
+open class EGSegmentedControl: BaseView {
 
     public struct SegmentInfo {
         var title: String
@@ -24,12 +24,15 @@ open class EGSegmentedControl: BaseControl {
         }
     }
 
+    public var onSegmentSelected: ((Int) -> Bool)?
+
     private let topLinearLayout = LinearLayout().apply {
         $0.orientation = .horizontal
     }
 
     private let tabMaskLayer = CALayer().apply {
         $0.backgroundColor = UIColor.white.cgColor
+        $0.anchorPoint = .zero
     }
 
     private let tabCoverView = BaseView().apply {
@@ -40,10 +43,10 @@ open class EGSegmentedControl: BaseControl {
         $0.orientation = .horizontal
     }
 
-    var tabOffset: CGFloat = 0 {
-        didSet {
-            setNeedsLayout()
-        }
+    private var _tabOffset: CGFloat = 0
+    public var selectedIndex: Int {
+        let tabWidth = bounds.width / CGFloat(tabCount)
+        return Int(_tabOffset / tabWidth)
     }
 
     var tabCount: Int {
@@ -68,7 +71,9 @@ open class EGSegmentedControl: BaseControl {
         let tabWidth = bounds.width / CGFloat(tabCount)
         let location = tapRec.location(in: self)
         let tabIndex = Int(location.x / tabWidth)
-        tabOffset = CGFloat(tabIndex)
+        if onSegmentSelected?(tabIndex) ?? true {
+            setSelectedIndex(tabIndex, animated: true)
+        }
     }
 
     open override func layoutSubviews() {
@@ -76,14 +81,11 @@ open class EGSegmentedControl: BaseControl {
         topLinearLayout.matchParent()
         bottomLinearLayout.matchParent()
         let tabWidth = bounds.width / CGFloat(tabCount)
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        tabMaskLayer.frame = CGRect(x: tabOffset * tabWidth,
-                                    y: 0,
-                                    width: tabWidth,
-                                    height: bounds.height)
-        CATransaction.commit()
-        tabCoverView.frame = tabMaskLayer.frame
+        tabMaskLayer.bounds = CGRect(
+            origin: .zero,
+            size: CGSize(width: tabWidth, height: bounds.height)
+        )
+        setSelectedIndex(selectedIndex, animated: false)
     }
 
     private func makeTab() -> EDLabel {
@@ -92,6 +94,59 @@ open class EGSegmentedControl: BaseControl {
             $0.textAlignment = .center
             $0.layoutGravity = [.fillVertical]
             $0.layoutWeight = 1
+        }
+    }
+
+    public func setProgress(_ progress: CGFloat) {
+        let tabWidth = bounds.width / CGFloat(tabCount)
+        let targetPosition = CGPoint(
+            x: tabWidth * progress,
+            y: 0
+        )
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        tabMaskLayer.position = targetPosition
+        CATransaction.commit()
+        tabCoverView.frame = CGRect(
+            origin: targetPosition,
+            size: CGSize(width: tabWidth, height: bounds.height)
+        )
+    }
+
+    public func setSelectedIndex(_ index: Int, animated: Bool) {
+        if animated {
+            let tabWidth = bounds.width / CGFloat(tabCount)
+            let targetPosition = CGPoint(
+                x: tabWidth * CGFloat(index),
+                y: 0
+            )
+
+            CATransaction.begin()
+            CATransaction.setCompletionBlock { [weak self] in
+                self?.tabMaskLayer.position = targetPosition
+            }
+            CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
+
+            let animation = CABasicAnimation(keyPath: #keyPath(CALayer.position))
+            animation.toValue = targetPosition
+            animation.duration = .defaultAnimation
+            animation.fillMode = CAMediaTimingFillMode.forwards
+            animation.isRemovedOnCompletion = false
+            tabMaskLayer.add(animation, forKey: #keyPath(CALayer.position))
+
+            UIView.animate(
+                withDuration: .defaultAnimation,
+                animations: {
+                    self.tabCoverView.frame = CGRect(
+                        origin: targetPosition,
+                        size: CGSize(width: tabWidth, height: self.bounds.height)
+                    )
+                }
+            )
+
+            CATransaction.commit()
+        } else {
+            setProgress(CGFloat(index))
         }
     }
 
@@ -112,10 +167,10 @@ open class EGSegmentedControl: BaseControl {
             make: {
                 topLinearLayout.addSubview(makeTab())
                 bottomLinearLayout.addSubview(makeTab())
-        }, remove: {
-            topLinearLayout.subviews.last?.removeFromSuperview()
-            bottomLinearLayout.subviews.last?.removeFromSuperview()
-        })
+            }, remove: {
+                topLinearLayout.subviews.last?.removeFromSuperview()
+                bottomLinearLayout.subviews.last?.removeFromSuperview()
+            })
 
         for index in tabs.indices {
             let tab = tabs[index]
