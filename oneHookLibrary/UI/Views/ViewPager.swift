@@ -7,6 +7,12 @@ public protocol BaseViewPagerDatasource: class {
 
 open class ViewPager<ViewType: UIView>: BaseView, UIScrollViewDelegate {
 
+    public var isScrollEnabled: Bool = true {
+        didSet {
+            scrollView.isScrollEnabled = isScrollEnabled
+        }
+    }
+
     private let scrollView = EDScrollView().apply {
         $0.isPagingEnabled = true
     }
@@ -14,6 +20,7 @@ open class ViewPager<ViewType: UIView>: BaseView, UIScrollViewDelegate {
     private var _currentIndex: Int = 0
 
     public var onScroll: ((CGFloat) -> Void)?
+    public var onPageSelected: ((Int) -> Void)?
     public var horizontalSpacing = CGFloat(10)
 
     public weak var datasource: BaseViewPagerDatasource? {
@@ -125,6 +132,7 @@ open class ViewPager<ViewType: UIView>: BaseView, UIScrollViewDelegate {
             }
         }
         fill()
+        onPageSelected?(newIndex)
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {

@@ -44,6 +44,12 @@ public class EGTextField: EDTextField {
         }
     }
 
+    public var floatingPlaceholderTitle: String? {
+        didSet {
+            invalidateFloatingPlaceholder()
+        }
+    }
+
     public lazy var floatingPlaceholder = optionalBuilder {
         EDLabel().apply {
             $0.font = Fonts.regular(Fonts.fontSizeSmall)
@@ -124,9 +130,8 @@ public class EGTextField: EDTextField {
                 self.floatingPlaceholder.value?.alpha = 0
             })
         } else {
-            floatingPlaceholder.getOrMake().also {
-                $0.text = attributedPlaceholder?.string ?? placeholder
-            }
+            floatingPlaceholder.getOrMake()
+            invalidateFloatingPlaceholder()
             UIView.animate(withDuration: .defaultAnimationSmall, animations: {
                 self.floatingPlaceholder.value?.alpha = 1
             })
@@ -201,5 +206,9 @@ public class EGTextField: EDTextField {
         let perimeter = bounds.width * 2 + bounds.height * 2 - 8 * cornerRadius + CGFloat.pi * cornerRadius * 2
         borderLayer.strokeStart = (placeholderLabel.bounds.width + Dimens.marginSmall) / perimeter
         borderLayer.strokeEnd = 1 - Dimens.marginSmall / perimeter
+    }
+
+    private func invalidateFloatingPlaceholder() {
+        floatingPlaceholder.value?.text = floatingPlaceholderTitle ?? attributedPlaceholder?.string ?? placeholder
     }
 }
