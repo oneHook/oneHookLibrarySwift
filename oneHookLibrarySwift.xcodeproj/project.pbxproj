@@ -32,6 +32,7 @@
 		D3958B1325C7475F005D4920 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3958B1225C7475F005D4920 /* Fonts.swift */; };
 		D3958B1725C7476E005D4920 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3958B1625C7476E005D4920 /* Colors.swift */; };
 		D3997A8D25E021DE00F5E17E /* EDActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3997A8C25E021DE00F5E17E /* EDActivityIndicator.swift */; };
+		D3997B1725E1E91700F5E17E /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3997B1625E1E91700F5E17E /* Codable+Extensions.swift */; };
 		D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */; };
 		D3A0F661259ABC7A008B2D36 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */; };
 		D3A0F666259ABC7A008B2D36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A0F665259ABC7A008B2D36 /* Assets.xcassets */; };
@@ -208,6 +209,7 @@
 		D3958B1225C7475F005D4920 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		D3958B1625C7476E005D4920 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D3997A8C25E021DE00F5E17E /* EDActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDActivityIndicator.swift; sourceTree = "<group>"; };
+		D3997B1625E1E91700F5E17E /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
 		D3A0F659259ABC7A008B2D36 /* oneHookLibrarySwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = oneHookLibrarySwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3A0F65C259ABC7A008B2D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3A0F660259ABC7A008B2D36 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 				D3A0F692259ABD83008B2D36 /* Dictionary+Extensions.swift */,
 				D3A0F694259ABD83008B2D36 /* UIImage+Extensions.swift */,
 				D3A0F678259ABD83008B2D36 /* UINavigationController+Extensions.swift */,
+				D3997B1625E1E91700F5E17E /* Codable+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -963,6 +966,7 @@
 				D322AE4125A4D04C00134636 /* EDVisualEffectView.swift in Sources */,
 				D3A0F769259ABE9C008B2D36 /* LinearLayout.swift in Sources */,
 				D3A0F821259AD1A9008B2D36 /* EDLabel.swift in Sources */,
+				D3997B1725E1E91700F5E17E /* Codable+Extensions.swift in Sources */,
 				D3673ED625DB79BF00A3ABF9 /* EGSegmentedControl.swift in Sources */,
 				D3A0F777259ABE9C008B2D36 /* RangeSlider.swift in Sources */,
 				D3A0F782259ABEB5008B2D36 /* ViewUtility.swift in Sources */,
