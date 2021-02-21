@@ -15,6 +15,7 @@ open class ViewPager<ViewType: UIView>: BaseView, UIScrollViewDelegate {
 
     private let scrollView = EDScrollView().apply {
         $0.isPagingEnabled = true
+        $0.showsHorizontalScrollIndicator = false
     }
     private var _visibleViews = [Int: UIView]()
     private var _currentIndex: Int = 0

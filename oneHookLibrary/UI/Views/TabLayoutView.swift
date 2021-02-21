@@ -3,15 +3,18 @@ import UIKit
 
 public struct TabItemUIModel {
     let image: UIImage?
+    let imageSelected: UIImage?
     let text: NSAttributedString?
     let spacing: CGFloat
     let orientation: StackLayout.Orientation
 
     public init(image: UIImage? = nil,
+                imageSelected: UIImage? = nil,
                 text: NSAttributedString? = nil,
                 spacing: CGFloat = dp(8),
                 orientation: StackLayout.Orientation = .vertical) {
         self.image = image
+        self.imageSelected = imageSelected
         self.text = text
         self.spacing = spacing
         self.orientation = orientation
@@ -31,10 +34,24 @@ open class TabItemView: FrameLayout {
         }
     }
 
-    public lazy var imageView = optionalBuilder {
-        EDImageView().apply {
+    private lazy var imageContainer = optionalBuilder {
+        FrameLayout().apply {
             $0.layoutGravity = [.centerHorizontal, .centerVertical]
             self.stackLayout.insertSubview($0, at: 0)
+        }
+    }
+
+    public lazy var imageView = optionalBuilder {
+        EDImageView().apply {
+            $0.layoutGravity = [.center]
+            self.imageContainer.getOrMake().addSubview($0)
+        }
+    }
+
+    public lazy var imageViewSelected = optionalBuilder {
+        EDImageView().apply {
+            $0.layoutGravity = [.center]
+            self.imageContainer.getOrMake().addSubview($0)
         }
     }
 
@@ -55,6 +72,17 @@ open class TabItemView: FrameLayout {
             imageView.getOrMake().image = image
         } else {
             imageView.value?.removeFromSuperview()
+            imageView.clear()
+        }
+        if let imageSelected = uiModel.imageSelected {
+            imageViewSelected.getOrMake().image = imageSelected
+        } else {
+            imageViewSelected.value?.removeFromSuperview()
+            imageViewSelected.clear()
+        }
+        if imageContainer.value?.subviews.count == 0 {
+            imageContainer.value?.removeFromSuperview()
+            imageContainer.clear()
         }
         if let text = uiModel.text {
             titleLabel.getOrMake().attributedText = text
@@ -66,6 +94,11 @@ open class TabItemView: FrameLayout {
     public func setColor(_ color: UIColor, progress: CGFloat) {
         titleLabel.value?.textColor = color
         imageView.value?.tintColor = color
+        imageViewSelected.value?.tintColor = color
+        if imageViewSelected.value != nil {
+            imageView.value?.alpha = progress
+            imageViewSelected.value?.alpha = 1 - progress
+        }
     }
 }
 
@@ -173,9 +206,13 @@ open class TabLayoutView: BaseControl {
         _tabViews.enumerated().forEach { (viewIndex, view) in
             let offset = CGFloat(viewIndex) - index
             if offset < -1 || offset > 1 {
-                view.setColor(tintColorNormal, progress: 0)
+                view.setColor(tintColorNormal, progress: 1)
             } else {
-                view.setColor(UIColor.blend(fromColor: tintColorNormal, toColor: tintColorHighlight, step: abs(offset)), progress: abs(offset))
+                view.setColor(
+                    UIColor.blend(fromColor: tintColorNormal,
+                                  toColor: tintColorHighlight, step: abs(offset)),
+                    progress: abs(offset)
+                )
             }
         }
     }
