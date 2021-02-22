@@ -58,6 +58,8 @@ public class EGTextField: EDTextField {
         }
     }
 
+    public var onFirstResponderStateChanged: ((Bool) -> Void)?
+
     public override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -103,6 +105,7 @@ public class EGTextField: EDTextField {
     @discardableResult
     open override func resignFirstResponder() -> Bool {
         let rv = super.resignFirstResponder()
+        onFirstResponderStateChanged?(!rv)
         invalidate()
         return rv
     }
@@ -110,6 +113,7 @@ public class EGTextField: EDTextField {
     @discardableResult
     open override func becomeFirstResponder() -> Bool {
         let rv = super.becomeFirstResponder()
+        onFirstResponderStateChanged?(rv)
         invalidate()
         return rv
     }
