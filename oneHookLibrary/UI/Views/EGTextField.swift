@@ -52,7 +52,7 @@ public class EGTextField: EDTextField {
 
     public lazy var floatingPlaceholder = optionalBuilder {
         EDLabel().apply {
-            $0.font = Fonts.regular(Fonts.fontSizeSmall)
+            $0.font = Fonts.semiBold(Fonts.fontSizeSmall)
             $0.textColor = self.colorActive ?? self.colorNormal
             self.addSubview($0)
         }
