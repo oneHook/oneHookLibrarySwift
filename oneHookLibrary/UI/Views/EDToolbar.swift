@@ -112,4 +112,9 @@ public class EDToolbar: BaseView {
         CGSize(width: size.width,
                height: contentContainerOffset + toolbarHeight)
     }
+
+    public override func setNeedsLayout() {
+        super.setNeedsLayout()
+        centerContainer.value?.setNeedsLayout()
+    }
 }
