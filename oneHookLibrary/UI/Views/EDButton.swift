@@ -3,11 +3,25 @@ import UIKit
 open class EDButton: UIButton {
 
     public enum IconPosition {
+        /* icon/title horizontal centered, with iconPadding in between*/
         case top
+
+        /* icon/title horizontal centered, with iconPadding in between*/
         case bottom
+
+        /* icon/title vertical centered, together horizontal centered, with iconPadding in between*/
         case left
+
+        /* icon/title vertical centered, icon will starts with iconPadding from the left, title always horizontally centered */
+        case leftMost
+
+        /* icon/title vertical centered, together horizontal centered, with iconPadding in between*/
         case right
+
+        /* Fill */
         case fill
+
+        /* No icon */
         case none
     }
 
@@ -113,6 +127,10 @@ open class EDButton: UIButton {
         } else if self.iconPosition == .fill {
             titleLabel.matchParent()
             imageView.matchParent()
+        } else if self.iconPosition == .leftMost {
+            imageView.center = CGPoint(x: iconPadding + imageWidth / 2 + iconOffset.x,
+                                       y: centerY + iconOffset.y)
+            titleLabel.center = CGPoint(x: centerX, y: centerY)
         }
     }
 
