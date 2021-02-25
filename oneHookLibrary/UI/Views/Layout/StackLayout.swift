@@ -112,7 +112,7 @@ open class StackLayout: BaseView {
                     viewHeight = height - view.marginTop - view.marginBottom - paddingTop - paddingBottom
                 }
                 if view.layoutGravity.contains(.centerVertical) {
-                    viewY = (height - childSize.height + view.marginTop + view.marginBottom) / 2
+                    viewY = (height - paddingTop - paddingBottom - childSize.height + view.marginTop + view.marginBottom) / 2 + paddingTop
                 } else if view.layoutGravity.contains(.bottom) {
                     viewY = height - (childSize.height - view.marginTop) - paddingBottom
                 }
@@ -121,7 +121,7 @@ open class StackLayout: BaseView {
                     viewWidth = width - view.marginStart - view.marginEnd - paddingStart - paddingEnd
                 }
                 if view.layoutGravity.contains(.centerHorizontal) {
-                    viewX = (width - childSize.width + view.marginStart + view.marginEnd) / 2
+                    viewX = (width - paddingStart - paddingEnd - childSize.width + view.marginStart + view.marginEnd) / 2 + paddingStart
                 } else if view.layoutGravity.contains(.end) {
                     viewX = width - (childSize.width - view.marginStart) - paddingEnd
                 }
