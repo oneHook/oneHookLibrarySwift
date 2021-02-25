@@ -274,4 +274,98 @@ class StackLayoutUnitTests: XCTestCase {
                         CGRect(x: 45, y: 5, width: 10, height: 10),
                         CGRect(x: 85, y: 5, width: 10, height: 10)])
     }
+
+    func testVerticalWithPadding() {
+        let layout = StackLayout()
+        layout.orientation = .vertical
+        layout.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        layout.paddingStart = 1
+        layout.paddingTop = 2
+        layout.paddingEnd = 3
+        layout.paddingBottom = 4
+
+        layout.addSubview(BaseView().apply({ (view) in
+            view.layoutSize = CGSize(width: 10, height: 10)
+            view.layoutGravity = .start
+            view.marginEnd = 5
+        }))
+        layout.addSubview(BaseView().apply({ (view) in
+            view.layoutSize = CGSize(width: 10, height: 10)
+            view.layoutGravity = .center
+            view.marginStart = 5
+        }))
+        layout.addSubview(BaseView().apply({ (view) in
+            view.layoutSize = CGSize(width: 10, height: 10)
+            view.layoutGravity = .end
+            view.marginBottom = 5
+        }))
+
+        layout.spacing = 0
+        layout.layoutSubviews()
+        XCTAssertEqual(layout.subviews.map({ $0.frame }),
+                       [CGRect(x: 1, y: 2, width: 10, height: 10),
+                        CGRect(x: 44, y: 12, width: 10, height: 10),
+                        CGRect(x: 87, y: 22, width: 10, height: 10)])
+
+        layout.spacing = 10
+        layout.layoutSubviews()
+        XCTAssertEqual(layout.subviews.map({ $0.frame }),
+                       [CGRect(x: 1, y: 2, width: 10, height: 10),
+                        CGRect(x: 44, y: 22, width: 10, height: 10),
+                        CGRect(x: 87, y: 42, width: 10, height: 10)])
+
+        layout.spacing = -1
+        layout.layoutSubviews()
+        XCTAssertEqual(layout.subviews.map({ $0.frame }),
+                       [CGRect(x: 1, y: 2, width: 10, height: 10),
+                        CGRect(x: 44, y: 11, width: 10, height: 10),
+                        CGRect(x: 87, y: 20, width: 10, height: 10)])
+    }
+
+    func testHorizontalWithPadding() {
+        let layout = StackLayout()
+        layout.orientation = .horizontal
+        layout.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        layout.paddingStart = 1
+        layout.paddingTop = 2
+        layout.paddingEnd = 3
+        layout.paddingBottom = 4
+
+        layout.addSubview(BaseView().apply({ (view) in
+            view.layoutSize = CGSize(width: 10, height: 10)
+            view.layoutGravity = .top
+            view.marginEnd = 5
+        }))
+        layout.addSubview(BaseView().apply({ (view) in
+            view.layoutSize = CGSize(width: 10, height: 10)
+            view.layoutGravity = .center
+            view.marginStart = 5
+        }))
+        layout.addSubview(BaseView().apply({ (view) in
+            view.layoutSize = CGSize(width: 10, height: 10)
+            view.layoutGravity = .bottom
+            view.marginBottom = 5
+        }))
+
+        layout.spacing = 0
+        layout.layoutSubviews()
+        XCTAssertEqual(layout.subviews.map({ $0.frame }),
+                       [CGRect(x: 1, y: 2, width: 10, height: 10),
+                        CGRect(x: 21, y: 44, width: 10, height: 10),
+                        CGRect(x: 31, y: 81, width: 10, height: 10)])
+
+        layout.spacing = 10
+        layout.layoutSubviews()
+        XCTAssertEqual(layout.subviews.map({ $0.frame }),
+                       [CGRect(x: 1, y: 2, width: 10, height: 10),
+                        CGRect(x: 31, y: 44, width: 10, height: 10),
+                        CGRect(x: 51, y: 81, width: 10, height: 10)])
+
+        layout.spacing = -1
+        layout.layoutSubviews()
+        XCTAssertEqual(layout.subviews.map({ $0.frame }),
+                       [CGRect(x: 1, y: 2, width: 10, height: 10),
+                        CGRect(x: 20, y: 44, width: 10, height: 10),
+                        CGRect(x: 29, y: 81, width: 10, height: 10)])
+    }
 }
