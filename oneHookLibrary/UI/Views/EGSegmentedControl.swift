@@ -3,14 +3,15 @@ import UIKit
 open class EGSegmentedControl: BaseView {
 
     public struct SegmentInfo {
-        var title: String
+        var title: NSAttributedString
         var normalTextColor: UIColor
         var highlightTextColor: UIColor
 
-        public init(title: String,
+        public init(title: String? = nil,
+                    attributedTitle: NSAttributedString? = nil,
                     normalTextColor: UIColor = .darkGray,
                     highlightTextColor: UIColor = .white) {
-            self.title = title
+            self.title = attributedTitle ?? title?.attributedString() ?? "".attributedString()
             self.normalTextColor = normalTextColor
             self.highlightTextColor = highlightTextColor
         }
@@ -21,6 +22,11 @@ open class EGSegmentedControl: BaseView {
         didSet {
             layer.cornerRadius = cornerRadius
             tabCoverView.layer.cornerRadius = cornerRadius
+        }
+    }
+    public var selectedTabColor: UIColor = .darkGray {
+        didSet {
+            tabCoverView.backgroundColor = selectedTabColor
         }
     }
 
@@ -35,8 +41,8 @@ open class EGSegmentedControl: BaseView {
         $0.anchorPoint = .zero
     }
 
-    private let tabCoverView = BaseView().apply {
-        $0.backgroundColor = .darkGray
+    private lazy var tabCoverView = BaseView().apply {
+        $0.backgroundColor = selectedTabColor
     }
 
     private let bottomLinearLayout = LinearLayout().apply {
