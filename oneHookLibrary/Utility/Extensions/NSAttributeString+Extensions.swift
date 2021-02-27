@@ -5,7 +5,8 @@ extension NSAttributedString {
     public static func join(values: [NSAttributedString],
                             seperator: NSAttributedString,
                             lineSpacing: CGFloat? = nil,
-                            textAlignment: NSTextAlignment = .left) -> NSAttributedString? {
+                            textAlignment: NSTextAlignment = .left,
+                            lineBreakMode: NSLineBreakMode? = nil) -> NSAttributedString? {
         if values.isEmpty {
             return nil
         }
@@ -23,6 +24,9 @@ extension NSAttributedString {
         paragraphStyle.alignment = textAlignment
         if let lineSpacing = lineSpacing {
             paragraphStyle.lineSpacing = lineSpacing
+        }
+        if let lineBreakMode = lineBreakMode {
+            paragraphStyle.lineBreakMode = lineBreakMode
         }
         retVal.addAttribute(NSAttributedString.Key.paragraphStyle,
                             value: paragraphStyle,
