@@ -10,6 +10,7 @@
 		D30975FD25A5038800F94FC2 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30975FC25A5038800F94FC2 /* Colors.swift */; };
 		D309760125A51AF200F94FC2 /* LineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D309760025A51AF200F94FC2 /* LineGraphView.swift */; };
 		D309760825A51B0C00F94FC2 /* LineGraphDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D309760425A51B0100F94FC2 /* LineGraphDemoViewController.swift */; };
+		D31B960C25F13D0D00E6DD03 /* ImageExtensionDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31B960B25F13D0D00E6DD03 /* ImageExtensionDemoViewController.swift */; };
 		D322AE02259D707C00134636 /* LinearProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE01259D707C00134636 /* LinearProgressBar.swift */; };
 		D322AE1325A284C900134636 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE1225A284C900134636 /* ProgressRing.swift */; };
 		D322AE1A25A3B77000134636 /* StaggerGridLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE1925A3B77000134636 /* StaggerGridLayoutDemoViewController.swift */; };
@@ -187,6 +188,7 @@
 		D30975FC25A5038800F94FC2 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D309760025A51AF200F94FC2 /* LineGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineGraphView.swift; sourceTree = "<group>"; };
 		D309760425A51B0100F94FC2 /* LineGraphDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineGraphDemoViewController.swift; sourceTree = "<group>"; };
+		D31B960B25F13D0D00E6DD03 /* ImageExtensionDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensionDemoViewController.swift; sourceTree = "<group>"; };
 		D322AE01259D707C00134636 /* LinearProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearProgressBar.swift; sourceTree = "<group>"; };
 		D322AE1225A284C900134636 /* ProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRing.swift; sourceTree = "<group>"; };
 		D322AE1925A3B77000134636 /* StaggerGridLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggerGridLayoutDemoViewController.swift; sourceTree = "<group>"; };
@@ -618,6 +620,7 @@
 				D3A9E3C825D3408500722555 /* ToolbarDemoViewController.swift */,
 				D3A9E3ED25D4839000722555 /* DigitInputViewDemoViewController.swift */,
 				D3A9E40125D4E9C700722555 /* EGTextFieldDemoViewController.swift */,
+				D31B960B25F13D0D00E6DD03 /* ImageExtensionDemoViewController.swift */,
 			);
 			path = SampleControllers;
 			sourceTree = "<group>";
@@ -875,6 +878,7 @@
 				D3A9E3CC25D3409400722555 /* ToolbarDemoViewController.swift in Sources */,
 				D3A9E27225CB3EF900722555 /* AppTheme.swift in Sources */,
 				D3A9E28325CB650F00722555 /* ImageAssets.swift in Sources */,
+				D31B960C25F13D0D00E6DD03 /* ImageExtensionDemoViewController.swift in Sources */,
 				D3A0F8C6259B8C1A008B2D36 /* SimpleTableViewCell.swift in Sources */,
 				D3A9E28425CB650F00722555 /* ColorAssets.swift in Sources */,
 				D3A0F65D259ABC7A008B2D36 /* AppDelegate.swift in Sources */,

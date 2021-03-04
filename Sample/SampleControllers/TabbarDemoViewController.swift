@@ -91,8 +91,10 @@ class TabbarDemoViewController: BaseScrollableDemoViewController, UIScrollViewDe
     }
 
     private func createIcon() -> UIImage {
-        UIImage(color: .blue,
-                size: CGSize(width: dp(10), height: dp(10)))!.withRenderingMode(.alwaysTemplate)
+        UIImage.solid(
+            color: .blue,
+            size: CGSize(width: dp(10), height: dp(10))
+        ).withRenderingMode(.alwaysTemplate)
     }
 
     override func viewDidLoad() {

@@ -2,38 +2,77 @@ import UIKit
 
 extension UIImage {
 
+    /// Directly load a image from assets and make it tintable
     public static func tintableImage(named name: String) -> UIImage? {
-        let oImage = UIImage(named: name)
-        return oImage?.withRenderingMode(.alwaysTemplate)
+        UIImage(named: name)?.tintable
     }
 
-    public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
-        let rect = CGRect(origin: .zero, size: size)
-        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
-        color.setFill()
-        UIRectFill(rect)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+    /// Create a new UIImage but share the same cgImage with the original one
+    public var original: UIImage {
+        withRenderingMode(.alwaysOriginal)
+    }
 
-        guard let cgImage = image?.cgImage else { return nil }
+    /// Create a new UIImage but share the same cgImage with the original one
+    public var tintable: UIImage {
+        withRenderingMode(.alwaysTemplate)
+    }
+
+    convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
+        let image = UIGraphicsImageRenderer(size: size).image { context in
+            color.setFill()
+            context.fill(CGRect(origin: .zero, size: size))
+        }
+
+        guard let cgImage = image.cgImage else {
+            return nil
+        }
+
         self.init(cgImage: cgImage)
     }
 
-    public static func circle(diameter: CGFloat, color: UIColor) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: diameter, height: diameter), false, 0)
-        let ctx = UIGraphicsGetCurrentContext()!
-        ctx.saveGState()
-
-        let rect = CGRect(x: 0, y: 0, width: diameter, height: diameter)
-        ctx.setFillColor(color.cgColor)
-        ctx.fillEllipse(in: rect)
-
-        ctx.restoreGState()
-        let img = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-
-        return img
+    public static func solid(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
+        let bounds = CGRect(origin: .zero, size: size)
+        let renderer = UIGraphicsImageRenderer(size: bounds.size)
+        return renderer.image { context in
+            color.setFill()
+            UIRectFill(bounds)
+        }
     }
+
+    public static func circle(color: UIColor, diameter: CGFloat) -> UIImage {
+        let size = CGSize(width: diameter, height: diameter)
+        let bounds = CGRect(origin: .zero, size: size)
+        let renderer = UIGraphicsImageRenderer(size: size)
+        return renderer.image { context in
+            color.setFill()
+            let path = UIBezierPath(roundedRect: bounds,
+                                    byRoundingCorners: UIRectCorner.allCorners,
+                                    cornerRadii: CGSize(width: diameter / 2, height: diameter / 2)
+            )
+            path.addClip()
+            UIRectFill(bounds)
+        }
+    }
+
+    public func tintTo(_ color: UIColor) -> UIImage? {
+        return UIGraphicsImageRenderer(size: size).image { context in
+            color.setFill()
+            context.fill(context.format.bounds)
+            draw(in: context.format.bounds, blendMode: .destinationIn, alpha: 1.0)
+        }
+    }
+
+    public func alpha(_ value: CGFloat) -> UIImage? {
+        return UIGraphicsImageRenderer(size: size).image { context in
+            context.fill(context.format.bounds)
+            draw(at: .zero, blendMode: .normal, alpha: value)
+        }
+    }
+}
+
+/// Avoid using these on large images
+/// Not exactly memory friendly
+extension UIImage {
 
     public func crop(toRect cropRect: CGRect) -> UIImage? {
         let rect = CGRect(
@@ -134,34 +173,6 @@ extension UIImage {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-        return newImage
-    }
-
-    public func tintTo(_ color: UIColor) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(size, false, scale)
-
-        guard
-            let context = UIGraphicsGetCurrentContext(),
-            let cgImage = cgImage else {
-            return nil
-        }
-
-        color.setFill()
-        context.translateBy(x: 0, y: size.height)
-        context.scaleBy(x: 1.0, y: -1.0)
-        context.clip(to: CGRect(x: 0, y: 0, width: size.width, height: size.height), mask: cgImage)
-        context.fill(CGRect(x: 0, y: 0, width: size.width, height: size.height))
-        let coloredImg = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        return coloredImg
-    }
-
-    public func alpha(_ value: CGFloat) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(size, false, scale)
-        draw(at: CGPoint.zero, blendMode: .normal, alpha: value)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
         return newImage
     }
 }

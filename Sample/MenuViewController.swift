@@ -62,6 +62,12 @@ class MenuViewController: UIViewController {
             })
         ]))
 
+        uiModels.append(MenuSectionUIModel(name: "Extensions", items: [
+            MenuItemUIModel(name: "Image Extensions", makeController: {
+                ImageExtensionDemoViewController()
+            })
+        ]))
+
         uiModels.append(MenuSectionUIModel(name: "Widget", items: [
             MenuItemUIModel(name: "Controller Host", makeController: {
                 ControllerHostDemoViewController()

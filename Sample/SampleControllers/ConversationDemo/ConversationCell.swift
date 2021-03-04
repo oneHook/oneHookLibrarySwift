@@ -27,7 +27,7 @@ class ConversationCell: SelectableTableViewCell {
         $0.layoutSize = CGSize(width: dp(32), height: dp(32))
         $0.layoutGravity = [.bottom]
         $0.marginEnd = Dimens.marginMedium
-        $0.image = UIImage(color: .red, size: CGSize(width: 12, height: 12))
+        $0.image = UIImage.circle(color: .red, diameter: dp(12))
         $0.layer.cornerRadius = dp(16)
         $0.layer.masksToBounds = true
     }

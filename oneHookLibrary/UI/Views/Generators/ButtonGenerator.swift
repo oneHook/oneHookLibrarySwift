@@ -6,8 +6,8 @@ public class ButtonGenerator {
 
     public static func navigationButton() -> EDButton {
         EDButton().apply({ (button) in
-            button.setBackgroundImage(UIImage(color: .clear), for: .normal)
-            button.setBackgroundImage(UIImage(color: UIColor.ed_toolbarBackgroundColor
+            button.setBackgroundImage(UIImage.solid(color: .clear), for: .normal)
+            button.setBackgroundImage(UIImage.solid(color: UIColor.ed_toolbarBackgroundColor
                 .autoDarker(by: 20)
                 .withAlphaComponent(0.5)), for: .highlighted)
             button.adjustsImageWhenHighlighted = false
