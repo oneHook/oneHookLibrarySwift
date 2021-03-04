@@ -3,19 +3,82 @@ import UIKit
 
 class ImageExtensionDemoViewController: BaseScrollableDemoViewController {
 
+    private lazy var imageView = EDImageView().apply {
+        $0.layoutGravity = .centerHorizontal
+        $0.contentMode = .scaleAspectFit
+        $0.clipsToBounds = true
+        $0.backgroundColor = .gray
+        $0.layoutSize = CGSize(width: dp(350), height: dp(350))
+    }
+
+    private lazy var statusLabel = EDLabel().apply {
+        $0.layoutGravity = .centerHorizontal
+        $0.font = Fonts.regular(Fonts.fontSizeMedium)
+        $0.numberOfLines = 0
+        $0.textAlignment = .center
+    }
+
+    private lazy var pickImageButon = EDButton().apply {
+        $0.layoutSize = CGSize(width: dp(200), height: dp(56))
+        $0.layoutGravity = .centerHorizontal
+        $0.setImage(UIImage.solid(color: .white), for: .normal)
+        $0.setTitle(missing("Add Image"), for: .normal)
+        $0.addTarget(self, action: #selector(pickButtonPressed), for: .touchUpInside)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         toolbarTitle = "Image Extension"
 
-        for i in 0..<10 {
+        contentLinearLayout.addSubview(imageView)
+        contentLinearLayout.addSubview(statusLabel)
+        contentLinearLayout.addSubview(pickImageButon)
+        for i in 0..<5 {
             contentLinearLayout.addSubview(EDImageView().apply {
                 $0.layoutGravity = .centerHorizontal
                 $0.layoutSize = CGSize(width: dp(200), height: dp(200))
-                $0.image = UIImage(named: "ic_emoji")?.alpha(0.1 * CGFloat(i))
+                $0.image = UIImage(named: "ic_emoji")?.alpha(0.2 * CGFloat(i))
                 $0.tintColor = UIColor.red
             })
         }
-
     }
 
+    @objc private func pickButtonPressed() {
+        let controller = UIImagePickerController()
+        controller.delegate = self
+        present(controller, animated: true, completion: nil)
+    }
+
+    private func processUrl(_ url: URL) {
+        let image = UIImage.downSampled(
+            url,
+            maxPixelDimension: 350 * UIScreen.main.scale
+        )
+        self.imageView.image = image
+        let destinationUrl = FileUtility.getOrCreatePrivateFileUrl(name: "out.jpeg")
+        UIImage.downSample(url, maxPixelDimension: 1600, destinationUrl: destinationUrl)
+        let text = """
+Loaded Image size \(image!.size) \(image!.scale)
+Saved Image size \(FileUtility.getFileSize(url: destinationUrl)!)
+"""
+        statusLabel.text = text
+        contentLinearLayout.setNeedsLayout()
+    }
+}
+
+extension ImageExtensionDemoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+
+        dismiss(animated: true, completion: {
+            if let imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL {
+                self.processUrl(imageURL)
+            }
+        })
+    }
 }

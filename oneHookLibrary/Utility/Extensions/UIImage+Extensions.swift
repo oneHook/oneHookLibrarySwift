@@ -54,6 +54,91 @@ extension UIImage {
         }
     }
 
+    /// if source image has smaller dimension, will produce the original dimension
+    public static func downSampled(_ url: URL, to pointSize: CGSize, scale: CGFloat) -> UIImage? {
+        let maxDimensionInPixels = max(pointSize.width, pointSize.height) * scale
+        return downSampled(url, maxPixelDimension: maxDimensionInPixels)
+    }
+
+    /// if source image has smaller dimension, will produce the original dimension
+    public static func downSampled(_ url: URL, maxPixelDimension: CGFloat) -> UIImage? {
+        let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
+        guard let imageSource = CGImageSourceCreateWithURL(url as CFURL, imageSourceOptions) else {
+            return nil
+        }
+        let options =
+            [
+                kCGImageSourceCreateThumbnailFromImageAlways: true,
+                kCGImageSourceShouldCacheImmediately: true,
+                kCGImageSourceCreateThumbnailWithTransform: true,
+                kCGImageSourceThumbnailMaxPixelSize: maxPixelDimension
+            ] as CFDictionary
+
+
+        guard let cgImage = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, options) else {
+            return nil
+        }
+        return UIImage(cgImage: cgImage)
+    }
+
+    /// if source image has smaller dimension, original dimension will be used
+    @discardableResult
+    public static func downSample(_ url: URL, to pointSize: CGSize, scale: CGFloat, destinationUrl: URL) -> Bool {
+        let maxDimensionInPixels = max(pointSize.width, pointSize.height) * scale
+        return downSample(url, maxPixelDimension: maxDimensionInPixels, destinationUrl: destinationUrl)
+    }
+
+    /// if source image has smaller dimension, original dimension will be used
+    @discardableResult
+    public static func downSample(_ url: URL, maxPixelDimension: CGFloat, destinationUrl: URL, quality: CGFloat = 0.8) -> Bool {
+        let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
+        guard let imageSource = CGImageSourceCreateWithURL(url as CFURL, imageSourceOptions) else {
+            return false
+        }
+        let options =
+            [
+                kCGImageSourceCreateThumbnailFromImageAlways: true,
+                kCGImageSourceShouldCacheImmediately: true,
+                kCGImageSourceCreateThumbnailWithTransform: true,
+                kCGImageSourceThumbnailMaxPixelSize: maxPixelDimension,
+            ] as CFDictionary
+
+        guard
+            let cgImage = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, options),
+            let imageDestination = CGImageDestinationCreateWithURL(
+            destinationUrl as CFURL,
+            "public.jpeg" as CFString,
+            1,
+            nil
+        ) else {
+            return false
+        }
+        CGImageDestinationAddImage(imageDestination, cgImage, [
+            kCGImageDestinationLossyCompressionQuality: quality
+        ] as CFDictionary)
+        CGImageDestinationFinalize(imageDestination)
+        return true
+    }
+
+    @discardableResult
+    public func save(to url: URL, quality: CGFloat = 0.8) -> Bool {
+        guard
+            let cgImage = cgImage,
+            let imageDestination = CGImageDestinationCreateWithURL(
+            url as CFURL,
+            "public.jpeg" as CFString,
+            1,
+            nil
+        ) else {
+            return false
+        }
+        CGImageDestinationAddImage(imageDestination, cgImage, [
+            kCGImageDestinationLossyCompressionQuality: quality
+        ] as CFDictionary)
+        CGImageDestinationFinalize(imageDestination)
+        return true
+    }
+
     public func tintTo(_ color: UIColor) -> UIImage? {
         return UIGraphicsImageRenderer(size: size).image { context in
             color.setFill()
