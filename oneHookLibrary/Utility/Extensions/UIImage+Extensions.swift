@@ -17,7 +17,7 @@ extension UIImage {
         withRenderingMode(.alwaysTemplate)
     }
 
-    convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
+    public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
         let image = UIGraphicsImageRenderer(size: size).image { context in
             color.setFill()
             context.fill(CGRect(origin: .zero, size: size))
