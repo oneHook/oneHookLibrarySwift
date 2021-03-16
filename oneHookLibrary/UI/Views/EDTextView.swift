@@ -2,6 +2,7 @@ import UIKit
 
 open class EDTextView: UITextView, UITextViewDelegate {
 
+    public var placeholderPadding = dp(4)
     private var _layoutParams: LayoutParams = LayoutParams()
     override open var layoutParams: LayoutParams {
         _layoutParams
@@ -91,7 +92,7 @@ open class EDTextView: UITextView, UITextViewDelegate {
     /// Resize the placeholder UILabel to make sure it's in the same position as the UITextView text
     private func resizePlaceholder() {
         if let placeholderLabel = self.viewWithTag(100) as? UILabel {
-            let labelX = self.textContainerInset.left + dp(4)
+            let labelX = self.textContainerInset.left + placeholderPadding
             let labelY = self.textContainerInset.top
             let labelWidth = self.frame.width - (labelX * 2)
             let labelHeight = placeholderLabel.frame.height
