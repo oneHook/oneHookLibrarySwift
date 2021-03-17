@@ -114,7 +114,8 @@ public class EDToolbar: BaseView {
     }
 
     public override func setNeedsLayout() {
-        super.setNeedsLayout()
         centerContainer.value?.setNeedsLayout()
+        contentContainer.setNeedsLayout()
+        super.setNeedsLayout()
     }
 }
