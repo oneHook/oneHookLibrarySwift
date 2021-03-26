@@ -107,11 +107,11 @@ extension UIImage {
         guard
             let cgImage = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, options),
             let imageDestination = CGImageDestinationCreateWithURL(
-            destinationUrl as CFURL,
-            "public.jpeg" as CFString,
-            1,
-            nil
-        ) else {
+                destinationUrl as CFURL,
+                "public.jpeg" as CFString,
+                1,
+                nil
+            ) else {
             return false
         }
         CGImageDestinationAddImage(imageDestination, cgImage, [
@@ -126,11 +126,11 @@ extension UIImage {
         guard
             let cgImage = cgImage,
             let imageDestination = CGImageDestinationCreateWithURL(
-            url as CFURL,
-            "public.jpeg" as CFString,
-            1,
-            nil
-        ) else {
+                url as CFURL,
+                "public.jpeg" as CFString,
+                1,
+                nil
+            ) else {
             return false
         }
         CGImageDestinationAddImage(imageDestination, cgImage, [
@@ -157,64 +157,83 @@ extension UIImage {
 }
 
 /// Avoid using these on large images
-/// Not exactly memory friendly
+/// These all have to allocate new memory for image
 extension UIImage {
 
-    public func crop(toRect cropRect: CGRect) -> UIImage? {
-        let rect = CGRect(
-            x: cropRect.origin.x * scale,
-            y: cropRect.origin.y * scale,
-            width: cropRect.width * scale,
-            height: cropRect.height * scale
-        )
-
-        guard let croppedImageRef = cgImage?.cropping(to: rect) else {
-            return nil
+    /// Crop the image by given targetRect
+    /// if maximumSize is provided, image will be resized to longer edge not more than maximumSize
+    public static func crop(
+        image: UIImage,
+        targetRect: CGRect,
+        maximumSize: CGFloat? = nil
+    ) -> UIImage {
+        var targetRect = targetRect
+        var scaleRatio = CGFloat(1)
+        if let maximumSize = maximumSize {
+            scaleRatio = min(1, maximumSize / max(targetRect.width, targetRect.height))
+            targetRect.origin.x *= scaleRatio
+            targetRect.origin.y *= scaleRatio
+            targetRect.size.width *= scaleRatio
+            targetRect.size.height *= scaleRatio
         }
 
-        return UIImage(cgImage: croppedImageRef, scale: scale, orientation: imageOrientation)
+        let renderer = UIGraphicsImageRenderer(size: targetRect.size)
+        return renderer.image { _ in
+            image.draw(
+                in: CGRect(
+                    origin: CGPoint(x: -targetRect.minX, y: -targetRect.minY),
+                    size: CGSize(width: image.size.width * scaleRatio,
+                                 height: image.size.height * scaleRatio)
+                )
+            )
+        }
     }
 
-    public static func cropToBounds(image: UIImage,
-                                    width: Double,
-                                    height: Double) -> UIImage {
-
-        let cgimage = image.cgImage!
-        let contextImage: UIImage = UIImage(cgImage: cgimage)
-        let contextSize: CGSize = contextImage.size
-        var posX: CGFloat = 0.0
-        var posY: CGFloat = 0.0
-        var cgwidth: CGFloat = CGFloat(width)
-        var cgheight: CGFloat = CGFloat(height)
-
-        // See what size is longer and create the center off of that
-        if contextSize.width > contextSize.height {
-            let newWidth = contextSize.height * 4 / 3
-            posX = ((contextSize.width - newWidth) / 2)
-            posY = 0
-            cgwidth = newWidth
-            cgheight = contextSize.height
+    /// Crop the center of image with ratio (width / height).
+    /// if maximumSize is provided, image will be resized to longer edge not more than maximumSize
+    public static func cropCenter(
+        image: UIImage,
+        targetRatio: CGFloat,
+        maximumSize: CGFloat? = nil
+    ) -> UIImage {
+        let originalRatio = image.size.width / image.size.height
+        var targetRect = CGRect.zero
+        if originalRatio > targetRatio {
+            targetRect.size.width = image.size.height * targetRatio
+            targetRect.size.height = image.size.height
+            targetRect.origin.x = (image.size.width - targetRect.size.width) / 2
+            targetRect.origin.y = 0
         } else {
-            let newHeight = contextSize.width / 4 * 3
-            posX = 0
-            posY = ((contextSize.height - newHeight) / 2)
-            cgwidth = contextSize.width
-            cgheight = newHeight
+            targetRect.size.width = image.size.width
+            targetRect.size.height = image.size.width / targetRatio
+            targetRect.origin.x = 0
+            targetRect.origin.y = (image.size.height - targetRect.size.height) / 2
         }
 
-        let rect: CGRect = CGRect(x: posX, y: posY, width: cgwidth, height: cgheight)
+        var scaleRatio = CGFloat(1)
+        if let maximumSize = maximumSize {
+            scaleRatio = min(1, maximumSize / max(targetRect.width, targetRect.height))
+            targetRect.origin.x *= scaleRatio
+            targetRect.origin.y *= scaleRatio
+            targetRect.size.width *= scaleRatio
+            targetRect.size.height *= scaleRatio
+        }
 
-        // Create bitmap image from context using the rect
-        let imageRef: CGImage = cgimage.cropping(to: rect)!
-
-        // Create a new image based on the imageRef and rotate back to the original orientation
-        let image: UIImage = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
-
-        return image
+        let renderer = UIGraphicsImageRenderer(size: targetRect.size)
+        return renderer.image { _ in
+            image.draw(
+                in: CGRect(
+                    origin: CGPoint(x: -targetRect.minX, y: -targetRect.minY),
+                    size: CGSize(width: image.size.width * scaleRatio,
+                                 height: image.size.height * scaleRatio)
+                )
+            )
+        }
     }
 
-    /* Resize the image to shorter edge to given value, if current shorter edge already
-       smaller than desired shorter edge, nil will be produced */
+    /// Resize the image to shorter edge to given value, original aspect ratio
+    /// will be preserved, if current shorter edge already
+    /// smaller than desired shorter edge, nil will be produced
     public static func resizeImage(image: UIImage, shortEdgeTo shortEdge: CGFloat) -> UIImage? {
         let size = image.size
         let currentShortEdge = min(size.width, size.height)
@@ -223,43 +242,47 @@ extension UIImage {
         }
         var newSize: CGSize
         if currentShortEdge == size.width {
-            newSize = CGSize(width: shortEdge, height: (shortEdge / currentShortEdge) * size.height)
+            newSize = CGSize(
+                width: shortEdge,
+                height: (shortEdge / currentShortEdge) * size.height
+            )
         } else {
-            newSize = CGSize(width: (shortEdge / currentShortEdge) * size.width, height: shortEdge)
+            newSize = CGSize(
+                width: (shortEdge / currentShortEdge) * size.width,
+                height: shortEdge
+            )
         }
-        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-
-        // Actually do the resizing to the rect using the ImageContext stuff
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        image.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        return newImage
+        let renderer = UIGraphicsImageRenderer(size: newSize)
+        return renderer.image { _ in
+            image.draw(in: CGRect(origin: .zero, size: newSize))
+        }
     }
 
-    public static func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
+    /// Resize the image to longer edge to given value, original aspect ratio
+    /// will be preserved, if current longer edge already
+    /// smaller than desired longer edge, nil will be produced
+    public static func resizeImage(image: UIImage, longEdgeTo longEdge: CGFloat) -> UIImage? {
         let size = image.size
-
-        let widthRatio  = targetSize.width  / size.width
-        let heightRatio = targetSize.height / size.height
-
-        var newSize: CGSize
-        if widthRatio > heightRatio {
-            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
-        } else {
-            newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
+        let currentLongEdge = max(size.width, size.height)
+        if currentLongEdge <= longEdge {
+            return nil
         }
-
-        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-
-        // Actually do the resizing to the rect using the ImageContext stuff
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        image.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        return newImage
+        var newSize: CGSize
+        if currentLongEdge == size.width {
+            newSize = CGSize(
+                width: longEdge,
+                height: (longEdge / currentLongEdge) * size.height
+            )
+        } else {
+            newSize = CGSize(
+                width: (longEdge / currentLongEdge) * size.width,
+                height: longEdge
+            )
+        }
+        let renderer = UIGraphicsImageRenderer(size: newSize)
+        return renderer.image { _ in
+            image.draw(in: CGRect(origin: .zero, size: newSize))
+        }
     }
 }
 

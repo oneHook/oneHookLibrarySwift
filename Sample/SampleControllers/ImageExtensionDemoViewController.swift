@@ -52,17 +52,29 @@ class ImageExtensionDemoViewController: BaseScrollableDemoViewController {
     private func processUrl(_ url: URL) {
         let image = UIImage.downSampled(
             url,
-            maxPixelDimension: 350 * UIScreen.main.scale
+            maxPixelDimension: 2000
+        )!
+
+        print("XXX before size", image.size)
+//        let newImage = UIImage.resizeImage(image: image, shortEdgeTo: 600)!
+        let newImage = UIImage.crop(
+            image: image,
+            targetRect: CGRect(x: 0, y: 0, width: 305, height: 305),
+            maximumSize: 200
         )
-        self.imageView.image = image
-        let destinationUrl = FileUtility.getOrCreatePrivateFileUrl(name: "out.jpeg")
-        UIImage.downSample(url, maxPixelDimension: 1600, destinationUrl: destinationUrl)
-        let text = """
-Loaded Image size \(image!.size) \(image!.scale)
-Saved Image size \(FileUtility.getFileSize(url: destinationUrl)!)
-"""
-        statusLabel.text = text
-        contentLinearLayout.setNeedsLayout()
+        print("XXX after size", newImage.size)
+        self.imageView.image = newImage
+
+
+//        self.imageView.image = newImage
+//        let destinationUrl = FileUtility.getOrCreatePrivateFileUrl(name: "out.jpeg")
+//        UIImage.downSample(url, maxPixelDimension: 1600, destinationUrl: destinationUrl)
+//        let text = """
+//Loaded Image size \(image!.size) \(image!.scale)
+//Saved Image size \(FileUtility.getFileSize(url: destinationUrl)!)
+//"""
+//        statusLabel.text = text
+//        contentLinearLayout.setNeedsLayout()
     }
 }
 
