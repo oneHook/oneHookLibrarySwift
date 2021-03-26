@@ -21,7 +21,7 @@ class ImageExtensionDemoViewController: BaseScrollableDemoViewController {
     private lazy var pickImageButon = EDButton().apply {
         $0.layoutSize = CGSize(width: dp(200), height: dp(56))
         $0.layoutGravity = .centerHorizontal
-        $0.setImage(UIImage.solid(color: .white), for: .normal)
+        $0.setImage(UIImage.solid(.white), for: .normal)
         $0.setTitle(missing("Add Image"), for: .normal)
         $0.addTarget(self, action: #selector(pickButtonPressed), for: .touchUpInside)
     }

@@ -5,7 +5,7 @@ class ToolbarDemoViewController: BaseScrollableDemoViewController {
 
     private static func createIcon() -> UIImage {
         UIImage.solid(
-            color: .white,
+            .white,
             size: CGSize(width: dp(10), height: dp(10))
         ).withRenderingMode(.alwaysTemplate)
     }

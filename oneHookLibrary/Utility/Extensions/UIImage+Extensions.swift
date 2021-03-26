@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import UIKit
 
 extension UIImage {
@@ -7,12 +8,12 @@ extension UIImage {
         UIImage(named: name)?.tintable
     }
 
-    /// Create a new UIImage but share the same cgImage with the original one
+    /// Create a new Untintable UIImage but share the same cgImage with the original one
     public var original: UIImage {
         withRenderingMode(.alwaysOriginal)
     }
 
-    /// Create a new UIImage but share the same cgImage with the original one
+    /// Create a new tintable UIImage but share the same cgImage with the original one
     public var tintable: UIImage {
         withRenderingMode(.alwaysTemplate)
     }
@@ -30,7 +31,7 @@ extension UIImage {
         self.init(cgImage: cgImage)
     }
 
-    public static func solid(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
+    public static func solid(_ color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
         let bounds = CGRect(origin: .zero, size: size)
         let renderer = UIGraphicsImageRenderer(size: bounds.size)
         return renderer.image { context in
@@ -39,7 +40,7 @@ extension UIImage {
         }
     }
 
-    public static func circle(color: UIColor, diameter: CGFloat) -> UIImage {
+    public static func circle(_ color: UIColor, diameter: CGFloat) -> UIImage {
         let size = CGSize(width: diameter, height: diameter)
         let bounds = CGRect(origin: .zero, size: size)
         let renderer = UIGraphicsImageRenderer(size: size)
@@ -261,3 +262,5 @@ extension UIImage {
         return newImage
     }
 }
+
+#endif
