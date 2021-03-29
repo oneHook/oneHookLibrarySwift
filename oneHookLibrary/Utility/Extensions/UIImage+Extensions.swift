@@ -19,6 +19,8 @@ extension UIImage {
     }
 
     public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1
         let image = UIGraphicsImageRenderer(size: size).image { context in
             color.setFill()
             context.fill(CGRect(origin: .zero, size: size))
@@ -28,12 +30,14 @@ extension UIImage {
             return nil
         }
 
-        self.init(cgImage: cgImage)
+        self.init(cgImage: cgImage, scale: 1, orientation: .up)
     }
 
     public static func solid(_ color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1
         let bounds = CGRect(origin: .zero, size: size)
-        let renderer = UIGraphicsImageRenderer(size: bounds.size)
+        let renderer = UIGraphicsImageRenderer(size: bounds.size, format: format)
         return renderer.image { context in
             color.setFill()
             UIRectFill(bounds)
@@ -41,9 +45,11 @@ extension UIImage {
     }
 
     public static func circle(_ color: UIColor, diameter: CGFloat) -> UIImage {
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1
         let size = CGSize(width: diameter, height: diameter)
         let bounds = CGRect(origin: .zero, size: size)
-        let renderer = UIGraphicsImageRenderer(size: size)
+        let renderer = UIGraphicsImageRenderer(size: size, format: format)
         return renderer.image { context in
             color.setFill()
             let path = UIBezierPath(roundedRect: bounds,
@@ -58,11 +64,11 @@ extension UIImage {
     /// if source image has smaller dimension, will produce the original dimension
     public static func downSampled(_ url: URL, to pointSize: CGSize, scale: CGFloat) -> UIImage? {
         let maxDimensionInPixels = max(pointSize.width, pointSize.height) * scale
-        return downSampled(url, maxPixelDimension: maxDimensionInPixels)
+        return downSampled(url, maxPixelDimension: maxDimensionInPixels, scale: scale)
     }
 
     /// if source image has smaller dimension, will produce the original dimension
-    public static func downSampled(_ url: URL, maxPixelDimension: CGFloat) -> UIImage? {
+    public static func downSampled(_ url: URL, maxPixelDimension: CGFloat, scale: CGFloat = 1.0) -> UIImage? {
         let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
         guard let imageSource = CGImageSourceCreateWithURL(url as CFURL, imageSourceOptions) else {
             return nil
@@ -79,7 +85,7 @@ extension UIImage {
         guard let cgImage = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, options) else {
             return nil
         }
-        return UIImage(cgImage: cgImage)
+        return UIImage(cgImage: cgImage, scale: scale, orientation: .up)
     }
 
     /// if source image has smaller dimension, original dimension will be used
@@ -141,7 +147,9 @@ extension UIImage {
     }
 
     public func tintTo(_ color: UIColor) -> UIImage? {
-        return UIGraphicsImageRenderer(size: size).image { context in
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = scale
+        return UIGraphicsImageRenderer(size: size, format: format).image { context in
             color.setFill()
             context.fill(context.format.bounds)
             draw(in: context.format.bounds, blendMode: .destinationIn, alpha: 1.0)
@@ -149,7 +157,9 @@ extension UIImage {
     }
 
     public func alpha(_ value: CGFloat) -> UIImage? {
-        return UIGraphicsImageRenderer(size: size).image { context in
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = scale
+        return UIGraphicsImageRenderer(size: size, format: format).image { context in
             context.fill(context.format.bounds)
             draw(at: .zero, blendMode: .normal, alpha: value)
         }
@@ -177,8 +187,10 @@ extension UIImage {
             targetRect.size.height *= scaleRatio
         }
 
-        let renderer = UIGraphicsImageRenderer(size: targetRect.size)
-        return renderer.image { _ in
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = image.scale
+        let renderer = UIGraphicsImageRenderer(size: targetRect.size, format: format)
+        return renderer.image { context in
             image.draw(
                 in: CGRect(
                     origin: CGPoint(x: -targetRect.minX, y: -targetRect.minY),
@@ -219,7 +231,9 @@ extension UIImage {
             targetRect.size.height *= scaleRatio
         }
 
-        let renderer = UIGraphicsImageRenderer(size: targetRect.size)
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = image.scale
+        let renderer = UIGraphicsImageRenderer(size: targetRect.size, format: format)
         return renderer.image { _ in
             image.draw(
                 in: CGRect(
@@ -252,7 +266,9 @@ extension UIImage {
                 height: shortEdge
             )
         }
-        let renderer = UIGraphicsImageRenderer(size: newSize)
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = image.scale
+        let renderer = UIGraphicsImageRenderer(size: newSize, format: format)
         return renderer.image { _ in
             image.draw(in: CGRect(origin: .zero, size: newSize))
         }
@@ -279,7 +295,9 @@ extension UIImage {
                 height: longEdge
             )
         }
-        let renderer = UIGraphicsImageRenderer(size: newSize)
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = image.scale
+        let renderer = UIGraphicsImageRenderer(size: newSize, format: format)
         return renderer.image { _ in
             image.draw(in: CGRect(origin: .zero, size: newSize))
         }
