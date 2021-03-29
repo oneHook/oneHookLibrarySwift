@@ -7,7 +7,7 @@ class MyConversationInputView: ConversationInputView {
         $0.layoutGravity = [.centerVertical]
         $0.marginEnd = dp(10)
         $0.setImage(
-            UIImage.circle(color: .red, diameter: dp(10)),
+            UIImage.circle(.red, diameter: dp(10)),
             for: .normal
         )
         $0.layer.cornerRadius = dp(5)
@@ -18,7 +18,7 @@ class MyConversationInputView: ConversationInputView {
         $0.layoutGravity = [.centerVertical]
         $0.marginStart = dp(10)
         $0.setImage(
-            UIImage.circle(color: .blue, diameter: dp(10)),
+            UIImage.circle(.blue, diameter: dp(10)),
             for: .normal
         )
         $0.layer.cornerRadius = dp(5)
@@ -29,7 +29,7 @@ class MyConversationInputView: ConversationInputView {
         $0.layoutGravity = [.centerVertical]
         $0.marginStart = dp(10)
         $0.setImage(
-            UIImage.circle(color: .blue, diameter: dp(10)),
+            UIImage.circle(.blue, diameter: dp(10)),
             for: .normal
         )
         $0.layer.cornerRadius = dp(5)

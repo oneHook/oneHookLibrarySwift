@@ -42,7 +42,7 @@ class MiscViewDemoViewController: BaseScrollableDemoViewController, BaseViewPage
 
     private static func createIcon() -> UIImage {
         UIImage.solid(
-            color: .blue,
+            .blue,
             size: CGSize(width: dp(10), height: dp(10))
         ).withRenderingMode(.alwaysTemplate)
     }
