@@ -9,6 +9,39 @@ class StackLayoutDemoViewController: BaseScrollableDemoViewController {
         toolbarTitle = "StackLayout Demo"
 
         contentLinearLayout.addSubview(EDLabel.h2().apply {
+            $0.text = "Complicated case"
+        })
+
+        contentLinearLayout.addSubview(StackLayout().apply {
+            $0.layoutSize = CGSize(width: 0, height: dp(300))
+            $0.layoutGravity = .fillHorizontal
+            $0.orientation = .vertical
+            $0.contentGravity = .center
+            $0.spacing = Dimens.marginLarge
+            $0.layer.borderColor = UIColor.red.cgColor
+            $0.layer.borderWidth = dp(1)
+
+            $0.addSubview(EDLabel().apply {
+                $0.layoutGravity = .fillHorizontal
+                $0.textAlignment = .center
+                $0.marginStart = Dimens.marginXLarge
+                $0.marginEnd = Dimens.marginXLarge
+
+                $0.text = "COVID-19 affects people in different ways yo "
+                $0.numberOfLines = 0
+                $0.backgroundColor = .blue
+            })
+
+            $0.addSubview(EDLabel().apply {
+                $0.layoutGravity = .fillHorizontal
+                $0.textAlignment = .center
+                $0.text = "Stay the FXXX home"
+                $0.numberOfLines = 0
+                $0.backgroundColor = .blue
+            })
+        })
+
+        contentLinearLayout.addSubview(EDLabel.h2().apply {
             $0.text = "Horizontal 0 spacing"
         })
         contentLinearLayout.addSubview(StackLayout().apply {

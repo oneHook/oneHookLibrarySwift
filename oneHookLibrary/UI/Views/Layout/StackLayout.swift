@@ -24,7 +24,12 @@ open class StackLayout: BaseView {
                 childrenSizes.append(CGSize.zero)
             } else {
                 realChildCount += 1
-                let childSize = view.sizeThatFits(size)
+                let childSize = view.sizeThatFits(
+                    CGSize(
+                        width: size.width - view.marginStart - view.marginEnd,
+                        height: size.height - view.marginTop - view.marginBottom
+                    )
+                )
                 childrenSizes.append(
                     CGSize(width: childSize.width + view.marginStart + view.marginEnd,
                            height: childSize.height + view.marginTop + view.marginBottom)
