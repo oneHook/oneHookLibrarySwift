@@ -1,6 +1,5 @@
 import UIKit
 
-
 public struct TabItemUIModel {
     let image: UIImage?
     let imageSelected: UIImage?
@@ -22,6 +21,11 @@ public struct TabItemUIModel {
 }
 
 open class TabItemView: FrameLayout {
+
+    private var _uiModel: TabItemUIModel?
+    public var uiModel: TabItemUIModel? {
+        _uiModel
+    }
 
     public let stackLayout = StackLayout().apply {
         $0.layoutGravity = .center
@@ -66,6 +70,7 @@ open class TabItemView: FrameLayout {
     }
 
     public func bind(_ uiModel: TabItemUIModel) {
+        self._uiModel = uiModel
         stackLayout.orientation = uiModel.orientation
         stackLayout.spacing = uiModel.spacing
         if let image = uiModel.image {
@@ -142,6 +147,7 @@ open class TabLayoutView: BaseControl {
         _tabViews
     }
 
+    public var didTapTabView: ((Int) -> Bool)?
 
     public override func commonInit() {
         super.commonInit()
@@ -155,6 +161,21 @@ open class TabLayoutView: BaseControl {
             $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tabItemViewTapped(tapRec:))))
         }
         bringSubviewToFront(indicatorView)
+        invalidateTabTintColors()
+    }
+
+    public func insertTab(_ tabView: TabItemView, index: Int) {
+        tabView.also {
+            _tabViews.insert($0, at: index)
+            insertSubview($0, at: index)
+            $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tabItemViewTapped(tapRec:))))
+        }
+        bringSubviewToFront(indicatorView)
+        invalidateTabTintColors()
+    }
+
+    public func removeTab(at index: Int) {
+        _tabViews.remove(at: index).removeFromSuperview()
         invalidateTabTintColors()
     }
 
@@ -174,6 +195,12 @@ open class TabLayoutView: BaseControl {
         _setSelectedIndex(_selectedIndex)
         lastWidth = bounds.width
         lastHeight = bounds.height
+    }
+
+    open override func setNeedsLayout() {
+        super.setNeedsLayout()
+        lastWidth = 0
+        lastHeight = 0
     }
 
     public override func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -227,7 +254,9 @@ open class TabLayoutView: BaseControl {
             let index = tabViews.firstIndex(of: tabItemView) else {
             return
         }
-        setSelectedIndex(CGFloat(index), animated: false)
-        sendActions(for: .valueChanged)
+        if didTapTabView?(index) != true {
+            setSelectedIndex(CGFloat(index), animated: false)
+            sendActions(for: .valueChanged)
+        }
     }
 }
