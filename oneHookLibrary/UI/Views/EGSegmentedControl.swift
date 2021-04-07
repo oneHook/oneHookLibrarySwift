@@ -52,7 +52,7 @@ open class EGSegmentedControl: BaseView {
     private var _tabOffset: CGFloat = 0
     public var selectedIndex: Int {
         let tabWidth = bounds.width / CGFloat(tabCount)
-        return Int(_tabOffset / tabWidth)
+        return Int(_tabOffset / max(1, tabWidth))
     }
 
     var tabCount: Int {
