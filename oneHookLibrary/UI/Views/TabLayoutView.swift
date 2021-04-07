@@ -105,6 +105,25 @@ open class TabItemView: FrameLayout {
             imageViewSelected.value?.alpha = 1 - progress
         }
     }
+
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        showHighlight(true)
+    }
+
+    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        showHighlight(false)
+    }
+
+    open override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        showHighlight(false)
+    }
+
+    private func showHighlight(_ show: Bool) {
+        (superview as? TabLayoutView)?.showHighlight(tab: self, show: show)
+    }
 }
 
 open class TabLayoutView: BaseControl {
@@ -224,14 +243,32 @@ open class TabLayoutView: BaseControl {
         }
     }
 
+    fileprivate func showHighlight(tab tabItemView: TabItemView, show: Bool) {
+        if show {
+            tabItemView.setColor(
+                tintColorHighlight,
+                progress: 1
+            )
+        } else {
+            tabItemView.setColor(
+                tintColorNormal,
+                progress: 1
+            )
+        }
+    }
+
     private func _setSelectedIndex(_ index: CGFloat) {
         let tabCount = CGFloat(_tabViews.count)
         let tabWidth = bounds.width / tabCount
         indicatorView.bounds = CGRect(origin: .zero, size: CGSize(width: tabWidth, height: indicatorHeight))
         indicatorView.center = CGPoint(x: (index + 0.5) * tabWidth, y: tabHeight - indicatorHeight / 2)
+        invalidateTabTintColors()
+    }
 
+    private func invalidateTabTintColors() {
+        indicatorView.backgroundColor = indicatorColor ?? tintColorHighlight
         _tabViews.enumerated().forEach { (viewIndex, view) in
-            let offset = CGFloat(viewIndex) - index
+            let offset = CGFloat(viewIndex) - _selectedIndex
             if offset < -1 || offset > 1 {
                 view.setColor(tintColorNormal, progress: 1)
             } else {
@@ -244,19 +281,18 @@ open class TabLayoutView: BaseControl {
         }
     }
 
-    private func invalidateTabTintColors() {
-        indicatorView.backgroundColor = indicatorColor ?? tintColorHighlight
-    }
-
     @objc private func tabItemViewTapped(tapRec: UITapGestureRecognizer) {
         guard
             let tabItemView = tapRec.view as? TabItemView,
             let index = tabViews.firstIndex(of: tabItemView) else {
             return
         }
-        if didTapTabView?(index) != true {
-            setSelectedIndex(CGFloat(index), animated: false)
-            sendActions(for: .valueChanged)
+        DispatchQueue.main.async {
+            /* to make sure this is called after showHighlight */
+            if self.didTapTabView?(index) != true {
+                self.setSelectedIndex(CGFloat(index), animated: false)
+                self.sendActions(for: .valueChanged)
+            }
         }
     }
 }
