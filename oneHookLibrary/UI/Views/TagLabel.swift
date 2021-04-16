@@ -3,15 +3,25 @@ import UIKit
 open class TagLabel: StackLayout {
 
     public enum IconPosition {
-        case left, right
+        case left, right, top, bottom
     }
 
     public var iconPosition: IconPosition = .left {
         didSet {
             switch iconPosition {
-            case .left:
+            case .top, .bottom:
+                orientation = .vertical
+                imageView.layoutGravity = .centerHorizontal
+                titleLabel.layoutGravity = .centerHorizontal
+            case .left, .right:
+                orientation = .horizontal
+                imageView.layoutGravity = .centerVertical
+                titleLabel.layoutGravity = .centerVertical
+            }
+            switch iconPosition {
+            case .left, .top:
                 bringSubviewToFront(titleLabel)
-            case .right:
+            case .right, .bottom:
                 bringSubviewToFront(imageView)
             }
         }
@@ -21,13 +31,11 @@ open class TagLabel: StackLayout {
         $0.contentMode = .center
         $0.layer.masksToBounds = true
         $0.layoutSize = CGSize(width: dp(14), height: dp(14))
-        $0.layoutGravity = .centerVertical
     }
 
     public let titleLabel = EDLabel().apply {
         $0.textAlignment = .center
         $0.numberOfLines = 0
-        $0.layoutGravity = .centerVertical
     }
 
     override open func commonInit() {
