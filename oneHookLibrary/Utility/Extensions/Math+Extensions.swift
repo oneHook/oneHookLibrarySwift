@@ -35,6 +35,10 @@ extension CGPoint {
         let deltaY = max(abs(y - rect.midY) - rect.height / 2.0, 0)
         return sqrt(deltaX * deltaX + deltaY * deltaY)
     }
+
+    public func translate(x xDiff: CGFloat = 0, y yDiff: CGFloat = 0) -> CGPoint {
+        CGPoint(x: x + xDiff, y: y + yDiff)
+    }
 }
 
 extension CGRect {
