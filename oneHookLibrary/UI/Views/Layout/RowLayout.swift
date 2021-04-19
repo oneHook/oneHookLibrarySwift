@@ -24,7 +24,7 @@ open class RowLayout: BaseView {
     }
 
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
-        guard layoutSize != .zero else {
+        guard layoutSize == .zero else {
             return layoutSize
         }
         guard subviews.isNotEmpty else {
