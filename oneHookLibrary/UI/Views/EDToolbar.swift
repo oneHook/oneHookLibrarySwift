@@ -48,10 +48,10 @@ public class EDToolbar: BaseView {
     public lazy var centerSubtitleLabel = optionalBuilder { [weak self] in
         EDLabel().apply {
             $0.layoutGravity = .centerHorizontal
-            $0.font = Fonts.regular(Fonts.fontSizeMedium)
+            $0.font = Fonts.regular(Fonts.fontSizeSmall)
             $0.textAlignment = .center
             $0.textColor = .ed_toolbarTextColor
-            $0.marginTop = dp(4)
+            $0.marginTop = dp(2)
             self?.labelContainer.getOrMake().addSubview($0)
         }
     }
