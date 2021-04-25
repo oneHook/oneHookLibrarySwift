@@ -2,10 +2,36 @@ import UIKit
 
 open class EDTextView: UITextView, UITextViewDelegate {
 
-    public var placeholderPadding = dp(4)
+    open override var font: UIFont? {
+        didSet {
+            placeholderLabel.font = font
+        }
+    }
+
+    open override var text: String! {
+        didSet {
+            placeholderLabel.isHidden = !text.isEmpty
+            textDidChange?(text)
+        }
+    }
+
+    public var onFirstResponderStateChanged: ((Bool) -> Void)?
+    var textDidChange: ((String) -> Void)?
+
     private var _layoutParams: LayoutParams = LayoutParams()
     override open var layoutParams: LayoutParams {
         _layoutParams
+    }
+
+    public override init(frame: CGRect, textContainer: NSTextContainer?) {
+        super.init(frame: frame, textContainer: textContainer)
+        self.textContainer.lineFragmentPadding = 0
+        textContainerInset = .zero
+        delegate = self
+    }
+
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override open func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -42,85 +68,67 @@ open class EDTextView: UITextView, UITextViewDelegate {
         return attributedText.attribute(.link, at: startIndex, effectiveRange: nil) != nil
     }
 
-    /// Resize the placeholder when the UITextView bounds change
-    override open var bounds: CGRect {
-        didSet {
-            self.resizePlaceholder()
-        }
+    lazy var placeholderLabel = EDLabel().apply {
+        $0.font = self.font
+        $0.textColor = .ed_placeholderTextColor
+        $0.isHidden = !text.isEmpty
+        addSubview($0)
     }
 
     /// The UITextView placeholder text
     public var placeholder: String? {
         get {
-            var placeholderText: String?
-
-            if let placeholderLabel = self.viewWithTag(100) as? UILabel {
-                placeholderText = placeholderLabel.text
-            }
-
-            return placeholderText
+            placeholderLabel.text
         }
         set {
-            if let placeholderLabel = self.viewWithTag(100) as? UILabel {
-                placeholderLabel.text = newValue
-                placeholderLabel.sizeToFit()
-            } else {
-                self.addPlaceholder(newValue!)
-            }
+            placeholderLabel.text = newValue
+            setNeedsLayout()
         }
     }
 
     public func setPlaceholderTextColor(_ color: UIColor?) {
-        if let placeholderLabel = self.viewWithTag(100) as? UILabel {
-            placeholderLabel.textColor = color
-        } else {
-            addPlaceholder("")
-            setPlaceholderTextColor(color)
-        }
+        placeholderLabel.textColor = color
     }
 
     /// When the UITextView did change, show or hide the label based on if the UITextView is empty or not
     ///
     /// - Parameter textView: The UITextView that got updated
     public func textViewDidChange(_ textView: UITextView) {
-        if let placeholderLabel = self.viewWithTag(100) as? UILabel {
-            placeholderLabel.isHidden = !self.text.isEmpty
-        }
-        layoutSubviews()
-    }
-
-    /// Resize the placeholder UILabel to make sure it's in the same position as the UITextView text
-    private func resizePlaceholder() {
-        if let placeholderLabel = self.viewWithTag(100) as? UILabel {
-            let labelX = self.textContainerInset.left + placeholderPadding
-            let labelY = self.textContainerInset.top
-            let labelWidth = self.frame.width - (labelX * 2)
-            let labelHeight = placeholderLabel.frame.height
-            placeholderLabel.frame = CGRect(x: labelX, y: labelY, width: labelWidth, height: labelHeight)
-        }
+        placeholderLabel.isHidden = !text.isEmpty
+        textDidChange?(textView.text)
+        setNeedsLayout()
     }
 
     open override func layoutSubviews() {
+        textContainerInset = UIEdgeInsets(
+            top: paddingTop,
+            left: paddingStart,
+            bottom: paddingBottom,
+            right: paddingEnd
+        )
         super.layoutSubviews()
-        self.resizePlaceholder()
+        /// Resize the placeholder UILabel to make sure it's in the same position as the UITextView text
+        placeholderLabel.sizeToFit()
+        placeholderLabel.frame = CGRect(
+            x: paddingStart,
+            y: paddingTop,
+            width: placeholderLabel.bounds.width,
+            height: placeholderLabel.bounds.height
+        )
     }
 
-    /// Adds a placeholder UILabel to this UITextView
-    private func addPlaceholder(_ placeholderText: String) {
-        let placeholderLabel = UILabel()
+    @discardableResult
+    open override func resignFirstResponder() -> Bool {
+        let rv = super.resignFirstResponder()
+        onFirstResponderStateChanged?(!rv)
+        return rv
+    }
 
-        placeholderLabel.text = placeholderText
-        placeholderLabel.sizeToFit()
-
-        placeholderLabel.font = self.font
-        placeholderLabel.textColor = .ed_placeholderTextColor
-        placeholderLabel.tag = 100
-
-        placeholderLabel.isHidden = !self.text.isEmpty
-
-        self.addSubview(placeholderLabel)
-        self.resizePlaceholder()
-        self.delegate = self
+    @discardableResult
+    open override func becomeFirstResponder() -> Bool {
+        let rv = super.becomeFirstResponder()
+        onFirstResponderStateChanged?(rv)
+        return rv
     }
 }
 

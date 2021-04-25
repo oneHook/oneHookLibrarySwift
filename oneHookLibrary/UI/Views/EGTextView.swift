@@ -1,14 +1,8 @@
 import UIKit
 
-public class EGTextField: EDTextField {
+public class EGTextView: BaseControl {
 
-    public override var text: String? {
-        didSet {
-            textDidChange()
-            invalidate()
-        }
-    }
-
+    public let textView = EDTextView()
     private lazy var borderLayer = CAShapeLayer().apply {
         $0.fillColor = nil
         $0.strokeColor = colorNormal?.cgColor
@@ -42,15 +36,6 @@ public class EGTextField: EDTextField {
         }
     }
 
-    public lazy var rightContainer = optionalBuilder {
-        StackLayout().apply {
-            $0.orientation = .horizontal
-            $0.layoutGravity = .center
-            self.rightView = $0
-            self.rightViewMode = .always
-        }
-    }
-
     public var floatingPlaceholderTitle: String? {
         didSet {
             invalidateFloatingPlaceholder()
@@ -67,66 +52,23 @@ public class EGTextField: EDTextField {
 
     public var onFirstResponderStateChanged: ((Bool) -> Void)?
 
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
-
-    public func commonInit() {
-        padding = Dimens.marginSmall
-        font = Fonts.regular(Fonts.fontSizeMedium)
+    public override func commonInit() {
+        super.commonInit()
+        addSubview(textView)
+        padding = dp(10)
+        textView.font = Fonts.regular(Fonts.fontSizeMedium)
         layer.addSublayer(borderLayer)
-        addTarget(self, action: #selector(textDidChange), for: .editingChanged)
-    }
-
-    public override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
-        let rightViewSize = rightContainer.value?.sizeThatFits(bounds.size) ?? .zero
-        return CGRect(
-            x: bounds.width - rightViewSize.width - paddingEnd,
-            y: (bounds.height - rightViewSize.height) / 2,
-            width: rightViewSize.width,
-            height: rightViewSize.height
-        )
-    }
-
-    open override func textRect(forBounds bounds: CGRect) -> CGRect {
-        let rightViewSize = rightContainer.value?.sizeThatFits(bounds.size) ?? .zero
-        let result = super.textRect(forBounds: bounds)
-        if rightViewSize == .zero {
-            return result
-        } else {
-            return CGRect(
-                x: result.minX,
-                y: result.minY,
-                width: result.width - rightViewSize.width - paddingEnd,
-                height: result.height
-            )
+        textView.onFirstResponderStateChanged = { [weak self] (_) in
+            self?.invalidate()
+        }
+        textView.textDidChange = { [weak self] (_) in
+            self?.textViewDidChange()
+            self?.invalidate()
         }
     }
 
-    @discardableResult
-    open override func resignFirstResponder() -> Bool {
-        let rv = super.resignFirstResponder()
-        onFirstResponderStateChanged?(!rv)
-        invalidate()
-        return rv
-    }
-
-    @discardableResult
-    open override func becomeFirstResponder() -> Bool {
-        let rv = super.becomeFirstResponder()
-        onFirstResponderStateChanged?(rv)
-        invalidate()
-        return rv
-    }
-
     private func invalidate() {
-        if isFirstResponder {
+        if textView.isFirstResponder {
             floatingPlaceholder.value?.textColor = colorActive ?? colorNormal
             borderLayer.strokeColor = (colorActive ?? colorNormal)?.cgColor
         } else {
@@ -135,8 +77,8 @@ public class EGTextField: EDTextField {
         }
     }
 
-    @objc private func textDidChange() {
-        if text.isNilOrEmpty {
+    public func textViewDidChange() {
+        if textView.text.isNilOrEmpty {
             UIView.animate(withDuration: .defaultAnimationSmall, animations: {
                 self.floatingPlaceholder.value?.alpha = 0
             })
@@ -155,13 +97,34 @@ public class EGTextField: EDTextField {
     private var lastHeight: CGFloat = 0
     public override func layoutSubviews() {
         super.layoutSubviews()
+        textView.matchParent(
+            top: paddingTop,
+            left: paddingStart,
+            bottom: paddingBottom,
+            right: paddingEnd
+        )
         guard lastWidth != bounds.width || lastHeight != bounds.height else {
             return
         }
         lastWidth = bounds.width
         lastHeight = bounds.height
         invalidateBorder()
-        layoutFloatinPlaceholder()
+    }
+
+    public override func sizeThatFits(_ size: CGSize) -> CGSize {
+        if layoutSize != .zero {
+            return layoutSize
+        }
+        let size = textView.sizeThatFits(
+            CGSize(
+                width: size.width - paddingStart - paddingEnd,
+                height: size.height - paddingTop - paddingBottom
+            )
+        )
+        return CGSize(
+            width: size.width + paddingStart + paddingEnd,
+            height: size.height + paddingTop + paddingBottom
+        )
     }
 
     private func layoutFloatinPlaceholder() {
@@ -221,6 +184,6 @@ public class EGTextField: EDTextField {
     }
 
     private func invalidateFloatingPlaceholder() {
-        floatingPlaceholder.value?.text = floatingPlaceholderTitle ?? attributedPlaceholder?.string ?? placeholder
+        floatingPlaceholder.value?.text = floatingPlaceholderTitle ?? textView.placeholder
     }
 }
