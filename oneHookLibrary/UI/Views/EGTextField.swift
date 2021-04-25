@@ -2,6 +2,13 @@ import UIKit
 
 public class EGTextField: EDTextField {
 
+    public override var text: String? {
+        didSet {
+            textDidChange()
+            invalidate()
+        }
+    }
+
     private lazy var borderLayer = CAShapeLayer().apply {
         $0.fillColor = nil
         $0.strokeColor = colorNormal?.cgColor
@@ -154,6 +161,7 @@ public class EGTextField: EDTextField {
         lastWidth = bounds.width
         lastHeight = bounds.height
         invalidateBorder()
+        layoutFloatinPlaceholder()
     }
 
     private func layoutFloatinPlaceholder() {

@@ -19,6 +19,7 @@ class EGTextFieldDemoViewController: BaseScrollableDemoViewController {
         $0.attributedPlaceholder = "Username".attributedString(
             textColor: UIColor.lightGray
         )
+        $0.text = "eagle diao"
         $0.paddingStart = Dimens.marginMedium
     }
 
@@ -63,29 +64,19 @@ class EGTextFieldDemoViewController: BaseScrollableDemoViewController {
         $0.colorNormal = UIColor.red
         $0.colorActive = UIColor.blue
         $0.cornerRadius = dp(0)
-        $0.placeholder = "Enter a note"
-        $0.font = Fonts.regular(Fonts.fontSizeMedium)
-
-        $0.setPlaceholderTextColor(.lightGray)
-
-        $0.text = message
+        $0.textView.placeholder = "Enter a note"
+        $0.textView.font = Fonts.regular(Fonts.fontSizeMedium)
+        $0.textView.setPlaceholderTextColor(.lightGray)
+        $0.textView.text = message
     }
-
-
 
     let textView2 = EDTextView().apply {
         $0.marginTop = Dimens.marginMedium
         $0.layoutSize = CGSize(width: 0, height: dp(100))
         $0.layoutGravity = .fillHorizontal
-//        $0.borderWidth = dp(1)
-//        $0.colorNormal = UIColor.red
-//        $0.colorActive = UIColor.blue
-//        $0.cornerRadius = dp(0)
         $0.placeholder = "Enter a note"
         $0.font = Fonts.regular(Fonts.fontSizeMedium)
         $0.setPlaceholderTextColor(.lightGray)
-        $0.text = message
-        $0.backgroundColor = .red
         $0.padding = Dimens.marginSmall
     }
 

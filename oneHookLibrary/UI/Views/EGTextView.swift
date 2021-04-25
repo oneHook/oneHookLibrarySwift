@@ -1,7 +1,8 @@
 import UIKit
 
-public class EGTextView: EDTextView {
+public class EGTextView: BaseControl {
 
+    public let textView = EDTextView()
     private lazy var borderLayer = CAShapeLayer().apply {
         $0.fillColor = nil
         $0.strokeColor = colorNormal?.cgColor
@@ -51,65 +52,23 @@ public class EGTextView: EDTextView {
 
     public var onFirstResponderStateChanged: ((Bool) -> Void)?
 
-    public override init(frame: CGRect, textContainer: NSTextContainer?) {
-        super.init(frame: frame, textContainer: textContainer)
-        commonInit()
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
-
-    public func commonInit() {
-        padding = Dimens.marginSmall
-        font = Fonts.regular(Fonts.fontSizeMedium)
+    public override func commonInit() {
+        super.commonInit()
+        addSubview(textView)
+        padding = dp(10)
+        textView.font = Fonts.regular(Fonts.fontSizeMedium)
         layer.addSublayer(borderLayer)
-    }
-
-//    public override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
-//        let rightViewSize = rightContainer.value?.sizeThatFits(bounds.size) ?? .zero
-//        return CGRect(
-//            x: bounds.width - rightViewSize.width - paddingEnd,
-//            y: (bounds.height - rightViewSize.height) / 2,
-//            width: rightViewSize.width,
-//            height: rightViewSize.height
-//        )
-//    }
-//
-//    open override func textRect(forBounds bounds: CGRect) -> CGRect {
-//        let rightViewSize = rightContainer.value?.sizeThatFits(bounds.size) ?? .zero
-//        let result = super.textRect(forBounds: bounds)
-//        if rightViewSize == .zero {
-//            return result
-//        } else {
-//            return CGRect(
-//                x: result.minX,
-//                y: result.minY,
-//                width: result.width - rightViewSize.width - paddingEnd,
-//                height: result.height
-//            )
-//        }
-//    }
-
-    @discardableResult
-    open override func resignFirstResponder() -> Bool {
-        let rv = super.resignFirstResponder()
-        onFirstResponderStateChanged?(!rv)
-        invalidate()
-        return rv
-    }
-
-    @discardableResult
-    open override func becomeFirstResponder() -> Bool {
-        let rv = super.becomeFirstResponder()
-        onFirstResponderStateChanged?(rv)
-        invalidate()
-        return rv
+        textView.onFirstResponderStateChanged = { [weak self] (_) in
+            self?.invalidate()
+        }
+        textView.textDidChange = { [weak self] (_) in
+            self?.textViewDidChange()
+            self?.invalidate()
+        }
     }
 
     private func invalidate() {
-        if isFirstResponder {
+        if textView.isFirstResponder {
             floatingPlaceholder.value?.textColor = colorActive ?? colorNormal
             borderLayer.strokeColor = (colorActive ?? colorNormal)?.cgColor
         } else {
@@ -118,9 +77,8 @@ public class EGTextView: EDTextView {
         }
     }
 
-    public override func textViewDidChange(_ textView: UITextView) {
-        super.textViewDidChange(textView)
-        if text.isNilOrEmpty {
+    public func textViewDidChange() {
+        if textView.text.isNilOrEmpty {
             UIView.animate(withDuration: .defaultAnimationSmall, animations: {
                 self.floatingPlaceholder.value?.alpha = 0
             })
@@ -139,6 +97,12 @@ public class EGTextView: EDTextView {
     private var lastHeight: CGFloat = 0
     public override func layoutSubviews() {
         super.layoutSubviews()
+        textView.matchParent(
+            top: paddingTop,
+            left: paddingStart,
+            bottom: paddingBottom,
+            right: paddingEnd
+        )
         guard lastWidth != bounds.width || lastHeight != bounds.height else {
             return
         }
@@ -147,8 +111,23 @@ public class EGTextView: EDTextView {
         invalidateBorder()
     }
 
+    public override func sizeThatFits(_ size: CGSize) -> CGSize {
+        if layoutSize != .zero {
+            return layoutSize
+        }
+        let size = textView.sizeThatFits(
+            CGSize(
+                width: size.width - paddingStart - paddingEnd,
+                height: size.height - paddingTop - paddingBottom
+            )
+        )
+        return CGSize(
+            width: size.width + paddingStart + paddingEnd,
+            height: size.height + paddingTop + paddingBottom
+        )
+    }
+
     private func layoutFloatinPlaceholder() {
-        print("XXX", floatingPlaceholder.value?.text)
         floatingPlaceholder.value?.also {
             $0.sizeToFit()
             $0.frame = CGRect(origin: CGPoint(x: paddingStart,
@@ -205,6 +184,6 @@ public class EGTextView: EDTextView {
     }
 
     private func invalidateFloatingPlaceholder() {
-        floatingPlaceholder.value?.text = floatingPlaceholderTitle ?? placeholder
+        floatingPlaceholder.value?.text = floatingPlaceholderTitle ?? textView.placeholder
     }
 }
