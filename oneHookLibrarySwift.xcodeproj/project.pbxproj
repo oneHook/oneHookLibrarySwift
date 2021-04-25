@@ -152,6 +152,7 @@
 		D3DAB22D25AD593C003748BA /* InfiniteScrollViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */; };
 		D3DAB23325ADFC45003748BA /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB23225ADFC45003748BA /* TimePickerView.swift */; };
 		D3DAB23A25AE01E8003748BA /* TimePickerViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB23625AE01B9003748BA /* TimePickerViewDemoViewController.swift */; };
+		E32DFEB92635C86400A88C12 /* EGTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32DFEB72635C86400A88C12 /* EGTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -338,6 +339,7 @@
 		D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewDemoViewController.swift; sourceTree = "<group>"; };
 		D3DAB23225ADFC45003748BA /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		D3DAB23625AE01B9003748BA /* TimePickerViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerViewDemoViewController.swift; sourceTree = "<group>"; };
+		E32DFEB72635C86400A88C12 /* EGTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EGTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -526,6 +528,7 @@
 				D3A9E33425D3058D00722555 /* RadioButtonView.swift */,
 				D3A9E3E925D480C600722555 /* DigitInputView.swift */,
 				D3A9E3FD25D4E95F00722555 /* EGTextField.swift */,
+				E32DFEB72635C86400A88C12 /* EGTextView.swift */,
 				D3A9E41325D593D300722555 /* ConversationInputView.swift */,
 				D3673ED525DB79BF00A3ABF9 /* EGSegmentedControl.swift */,
 			);
@@ -945,6 +948,7 @@
 				D3A0F930259CF39A008B2D36 /* EDCollectionView.swift in Sources */,
 				D3A0F8EC259BA121008B2D36 /* EDSlider.swift in Sources */,
 				D3A0F75D259ABE9C008B2D36 /* EDButton.swift in Sources */,
+				E32DFEB92635C86400A88C12 /* EGTextView.swift in Sources */,
 				D3A0F79C259ABEB5008B2D36 /* DiffUtility.swift in Sources */,
 				D3A0F760259ABE9C008B2D36 /* EDMapView.swift in Sources */,
 				D3A0F750259ABE78008B2D36 /* FadeTransitionAnimation.swift in Sources */,

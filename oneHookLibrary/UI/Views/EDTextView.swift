@@ -8,6 +8,16 @@ open class EDTextView: UITextView, UITextViewDelegate {
         _layoutParams
     }
 
+    public override init(frame: CGRect, textContainer: NSTextContainer?) {
+        super.init(frame: frame, textContainer: textContainer)
+        self.textContainer.lineFragmentPadding = 0
+        textContainerInset = .zero
+    }
+
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override open func sizeThatFits(_ size: CGSize) -> CGSize {
         if layoutSize == CGSize.zero {
             return super.sizeThatFits(size)
@@ -101,6 +111,12 @@ open class EDTextView: UITextView, UITextViewDelegate {
     }
 
     open override func layoutSubviews() {
+        textContainerInset = UIEdgeInsets(
+            top: paddingTop,
+            left: paddingStart,
+            bottom: paddingBottom,
+            right: paddingEnd
+        )
         super.layoutSubviews()
         self.resizePlaceholder()
     }
