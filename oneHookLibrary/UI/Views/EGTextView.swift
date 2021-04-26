@@ -64,6 +64,7 @@ public class EGTextView: BaseControl {
         textView.textDidChange = { [weak self] (_) in
             self?.textViewDidChange()
             self?.invalidate()
+            self?.sendActions(for: .editingChanged)
         }
     }
 
