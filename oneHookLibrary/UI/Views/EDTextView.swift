@@ -17,6 +17,7 @@ open class EDTextView: UITextView, UITextViewDelegate {
 
     public var onFirstResponderStateChanged: ((Bool) -> Void)?
     var textDidChange: ((String) -> Void)?
+    var editingDidBegin: (() -> Void)?
 
     private var _layoutParams: LayoutParams = LayoutParams()
     override open var layoutParams: LayoutParams {
@@ -97,6 +98,10 @@ open class EDTextView: UITextView, UITextViewDelegate {
         placeholderLabel.isHidden = !text.isEmpty
         textDidChange?(textView.text)
         setNeedsLayout()
+    }
+
+    public func textViewDidBeginEditing(_ textView: UITextView) {
+        editingDidBegin?()
     }
 
     open override func layoutSubviews() {

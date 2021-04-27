@@ -66,6 +66,9 @@ public class EGTextView: BaseControl {
             self?.invalidate()
             self?.sendActions(for: .editingChanged)
         }
+        textView.editingDidBegin = { [weak self] in
+            self?.sendActions(for: .editingDidBegin)
+        }
     }
 
     private func invalidate() {
