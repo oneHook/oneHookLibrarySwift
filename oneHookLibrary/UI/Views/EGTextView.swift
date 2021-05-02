@@ -1,6 +1,6 @@
 import UIKit
 
-public class EGTextView: BaseControl {
+open class EGTextView: BaseControl {
 
     public let textView = EDTextView()
     private lazy var borderLayer = CAShapeLayer().apply {
@@ -52,7 +52,7 @@ public class EGTextView: BaseControl {
 
     public var onFirstResponderStateChanged: ((Bool) -> Void)?
 
-    public override func commonInit() {
+    open override func commonInit() {
         super.commonInit()
         addSubview(textView)
         padding = dp(10)
@@ -81,7 +81,7 @@ public class EGTextView: BaseControl {
         }
     }
 
-    public func textViewDidChange() {
+    open func textViewDidChange() {
         if textView.text.isNilOrEmpty {
             UIView.animate(withDuration: .defaultAnimationSmall, animations: {
                 self.floatingPlaceholder.value?.alpha = 0
@@ -99,7 +99,7 @@ public class EGTextView: BaseControl {
 
     private var lastWidth: CGFloat = 0
     private var lastHeight: CGFloat = 0
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         textView.matchParent(
             top: paddingTop,
