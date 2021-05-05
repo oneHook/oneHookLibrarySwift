@@ -41,8 +41,11 @@ open class TagLabel: StackLayout {
     override open func commonInit() {
         super.commonInit()
         orientation = .horizontal
-        spacing = dp(7.5)
         contentGravity = .center
+        imageView.layoutGravity = .centerVertical
+        titleLabel.layoutGravity = .centerVertical
+
+        spacing = dp(7.5)
         paddingStart = Dimens.marginSmall
         paddingEnd = Dimens.marginSmall
         paddingTop = dp(1.5)
