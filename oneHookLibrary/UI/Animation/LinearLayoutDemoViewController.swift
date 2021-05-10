@@ -18,6 +18,7 @@ class LinearLayoutDemoViewController: BaseScrollableDemoViewController {
             $0.layoutGravity = [.fillHorizontal]
             $0.layoutSize = CGSize(width: 1, height: dp(150))
             $0.padding = dp(10)
+            $0.paddingBottom = dp(30)
             $0.backgroundColor = .gray
 
             $0.addSubview(EDLabel().apply {
