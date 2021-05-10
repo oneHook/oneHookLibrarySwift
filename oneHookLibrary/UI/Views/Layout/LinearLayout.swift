@@ -154,7 +154,7 @@ open class LinearLayout: BaseView {
                     viewHeight = height - view.marginTop - view.marginBottom - paddingTop - paddingBottom
                 }
                 if view.layoutGravity.contains(.centerVertical) {
-                    viewY = (height - childSize.height + view.marginTop + view.marginBottom) / 2
+                    viewY = paddingTop + (height - paddingTop - paddingBottom - childSize.height + view.marginTop + view.marginBottom) / 2
                 } else if view.layoutGravity.contains(.bottom) {
                     viewY = height - (childSize.height - view.marginTop) - paddingBottom
                 }
@@ -163,7 +163,7 @@ open class LinearLayout: BaseView {
                     viewWidth = width - view.marginStart - view.marginEnd - paddingStart - paddingEnd
                 }
                 if view.layoutGravity.contains(.centerHorizontal) {
-                    viewX = (width - childSize.width + view.marginStart + view.marginEnd) / 2
+                    viewX = paddingStart + (width - paddingStart - paddingEnd - childSize.width + view.marginStart + view.marginEnd) / 2
                 } else if view.layoutGravity.contains(.end) {
                     viewX = width - (childSize.width - view.marginStart) - paddingEnd
                 }

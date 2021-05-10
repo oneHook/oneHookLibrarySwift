@@ -130,13 +130,14 @@ class MenuViewController: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         menuTableView.contentInset = UIEdgeInsets(
             top: toolbar.bounds.height,
             left: 0,
             bottom: view.safeAreaInsets.bottom,
             right: 0
         )
+        super.viewDidLayoutSubviews()
+        menuTableView.contentOffset = menuTableView.topOffset
     }
 
     override func viewDidAppear(_ animated: Bool) {

@@ -539,5 +539,57 @@ class LinearLayoutUnitTests: XCTestCase {
         XCTAssertEqual(layout.sizeThatFits(CGSize(width: 200, height: CGFloat.greatestFiniteMagnitude)),
                        CGSize(width: 200, height: 140))
     }
+
+    func testPaddingWithCenterGravityHorizontal() {
+        let layout = LinearLayout()
+        layout.bounds = CGRect(
+            origin: .zero,
+            size: .init(width: 200, height: 100)
+        )
+        layout.orientation = .horizontal
+        layout.paddingTop = 5
+        layout.paddingBottom = 20
+        layout.addSubview(BaseView().apply({ (view) in
+            view.layoutGravity = .bottom
+            view.layoutSize = CGSize(width: 50, height: 50)
+        }))
+        layout.addSubview(BaseView().apply({ (view) in
+            view.layoutGravity = .centerVertical
+            view.layoutSize = CGSize(width: 50, height: 50)
+        }))
+        layout.layoutSubviews()
+
+        XCTAssertEqual(layout.subviews.map({ $0.frame }), [
+            CGRect(x: 0, y: 30, width: 50, height: 50),
+            CGRect(x: 50, y: 17.5, width: 50, height: 50)
+            ]
+        )
+    }
+
+    func testPaddingWithCenterGravityVertical() {
+        let layout = LinearLayout()
+        layout.bounds = CGRect(
+            origin: .zero,
+            size: .init(width: 100, height: 200)
+        )
+        layout.orientation = .vertical
+        layout.paddingStart = 5
+        layout.paddingEnd = 20
+        layout.addSubview(BaseView().apply({ (view) in
+            view.layoutGravity = .end
+            view.layoutSize = CGSize(width: 50, height: 50)
+        }))
+        layout.addSubview(BaseView().apply({ (view) in
+            view.layoutGravity = .centerHorizontal
+            view.layoutSize = CGSize(width: 50, height: 50)
+        }))
+        layout.layoutSubviews()
+
+        XCTAssertEqual(layout.subviews.map({ $0.frame }), [
+            CGRect(x: 30, y: 0, width: 50, height: 50),
+            CGRect(x: 17.5, y: 50, width: 50, height: 50)
+            ]
+        )
+    }
 }
 // swiftlint:enable type_body_length file_length
