@@ -5,6 +5,13 @@ public class EDToolbar: BaseView {
     public var contentContainerOffset = UIScreen.statusBarHeight
     public var toolbarHeight = Dimens.toolbarHeightDefaultFixed
 
+    public lazy var backgroundView = optionalBuilder { [weak self] in
+        BaseView().apply {
+            self?.addSubview($0)
+            self?.sendSubviewToBack($0)
+        }
+    }
+
     public var contentContainer = FrameLayout().apply { (layout) in
         layout.backgroundColor = .clear
     }
@@ -69,7 +76,7 @@ public class EDToolbar: BaseView {
 
     public lazy var leftNavigationButton = optionalBuilder({  [weak self] in
             ButtonGenerator.navigationButton().apply({ (button) in
-                button.marginStart = dp(9)
+                button.marginStart = Dimens.marginMedium
                 button.layoutGravity = [.centerVertical, .start]
                 self?.contentContainer.addSubview(button)
             })
@@ -101,6 +108,7 @@ public class EDToolbar: BaseView {
 
     open override func layoutSubviews() {
         super.layoutSubviews()
+        backgroundView.value?.matchParent()
         contentContainer.matchParent(top: contentContainerOffset)
     }
 

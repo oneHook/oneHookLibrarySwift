@@ -1,6 +1,6 @@
 import UIKit
 
-public let navButtonSize = dp(34.0)
+public let navButtonSize = dp(40.0)
 
 public class ButtonGenerator {
 
