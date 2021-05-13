@@ -1,6 +1,6 @@
 import UIKit
 
-public protocol ColorPickerViewDelegate: class {
+public protocol ColorPickerViewDelegate: AnyObject {
     func colrPickerViewDidSelect(_ view: ColorPickerView, color: UIColor, point: CGPoint, state: UIGestureRecognizer.State)
 }
 

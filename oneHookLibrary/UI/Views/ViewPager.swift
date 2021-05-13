@@ -1,6 +1,6 @@
 import UIKit
 
-public protocol BaseViewPagerDatasource: class {
+public protocol BaseViewPagerDatasource: AnyObject {
     func numberOfItems() -> Int
     func viewForItemAt(index: Int) -> UIView
 }

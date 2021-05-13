@@ -1,6 +1,6 @@
 import UIKit
 
-public protocol DigitInputViewDelegate: class {
+public protocol DigitInputViewDelegate: AnyObject {
     func digitInputView(_: DigitInputView, numberDidChange number: String)
 }
 

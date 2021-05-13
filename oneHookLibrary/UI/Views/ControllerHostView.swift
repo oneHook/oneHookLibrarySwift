@@ -4,7 +4,7 @@ public extension Notification.Name {
     static let controllerHostWillDismiss = Notification.Name("controllerHostWillDismiss")
 }
 
-public protocol ControllerHostViewDelegate: class {
+public protocol ControllerHostViewDelegate: AnyObject {
     func controllerStackDidChange()
     func controllerShouldDismissTapOutside(controller: UIViewController) -> Bool
     func controllerShouldDismissByDrag(controller: UIViewController,
