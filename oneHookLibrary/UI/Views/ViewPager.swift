@@ -7,9 +7,21 @@ public protocol BaseViewPagerDatasource: class {
 
 open class ViewPager<ViewType: UIView>: BaseView, UIScrollViewDelegate {
 
-    public var isScrollEnabled: Bool = true {
-        didSet {
-            scrollView.isScrollEnabled = isScrollEnabled
+    public var isScrollEnabled: Bool {
+        get {
+            scrollView.isScrollEnabled
+        }
+        set {
+            scrollView.isScrollEnabled = newValue
+        }
+    }
+
+    public var bounces: Bool {
+        get {
+            scrollView.bounces
+        }
+        set {
+            scrollView.bounces = newValue
         }
     }
 
