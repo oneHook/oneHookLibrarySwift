@@ -26,8 +26,9 @@ class LinearLayoutDemoViewController: BaseScrollableDemoViewController {
                 $0.adjustsFontSizeToFitWidth = true
                 $0.layoutSize = CGSize(width: dp(50), height: dp(50))
                 $0.text = "Bottom"
+                $0.textColor = .primaryTextColor
                 $0.layoutGravity = [.bottom]
-                $0.backgroundColor = .white
+                $0.backgroundColor = .defaultBackgroundLightGray
                 $0.marginEnd = Dimens.marginMedium
             })
 
@@ -36,8 +37,9 @@ class LinearLayoutDemoViewController: BaseScrollableDemoViewController {
                 $0.adjustsFontSizeToFitWidth = true
                 $0.layoutSize = CGSize(width: dp(50), height: dp(50))
                 $0.text = "Center"
+                $0.textColor = .primaryTextColor
                 $0.layoutGravity = [.centerVertical]
-                $0.backgroundColor = .white
+                $0.backgroundColor = .defaultBackgroundLightGray
                 $0.marginEnd = Dimens.marginMedium
             })
 
@@ -47,7 +49,8 @@ class LinearLayoutDemoViewController: BaseScrollableDemoViewController {
                 $0.layoutSize = CGSize(width: dp(50), height: dp(50))
                 $0.text = "Top"
                 $0.layoutGravity = [.top]
-                $0.backgroundColor = .white
+                $0.textColor = .primaryTextColor
+                $0.backgroundColor = .defaultBackgroundLightGray
                 $0.marginEnd = Dimens.marginMedium
             })
         })
@@ -70,7 +73,8 @@ class LinearLayoutDemoViewController: BaseScrollableDemoViewController {
                 $0.layoutSize = CGSize(width: dp(50), height: dp(50))
                 $0.text = "Start"
                 $0.layoutGravity = [.start]
-                $0.backgroundColor = .white
+                $0.textColor = .primaryTextColor
+                $0.backgroundColor = .defaultBackgroundLightGray
                 $0.marginEnd = Dimens.marginMedium
             })
 
@@ -80,7 +84,8 @@ class LinearLayoutDemoViewController: BaseScrollableDemoViewController {
                 $0.layoutSize = CGSize(width: dp(50), height: dp(50))
                 $0.text = "Center"
                 $0.layoutGravity = [.centerHorizontal]
-                $0.backgroundColor = .white
+                $0.textColor = .primaryTextColor
+                $0.backgroundColor = .defaultBackgroundLightGray
                 $0.marginEnd = Dimens.marginMedium
             })
 
@@ -90,7 +95,8 @@ class LinearLayoutDemoViewController: BaseScrollableDemoViewController {
                 $0.layoutSize = CGSize(width: dp(50), height: dp(50))
                 $0.text = "End"
                 $0.layoutGravity = [.end]
-                $0.backgroundColor = .white
+                $0.textColor = .primaryTextColor
+                $0.backgroundColor = .defaultBackgroundLightGray
                 $0.marginEnd = Dimens.marginMedium
             })
         })

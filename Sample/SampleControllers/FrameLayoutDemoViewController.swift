@@ -8,7 +8,8 @@ class FrameLayoutLayoutDemoViewController: BaseScrollableDemoViewController {
             $0.textAlignment = .center
             $0.adjustsFontSizeToFitWidth = true
             $0.padding = Dimens.marginSmall
-            $0.backgroundColor = .white
+            $0.textColor = .primaryTextColor
+            $0.backgroundColor = .defaultBackgroundLightGray
             $0.font = UIFont.systemFont(ofSize: 8)
         }
     }

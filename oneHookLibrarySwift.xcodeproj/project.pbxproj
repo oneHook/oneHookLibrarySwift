@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D30975FD25A5038800F94FC2 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30975FC25A5038800F94FC2 /* Colors.swift */; };
 		D309760125A51AF200F94FC2 /* LineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D309760025A51AF200F94FC2 /* LineGraphView.swift */; };
 		D309760825A51B0C00F94FC2 /* LineGraphDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D309760425A51B0100F94FC2 /* LineGraphDemoViewController.swift */; };
 		D31B960C25F13D0D00E6DD03 /* ImageExtensionDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31B960B25F13D0D00E6DD03 /* ImageExtensionDemoViewController.swift */; };
@@ -187,7 +186,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D30975FC25A5038800F94FC2 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D309760025A51AF200F94FC2 /* LineGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineGraphView.swift; sourceTree = "<group>"; };
 		D309760425A51B0100F94FC2 /* LineGraphDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineGraphDemoViewController.swift; sourceTree = "<group>"; };
 		D31B960B25F13D0D00E6DD03 /* ImageExtensionDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensionDemoViewController.swift; sourceTree = "<group>"; };
@@ -640,7 +638,6 @@
 				D3A0F8CB259B8F40008B2D36 /* BaseScrollableDemoViewController.swift */,
 				D322AE4F25A4D80400134636 /* Views.swift */,
 				D322AE6325A4DC7F00134636 /* Faker.swift */,
-				D30975FC25A5038800F94FC2 /* Colors.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -845,7 +842,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "COLOR_SCRIPT_LOCATION=\"${SRCROOT}/oneHookLibrary/Script/color_assets_script.py\"\nCOLOR_ASSET_LOCATION=\"${SRCROOT}/Sample/Assets/Colors.xcassets\"\nDARK_COLOR_ASSET_LOCATION=\"${SRCROOT}/Sample/Assets/Colors.xcassets/DarkMode\"\nCOLOR_CLASS_LOCATION=\"${SRCROOT}/Sample/Assets\"\n\n# Color Assets parser\npython3 ${COLOR_SCRIPT_LOCATION} ${COLOR_ASSET_LOCATION} ${DARK_COLOR_ASSET_LOCATION} ${COLOR_CLASS_LOCATION}\n\nIMAGE_SCRIPT_LOCATION=\"${SRCROOT}/oneHookLibrary/Script/assets_script.py\"\nIMAGE_ASSETS_LOCATION=\"${SRCROOT}/Sample/Assets/Assets.xcassets\"\nIMAGE_CLASS_LOCATION=\"${SRCROOT}/Sample/Assets/ImageAssets.swift Image\"\n\n# Image Assets parser\npython3 ${IMAGE_SCRIPT_LOCATION} ${IMAGE_ASSETS_LOCATION} ${IMAGE_CLASS_LOCATION}\n";
+			shellScript = "IMAGE_INPUT_FILE=${SRCROOT}/Sample/Assets/Assets.xcassets\nCOLOR_INPUT_FILE=${SRCROOT}/Sample/Assets/Colors.xcassets\nIMAGE_OUTPUT_FILE=${SRCROOT}/Sample/Assets/ImageAssets.swift\nCOLOR_OUTPUT_FILE=${SRCROOT}/Sample/Assets/ColorAssets.swift\npython3 ${SRCROOT}/oneHookLibrary/Script/asset_script_v2.py -f $IMAGE_INPUT_FILE -f $COLOR_INPUT_FILE \\\n-i $IMAGE_OUTPUT_FILE -c $COLOR_OUTPUT_FILE\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -855,7 +852,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D322AE5E25A4D9AF00134636 /* GridLayoutDemoViewController.swift in Sources */,
-				D30975FD25A5038800F94FC2 /* Colors.swift in Sources */,
 				D3A9E3F125D483BD00722555 /* DigitInputViewDemoViewController.swift in Sources */,
 				D3A0F8D8259B9C61008B2D36 /* BaseDemoViewController.swift in Sources */,
 				D3A9E44925D5CE2600722555 /* ConversationCell.swift in Sources */,

@@ -35,7 +35,7 @@ class ConversationInputDemoViewController: BaseDemoViewController, KeyboardObser
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .defaultBackgroundColor
+        view.backgroundColor = .defaultBackground
         toolbarTitle = "Conversation Input Demo"
         tableView.also {
             view.insertSubview($0, belowSubview: toolbar)

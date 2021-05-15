@@ -93,7 +93,7 @@ class MiscViewDemoViewController: BaseScrollableDemoViewController, BaseViewPage
         })
         contentLinearLayout.addSubview(RadioButtonView().apply {
             $0.marginTop = Dimens.marginMedium
-            $0.setImage(UIImage(named: R.Image.ic_checkmark))
+            $0.setImage(R.Image.ic_checkmark)
             $0.layoutGravity = .centerHorizontal
         })
 

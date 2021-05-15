@@ -1,5 +1,8 @@
 import UIKit
 
+private var lightTrait: UITraitCollection?
+private var darkTrait: UITraitCollection?
+
 extension UIColor {
 
     public static func blend(_ colors: UIColor...) -> UIColor {
@@ -13,44 +16,42 @@ extension UIColor {
         return UIColor(red: components.red, green: components.green, blue: components.blue, alpha: 1)
     }
 
-    public func lighter(by percentage: CGFloat = 30.0) -> UIColor {
-        self.adjust(by: abs(percentage) )
-    }
-
-    public func darker(by percentage: CGFloat = 30.0) -> UIColor {
-        self.adjust(by: -1 * abs(percentage) )
-    }
-
-    public func autoDarker(by percentage: CGFloat = 30.0) -> UIColor {
+    public func lighter(by percentage: CGFloat = 30.0, alpha: CGFloat = 1) -> UIColor {
         if #available(iOS 13.0, *) {
-            if !Theme.current.isDarkMode {
-                return darker(by: percentage)
-            } else {
-                return lighter(by: percentage)
+            if lightTrait == nil || darkTrait == nil {
+                lightTrait = UITraitCollection(userInterfaceStyle: .light)
+                darkTrait = UITraitCollection(userInterfaceStyle: .dark)
             }
+            let lightColor = resolvedColor(with: lightTrait!)
+            let darkColor = resolvedColor(with: darkTrait!)
+            return UIColor.dynamic(light: lightColor.adjust(by: abs(percentage), alpha: alpha),
+                                   dark: darkColor.adjust(by: -abs(percentage), alpha: alpha))
         } else {
-            return darker(by: percentage)
+            return self.adjust(by: abs(percentage), alpha: alpha)
         }
     }
 
-    public func autoLighter(by percentage: CGFloat = 30.0) -> UIColor {
+    public func darker(by percentage: CGFloat = 30.0, alpha: CGFloat = 1) -> UIColor {
         if #available(iOS 13.0, *) {
-            if !Theme.current.isDarkMode {
-                return lighter(by: percentage)
-            } else {
-                return darker(by: percentage)
+            if lightTrait == nil || darkTrait == nil {
+                lightTrait = UITraitCollection(userInterfaceStyle: .light)
+                darkTrait = UITraitCollection(userInterfaceStyle: .dark)
             }
+            let lightColor = resolvedColor(with: lightTrait!)
+            let darkColor = resolvedColor(with: darkTrait!)
+            return UIColor.dynamic(light: lightColor.adjust(by: -abs(percentage), alpha: alpha),
+                                   dark: darkColor.adjust(by: abs(percentage), alpha: alpha))
         } else {
-            return lighter(by: percentage)
+            return self.adjust(by: -abs(percentage), alpha: alpha)
         }
     }
 
-    public func adjust(by percentage: CGFloat = 30.0) -> UIColor {
+    public func adjust(by percentage: CGFloat = 30.0, alpha: CGFloat = 1) -> UIColor {
         if let components = rgba {
             return UIColor(red: min(components.red + percentage/100, 1.0),
                            green: min(components.green + percentage/100, 1.0),
                            blue: min(components.blue + percentage/100, 1.0),
-                           alpha: components.alpha)
+                           alpha: alpha)
         } else {
             return self
         }
@@ -99,6 +100,24 @@ extension UIColor {
         )
     }
 
+    public static func dynamic(light: UIColor, dark: UIColor) -> UIColor {
+        if #available(iOS 13.0, *) {
+            return UIColor(dynamicProvider: {
+                switch $0.userInterfaceStyle {
+                case .dark:
+                    return dark
+                case .light, .unspecified:
+                    return light
+                @unknown default:
+                    assertionFailure("Unknown userInterfaceStyle: \($0.userInterfaceStyle)")
+                    return light
+                }
+            })
+        }
+        // iOS 12 and earlier
+        return light
+    }
+
     public static func random(red: CGFloat = .random(in: 0...1),
                               green: CGFloat = .random(in: 0...1),
                               blue: CGFloat = .random(in: 0...1),
@@ -113,7 +132,7 @@ extension UIColor {
         guard
             let lrgba = left.rgba,
             let rrgba = right.rgba else {
-                return false
+            return false
         }
 
         return

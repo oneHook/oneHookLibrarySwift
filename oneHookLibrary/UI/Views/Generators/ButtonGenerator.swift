@@ -8,8 +8,8 @@ public class ButtonGenerator {
         EDButton().apply({ (button) in
             button.setBackgroundImage(UIImage.solid(.clear), for: .normal)
             button.setBackgroundImage(UIImage.solid(UIColor.ed_toolbarBackgroundColor
-                .autoDarker(by: 20)
-                .withAlphaComponent(0.5)), for: .highlighted)
+                                                        .darker(by: 20, alpha: 0.5)),
+                                      for: .highlighted)
             button.adjustsImageWhenHighlighted = false
             button.setTitleColor(.ed_toolbarTextColor, for: .normal)
             button.layoutSize = CGSize(width: navButtonSize, height: navButtonSize)

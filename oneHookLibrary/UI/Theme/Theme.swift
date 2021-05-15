@@ -41,7 +41,6 @@ public protocol ThemeProtocol {
 
     /* Colors */
 
-    var isDarkMode: Bool { get }
     var toolbarBackground: UIColor { get }
     var toolbarTextColor: UIColor { get }
     var dividerColor: UIColor { get }

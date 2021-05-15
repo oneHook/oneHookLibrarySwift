@@ -132,12 +132,12 @@ class SimpleTableViewCell: SelectableTableViewCell {
 
     let titleLabel = EDLabel().apply {
         $0.font = UIFont.systemFont(ofSize: 15)
-        $0.textColor = .defaultTextColor
+        $0.textColor = .primaryTextColor
     }
 
     let subtitleLabel = EDLabel().apply {
         $0.font = UIFont.systemFont(ofSize: 12)
-        $0.textColor = .defaultTextColor
+        $0.textColor = .primaryTextColor
     }
 
     override func commonInit() {

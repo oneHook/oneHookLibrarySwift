@@ -56,13 +56,12 @@ open class DefaultTheme: ThemeProtocol {
 
     /* Colors */
 
-    open var isDarkMode: Bool = true
-    open var toolbarBackground: UIColor = .white
-    open var toolbarTextColor: UIColor = .black
-    open var dividerColor: UIColor = UIColor(hex: "E3ECF2")
-    open var placeholderTextColor: UIColor = .black
-    open var cellBackgroundColor: UIColor = .white
-    open var cellBackgroundColorHighlight: UIColor = UIColor(hex: "F2F2F2")
+    open var toolbarBackground: UIColor = UIColor.dynamic(light: .white, dark: .black)
+    open var toolbarTextColor: UIColor = UIColor.dynamic(light: .black, dark: .white)
+    open var dividerColor: UIColor = UIColor.dynamic(light: UIColor(hex: "E3ECF2"), dark: UIColor(hex: "1B1314"))
+    open var placeholderTextColor: UIColor = UIColor.dynamic(light: .black, dark: .white)
+    open var cellBackgroundColor: UIColor = UIColor.dynamic(light: .white, dark: .black)
+    open var cellBackgroundColorHighlight: UIColor = UIColor.dynamic(light: UIColor(hex: "F2F2F2"), dark: UIColor(hex: "141414"))
 
     open func applyDpScaling() {
         let keyPaths: [ReferenceWritableKeyPath<DefaultTheme, CGFloat>] = [

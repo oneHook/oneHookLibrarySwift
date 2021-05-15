@@ -17,7 +17,7 @@ class BaseScrollableDemoViewController: BaseDemoViewController {
         super.viewDidLoad()
         view.insertSubview(scrollView, belowSubview: toolbar)
         scrollView.addSubview(contentLinearLayout)
-        view.backgroundColor = .defaultBackgroundColor
+        view.backgroundColor = .defaultBackground
         scrollView.contentInset = UIEdgeInsets(
             top: toolbar.intrinsicContentSize.height,
             left: 0,
