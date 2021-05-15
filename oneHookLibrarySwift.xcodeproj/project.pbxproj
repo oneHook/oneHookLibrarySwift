@@ -208,6 +208,7 @@
 		D322AE7525A4DED600134636 /* EqualWeightLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualWeightLayoutDemoViewController.swift; sourceTree = "<group>"; };
 		D322AE7E25A4DFDE00134636 /* RowLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowLayoutDemoViewController.swift; sourceTree = "<group>"; };
 		D3673ED525DB79BF00A3ABF9 /* EGSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EGSegmentedControl.swift; sourceTree = "<group>"; };
+		D386009F264F465F00332F02 /* asset_script_v2.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = asset_script_v2.py; sourceTree = "<group>"; };
 		D3958B0625C746E7005D4920 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		D3958B0A25C74738005D4920 /* DefaultTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTheme.swift; sourceTree = "<group>"; };
 		D3958B1225C7475F005D4920 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -683,6 +684,7 @@
 				D3A9E25125CB2F0A00722555 /* color_assets_script.py */,
 				D3A9E25025CB2F0A00722555 /* color_search.py */,
 				D3A9E25225CB2F0A00722555 /* localization_parser.py */,
+				D386009F264F465F00332F02 /* asset_script_v2.py */,
 			);
 			path = Script;
 			sourceTree = "<group>";
