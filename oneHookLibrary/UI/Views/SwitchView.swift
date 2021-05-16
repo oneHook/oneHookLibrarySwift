@@ -84,6 +84,10 @@ public class SwitchView: BaseControl {
         layer.setNeedsLayout()
     }
 
+    public override func invalidateAppearance() {
+        invalidate()
+    }
+
     public override func sizeToFit() {
         bounds = CGRect(origin: .zero, size: layoutSize)
     }

@@ -397,6 +397,16 @@ open class BaseControl: UIControl {
         return CGSize(width: min(size.width, layoutSize.width),
                       height: min(size.height, layoutSize.height))
     }
+
+    open func invalidateAppearance() {
+
+    }
+
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if #available(iOS 13.0, *), UITraitCollection.current.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
+            invalidateAppearance()
+        }
+    }
 }
 
 open class BaseView: UIView {
@@ -452,5 +462,15 @@ open class BaseView: UIView {
         }
 
         return bounds.inset(by: hitTestEdgeInsets).contains(point)
+    }
+
+    open func invalidateAppearance() {
+
+    }
+
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if #available(iOS 13.0, *), UITraitCollection.current.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
+            invalidateAppearance()
+        }
     }
 }

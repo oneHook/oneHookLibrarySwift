@@ -71,4 +71,14 @@ open class SelectableTableViewCell: UITableViewCell {
             }
         }
     }
+
+    open func invalidateAppearance() {
+
+    }
+
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if #available(iOS 13.0, *), UITraitCollection.current.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
+            invalidateAppearance()
+        }
+    }
 }

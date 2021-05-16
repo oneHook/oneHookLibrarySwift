@@ -144,4 +144,9 @@ open class GridLayout: BaseView {
             )
         }
     }
+
+    open override func invalidateAppearance() {
+        let dividerColor = self.dividerColor
+        self.dividerColor = dividerColor
+    }
 }

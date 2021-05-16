@@ -1,5 +1,7 @@
 import UIKit
 
+/* TODO add support for invalidateAppearance  */
+
 open class ProgressRing: BaseView {
 
     private struct LayerInfo {

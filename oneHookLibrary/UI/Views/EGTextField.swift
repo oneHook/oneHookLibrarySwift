@@ -135,6 +135,12 @@ public class EGTextField: EDTextField {
         }
     }
 
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if #available(iOS 13.0, *), UITraitCollection.current.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
+            invalidate()
+        }
+    }
+
     @objc private func textDidChange() {
         if text.isNilOrEmpty {
             UIView.animate(withDuration: .defaultAnimationSmall, animations: {

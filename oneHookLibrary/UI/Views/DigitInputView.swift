@@ -173,7 +173,6 @@ open class DigitInputView: BaseControl {
         CGSize(width: size.width, height: uiModel.font.lineHeight + 2 * Dimens.marginMedium)
     }
 
-
     private func invalidate() {
         for (i, numberLabel) in numberLabels.enumerated() {
             if i == currentIndex && isFirstResponder {
@@ -203,6 +202,16 @@ open class DigitInputView: BaseControl {
             self,
             numberDidChange: rawText
         )
+    }
+
+    open override func invalidateAppearance() {
+        for (i, numberLabel) in numberLabels.enumerated() {
+            if i == currentIndex && isFirstResponder {
+                numberLabel.layer.borderColor = uiModel.borderColorHighlight.cgColor
+            } else {
+                numberLabel.layer.borderColor = uiModel.borderColorNormal.cgColor
+            }
+        }
     }
 }
 

@@ -25,5 +25,9 @@ open class GradientView: BaseView {
     func updateView() {
         gradient?.colors = [firstColor, secondColor].map { $0.cgColor }
     }
+
+    open override func invalidateAppearance() {
+        updateView()
+    }
 }
 

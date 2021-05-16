@@ -1,5 +1,7 @@
 import UIKit
 
+/* TODO add support for invalidateAppearance  */
+
 open class LinearProgressBar: BaseView {
 
     private struct LayerInfo {
@@ -123,5 +125,4 @@ open class LinearProgressBar: BaseView {
         )
         layer.position = CGPoint(x: paddingStart, y: paddingTop)
     }
-
 }

@@ -27,6 +27,7 @@
 		D322AE7925A4DEDB00134636 /* EqualWeightLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE7525A4DED600134636 /* EqualWeightLayoutDemoViewController.swift */; };
 		D322AE8225A4DFE500134636 /* RowLayoutDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D322AE7E25A4DFDE00134636 /* RowLayoutDemoViewController.swift */; };
 		D3673ED625DB79BF00A3ABF9 /* EGSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3673ED525DB79BF00A3ABF9 /* EGSegmentedControl.swift */; };
+		D38600A126508F1D00332F02 /* SolidButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38600A026508F1D00332F02 /* SolidButton.swift */; };
 		D3958B0725C746E7005D4920 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3958B0625C746E7005D4920 /* Theme.swift */; };
 		D3958B0B25C74738005D4920 /* DefaultTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3958B0A25C74738005D4920 /* DefaultTheme.swift */; };
 		D3958B1325C7475F005D4920 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3958B1225C7475F005D4920 /* Fonts.swift */; };
@@ -207,6 +208,7 @@
 		D322AE7E25A4DFDE00134636 /* RowLayoutDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowLayoutDemoViewController.swift; sourceTree = "<group>"; };
 		D3673ED525DB79BF00A3ABF9 /* EGSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EGSegmentedControl.swift; sourceTree = "<group>"; };
 		D386009F264F465F00332F02 /* asset_script_v2.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = asset_script_v2.py; sourceTree = "<group>"; };
+		D38600A026508F1D00332F02 /* SolidButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolidButton.swift; sourceTree = "<group>"; };
 		D3958B0625C746E7005D4920 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		D3958B0A25C74738005D4920 /* DefaultTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTheme.swift; sourceTree = "<group>"; };
 		D3958B1225C7475F005D4920 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 				D3A0F8EB259BA121008B2D36 /* EDSlider.swift */,
 				D322AE4025A4D04C00134636 /* EDVisualEffectView.swift */,
 				D3997A8C25E021DE00F5E17E /* EDActivityIndicator.swift */,
+				D38600A026508F1D00332F02 /* SolidButton.swift */,
 				D3A0F6BA259ABD83008B2D36 /* ControllerHostView.swift */,
 				D3A0F6AB259ABD83008B2D36 /* TagLabel.swift */,
 				D3A0F6AA259ABD83008B2D36 /* RangeSlider.swift */,
@@ -937,6 +940,7 @@
 				D3A0F7EF259ACB55008B2D36 /* ButtonGenerator.swift in Sources */,
 				D3A0F7D8259AC820008B2D36 /* Tracking.swift in Sources */,
 				D3958B1325C7475F005D4920 /* Fonts.swift in Sources */,
+				D38600A126508F1D00332F02 /* SolidButton.swift in Sources */,
 				D3A0F78D259ABEB5008B2D36 /* Math+Extensions.swift in Sources */,
 				D3A0F8DE259B9D3B008B2D36 /* OdometerLabel.swift in Sources */,
 				D3A0F795259ABEB5008B2D36 /* Dictionary+Extensions.swift in Sources */,

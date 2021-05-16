@@ -9,8 +9,8 @@ open class EGSegmentedControl: BaseView {
 
         public init(title: String? = nil,
                     attributedTitle: NSAttributedString? = nil,
-                    normalTextColor: UIColor = .darkGray,
-                    highlightTextColor: UIColor = .white) {
+                    normalTextColor: UIColor = .ed_toolbarTextColor,
+                    highlightTextColor: UIColor = .ed_toolbarBackgroundColor) {
             self.title = attributedTitle ?? title?.attributedString() ?? "".attributedString()
             self.normalTextColor = normalTextColor
             self.highlightTextColor = highlightTextColor
@@ -24,7 +24,7 @@ open class EGSegmentedControl: BaseView {
             tabCoverView.layer.cornerRadius = cornerRadius
         }
     }
-    public var selectedTabColor: UIColor = .darkGray {
+    public var selectedTabColor: UIColor = .ed_toolbarTextColor {
         didSet {
             tabCoverView.backgroundColor = selectedTabColor
         }
@@ -190,6 +190,22 @@ open class EGSegmentedControl: BaseView {
             }
         }
         setNeedsLayout()
+    }
+
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if #available(iOS 13.0, *), UITraitCollection.current.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
+
+            for view in topLinearLayout.subviews {
+                if let tab = view as? EDLabel {
+                    tab.textColor = tab.textColor
+                }
+            }
+            for view in bottomLinearLayout.subviews {
+                if let tab = view as? EDLabel {
+                    tab.textColor = tab.textColor
+                }
+            }
+        }
     }
 }
 

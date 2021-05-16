@@ -1,5 +1,7 @@
 import UIKit
 
+/* TODO add support for invalidateAppearance  */
+
 public struct BarGraphItem {
     public var title: String?
     public var attributedTitle: NSAttributedString?

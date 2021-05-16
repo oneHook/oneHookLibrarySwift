@@ -84,4 +84,8 @@ public class RadioButtonView: BaseControl {
         toggleImageView.image = image
         toggleImageView.contentMode = .center
     }
+
+    public override func invalidateAppearance() {
+        layer.borderColor = borderColor.cgColor
+    }
 }

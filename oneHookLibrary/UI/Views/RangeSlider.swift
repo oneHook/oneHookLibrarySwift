@@ -12,7 +12,7 @@ import UIKit
 import QuartzCore
 
 ///Class that represents the RangeSlider object.
-@IBDesignable open class RangeSlider: UIControl {
+@IBDesignable open class RangeSlider: BaseControl {
 
     // MARK: - Properties
 
@@ -375,6 +375,13 @@ import QuartzCore
 
         lowerLabel.position = newLowerLabelCenter
         upperLabel.position = newUpperLabelCenter
+    }
+
+    // MARK: appearance handling
+
+    open override func invalidateAppearance() {
+        lowerLabel.foregroundColor = labelColor.cgColor
+        upperLabel.foregroundColor = labelColor.cgColor
     }
 
     // MARK: Touch Tracking

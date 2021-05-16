@@ -81,6 +81,12 @@ open class EGTextView: BaseControl {
         }
     }
 
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if #available(iOS 13.0, *), UITraitCollection.current.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
+            invalidate()
+        }
+    }
+
     open func textViewDidChange() {
         if textView.text.isNilOrEmpty {
             UIView.animate(withDuration: .defaultAnimationSmall, animations: {

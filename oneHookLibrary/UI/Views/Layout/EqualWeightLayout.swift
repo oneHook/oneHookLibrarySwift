@@ -99,4 +99,9 @@ open class EqualWeightLayout: BaseView {
             currX = view.frame.maxX + cellSpacing
         }
     }
+
+    open override func invalidateAppearance() {
+        let dividerColor = self.dividerColor
+        self.dividerColor = dividerColor
+    }
 }

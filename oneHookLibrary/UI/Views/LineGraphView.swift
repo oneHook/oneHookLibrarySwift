@@ -1,5 +1,7 @@
 import UIKit
 
+/* TODO add support for invalidateAppearance  */
+
 public struct LineGraphUIModel {
     fileprivate var points: [CGFloat]
     fileprivate var smooth: Bool = true

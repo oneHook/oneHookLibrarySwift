@@ -5,6 +5,7 @@ private var darkTrait: UITraitCollection?
 
 extension UIColor {
 
+    /// Note this function can only blend colors found in current trait
     public static func blend(_ colors: UIColor...) -> UIColor {
         let componentsSum = colors.reduce((red: CGFloat(0), green: CGFloat(0), blue: CGFloat(0))) { (temp, color) in
             guard let components = color.cgColor.components else { return temp }
@@ -46,7 +47,7 @@ extension UIColor {
         }
     }
 
-    public func adjust(by percentage: CGFloat = 30.0, alpha: CGFloat = 1) -> UIColor {
+    private func adjust(by percentage: CGFloat = 30.0, alpha: CGFloat = 1) -> UIColor {
         if let components = rgba {
             return UIColor(red: min(components.red + percentage/100, 1.0),
                            green: min(components.green + percentage/100, 1.0),
@@ -57,7 +58,30 @@ extension UIColor {
         }
     }
 
-    public static func blend(fromColor fColor: UIColor, toColor tColor: UIColor, step progress: CGFloat = 0.5) -> UIColor {
+    public static func blend(fromColor fColor: UIColor,
+                             toColor tColor: UIColor,
+                             step progress: CGFloat = 0.5) -> UIColor {
+        if #available(iOS 13.0, *) {
+            if lightTrait == nil || darkTrait == nil {
+                lightTrait = UITraitCollection(userInterfaceStyle: .light)
+                darkTrait = UITraitCollection(userInterfaceStyle: .dark)
+            }
+            let lightColorFrom = fColor.resolvedColor(with: lightTrait!)
+            let darkColorFrom = fColor.resolvedColor(with: darkTrait!)
+            let lightColorTo = tColor.resolvedColor(with: lightTrait!)
+            let darkColorTo = tColor.resolvedColor(with: darkTrait!)
+            return UIColor.dynamic(
+                light: blendSingleTrait(fromColor: lightColorFrom, toColor: lightColorTo, step: progress),
+                dark: blendSingleTrait(fromColor: darkColorFrom, toColor: darkColorTo, step: progress)
+            )
+        } else {
+            return blendSingleTrait(fromColor: fColor, toColor: tColor, step: progress)
+        }
+    }
+
+    private static func blendSingleTrait(fromColor fColor: UIColor,
+                                         toColor tColor: UIColor,
+                                         step progress: CGFloat = 0.5) -> UIColor {
         if
             let frgba = fColor.rgba,
             let trgba = tColor.rgba {
