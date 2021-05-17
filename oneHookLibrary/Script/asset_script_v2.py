@@ -80,10 +80,10 @@ def _str_to_hex(s: str) -> str:
     '84'
     """
     if s.startswith('0x'):
-        return s[2:]
+        return s[2:].zfill(2)
     if s.isdigit():
-        return hex(int(s))[2:]
-    return hex(int(float(s) * 255))[2:]
+        return hex(int(s))[2:].zfill(2)
+    return hex(int(float(s) * 255))[2:].zfill(2)
 
 
 class Asset:
@@ -209,7 +209,11 @@ class ColorAsset(Asset):
         red = _str_to_hex(red)
         green = _str_to_hex(green)
         blue = _str_to_hex(blue)
-        return (float(alpha), f'#{red}{green}{blue}'.upper(), (int(red, 16), int(green, 16), int(blue, 16)))
+        alpha = float(alpha)
+        color_str = f'#{red}{green}{blue}'.upper()
+        if alpha != 1:
+            color_str += ' alpha: {:.2f}'.format(alpha)
+        return (alpha, color_str, (int(red, 16), int(green, 16), int(blue, 16)))
 
     def __repr__(self):
         return f'{self.name} {str(self.colors)}'
