@@ -4,14 +4,14 @@ import UIKit
 extension UIColor {
 
     // Any: #FFFFFF
-    // Dark: #000
+    // Dark: #000000
     static let defaultBackground = UIColor(named: "defaultBackground")!
 
     // Any: #EFEFF5
     // Dark: #212121
     static let defaultBackgroundLightGray = UIColor(named: "defaultBackgroundLightGray")!
 
-    // Any: #000
+    // Any: #000000
     // Dark: #FFFFFF
     //     Close to secondaryTextColor with 0.0
     static let primaryTextColor = UIColor(named: "primaryTextColor")!
