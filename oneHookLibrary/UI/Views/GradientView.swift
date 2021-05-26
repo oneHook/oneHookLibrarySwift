@@ -18,7 +18,13 @@ open class GradientView: BaseView {
         CAGradientLayer.self
     }
 
-    open var gradient: CAGradientLayer? {
+    public convenience init(firstColor: UIColor, secondColor: UIColor) {
+        self.init()
+        self.firstColor = firstColor
+        self.secondColor = secondColor
+    }
+
+    private var gradient: CAGradientLayer? {
         layer as? CAGradientLayer
     }
 
