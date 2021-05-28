@@ -37,6 +37,12 @@ open class EDTextView: UITextView, UITextViewDelegate {
 
     override open func sizeThatFits(_ size: CGSize) -> CGSize {
         if layoutSize == CGSize.zero {
+            textContainerInset = UIEdgeInsets(
+                top: paddingTop,
+                left: paddingStart,
+                bottom: paddingBottom,
+                right: paddingEnd
+            )
             return super.sizeThatFits(size)
         }
         return layoutSize
