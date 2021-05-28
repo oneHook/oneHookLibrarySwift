@@ -48,7 +48,7 @@ public class EDToolbar: BaseView {
             $0.font = Fonts.bold(Fonts.fontSizeMedium)
             $0.textAlignment = .center
             $0.textColor = .ed_toolbarTextColor
-            self?.labelContainer.getOrMake().addSubview($0)
+            self?.labelContainer.getOrMake().insertSubview($0, at: 0)
         }
     }
 
