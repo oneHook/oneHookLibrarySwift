@@ -192,10 +192,16 @@ class FrameLayoutUnitTests: XCTestCase {
          CGRect(x: 90, y: 45, width: 10, height: 10)])
 
         layout.padding = 10
-
         layout.layoutSubviews()
         XCTAssertEqual(layout.subviews.map({ $0.frame }),
         [CGRect(x: 10, y: 45, width: 10, height: 10),
          CGRect(x: 80, y: 45, width: 10, height: 10)])
+
+        layout.paddingTop = 0
+        layout.paddingBottom = 50
+        layout.layoutSubviews()
+        XCTAssertEqual(layout.subviews.map({ $0.frame }),
+        [CGRect(x: 10, y: 20, width: 10, height: 10),
+         CGRect(x: 80, y: 20, width: 10, height: 10)])
     }
 }
