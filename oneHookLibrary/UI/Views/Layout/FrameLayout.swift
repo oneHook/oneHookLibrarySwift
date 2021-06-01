@@ -73,7 +73,7 @@ open class FrameLayout: BaseView {
             }
 
             if child.layoutGravity.contains(.centerVertical) {
-                viewY = (height - paddingBottom - paddingBottom - size.height) / 2 + paddingTop + child.marginTop
+                viewY = (height - paddingTop - paddingBottom - size.height) / 2 + paddingTop + child.marginTop
             } else if child.layoutGravity.contains(.bottom) {
                 viewY = height - size.height + child.marginTop - paddingBottom
             }
