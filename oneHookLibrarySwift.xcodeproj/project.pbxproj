@@ -152,6 +152,7 @@
 		D3DAB22D25AD593C003748BA /* InfiniteScrollViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */; };
 		D3DAB23325ADFC45003748BA /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB23225ADFC45003748BA /* TimePickerView.swift */; };
 		D3DAB23A25AE01E8003748BA /* TimePickerViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB23625AE01B9003748BA /* TimePickerViewDemoViewController.swift */; };
+		D3FC0CFB266854B40089623D /* EDPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FC0CFA266854B40089623D /* EDPageControl.swift */; };
 		E32DFEB92635C86400A88C12 /* EGTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32DFEB72635C86400A88C12 /* EGTextView.swift */; };
 /* End PBXBuildFile section */
 
@@ -340,6 +341,7 @@
 		D3DAB22925AD5924003748BA /* InfiniteScrollViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollViewDemoViewController.swift; sourceTree = "<group>"; };
 		D3DAB23225ADFC45003748BA /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		D3DAB23625AE01B9003748BA /* TimePickerViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerViewDemoViewController.swift; sourceTree = "<group>"; };
+		D3FC0CFA266854B40089623D /* EDPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDPageControl.swift; sourceTree = "<group>"; };
 		E32DFEB72635C86400A88C12 /* EGTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EGTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -511,6 +513,7 @@
 				D3A0F8EB259BA121008B2D36 /* EDSlider.swift */,
 				D322AE4025A4D04C00134636 /* EDVisualEffectView.swift */,
 				D3997A8C25E021DE00F5E17E /* EDActivityIndicator.swift */,
+				D3FC0CFA266854B40089623D /* EDPageControl.swift */,
 				D38600A026508F1D00332F02 /* SolidButton.swift */,
 				D3A0F6BA259ABD83008B2D36 /* ControllerHostView.swift */,
 				D3A0F6AB259ABD83008B2D36 /* TagLabel.swift */,
@@ -981,6 +984,7 @@
 				D3A0F821259AD1A9008B2D36 /* EDLabel.swift in Sources */,
 				D3997B1725E1E91700F5E17E /* Codable+Extensions.swift in Sources */,
 				D3673ED625DB79BF00A3ABF9 /* EGSegmentedControl.swift in Sources */,
+				D3FC0CFB266854B40089623D /* EDPageControl.swift in Sources */,
 				D3A0F777259ABE9C008B2D36 /* RangeSlider.swift in Sources */,
 				D3A0F782259ABEB5008B2D36 /* ViewUtility.swift in Sources */,
 				D3A0F762259ABE9C008B2D36 /* SwitchView.swift in Sources */,
