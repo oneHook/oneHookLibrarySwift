@@ -17,11 +17,17 @@ open class EGSegmentedControl: BaseView {
         }
     }
 
+    public var defaultWidth: CGFloat = dp(0)
     public var defaultHeight: CGFloat = dp(40)
     public var cornerRadius: CGFloat = dp(0) {
         didSet {
             layer.cornerRadius = cornerRadius
-            tabCoverView.layer.cornerRadius = cornerRadius
+            tabCoverView.layer.cornerRadius = cornerRadius - maskPadding
+        }
+    }
+    public var maskPadding: CGFloat = dp(0) {
+        didSet {
+            tabCoverView.layer.cornerRadius = cornerRadius - maskPadding
         }
     }
     public var selectedTabColor: UIColor = .ed_toolbarTextColor {
@@ -35,7 +41,6 @@ open class EGSegmentedControl: BaseView {
     private let topLinearLayout = LinearLayout().apply {
         $0.orientation = .horizontal
     }
-
     private let tabMaskLayer = CALayer().apply {
         $0.backgroundColor = UIColor.white.cgColor
         $0.anchorPoint = .zero
@@ -70,7 +75,11 @@ open class EGSegmentedControl: BaseView {
     }
 
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
-        CGSize(width: size.width, height: defaultHeight)
+        if defaultWidth == 0 {
+            return CGSize(width: size.width, height: defaultHeight)
+        } else {
+            return CGSize(width: defaultWidth, height: defaultHeight)
+        }
     }
 
     @objc private func onTap(tapRec: UITapGestureRecognizer) {
@@ -106,8 +115,8 @@ open class EGSegmentedControl: BaseView {
     public func setProgress(_ progress: CGFloat) {
         let tabWidth = bounds.width / CGFloat(tabCount)
         let targetPosition = CGPoint(
-            x: tabWidth * progress,
-            y: 0
+            x: tabWidth * progress + maskPadding,
+            y: maskPadding
         )
         CATransaction.begin()
         CATransaction.setDisableActions(true)
@@ -115,7 +124,8 @@ open class EGSegmentedControl: BaseView {
         CATransaction.commit()
         tabCoverView.frame = CGRect(
             origin: targetPosition,
-            size: CGSize(width: tabWidth, height: bounds.height)
+            size: CGSize(width: tabWidth - 2 * maskPadding,
+                         height: bounds.height - 2 * maskPadding)
         )
     }
 
@@ -123,8 +133,8 @@ open class EGSegmentedControl: BaseView {
         if animated {
             let tabWidth = bounds.width / CGFloat(tabCount)
             let targetPosition = CGPoint(
-                x: tabWidth * CGFloat(index),
-                y: 0
+                x: tabWidth * CGFloat(index) + maskPadding,
+                y: maskPadding
             )
 
             CATransaction.begin()
@@ -142,10 +152,11 @@ open class EGSegmentedControl: BaseView {
 
             UIView.animate(
                 withDuration: .defaultAnimation,
-                animations: {
+                animations: { [self] in
                     self.tabCoverView.frame = CGRect(
                         origin: targetPosition,
-                        size: CGSize(width: tabWidth, height: self.bounds.height)
+                        size: CGSize(width: tabWidth - 2 * maskPadding,
+                                     height: bounds.height - 2 * maskPadding)
                     )
                 }
             )
