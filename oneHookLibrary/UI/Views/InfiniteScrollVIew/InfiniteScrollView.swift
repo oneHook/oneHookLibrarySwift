@@ -14,6 +14,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
     private let threshold: CGFloat = 100
     private(set) var cells = [T]()
     private var recycledCells = [T]()
+    private(set) var isInterationInProgress: Bool = false
 
     /* For Vertical */
     public var cellDefaultHeight: CGFloat?
@@ -268,6 +269,16 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
         recycledCells.append(cell)
     }
 
+    public var centerCell: T? {
+        cells.first(where: {
+            let cellFrame = $0.frame.offsetBy(dx: 0, dy: -contentOffset.y)
+            return cellFrame.contains(
+                CGPoint(x: bounds.width / 2,
+                        y: bounds.height / 2)
+            )
+        })
+    }
+
     /* Child should override */
 
     open func getCell(direction: Direction, referenceCell: T?) -> T {
@@ -277,11 +288,26 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
         }
     }
 
-    open func scrollViewDidEndInteraction(scrollView: UIScrollView) {
+    open func scrollViewDidEndInteraction(_ scrollView: UIScrollView) {
+        isInterationInProgress = false
+        if let centerCell = centerCell {
+            scrollViewDidStopAtCenterCell(scrollView, centerCell: centerCell)
+        }
+    }
+
+    open func scrollViewDidStopAtCenterCell(_ scrollView: UIScrollView, centerCell: T) {
 
     }
 
     /* UIScrollViewDelegate */
+
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        isInterationInProgress = true
+    }
+
+    public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        isInterationInProgress = true
+    }
 
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         guard
@@ -296,12 +322,12 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
     }
 
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        scrollViewDidEndInteraction(scrollView: scrollView)
+        scrollViewDidEndInteraction(scrollView)
     }
 
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
-            scrollViewDidEndInteraction(scrollView: scrollView)
+            scrollViewDidEndInteraction(scrollView)
         }
     }
 }

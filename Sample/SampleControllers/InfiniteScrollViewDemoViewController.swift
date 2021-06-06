@@ -45,9 +45,12 @@ class InfiniteScrollViewDemoViewController: BaseScrollableDemoViewController {
 //        $0.isPagingEnabled = true
 //    }
 
-    private let infiniteScrollView3 = DateInfiniteScrollView().apply {
+    private let datePicker = DateInfiniteScrollView().apply {
         $0.orientation = .vertical
         $0.layoutGravity = [.fill]
+        $0.currrentDate = Date().add(days: -5)
+        $0.minDate = Date().startOfDay.add(days: -15)
+        $0.maxDate = Date().startOfDay.add(days: 15)
     }
 
     private lazy var dateContainer = FrameLayout().apply {
@@ -60,7 +63,7 @@ class InfiniteScrollViewDemoViewController: BaseScrollableDemoViewController {
             $0.layoutGravity = [.fillHorizontal, .centerVertical]
             $0.backgroundColor = .purple
         })
-        $0.addSubview(infiniteScrollView3)
+        $0.addSubview(datePicker)
     }
 
     override func viewDidLoad() {
@@ -69,5 +72,18 @@ class InfiniteScrollViewDemoViewController: BaseScrollableDemoViewController {
 //        contentLinearLayout.addSubview(infiniteScrollView1)
 //        contentLinearLayout.addSubview(infiniteScrollView2)
         contentLinearLayout.addSubview(dateContainer)
+        contentLinearLayout.addSubview(SolidButton().apply {
+            $0.marginTop = Dimens.marginMedium
+            $0.setBackgroundColor(.red, for: .normal)
+            $0.padding = Dimens.marginMedium
+            $0.setTitle("Debug", for: .normal)
+            $0.addTarget(self, action: #selector(debugButtonPressed), for: .touchUpInside)
+        })
+    }
+
+    @objc private func debugButtonPressed() {
+        print("XXX", datePicker.contentOffset)
+//        datePicker.setContentOffset(.init(x: 0, y: datePicker.contentOffset.y - dp(48) * 365), animated: true)
+        datePicker.minDate = Date()
     }
 }
