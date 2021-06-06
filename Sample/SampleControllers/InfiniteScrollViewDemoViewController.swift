@@ -60,9 +60,17 @@ class InfiniteScrollViewDemoViewController: BaseScrollableDemoViewController {
         $0.addSubview(minutePicker)
     }
 
+    private let dateTimePicker = EGDateTimePicker().apply {
+
+        $0.marginTop = Dimens.marginMedium
+        $0.layoutSize = CGSize(width: 0, height: dp(250))
+        $0.layoutGravity = .fillHorizontal
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         toolbarTitle = "Infinite Scroll View"
+        contentLinearLayout.addSubview(dateTimePicker)
         contentLinearLayout.addSubview(dateContainer)
         contentLinearLayout.addSubview(hourContainer)
         contentLinearLayout.addSubview(minuteContainer)

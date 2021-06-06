@@ -29,6 +29,8 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
 
     public override func commonInit() {
         super.commonInit()
+        showsVerticalScrollIndicator = false
+        showsHorizontalScrollIndicator = false
         delegate = self
         onOrientationChange()
     }
