@@ -24,6 +24,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
     public var orientation: Orientation = .vertical {
         didSet {
             reload()
+            layoutIfNeeded()
         }
     }
 
@@ -40,6 +41,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
             $0.removeFromSuperview()
             destroyCell($0)
         }
+        cells.removeAll()
         if orientation == .horizontal {
             contentSize = CGSize(width: spread, height: 1)
             contentOffset = CGPoint(x: spread / 2, y: 0)
@@ -52,6 +54,10 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
 
     public override func layoutSubviews() {
         super.layoutSubviews()
+        guard bounds.width > 0,
+              bounds.height > 0 else {
+            return
+        }
         if orientation == .horizontal {
             fillContentHorizontal()
         } else {

@@ -1,6 +1,50 @@
 import oneHookLibrary
 import UIKit
 
+class MyNumberLabel: NumberLabel {
+
+    private static let numberLabelFont = Fonts.regular(Fonts.fontSizeXLarge)
+    private static let numberLabelColorNormal: UIColor = .red
+    private static let  numberLabelColorDisabled: UIColor = .yellow
+
+    open override func bind(number: Int?, style: Style) {
+        self.number = number
+        backgroundColor = .clear
+        padding = Dimens.marginMedium
+        textAlignment = .center
+        font = Self.numberLabelFont
+        if style == .selectable {
+            textColor = Self.numberLabelColorNormal
+        } else {
+            textColor = Self.numberLabelColorDisabled
+        }
+        text = String(number ?? 0)
+    }
+}
+
+class MyMonthLabel: NumberLabel {
+
+    private static let formatter = DateFormatter()
+    private static let numberLabelFont = Fonts.regular(Fonts.fontSizeXLarge)
+    private static let numberLabelColorNormal: UIColor = .red
+    private static let  numberLabelColorDisabled: UIColor = .yellow
+
+    open override func bind(number: Int?, style: Style) {
+        self.number = number
+        backgroundColor = .clear
+        padding = Dimens.marginMedium
+        textAlignment = .center
+        font = Self.numberLabelFont
+        if style == .selectable {
+            textColor = Self.numberLabelColorNormal
+        } else {
+            textColor = Self.numberLabelColorDisabled
+        }
+        text = Self.formatter.monthSymbols[safe: (number ?? 1) - 1] ?? "" + String(number ?? 0)
+    }
+}
+
+
 class InfiniteScrollViewDemoViewController: BaseScrollableDemoViewController {
 
     private let datePicker = DateInfiniteScrollView().apply {
@@ -60,7 +104,11 @@ class InfiniteScrollViewDemoViewController: BaseScrollableDemoViewController {
         $0.addSubview(minutePicker)
     }
 
-    private let dateTimePicker = EGDatePicker(year: 2020, month: 5, day: 15).apply {
+    private let dateTimePicker = EGDatePicker<MyNumberLabel, MyMonthLabel, MyNumberLabel>(
+        year: 2020,
+        month: 5,
+        day: 15
+    ).apply {
         $0.marginTop = Dimens.marginMedium
         $0.layoutSize = CGSize(width: 0, height: dp(250))
         $0.layoutGravity = .fillHorizontal

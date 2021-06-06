@@ -85,6 +85,33 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
         fatalError("init(coder:) has not been implemented")
     }
 
+    public func setStartingNumber(_ startingNumber: Int, endingNumber: Int, step: Int) -> Bool {
+        guard
+            self.startingNumber != startingNumber ||
+                self.endingNumber != endingNumber ||
+                self.step != step else {
+            return false
+        }
+        self.startingNumber = startingNumber
+        self.endingNumber = endingNumber
+        self.step = step
+        var currentNumberChanged = false
+        if let currentNumber = _currentNumber {
+            if currentNumber < startingNumber {
+                _currentNumber = startingNumber
+                numberSelected?(startingNumber)
+                currentNumberChanged = true
+            } else if currentNumber >= endingNumber {
+                _currentNumber = endingNumber - self.step
+                numberSelected?(endingNumber - self.step)
+                currentNumberChanged = true
+            }
+        }
+        reload()
+        layoutIfNeeded()
+        return currentNumberChanged
+    }
+
     public override func commonInit() {
         cellDefaultHeight = numberLabelHeight
         snapToCenter = true
@@ -104,7 +131,7 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
             }
         case .after:
             number = (referenceCell?.number ?? endingNumber) + step
-            if (number ?? 0) > endingNumber {
+            if (number ?? 0) >= endingNumber {
                 number = startingNumber
             }
         }
