@@ -116,6 +116,7 @@ private class NumberScrollView: EDScrollView, UIScrollViewDelegate {
 }
 
 public class TimePickerView: BaseControl {
+    
     private var hourScrollView = NumberScrollView(numberCount: 24)
     private var minuteScrollView = NumberScrollView(numberCount: 60)
 
