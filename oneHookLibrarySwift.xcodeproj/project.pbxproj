@@ -33,6 +33,7 @@
 		D3958B1325C7475F005D4920 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3958B1225C7475F005D4920 /* Fonts.swift */; };
 		D3958B1725C7476E005D4920 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3958B1625C7476E005D4920 /* Colors.swift */; };
 		D398CE16266C52E5008E86AF /* DateInfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D398CE15266C52E5008E86AF /* DateInfiniteScrollView.swift */; };
+		D398CE18266D28C4008E86AF /* NumberInfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D398CE17266D28C4008E86AF /* NumberInfiniteScrollView.swift */; };
 		D3997A8D25E021DE00F5E17E /* EDActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3997A8C25E021DE00F5E17E /* EDActivityIndicator.swift */; };
 		D3997B1725E1E91700F5E17E /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3997B1625E1E91700F5E17E /* Codable+Extensions.swift */; };
 		D39A18FB25F7403A00CC2715 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39A18FA25F7403A00CC2715 /* UIView+Animations.swift */; };
@@ -216,6 +217,7 @@
 		D3958B1225C7475F005D4920 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		D3958B1625C7476E005D4920 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D398CE15266C52E5008E86AF /* DateInfiniteScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateInfiniteScrollView.swift; sourceTree = "<group>"; };
+		D398CE17266D28C4008E86AF /* NumberInfiniteScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInfiniteScrollView.swift; sourceTree = "<group>"; };
 		D3997A8C25E021DE00F5E17E /* EDActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDActivityIndicator.swift; sourceTree = "<group>"; };
 		D3997B1625E1E91700F5E17E /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
 		D39A18FA25F7403A00CC2715 /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 			children = (
 				D3DAB22525AD5808003748BA /* InfiniteScrollView.swift */,
 				D398CE15266C52E5008E86AF /* DateInfiniteScrollView.swift */,
+				D398CE17266D28C4008E86AF /* NumberInfiniteScrollView.swift */,
 			);
 			path = InfiniteScrollVIew;
 			sourceTree = "<group>";
@@ -952,6 +955,7 @@
 				D3A0F792259ABEB5008B2D36 /* NumberUtility.swift in Sources */,
 				D3A0F77F259ABEB5008B2D36 /* Date+Extensions.swift in Sources */,
 				D3A0F7EF259ACB55008B2D36 /* ButtonGenerator.swift in Sources */,
+				D398CE18266D28C4008E86AF /* NumberInfiniteScrollView.swift in Sources */,
 				D3A0F7D8259AC820008B2D36 /* Tracking.swift in Sources */,
 				D3958B1325C7475F005D4920 /* Fonts.swift in Sources */,
 				D38600A126508F1D00332F02 /* SolidButton.swift in Sources */,
