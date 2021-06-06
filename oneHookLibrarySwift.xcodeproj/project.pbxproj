@@ -34,7 +34,7 @@
 		D3958B1725C7476E005D4920 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3958B1625C7476E005D4920 /* Colors.swift */; };
 		D398CE16266C52E5008E86AF /* DateInfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D398CE15266C52E5008E86AF /* DateInfiniteScrollView.swift */; };
 		D398CE18266D28C4008E86AF /* NumberInfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D398CE17266D28C4008E86AF /* NumberInfiniteScrollView.swift */; };
-		D398CE1A266D2DCF008E86AF /* EGDateTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D398CE19266D2DCF008E86AF /* EGDateTimePicker.swift */; };
+		D398CE1A266D2DCF008E86AF /* EGDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D398CE19266D2DCF008E86AF /* EGDatePicker.swift */; };
 		D3997A8D25E021DE00F5E17E /* EDActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3997A8C25E021DE00F5E17E /* EDActivityIndicator.swift */; };
 		D3997B1725E1E91700F5E17E /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3997B1625E1E91700F5E17E /* Codable+Extensions.swift */; };
 		D39A18FB25F7403A00CC2715 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39A18FA25F7403A00CC2715 /* UIView+Animations.swift */; };
@@ -219,7 +219,7 @@
 		D3958B1625C7476E005D4920 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D398CE15266C52E5008E86AF /* DateInfiniteScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateInfiniteScrollView.swift; sourceTree = "<group>"; };
 		D398CE17266D28C4008E86AF /* NumberInfiniteScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInfiniteScrollView.swift; sourceTree = "<group>"; };
-		D398CE19266D2DCF008E86AF /* EGDateTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EGDateTimePicker.swift; sourceTree = "<group>"; };
+		D398CE19266D2DCF008E86AF /* EGDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EGDatePicker.swift; sourceTree = "<group>"; };
 		D3997A8C25E021DE00F5E17E /* EDActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDActivityIndicator.swift; sourceTree = "<group>"; };
 		D3997B1625E1E91700F5E17E /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
 		D39A18FA25F7403A00CC2715 /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
@@ -552,7 +552,7 @@
 				E32DFEB72635C86400A88C12 /* EGTextView.swift */,
 				D3A9E41325D593D300722555 /* ConversationInputView.swift */,
 				D3673ED525DB79BF00A3ABF9 /* EGSegmentedControl.swift */,
-				D398CE19266D2DCF008E86AF /* EGDateTimePicker.swift */,
+				D398CE19266D2DCF008E86AF /* EGDatePicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -973,7 +973,7 @@
 				D3A0F75D259ABE9C008B2D36 /* EDButton.swift in Sources */,
 				E32DFEB92635C86400A88C12 /* EGTextView.swift in Sources */,
 				D3A0F79C259ABEB5008B2D36 /* DiffUtility.swift in Sources */,
-				D398CE1A266D2DCF008E86AF /* EGDateTimePicker.swift in Sources */,
+				D398CE1A266D2DCF008E86AF /* EGDatePicker.swift in Sources */,
 				D3A0F760259ABE9C008B2D36 /* EDMapView.swift in Sources */,
 				D3A0F750259ABE78008B2D36 /* FadeTransitionAnimation.swift in Sources */,
 				D3A0F8FC259BACB0008B2D36 /* MonthView.swift in Sources */,

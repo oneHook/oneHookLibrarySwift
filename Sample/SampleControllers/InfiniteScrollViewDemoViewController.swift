@@ -24,7 +24,7 @@ class InfiniteScrollViewDemoViewController: BaseScrollableDemoViewController {
         $0.addSubview(datePicker)
     }
 
-    private let hourPicker = NumberInfiniteScrollView(start: 0, end: 23).apply {
+    private let hourPicker = NumberInfiniteScrollView(start: 0, end: 24).apply {
         $0.orientation = .vertical
         $0.layoutGravity = [.fill]
     }
@@ -42,7 +42,7 @@ class InfiniteScrollViewDemoViewController: BaseScrollableDemoViewController {
         $0.addSubview(hourPicker)
     }
 
-    private let minutePicker = NumberInfiniteScrollView(start: 0, end: 59).apply {
+    private let minutePicker = NumberInfiniteScrollView(start: 0, end: 60, step: 5).apply {
         $0.orientation = .vertical
         $0.layoutGravity = [.fill]
     }
@@ -60,8 +60,7 @@ class InfiniteScrollViewDemoViewController: BaseScrollableDemoViewController {
         $0.addSubview(minutePicker)
     }
 
-    private let dateTimePicker = EGDateTimePicker().apply {
-
+    private let dateTimePicker = EGDatePicker(year: 2020, month: 5, day: 15).apply {
         $0.marginTop = Dimens.marginMedium
         $0.layoutSize = CGSize(width: 0, height: dp(250))
         $0.layoutGravity = .fillHorizontal

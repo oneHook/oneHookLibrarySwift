@@ -1,20 +1,42 @@
 import UIKit
 
-public class NumberLabel: EDLabel {
-    var number: Int?
+open class NumberLabel: EDLabel {
+
+    private static let numberLabelFont = Fonts.regular(Fonts.fontSizeXLarge)
+    private static let numberLabelColorNormal: UIColor = .black
+    private static let  numberLabelColorDisabled: UIColor = .lightGray
+
+    public enum Style {
+        case selectable
+        case notSelectable
+    }
+
+    public var number: Int?
+
+    open func bind(number: Int?, style: Style) {
+        self.number = number
+        backgroundColor = .clear
+        padding = Dimens.marginMedium
+        textAlignment = .center
+        font = Self.numberLabelFont
+        if style == .selectable {
+            textColor = Self.numberLabelColorNormal
+        } else {
+            textColor = Self.numberLabelColorDisabled
+        }
+        text = String(number ?? 0)
+    }
 }
 
-public class NumberInfiniteScrollView: InfiniteScrollView<NumberLabel> {
+public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
 
     public var numberSelected: ((Int) -> Void)?
 
     public var numberLabelHeight = dp(48)
-    public var numberLabelFont = UIFont.systemFont(ofSize: 24)
-    public var numberLabelColorNormal: UIColor = .black
-    public var numberLabelColorDisabled: UIColor = .lightGray
 
     private var startingNumber: Int
     private var endingNumber: Int
+    private var step: Int
 
     private var _minNumber: Int?
     public var minNumber: Int? {
@@ -52,9 +74,10 @@ public class NumberInfiniteScrollView: InfiniteScrollView<NumberLabel> {
         }
     }
 
-    public required init(start: Int, end: Int) {
+    public required init(start: Int, end: Int, step: Int = 1) {
         self.startingNumber = start
         self.endingNumber = end
+        self.step = step
         super.init(frame: .zero)
     }
 
@@ -68,19 +91,19 @@ public class NumberInfiniteScrollView: InfiniteScrollView<NumberLabel> {
         super.commonInit()
     }
 
-    public override func getCell(direction: InfiniteScrollView<NumberLabel>.Direction,
-                                 referenceCell: NumberLabel?) -> NumberLabel {
+    public override func getCell(direction: InfiniteScrollView<T>.Direction,
+                                 referenceCell: T?) -> T {
         var number: Int?
         switch direction {
         case .center:
             number = _currentNumber ?? startingNumber
         case .before:
-            number = (referenceCell?.number ?? startingNumber) - 1
+            number = (referenceCell?.number ?? startingNumber) - step
             if (number ?? 0) < startingNumber {
-                number = endingNumber
+                number = endingNumber - step
             }
         case .after:
-            number = (referenceCell?.number ?? endingNumber) + 1
+            number = (referenceCell?.number ?? endingNumber) + step
             if (number ?? 0) > endingNumber {
                 number = startingNumber
             }
@@ -88,24 +111,19 @@ public class NumberInfiniteScrollView: InfiniteScrollView<NumberLabel> {
         return dequeueCell().apply {
             $0.layoutSize = CGSize(width: 0, height: numberLabelHeight)
             $0.layoutGravity = .fillHorizontal
-            $0.number = number
-            $0.backgroundColor = .clear
-            $0.padding = Dimens.marginMedium
-            $0.text = String(number ?? 0)
-            $0.textAlignment = .center
-            $0.font = numberLabelFont
-            $0.textColor = numberLabelColorNormal
+            var style = NumberLabel.Style.selectable
             if
                 let minNumber = minNumber,
                 let number = number,
                 number < minNumber {
-                $0.textColor = numberLabelColorDisabled
+                style = .notSelectable
             } else if
                 let maxNumber = maxNumber,
                 let number = number,
                 number > maxNumber {
-                $0.textColor = numberLabelColorDisabled
+                style = .notSelectable
             }
+            $0.bind(number: number, style: style)
         }
     }
 
@@ -114,7 +132,7 @@ public class NumberInfiniteScrollView: InfiniteScrollView<NumberLabel> {
         makeSureNumberRange(animated: true)
     }
 
-    public override func scrollViewDidStopAtCenterCell(_ scrollView: UIScrollView, centerCell: NumberLabel) {
+    public override func scrollViewDidStopAtCenterCell(_ scrollView: UIScrollView, centerCell: T) {
         _currentNumber = centerCell.number
         if let number = centerCell.number {
             numberSelected?(number)
@@ -123,19 +141,19 @@ public class NumberInfiniteScrollView: InfiniteScrollView<NumberLabel> {
 
     private func invalidateCells() {
         for cell in cells {
-            cell.font = numberLabelFont
-            cell.textColor = numberLabelColorNormal
+            var style = NumberLabel.Style.selectable
             if
                 let minNumber = minNumber,
                 let number = cell.number,
                 number < minNumber {
-                cell.textColor = numberLabelColorDisabled
+                style = .notSelectable
             } else if
                 let maxNumber = maxNumber,
                 let number = cell.number,
                 number > maxNumber {
-                cell.textColor = numberLabelColorDisabled
+                style = .notSelectable
             }
+            cell.bind(number: cell.number, style: style)
         }
     }
 

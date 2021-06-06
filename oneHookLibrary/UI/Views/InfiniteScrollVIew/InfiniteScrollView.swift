@@ -23,7 +23,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
 
     public var orientation: Orientation = .vertical {
         didSet {
-            onOrientationChange()
+            reload()
         }
     }
 
@@ -32,10 +32,10 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
         delegate = self
-        onOrientationChange()
+        reload()
     }
 
-    private func onOrientationChange() {
+    func reload() {
         cells.forEach {
             $0.removeFromSuperview()
             destroyCell($0)
