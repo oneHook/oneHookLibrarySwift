@@ -29,34 +29,45 @@ class NumberInfiniteScrollView: InfiniteScrollView<EDLabel> {
 
 class InfiniteScrollViewDemoViewController: BaseScrollableDemoViewController {
 
-    let infiniteScrollView1 = NumberInfiniteScrollView().apply {
-        $0.orientation = .horizontal
-        $0.layoutSize = CGSize(width: 0, height: dp(150))
-        $0.layoutGravity = [.fillHorizontal]
-        $0.backgroundColor = .white
-        $0.isPagingEnabled = true
-    }
-
-    let infiniteScrollView2 = NumberInfiniteScrollView().apply {
-        $0.orientation = .vertical
-        $0.layoutSize = CGSize(width: 0, height: dp(200))
-        $0.layoutGravity = [.fillHorizontal]
-        $0.backgroundColor = .white
-        $0.isPagingEnabled = true
-    }
+//    let infiniteScrollView1 = NumberInfiniteScrollView().apply {
+//        $0.orientation = .horizontal
+//        $0.layoutSize = CGSize(width: 0, height: dp(150))
+//        $0.layoutGravity = [.fillHorizontal]
+//        $0.backgroundColor = .white
+//        $0.isPagingEnabled = true
+//    }
+//
+//    let infiniteScrollView2 = NumberInfiniteScrollView().apply {
+//        $0.orientation = .vertical
+//        $0.layoutSize = CGSize(width: 0, height: dp(200))
+//        $0.layoutGravity = [.fillHorizontal]
+//        $0.backgroundColor = .white
+//        $0.isPagingEnabled = true
+//    }
 
     private let infiniteScrollView3 = DateInfiniteScrollView().apply {
         $0.orientation = .vertical
-        $0.layoutSize = CGSize(width: 0, height: dp(250))
-        $0.layoutGravity = [.fillHorizontal]
+        $0.layoutGravity = [.fill]
+    }
+
+    private lazy var dateContainer = FrameLayout().apply {
         $0.backgroundColor = .gray
+        $0.marginTop = Dimens.marginMedium
+        $0.layoutSize = CGSize(width: 0, height: dp(250))
+        $0.layoutGravity = .fillHorizontal
+        $0.addSubview(FrameLayout().apply {
+            $0.layoutSize = CGSize(width: 0, height: dp(48))
+            $0.layoutGravity = [.fillHorizontal, .centerVertical]
+            $0.backgroundColor = .purple
+        })
+        $0.addSubview(infiniteScrollView3)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         toolbarTitle = "Infinite Scroll View"
-        contentLinearLayout.addSubview(infiniteScrollView1)
-        contentLinearLayout.addSubview(infiniteScrollView2)
-        contentLinearLayout.addSubview(infiniteScrollView3)
+//        contentLinearLayout.addSubview(infiniteScrollView1)
+//        contentLinearLayout.addSubview(infiniteScrollView2)
+        contentLinearLayout.addSubview(dateContainer)
     }
 }

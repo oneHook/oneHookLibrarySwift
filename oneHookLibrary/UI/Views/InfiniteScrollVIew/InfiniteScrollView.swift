@@ -1,11 +1,6 @@
 import UIKit
 
-open class InfiniteScrollView<T: UIView>: EDScrollView {
-
-    private let spread: CGFloat = 6000
-    private let threshold: CGFloat = 100
-    private var cells = [T]()
-    private var recycledCells = [T]()
+open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
 
     public enum Orientation {
         case vertical, horizontal
@@ -15,6 +10,16 @@ open class InfiniteScrollView<T: UIView>: EDScrollView {
         case before, after, center
     }
 
+    private let spread: CGFloat = 6000
+    private let threshold: CGFloat = 100
+    private(set) var cells = [T]()
+    private var recycledCells = [T]()
+
+    /* For Vertical */
+    public var cellDefaultHeight: CGFloat?
+    public var snapToCenter: Bool = false
+    private var referenceCellCenterY: CGFloat = 0
+
     public var orientation: Orientation = .vertical {
         didSet {
             onOrientationChange()
@@ -23,6 +28,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView {
 
     public override func commonInit() {
         super.commonInit()
+        delegate = self
         onOrientationChange()
     }
 
@@ -39,7 +45,6 @@ open class InfiniteScrollView<T: UIView>: EDScrollView {
             contentOffset = CGPoint(x: 0, y: spread / 2)
         }
         setNeedsLayout()
-
     }
 
     public override func layoutSubviews() {
@@ -142,6 +147,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView {
         )
         var cellX: CGFloat = 0
         var cellWidth: CGFloat = maxWidth
+        let cellHeight = cellDefaultHeight ?? cellSize.height
         if cell.layoutGravity.contains(.start) {
             cellWidth = cellSize.width
         } else if cell.layoutGravity.contains(.end) {
@@ -154,18 +160,18 @@ open class InfiniteScrollView<T: UIView>: EDScrollView {
         var minY = CGFloat(0)
         switch direction {
         case .before:
-            minY = referenceY - cellSize.height
+            minY = referenceY - cellHeight
         case .after:
             minY = referenceY
         case .center:
-            minY = referenceY - cellSize.height / 2
-
+            minY = referenceY - cellHeight / 2
+            referenceCellCenterY = referenceY
         }
         cell.frame = CGRect(
             x: cellX,
             y: minY,
             width: cellWidth,
-            height: cellSize.height
+            height: cellHeight
         )
     }
 
@@ -243,6 +249,9 @@ open class InfiniteScrollView<T: UIView>: EDScrollView {
         } else if contentOffset.y > spread * 2 / 3 {
             offset = spread / 2 - spread * 2 / 3
         }
+        if let cellHeight = cellDefaultHeight {
+            offset = round((offset / cellHeight)) * cellHeight
+        }
         if offset != 0 {
             contentOffset = CGPoint(x: 0, y: contentOffset.y + offset)
             for cell in cells {
@@ -265,6 +274,34 @@ open class InfiniteScrollView<T: UIView>: EDScrollView {
         return T.init().apply {
             $0.layoutSize = CGSize(width: dp(100), height: bounds.height)
             $0.backgroundColor = UIColor.random()
+        }
+    }
+
+    open func scrollViewDidEndInteraction(scrollView: UIScrollView) {
+
+    }
+
+    /* UIScrollViewDelegate */
+
+    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        guard
+            let cellHeight = cellDefaultHeight,
+            snapToCenter else {
+            return
+        }
+        let referenceY = referenceCellCenterY - bounds.height / 2
+        let offset = (targetContentOffset.pointee.y - referenceY) / cellHeight
+        let targetY = referenceY + round(offset) * cellHeight
+        targetContentOffset.pointee = CGPoint(x: 0, y: targetY)
+    }
+
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        scrollViewDidEndInteraction(scrollView: scrollView)
+    }
+
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            scrollViewDidEndInteraction(scrollView: scrollView)
         }
     }
 }

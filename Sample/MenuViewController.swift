@@ -142,8 +142,8 @@ class MenuViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-//        let controller = EGTextFieldDemoViewController()
-//        navigationController?.pushViewController(controller, animated: true)
+        let controller = InfiniteScrollViewDemoViewController()
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
