@@ -74,6 +74,9 @@ class InfiniteScrollViewDemoViewController: BaseScrollableDemoViewController {
         $0.currentNumber = 7
         $0.minNumber = 3
         $0.maxNumber = 15
+        $0.numberSelected = { (number) in
+            print("XXX Hour selected", number)
+        }
     }
 
     private lazy var hourContainer = FrameLayout().apply {
@@ -94,6 +97,10 @@ class InfiniteScrollViewDemoViewController: BaseScrollableDemoViewController {
         $0.layoutGravity = [.fill]
         $0.minNumber = 10
         $0.maxNumber = 30
+        $0.update(animated: false)
+        $0.numberSelected = { (number) in
+            print("XXX minute selected", number)
+        }
     }
 
     private lazy var minuteContainer = FrameLayout().apply {

@@ -29,6 +29,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
     public var orientation: Orientation = .vertical {
         didSet {
             reload()
+            setNeedsLayout()
             layoutIfNeeded()
         }
     }
@@ -54,8 +55,6 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
             contentSize = CGSize(width: 1, height: spread)
             contentOffset = CGPoint(x: 0, y: spread / 2)
         }
-        setNeedsLayout()
-        /* TODO Should we call layout if needed */
     }
 
     public override func layoutSubviews() {

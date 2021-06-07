@@ -34,49 +34,18 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
 
     public var numberLabelHeight = dp(48)
 
-    private var startingNumber: Int
-    private var endingNumber: Int
-    private var step: Int
+    /// Range starts. can be <= minNumber
+    public var startingNumber: Int
 
-    private var _minNumber: Int?
-    public var minNumber: Int? {
-        get {
-            _minNumber
-        }
-        set {
-            if _minNumber != newValue {
-                _minNumber = newValue
-                invalidateCells()
-                makeSureNumberRange(animated: true)
-            }
-        }
-    }
+    /// Rnage ends. can be >= maxNumber
+    public var endingNumber: Int
 
-    private var _maxNumber: Int?
-    public var maxNumber: Int? {
-        get {
-            _maxNumber
-        }
-        set {
-            if _maxNumber != newValue {
-                _maxNumber = newValue
-                invalidateCells()
-                makeSureNumberRange(animated: true)
-            }
-        }
-    }
+    /// Interval between two numbers
+    public var step: Int
 
-    private var _currentNumber: Int?
-    public var currentNumber: Int? {
-        get {
-            _currentNumber
-        }
-        set {
-            _currentNumber = newValue
-            invalidateCells()
-            makeSureNumberRange(animated: true)
-        }
-    }
+    public var minNumber: Int?
+    public var maxNumber: Int?
+    public var currentNumber: Int?
 
     public required init(start: Int, end: Int, step: Int = 1) {
         self.startingNumber = start
@@ -89,32 +58,55 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func setStartingNumber(_ startingNumber: Int, endingNumber: Int, step: Int) -> Bool {
-        guard
-            self.startingNumber != startingNumber ||
-                self.endingNumber != endingNumber ||
-                self.step != step else {
+    private var _currentStartingNumber: Int?
+    private var _currentEndingNumber: Int?
+    private var _currentStep: Int?
+
+    override func reload() {
+        super.reload()
+        _currentStartingNumber = startingNumber
+        _currentEndingNumber = endingNumber
+        _currentStep = step
+    }
+
+    /// Update the whole view based on new properties such as
+    /// starting number/ending number/step/min number/max number/current number
+    /// Returns true if selected number will change, false otherwise
+    @discardableResult
+    public func update(animated: Bool) -> Bool {
+        invalidateCells()
+
+        /* If any of the following attributes are different than current one, we need reload */
+        if _currentStartingNumber != startingNumber ||
+            _currentEndingNumber != endingNumber ||
+            _currentStep != step {
+            let oldNumber = currentNumber
+            if var currentNumber = currentNumber {
+                currentNumber = max(startingNumber, currentNumber)
+                currentNumber = min(endingNumber - step, currentNumber)
+                if let minNumber = minNumber {
+                    currentNumber = max(minNumber, currentNumber)
+                }
+                if let maxNumber = maxNumber {
+                    currentNumber = min(maxNumber, currentNumber)
+                }
+                self.currentNumber = currentNumber
+            }
+            reload()
+            setNeedsLayout()
+            layoutIfNeeded()
+            if oldNumber != currentNumber {
+                currentNumber.map { numberSelected?($0) }
+                return true
+            }
             return false
         }
-        self.startingNumber = startingNumber
-        self.endingNumber = endingNumber
-        self.step = step
-        var currentNumberChanged = false
-        if let currentNumber = _currentNumber {
-            if currentNumber < startingNumber {
-                _currentNumber = startingNumber
-                numberSelected?(startingNumber)
-                currentNumberChanged = true
-            } else if currentNumber >= endingNumber {
-                _currentNumber = endingNumber - self.step
-                numberSelected?(endingNumber - self.step)
-                currentNumberChanged = true
-            }
-        }
-        reload()
-        layoutIfNeeded()
-        print("XXX", startingNumber, endingNumber, currentNumberChanged)
-        return currentNumberChanged
+
+        /* if only update current number/min/max, we can just make sure it scrolls to the
+           right position
+         */
+
+        return makeSureNumberRange(animated: animated)
     }
 
     public override func commonInit() {
@@ -123,12 +115,23 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
         super.commonInit()
     }
 
+    private var bestCenterNumber: Int {
+        var number = currentNumber ?? startingNumber
+        if let minNumber = minNumber {
+            number = max(minNumber, number)
+        }
+        if let maxNumber = maxNumber {
+            number = min(maxNumber, number)
+        }
+        return number
+    }
+
     public override func getCell(direction: InfiniteScrollView<T>.Direction,
                                  referenceCell: T?) -> T {
         var number: Int?
         switch direction {
         case .center:
-            number = _currentNumber ?? startingNumber
+            number = bestCenterNumber
         case .before:
             number = (referenceCell?.number ?? startingNumber) - step
             if (number ?? 0) < startingNumber {
@@ -161,8 +164,9 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
 
     public override func scrollViewDidEndInteraction(_ scrollView: UIScrollView) {
         super.scrollViewDidEndInteraction(scrollView)
+        currentNumber = centerCell?.number
         if !makeSureNumberRange(animated: true) {
-            if let number = centerCell?.number {
+            if let number = currentNumber {
                 numberSelected?(number)
             }
         }
@@ -189,43 +193,24 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
     private func makeSureNumberRange(animated: Bool) -> Bool {
         guard
             !isInterationInProgress,
-            let centerNumber = centerCell?.number else {
+            let centerNumber = centerCell?.number,
+            var currentNumber = currentNumber else {
             return false
         }
-        if
-            let currentNumber = currentNumber,
-            currentNumber != centerNumber {
-//            let offset = centerNumber - currentNumber
-//            setContentOffset(contentOffset.translate(x: 0, y: CGFloat(offset) * numberLabelHeight), animated: animated)
-            print("XXX not at center!!!!!!", currentNumber, centerNumber)
+        if let minNumber = minNumber {
+            currentNumber = max(minNumber, currentNumber)
         }
-        if
-            let minNumber = minNumber,
-            minNumber > centerNumber {
-            let offset = (minNumber - centerNumber) / step
-            setContentOffset(
-                contentOffset.translate(
-                    x: 0,
-                    y: CGFloat(offset) * numberLabelHeight
-                ), animated: animated
-            )
-            _currentNumber = minNumber
-            numberSelected?(minNumber)
-            return true
-        } else if
-            let maxNumber = maxNumber,
-            maxNumber < centerNumber {
-            let offset = (maxNumber - centerNumber) / step
-            setContentOffset(
-                contentOffset.translate(
-                    x: 0,
-                    y: CGFloat(offset) * numberLabelHeight
-                ), animated: animated
-            )
-            _currentNumber = maxNumber
-            numberSelected?(maxNumber)
-            return true
+        if let maxNumber = maxNumber {
+            currentNumber = min(maxNumber, currentNumber)
         }
-        return false
+        if currentNumber != centerNumber {
+            let offset = (currentNumber - centerNumber) / step
+            setContentOffset(contentOffset.translate(x: 0, y: CGFloat(offset) * numberLabelHeight), animated: animated)
+            self.currentNumber = currentNumber
+            numberSelected?(currentNumber)
+            return true
+        } else {
+            return false
+        }
     }
 }

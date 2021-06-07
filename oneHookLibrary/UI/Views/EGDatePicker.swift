@@ -120,26 +120,20 @@ public class EGDatePicker<Year: NumberLabel, Month: NumberLabel, Day: NumberLabe
 
     @objc func onYearSelected(_ year: Int) {
         currentDate.year = year
-        if !dayPicker.setStartingNumber(
-            1,
-            endingNumber: numberOfDayInMonth(currentDate.month, year: currentDate.year) + 1,
-            step: 1
-        ) {
-            dateSelected?(currentDate)
-        }
         makeSureRange()
+        if !monthPicker.update(animated: true) {
+            if !dayPicker.update(animated: true) {
+                dateSelected?(currentDate)
+            }
+        }
     }
 
     @objc func onMonthSelected(_ month: Int) {
         currentDate.month = month
-        if !dayPicker.setStartingNumber(
-            1,
-            endingNumber: numberOfDayInMonth(currentDate.month, year: currentDate.year) + 1,
-            step: 1
-        ) {
+        makeSureRange()
+        if !dayPicker.update(animated: true) {
             dateSelected?(currentDate)
         }
-        makeSureRange()
     }
 
     @objc func onDaySelected(_ day: Int) {
@@ -148,6 +142,7 @@ public class EGDatePicker<Year: NumberLabel, Month: NumberLabel, Day: NumberLabe
     }
 
     private func makeSureRange() {
+        dayPicker.endingNumber = numberOfDayInMonth(currentDate.month, year: currentDate.year) + 1
         if let minDate = minDate {
             yearPicker.minNumber = minDate.year
             if currentDate.year == minDate.year {
@@ -159,13 +154,14 @@ public class EGDatePicker<Year: NumberLabel, Month: NumberLabel, Day: NumberLabe
                 }
             } else {
                 monthPicker.minNumber = nil
-                dayPicker.maxNumber = nil
+                dayPicker.minNumber = nil
             }
         } else {
             yearPicker.minNumber = nil
-            monthPicker.maxNumber = nil
-            dayPicker.maxNumber = nil
+            monthPicker.minNumber = nil
+            dayPicker.minNumber = nil
         }
+
         if let maxDate = maxDate {
             yearPicker.maxNumber = maxDate.year
             if currentDate.year == maxDate.year {
