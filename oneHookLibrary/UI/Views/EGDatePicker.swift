@@ -172,7 +172,7 @@ public class EGDatePicker<Year: NumberLabel, Month: NumberLabel, Day: NumberLabe
 
         if let previous = picker.cells[safe: index - 1] {
             let cellFrame = picker.convert(previous.frame, to: centerBar)
-            let isSelectable = yearPicker.isNumberSelectable(previous.number)
+            let isSelectable = picker.isNumberSelectable(previous.number)
             cells[1].bind(number: previous.number, style: isSelectable ? .highlight : .notSelectable)
             cells[1].frame = cellFrame
         } else {

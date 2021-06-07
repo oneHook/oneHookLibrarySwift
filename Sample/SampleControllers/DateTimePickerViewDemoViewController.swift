@@ -68,9 +68,23 @@ class DateTimePickerViewDemoViewController: BaseScrollableDemoViewController {
         }
     }
 
+    private let durationPicker = EGDurationPicker<MyNumberLabel, MyNumberLabel>(
+        hour: 0,
+        minute: 0
+    ).apply {
+        $0.backgroundColor = UIColor(white: 0, alpha: 0.1)
+        $0.marginTop = Dimens.marginMedium
+        $0.layoutSize = CGSize(width: 0, height: dp(250))
+        $0.layoutGravity = .fillHorizontal
+        $0.durationSelected = { (duration) in
+            print("XXX duration selected", duration)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         toolbarTitle = "Date/Time Picker View"
         contentLinearLayout.addSubview(datePicker)
+        contentLinearLayout.addSubview(durationPicker)
     }
 }
