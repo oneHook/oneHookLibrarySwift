@@ -33,7 +33,7 @@ class MyMonthLabel: NumberLabel {
         self.number = number
         backgroundColor = .clear
         padding = Dimens.marginMedium
-        textAlignment = .center
+        textAlignment = .left
         font = Self.numberLabelFont
         if style == .selectable {
             textColor = Self.numberLabelColorNormal

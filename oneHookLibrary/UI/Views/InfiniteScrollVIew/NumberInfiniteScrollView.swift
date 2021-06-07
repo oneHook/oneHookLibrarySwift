@@ -162,6 +162,10 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
         }
     }
 
+    public override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("XXX", scrollView)
+    }
+
     public override func scrollViewDidEndInteraction(_ scrollView: UIScrollView) {
         super.scrollViewDidEndInteraction(scrollView)
         currentNumber = centerCell?.number

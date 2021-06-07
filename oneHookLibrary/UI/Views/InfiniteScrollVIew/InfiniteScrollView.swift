@@ -318,7 +318,10 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
     }
 
     open func dequeueCell() -> T {
-        recycledCells.isEmpty ? T() : recycledCells.removeLast()
+        recycledCells.isEmpty ? T().apply {
+            $0.isUserInteractionEnabled = true
+            $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cellTapped(tapRec:))))
+        } : recycledCells.removeLast()
     }
 
     open func destroyCell(_ cell: T) {
@@ -335,13 +338,33 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
         })
     }
 
+    @objc private func cellTapped(tapRec: UITapGestureRecognizer) {
+        guard
+            let cell = tapRec.view as? T,
+            snapToCenter else {
+            return
+        }
+        isInterationInProgress = true
+        var targetOffset: CGPoint = .zero
+        if orientation == .horizontal {
+            targetOffset.x = cell.center.x - bounds.width / 2
+        } else {
+            targetOffset.y = cell.center.y - bounds.height / 2
+        }
+        UIView.animate(
+            withDuration: .defaultAnimationSmall,
+            animations: {
+                self.setContentOffset(targetOffset, animated: false)
+            },
+            completion: { (_) in
+                self.scrollViewDidEndInteraction(self)
+            })
+    }
+
     /* Child should override */
 
     open func getCell(direction: Direction, referenceCell: T?) -> T {
-        return T.init().apply {
-            $0.layoutSize = CGSize(width: dp(100), height: bounds.height)
-            $0.backgroundColor = UIColor.random()
-        }
+        fatalError()
     }
 
     open func scrollViewDidEndInteraction(_ scrollView: UIScrollView) {
@@ -349,6 +372,10 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
     }
 
     /* UIScrollViewDelegate */
+
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+    }
 
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         isInterationInProgress = true

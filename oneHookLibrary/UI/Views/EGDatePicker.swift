@@ -44,7 +44,7 @@ public class EGDatePicker<Year: NumberLabel, Month: NumberLabel, Day: NumberLabe
         }
     }
 
-    public let centerBar = FrameLayout().apply {
+    public let centerBar = BaseView().apply {
         $0.backgroundColor = .purple
         $0.layoutSize = CGSize(width: 0, height: dp(48))
         $0.shouldSkip = true
