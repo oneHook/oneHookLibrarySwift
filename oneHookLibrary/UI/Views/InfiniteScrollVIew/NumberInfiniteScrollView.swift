@@ -44,9 +44,11 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
             _minNumber
         }
         set {
-            _minNumber = newValue
-            invalidateCells()
-            makeSureNumberRange(animated: true)
+            if _minNumber != newValue {
+                _minNumber = newValue
+                invalidateCells()
+                makeSureNumberRange(animated: true)
+            }
         }
     }
 
@@ -56,9 +58,11 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
             _maxNumber
         }
         set {
-            _maxNumber = newValue
-            invalidateCells()
-            makeSureNumberRange(animated: true)
+            if _maxNumber != newValue {
+                _maxNumber = newValue
+                invalidateCells()
+                makeSureNumberRange(animated: true)
+            }
         }
     }
 
@@ -109,6 +113,7 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
         }
         reload()
         layoutIfNeeded()
+        print("XXX", startingNumber, endingNumber, currentNumberChanged)
         return currentNumberChanged
     }
 
@@ -156,13 +161,10 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
 
     public override func scrollViewDidEndInteraction(_ scrollView: UIScrollView) {
         super.scrollViewDidEndInteraction(scrollView)
-        makeSureNumberRange(animated: true)
-    }
-
-    public override func scrollViewDidStopAtCenterCell(_ scrollView: UIScrollView, centerCell: T) {
-        _currentNumber = centerCell.number
-        if let number = centerCell.number {
-            numberSelected?(number)
+        if !makeSureNumberRange(animated: true) {
+            if let number = centerCell?.number {
+                numberSelected?(number)
+            }
         }
     }
 
@@ -184,30 +186,46 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
         }
     }
 
-    private func makeSureNumberRange(animated: Bool) {
+    private func makeSureNumberRange(animated: Bool) -> Bool {
         guard
             !isInterationInProgress,
             let centerNumber = centerCell?.number else {
-            return
+            return false
         }
-
         if
             let currentNumber = currentNumber,
             currentNumber != centerNumber {
-            let offset = centerNumber - currentNumber
-            setContentOffset(contentOffset.translate(x: 0, y: CGFloat(offset) * numberLabelHeight), animated: animated)
-        } else if
+//            let offset = centerNumber - currentNumber
+//            setContentOffset(contentOffset.translate(x: 0, y: CGFloat(offset) * numberLabelHeight), animated: animated)
+            print("XXX not at center!!!!!!", currentNumber, centerNumber)
+        }
+        if
             let minNumber = minNumber,
             minNumber > centerNumber {
-            let offset = centerNumber - minNumber
-            setContentOffset(contentOffset.translate(x: 0, y: CGFloat(offset) * numberLabelHeight), animated: animated)
+            let offset = (minNumber - centerNumber) / step
+            setContentOffset(
+                contentOffset.translate(
+                    x: 0,
+                    y: CGFloat(offset) * numberLabelHeight
+                ), animated: animated
+            )
             _currentNumber = minNumber
+            numberSelected?(minNumber)
+            return true
         } else if
             let maxNumber = maxNumber,
             maxNumber < centerNumber {
-            let offset = centerNumber - maxNumber
-            setContentOffset(contentOffset.translate(x: 0, y: CGFloat(offset) * numberLabelHeight), animated: animated)
+            let offset = (maxNumber - centerNumber) / step
+            setContentOffset(
+                contentOffset.translate(
+                    x: 0,
+                    y: CGFloat(offset) * numberLabelHeight
+                ), animated: animated
+            )
             _currentNumber = maxNumber
+            numberSelected?(maxNumber)
+            return true
         }
+        return false
     }
 }

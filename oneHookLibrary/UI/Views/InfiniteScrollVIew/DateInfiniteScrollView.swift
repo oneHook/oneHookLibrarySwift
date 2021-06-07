@@ -98,12 +98,12 @@ public class DateInfiniteScrollView: InfiniteScrollView<DateLabel> {
         makeSureDateRange(animated: true)
     }
 
-    public override func scrollViewDidStopAtCenterCell(_ scrollView: UIScrollView, centerCell: DateLabel) {
-        _currentDate = centerCell.date
-        if let date = centerCell.date {
-            dateSelected?(date)
-        }
-    }
+//    public override func scrollViewDidStopAtCenterCell(_ scrollView: UIScrollView, centerCell: DateLabel) {
+//        _currentDate = centerCell.date
+//        if let date = centerCell.date {
+//            dateSelected?(date)
+//        }
+//    }
 
     private func invalidateCells() {
         for cell in cells {

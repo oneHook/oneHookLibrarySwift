@@ -298,13 +298,6 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
 
     open func scrollViewDidEndInteraction(_ scrollView: UIScrollView) {
         isInterationInProgress = false
-        if let centerCell = centerCell {
-            scrollViewDidStopAtCenterCell(scrollView, centerCell: centerCell)
-        }
-    }
-
-    open func scrollViewDidStopAtCenterCell(_ scrollView: UIScrollView, centerCell: T) {
-
     }
 
     /* UIScrollViewDelegate */

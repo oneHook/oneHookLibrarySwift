@@ -6,9 +6,15 @@ public class EGDatePicker<Year: NumberLabel, Month: NumberLabel, Day: NumberLabe
         var year: Int
         var month: Int
         var day: Int
+
+        public init(year: Int, month: Int, day: Int) {
+            self.year = year
+            self.month = month
+            self.day = day
+        }
     }
 
-    private lazy var yearScrollView = NumberInfiniteScrollView<Year>(start: 1900, end: 2100).apply {
+    private lazy var yearPicker = NumberInfiniteScrollView<Year>(start: 1900, end: 2100).apply {
         $0.orientation = .vertical
         $0.layoutWeight = 1
         $0.currentNumber = currentDate.year
@@ -44,7 +50,19 @@ public class EGDatePicker<Year: NumberLabel, Month: NumberLabel, Day: NumberLabe
         $0.shouldSkip = true
     }
 
+    public var minDate: Date? {
+        didSet {
+            makeSureRange()
+        }
+    }
     public var currentDate: Date
+    public var maxDate: Date? {
+        didSet {
+            makeSureRange()
+        }
+    }
+
+    public var dateSelected: ((Date) -> Void)?
 
     public required init(year: Int, month: Int, day: Int) {
         currentDate = .init(year: year, month: month, day: day)
@@ -57,10 +75,10 @@ public class EGDatePicker<Year: NumberLabel, Month: NumberLabel, Day: NumberLabe
 
     public override func commonInit() {
         super.commonInit()
-        backgroundColor = .blue
+        backgroundColor = .clear
         orientation = .horizontal
         addSubview(centerBar)
-        addSubview(yearScrollView)
+        addSubview(yearPicker)
         addSubview(monthPicker)
         addSubview(dayPicker)
     }
@@ -101,32 +119,70 @@ public class EGDatePicker<Year: NumberLabel, Month: NumberLabel, Day: NumberLabe
     }
 
     @objc func onYearSelected(_ year: Int) {
-        print("XXX on year changed", year)
         currentDate.year = year
         if !dayPicker.setStartingNumber(
             1,
             endingNumber: numberOfDayInMonth(currentDate.month, year: currentDate.year) + 1,
             step: 1
         ) {
-            print("XXX new date", currentDate)
+            dateSelected?(currentDate)
         }
+        makeSureRange()
     }
 
     @objc func onMonthSelected(_ month: Int) {
-        print("XXX on month changed", month)
         currentDate.month = month
         if !dayPicker.setStartingNumber(
             1,
             endingNumber: numberOfDayInMonth(currentDate.month, year: currentDate.year) + 1,
             step: 1
         ) {
-            print("XXX new date", currentDate)
+            dateSelected?(currentDate)
         }
+        makeSureRange()
     }
 
     @objc func onDaySelected(_ day: Int) {
-        print("XXX on day changed", day)
         currentDate.day = day
-        print("XXX new date", currentDate)
+        dateSelected?(currentDate)
+    }
+
+    private func makeSureRange() {
+        if let minDate = minDate {
+            yearPicker.minNumber = minDate.year
+            if currentDate.year == minDate.year {
+                monthPicker.minNumber = minDate.month
+                if currentDate.month == minDate.month {
+                    dayPicker.minNumber = minDate.day
+                } else {
+                    dayPicker.minNumber = nil
+                }
+            } else {
+                monthPicker.minNumber = nil
+                dayPicker.maxNumber = nil
+            }
+        } else {
+            yearPicker.minNumber = nil
+            monthPicker.maxNumber = nil
+            dayPicker.maxNumber = nil
+        }
+        if let maxDate = maxDate {
+            yearPicker.maxNumber = maxDate.year
+            if currentDate.year == maxDate.year {
+                monthPicker.maxNumber = maxDate.month
+                if currentDate.month == maxDate.month {
+                    dayPicker.maxNumber = maxDate.day
+                } else {
+                    dayPicker.maxNumber = nil
+                }
+            } else {
+                monthPicker.maxNumber = nil
+                dayPicker.maxNumber = nil
+            }
+        } else {
+            yearPicker.maxNumber = nil
+            monthPicker.maxNumber = nil
+            dayPicker.maxNumber = nil
+        }
     }
 }
