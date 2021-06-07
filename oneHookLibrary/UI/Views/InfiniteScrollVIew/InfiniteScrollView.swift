@@ -16,9 +16,14 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
     private var recycledCells = [T]()
     private(set) var isInterationInProgress: Bool = false
 
+    public var snapToCenter: Bool = false
+
+    /* For Horizontal */
+    public var cellDefaultWidth: CGFloat?
+    private var referenceCellCenterX: CGFloat = 0
+
     /* For Vertical */
     public var cellDefaultHeight: CGFloat?
-    public var snapToCenter: Bool = false
     private var referenceCellCenterY: CGFloat = 0
 
     public var orientation: Orientation = .vertical {
@@ -50,6 +55,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
             contentOffset = CGPoint(x: 0, y: spread / 2)
         }
         setNeedsLayout()
+        /* TODO Should we call layout if needed */
     }
 
     public override func layoutSubviews() {
@@ -65,6 +71,45 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
         }
     }
 
+    private func layoutCellHorizontally(
+        cell: UIView,
+        maxHeight: CGFloat,
+        referenceX: CGFloat,
+        direction: Direction
+    ) {
+        let cellSize = cell.sizeThatFits(
+            CGSize(width: CGFloat.greatestFiniteMagnitude, height: maxHeight)
+        )
+        var cellY: CGFloat = 0
+        let cellWidth = cellDefaultWidth ?? cellSize.width
+        var cellHeight = maxHeight
+        if cell.layoutGravity.contains(.top) {
+            cellHeight = cellSize.height
+        } else if cell.layoutGravity.contains(.bottom) {
+            cellHeight = cellSize.height
+            cellY = bounds.height - cellHeight
+        } else if cell.layoutGravity.contains(.centerVertical) {
+            cellHeight = cellSize.height
+            cellY = (bounds.height - cellHeight) / 2
+        }
+        var minX = CGFloat(0)
+        switch direction {
+        case .before:
+            minX = referenceX - cellWidth
+        case .after:
+            minX = referenceX
+        case .center:
+            minX = referenceX - cellWidth / 2
+            referenceCellCenterX = referenceX
+        }
+        cell.frame = CGRect(
+            x: minX,
+            y:  cellY,
+            width: cellWidth,
+            height: cellHeight
+        )
+    }
+
     private func fillContentHorizontal() {
         let maxHeight = bounds.height - paddingTop - paddingBottom
 
@@ -73,9 +118,12 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
         if cells.isEmpty {
             cells.append(getCell(direction: .center, referenceCell: nil).apply {
                 addSubview($0)
-                let cellSize = $0.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: maxHeight))
-                $0.bounds = CGRect(origin: .zero, size: cellSize)
-                $0.center = CGPoint(x: contentOffset.x + bounds.width / 2, y: bounds.height / 2)
+                layoutCellHorizontally(
+                    cell: $0,
+                    maxHeight: maxHeight,
+                    referenceX: contentOffset.x + bounds.width / 2,
+                    direction: .center
+                )
             })
             leftMostView = cells[0]
             rightMostView = leftMostView
@@ -97,13 +145,12 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
         while leftMostView.frame.minX > leftEdge {
             cells.insert(getCell(direction: .before, referenceCell: leftMostView).apply {
                 addSubview($0)
-                let cellSize = $0.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: maxHeight))
-                $0.frame = CGRect(
-                    x: leftMostView.frame.minX - cellSize.width,
-                    y: (bounds.height - cellSize.height) / 2,
-                    width: cellSize.width,
-                    height: cellSize.height
-                    )
+                layoutCellHorizontally(
+                    cell: $0,
+                    maxHeight: maxHeight,
+                    referenceX: leftMostView.frame.minX,
+                    direction: .center
+                )
                 leftMostView = $0
             }, at: 0)
         }
@@ -119,13 +166,12 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
         while rightMostView.frame.minX < rightEdge {
             cells.append(getCell(direction: .after, referenceCell: rightMostView).apply {
                 addSubview($0)
-                let cellSize = $0.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: maxHeight))
-                $0.frame = CGRect(
-                    x: rightMostView.frame.maxX,
-                    y: (bounds.height - cellSize.height) / 2,
-                    width: cellSize.width,
-                    height: cellSize.height
-                    )
+                layoutCellHorizontally(
+                    cell: $0,
+                    maxHeight: maxHeight,
+                    referenceX: rightMostView.frame.maxX,
+                    direction: .center
+                )
                 rightMostView = $0
             })
         }
@@ -136,6 +182,9 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
             offset = spread / 2 - spread / 3
         } else if contentOffset.x > spread * 2 / 3 {
             offset = spread / 2 - spread * 2 / 3
+        }
+        if let cellWidth = cellDefaultWidth {
+            offset = round(offset / cellWidth) * cellWidth
         }
         if offset != 0 {
             contentOffset = CGPoint(x: contentOffset.x + offset, y: 0)
@@ -259,7 +308,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
             offset = spread / 2 - spread * 2 / 3
         }
         if let cellHeight = cellDefaultHeight {
-            offset = round((offset / cellHeight)) * cellHeight
+            offset = round(offset / cellHeight) * cellHeight
         }
         if offset != 0 {
             contentOffset = CGPoint(x: 0, y: contentOffset.y + offset)
