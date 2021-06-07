@@ -369,6 +369,9 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
 
     open func scrollViewDidEndInteraction(_ scrollView: UIScrollView) {
         isInterationInProgress = false
+        for cell in cells {
+            cell.isUserInteractionEnabled = true
+        }
     }
 
     /* UIScrollViewDelegate */
@@ -379,10 +382,16 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
 
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         isInterationInProgress = true
+        for cell in cells {
+            cell.isUserInteractionEnabled = false
+        }
     }
 
     public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         isInterationInProgress = true
+        for cell in cells {
+            cell.isUserInteractionEnabled = false
+        }
     }
 
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {

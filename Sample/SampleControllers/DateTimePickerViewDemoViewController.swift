@@ -13,10 +13,13 @@ class MyNumberLabel: NumberLabel {
         padding = Dimens.marginMedium
         textAlignment = .center
         font = Self.numberLabelFont
-        if style == .selectable {
+        switch style {
+        case .selectable:
             textColor = Self.numberLabelColorNormal
-        } else {
+        case .notSelectable:
             textColor = Self.numberLabelColorDisabled
+        case .highlight:
+            textColor = .yellow
         }
         text = String(number ?? 0)
     }
@@ -35,10 +38,13 @@ class MyMonthLabel: NumberLabel {
         padding = Dimens.marginMedium
         textAlignment = .left
         font = Self.numberLabelFont
-        if style == .selectable {
+        switch style {
+        case .selectable:
             textColor = Self.numberLabelColorNormal
-        } else {
+        case .notSelectable:
             textColor = Self.numberLabelColorDisabled
+        case .highlight:
+            textColor = .yellow
         }
         text = Self.formatter.monthSymbols[safe: (number ?? 1) - 1] ?? "" + String(number ?? 0)
     }
@@ -51,6 +57,7 @@ class DateTimePickerViewDemoViewController: BaseScrollableDemoViewController {
         month: 5,
         day: 15
     ).apply {
+        $0.backgroundColor = UIColor(white: 0, alpha: 0.1)
         $0.marginTop = Dimens.marginMedium
         $0.layoutSize = CGSize(width: 0, height: dp(250))
         $0.layoutGravity = .fillHorizontal

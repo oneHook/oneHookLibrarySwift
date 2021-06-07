@@ -4,11 +4,13 @@ open class NumberLabel: EDLabel {
 
     private static let numberLabelFont = Fonts.regular(Fonts.fontSizeXLarge)
     private static let numberLabelColorNormal: UIColor = .black
-    private static let  numberLabelColorDisabled: UIColor = .lightGray
+    private static let numberLabelColorDisabled: UIColor = .lightGray
+    private static let numberLabelColorHighlight: UIColor = .yellow
 
     public enum Style {
         case selectable
         case notSelectable
+        case highlight
     }
 
     public var number: Int?
@@ -21,8 +23,10 @@ open class NumberLabel: EDLabel {
         font = Self.numberLabelFont
         if style == .selectable {
             textColor = Self.numberLabelColorNormal
-        } else {
+        } else if style == .notSelectable {
             textColor = Self.numberLabelColorDisabled
+        } else {
+            textColor = Self.numberLabelColorHighlight
         }
         text = String(number ?? 0)
     }
@@ -31,6 +35,7 @@ open class NumberLabel: EDLabel {
 public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
 
     public var numberSelected: ((Int) -> Void)?
+    public var didScroll: (() -> Void)?
 
     public var numberLabelHeight = dp(48)
 
@@ -126,6 +131,21 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
         return number
     }
 
+    public func isNumberSelectable(_ number: Int?) -> Bool {
+        if
+            let minNumber = minNumber,
+            let number = number,
+            number < minNumber {
+            return false
+        } else if
+            let maxNumber = maxNumber,
+            let number = number,
+            number > maxNumber {
+            return false
+        }
+        return true
+    }
+
     public override func getCell(direction: InfiniteScrollView<T>.Direction,
                                  referenceCell: T?) -> T {
         var number: Int?
@@ -147,15 +167,7 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
             $0.layoutSize = CGSize(width: 0, height: numberLabelHeight)
             $0.layoutGravity = .fillHorizontal
             var style = NumberLabel.Style.selectable
-            if
-                let minNumber = minNumber,
-                let number = number,
-                number < minNumber {
-                style = .notSelectable
-            } else if
-                let maxNumber = maxNumber,
-                let number = number,
-                number > maxNumber {
+            if !isNumberSelectable(number) {
                 style = .notSelectable
             }
             $0.bind(number: number, style: style)
@@ -163,7 +175,7 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
     }
 
     public override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("XXX", scrollView)
+        didScroll?()
     }
 
     public override func scrollViewDidEndInteraction(_ scrollView: UIScrollView) {
