@@ -51,7 +51,7 @@ public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: L
         }
     }
 
-    private lazy var minutePicker = NumberInfiniteScrollView<MinuteCell>(start: 0, end: 60, step: 5).apply {
+    private lazy var minutePicker = NumberInfiniteScrollView<MinuteCell>(start: 0, end: 60, step: step).apply {
         $0.orientation = .vertical
         $0.layoutGravity = [.fillVertical]
         $0.layoutWeight = 1
@@ -85,10 +85,12 @@ public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: L
         $0.text = "Min"
     }
 
+    private let step: Int
     public var currentDuration: Duration
     public var durationSelected: ((Duration) -> Void)?
 
-    public required init(hour: Int, minute: Int) {
+    public required init(hour: Int, minute: Int, step: Int = 1) {
+        self.step = step
         currentDuration = .init(hour: hour, minute: minute)
         super.init(frame: .zero)
     }

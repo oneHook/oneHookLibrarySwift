@@ -38,7 +38,8 @@ class DateTimePickerViewDemoViewController: BaseScrollableDemoViewController {
 
     private let durationPicker = EGDurationPicker<MyNumberLabel, MyNumberLabel>(
         hour: 0,
-        minute: 0
+        minute: 0,
+        step: 5
     ).apply {
         $0.backgroundColor = UIColor(white: 0, alpha: 0.1)
         $0.marginTop = Dimens.marginMedium
