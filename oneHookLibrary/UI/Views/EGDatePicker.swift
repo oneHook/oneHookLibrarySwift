@@ -84,7 +84,7 @@ public class EGDatePicker<YearCell: NumberLabel, MonthCell: NumberLabel, DayCell
         }
     }
 
-    private lazy var centerBar = BaseView().apply {
+    public lazy var centerBar = BaseView().apply {
         $0.backgroundColor = highlightBackgroundColor
         $0.layoutSize = CGSize(width: 0, height: cellHeight)
         $0.shouldSkip = true

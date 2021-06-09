@@ -50,11 +50,27 @@ class DateTimePickerViewDemoViewController: BaseScrollableDemoViewController {
         }
     }
 
+    private let timePicker = EGTimePicker<MyNumberLabel, MyNumberLabel>(
+        hour: 2,
+        minute: 30,
+        isAm: true,
+        step: 5
+    ).apply {
+        $0.backgroundColor = UIColor(white: 0, alpha: 0.1)
+        $0.marginTop = Dimens.marginMedium
+        $0.layoutSize = CGSize(width: 0, height: dp(250))
+        $0.layoutGravity = .fillHorizontal
+        $0.timeSelected = { (time) in
+            print("XXX time selected", time)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         toolbarTitle = "Date/Time Picker View"
         contentLinearLayout.addSubview(datePicker)
         contentLinearLayout.addSubview(durationPicker)
+        contentLinearLayout.addSubview(timePicker)
         contentLinearLayout.addSubview(SolidButton().apply {
             $0.padding = Dimens.marginMedium
             $0.layoutGravity = .centerHorizontal

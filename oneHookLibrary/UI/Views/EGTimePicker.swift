@@ -1,14 +1,16 @@
 import UIKit
 
-public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: LinearLayout {
+public class EGTimePicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: LinearLayout {
 
-    public struct Duration {
+    public struct Time {
         var hour: Int
         var minute: Int
+        var isAm: Bool
 
-        public init(hour: Int, minute: Int) {
+        public init(hour: Int, minute: Int, isAm: Bool) {
             self.hour = hour
             self.minute = minute
+            self.isAm = isAm
         }
     }
 
@@ -19,11 +21,13 @@ public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: L
             minutePicker.numberLabelHeight = cellHeight
         }
     }
+
     public var highlightBackgroundColor = UIColor.ed_toolbarTextColor {
         didSet {
             centerBar.backgroundColor = highlightBackgroundColor
         }
     }
+
     public var highlightTextColor = UIColor.ed_toolbarBackgroundColor {
         didSet {
             for cell in hourHighlightCells {
@@ -41,7 +45,7 @@ public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: L
     private lazy var hourPicker = NumberInfiniteScrollView<HourCell>(start: 0, end: 24).apply {
         $0.orientation = .vertical
         $0.layoutWeight = 1
-        $0.currentNumber = currentDuration.hour
+        $0.currentNumber = currentTime.hour
         $0.layoutGravity = [.fillVertical]
         $0.numberSelected = { [weak self] (hour) in
             self?.onHourSelected(hour)
@@ -55,7 +59,7 @@ public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: L
         $0.orientation = .vertical
         $0.layoutGravity = [.fillVertical]
         $0.layoutWeight = 1
-        $0.currentNumber = currentDuration.minute
+        $0.currentNumber = currentTime.minute
         $0.numberSelected = { [weak self] (minute) in
             self?.onMinuteSelected(minute)
         }
@@ -72,31 +76,18 @@ public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: L
         $0.isUserInteractionEnabled = false
     }
 
-    public let hourLabel = EDLabel().apply {
-        $0.textAlignment = .center
-        $0.font = Fonts.regular(Fonts.fontSizeXLarge)
-        $0.textColor = .white
-        $0.text = "Hours"
-    }
-    public let minuteLabel = EDLabel().apply {
-        $0.textAlignment = .center
-        $0.font = Fonts.regular(Fonts.fontSizeXLarge)
-        $0.textColor = .white
-        $0.text = "Min"
-    }
-
     private let step: Int
-    public var currentDuration: Duration {
+    public var currentTime: Time {
         didSet {
-            hourPicker.setNumber(currentDuration.hour, animated: true)
-            minutePicker.setNumber(currentDuration.minute, animated: true)
+            hourPicker.setNumber(currentTime.hour, animated: true)
+            minutePicker.setNumber(currentTime.minute, animated: true)
         }
     }
-    public var durationSelected: ((Duration) -> Void)?
+    public var timeSelected: ((Time) -> Void)?
 
-    public required init(hour: Int, minute: Int, step: Int = 1) {
+    public required init(hour: Int, minute: Int, isAm: Bool, step: Int = 1) {
         self.step = step
-        currentDuration = .init(hour: hour, minute: minute)
+        currentTime = .init(hour: hour, minute: minute, isAm: isAm)
         super.init(frame: .zero)
     }
 
@@ -116,10 +107,7 @@ public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: L
         addSubview(BaseView().apply {
             $0.layoutWeight = 1
         })
-        addSubview(centerBar.apply {
-            $0.addSubview(hourLabel)
-            $0.addSubview(minuteLabel)
-        })
+        addSubview(centerBar)
     }
 
     public override func layoutSubviews() {
@@ -141,21 +129,9 @@ public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: L
 
     private func hourScrolled() {
         pickerScrolled(picker: hourPicker, cells: &hourHighlightCells)
-        hourLabel.frame = CGRect(
-            x: hourPicker.frame.maxX,
-            y: 0,
-            width: hourPicker.frame.width,
-            height: centerBar.frame.height
-        )
     }
     private func minuteScrolled() {
         pickerScrolled(picker: minutePicker, cells: &minuteHighlightCells)
-        minuteLabel.frame = CGRect(
-            x: minutePicker.frame.maxX,
-            y: 0,
-            width: minutePicker.frame.width,
-            height: centerBar.frame.height
-        )
     }
 
     func pickerScrolled<T: NumberLabel>(picker: NumberInfiniteScrollView<T>, cells: inout [T]) {
@@ -206,18 +182,18 @@ public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: L
     }
 
     @objc func onHourSelected(_ hour: Int) {
-        guard currentDuration.hour != hour else {
+        guard currentTime.hour != hour else {
             return
         }
-        currentDuration.hour = hour
-        durationSelected?(currentDuration)
+        currentTime.hour = hour
+        timeSelected?(currentTime)
     }
 
     @objc func onMinuteSelected(_ minute: Int) {
-        guard currentDuration.minute != minute else {
+        guard currentTime.minute != minute else {
             return
         }
-        currentDuration.minute = minute
-        durationSelected?(currentDuration)
+        currentTime.minute = minute
+        timeSelected?(currentTime)
     }
 }

@@ -156,6 +156,7 @@
 		D3DAB23A25AE01E8003748BA /* DateTimePickerViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAB23625AE01B9003748BA /* DateTimePickerViewDemoViewController.swift */; };
 		D3FC0CFB266854B40089623D /* EDPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FC0CFA266854B40089623D /* EDPageControl.swift */; };
 		E32DFEB92635C86400A88C12 /* EGTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32DFEB72635C86400A88C12 /* EGTextView.swift */; };
+		E39BAC8D26714E930064EE6B /* EGTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39BAC8C26714E930064EE6B /* EGTimePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -347,6 +348,7 @@
 		D3DAB23625AE01B9003748BA /* DateTimePickerViewDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickerViewDemoViewController.swift; sourceTree = "<group>"; };
 		D3FC0CFA266854B40089623D /* EDPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDPageControl.swift; sourceTree = "<group>"; };
 		E32DFEB72635C86400A88C12 /* EGTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EGTextView.swift; sourceTree = "<group>"; };
+		E39BAC8C26714E930064EE6B /* EGTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EGTimePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -550,6 +552,7 @@
 				D3673ED525DB79BF00A3ABF9 /* EGSegmentedControl.swift */,
 				D398CE19266D2DCF008E86AF /* EGDatePicker.swift */,
 				D398CE1B266E93E3008E86AF /* EGDurationPicker.swift */,
+				E39BAC8C26714E930064EE6B /* EGTimePicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1010,6 +1013,7 @@
 				D3A0F76D259ABE9C008B2D36 /* TagLabel.swift in Sources */,
 				D3A0F753259ABE7D008B2D36 /* SheetTransitionAnimation.swift in Sources */,
 				D3A0F85C259AD40C008B2D36 /* BaseView.swift in Sources */,
+				E39BAC8D26714E930064EE6B /* EGTimePicker.swift in Sources */,
 				D3A0F7FB259ACBA8008B2D36 /* LocalizationManager.swift in Sources */,
 				D3A0F798259ABEB5008B2D36 /* String+Extensions.swift in Sources */,
 				D3A0F788259ABEB5008B2D36 /* DiskCache.swift in Sources */,
