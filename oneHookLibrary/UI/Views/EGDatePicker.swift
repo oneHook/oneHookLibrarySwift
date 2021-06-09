@@ -97,7 +97,13 @@ public class EGDatePicker<YearCell: NumberLabel, MonthCell: NumberLabel, DayCell
             makeSureRange()
         }
     }
-    public var currentDate: Date
+    public var currentDate: Date {
+        didSet {
+            yearPicker.setNumber(currentDate.year, animated: true)
+            monthPicker.setNumber(currentDate.month, animated: true)
+            dayPicker.setNumber(currentDate.day, animated: true)
+        }
+    }
     public var maxDate: Date? {
         didSet {
             makeSureRange()
@@ -226,6 +232,9 @@ public class EGDatePicker<YearCell: NumberLabel, MonthCell: NumberLabel, DayCell
     }
 
     @objc func onYearSelected(_ year: Int) {
+        guard currentDate.year != year else {
+            return
+        }
         currentDate.year = year
         makeSureRange()
         if !monthPicker.update(animated: true) {
@@ -238,6 +247,9 @@ public class EGDatePicker<YearCell: NumberLabel, MonthCell: NumberLabel, DayCell
     }
 
     @objc func onMonthSelected(_ month: Int) {
+        guard currentDate.month != month else {
+            return
+        }
         currentDate.month = month
         makeSureRange()
         if !dayPicker.update(animated: true) {
@@ -248,6 +260,9 @@ public class EGDatePicker<YearCell: NumberLabel, MonthCell: NumberLabel, DayCell
     }
 
     @objc func onDaySelected(_ day: Int) {
+        guard currentDate.day != day else {
+            return
+        }
         currentDate.day = day
         dateSelected?(currentDate)
         dayScrolled()

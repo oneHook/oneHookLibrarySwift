@@ -55,5 +55,18 @@ class DateTimePickerViewDemoViewController: BaseScrollableDemoViewController {
         toolbarTitle = "Date/Time Picker View"
         contentLinearLayout.addSubview(datePicker)
         contentLinearLayout.addSubview(durationPicker)
+        contentLinearLayout.addSubview(SolidButton().apply {
+            $0.padding = Dimens.marginMedium
+            $0.layoutGravity = .centerHorizontal
+            $0.margin = Dimens.marginMedium
+            $0.setBackgroundColor(.red, for: .normal)
+            $0.setTitle("Go To", for: .normal)
+            $0.addTarget(self, action: #selector(debugButtonPressed), for: .touchUpInside)
+        })
+    }
+
+    @objc private func debugButtonPressed() {
+        datePicker.currentDate = EGDatePicker.Date(year: 2019, month: 2, day: 17)
+        durationPicker.currentDuration = EGDurationPicker.Duration(hour: 2, minute: 50)
     }
 }

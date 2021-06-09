@@ -86,7 +86,12 @@ public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: L
     }
 
     private let step: Int
-    public var currentDuration: Duration
+    public var currentDuration: Duration {
+        didSet {
+            hourPicker.setNumber(currentDuration.hour, animated: true)
+            minutePicker.setNumber(currentDuration.minute, animated: true)
+        }
+    }
     public var durationSelected: ((Duration) -> Void)?
 
     public required init(hour: Int, minute: Int, step: Int = 1) {
@@ -201,11 +206,17 @@ public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: L
     }
 
     @objc func onHourSelected(_ hour: Int) {
+        guard currentDuration.hour != hour else {
+            return
+        }
         currentDuration.hour = hour
         durationSelected?(currentDuration)
     }
 
     @objc func onMinuteSelected(_ minute: Int) {
+        guard currentDuration.minute != minute else {
+            return
+        }
         currentDuration.minute = minute
         durationSelected?(currentDuration)
     }

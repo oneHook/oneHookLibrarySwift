@@ -128,6 +128,11 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
         return number
     }
 
+    public func setNumber(_ number: Int, animated: Bool) {
+        currentNumber = number
+        makeSureNumberRange(animated: animated)
+    }
+
     public func isNumberSelectable(_ number: Int?) -> Bool {
         if
             let minNumber = minNumber,
