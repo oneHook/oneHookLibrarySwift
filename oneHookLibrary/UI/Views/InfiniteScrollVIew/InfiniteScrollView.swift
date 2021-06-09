@@ -18,12 +18,10 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
 
     public var snapToCenter: Bool = false
 
-    /* For Horizontal */
     public var cellDefaultWidth: CGFloat?
-    private var referenceCellCenterX: CGFloat = 0
-
-    /* For Vertical */
     public var cellDefaultHeight: CGFloat?
+
+    private var referenceCellCenterX: CGFloat = 0
     private var referenceCellCenterY: CGFloat = 0
 
     public var orientation: Orientation = .vertical {
@@ -67,6 +65,31 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
             fillContentHorizontal()
         } else {
             fillContentVertically()
+        }
+    }
+
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        guard layoutSize == .zero else {
+            return layoutSize
+        }
+        if orientation == .horizontal {
+            if let cellDefaultHeight = cellDefaultHeight {
+                return .init(width: size.width, height: cellDefaultHeight)
+            } else {
+                let centerCell = getCell(direction: .center, referenceCell: nil)
+                let centerCellHeight = centerCell.sizeThatFits(size).height
+                destroyCell(centerCell)
+                return .init(width: size.width, height: centerCellHeight)
+            }
+        } else {
+            if let cellDefaultWidth = cellDefaultWidth {
+                return .init(width: cellDefaultWidth, height: size.height)
+            } else {
+                let centerCell = getCell(direction: .center, referenceCell: nil)
+                let centerCellWidth = centerCell.sizeThatFits(size).width
+                destroyCell(centerCell)
+                return .init(width: centerCellWidth, height: size.height)
+            }
         }
     }
 
@@ -317,27 +340,6 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
         }
     }
 
-    open func dequeueCell() -> T {
-        recycledCells.isEmpty ? T().apply {
-            $0.isUserInteractionEnabled = true
-            $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cellTapped(tapRec:))))
-        } : recycledCells.removeLast()
-    }
-
-    open func destroyCell(_ cell: T) {
-        recycledCells.append(cell)
-    }
-
-    public var centerCell: T? {
-        cells.first(where: {
-            let cellFrame = $0.frame.offsetBy(dx: 0, dy: -contentOffset.y)
-            return cellFrame.contains(
-                CGPoint(x: bounds.width / 2,
-                        y: bounds.height / 2)
-            )
-        })
-    }
-
     @objc private func cellTapped(tapRec: UITapGestureRecognizer) {
         guard
             let cell = tapRec.view as? T,
@@ -359,6 +361,27 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
             completion: { (_) in
                 self.scrollViewDidEndInteraction(self)
             })
+    }
+
+    open func dequeueCell() -> T {
+        recycledCells.isEmpty ? T().apply {
+            $0.isUserInteractionEnabled = true
+            $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cellTapped(tapRec:))))
+        } : recycledCells.removeLast()
+    }
+
+    open func destroyCell(_ cell: T) {
+        recycledCells.append(cell)
+    }
+
+    public var centerCell: T? {
+        cells.first(where: {
+            let cellFrame = $0.frame.offsetBy(dx: 0, dy: -contentOffset.y)
+            return cellFrame.contains(
+                CGPoint(x: bounds.width / 2,
+                        y: bounds.height / 2)
+            )
+        })
     }
 
     /* Child should override */
