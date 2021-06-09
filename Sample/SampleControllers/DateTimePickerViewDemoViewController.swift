@@ -3,49 +3,17 @@ import UIKit
 
 class MyNumberLabel: NumberLabel {
 
-    private static let numberLabelFont = Fonts.regular(Fonts.fontSizeXLarge)
-    private static let numberLabelColorNormal: UIColor = .black
-    private static let numberLabelColorDisabled: UIColor = .lightGray
-
     open override func bind(number: Int?, style: Style) {
-        self.number = number
-        backgroundColor = .clear
-        padding = Dimens.marginMedium
-        textAlignment = .center
-        font = Self.numberLabelFont
-        switch style {
-        case .selectable:
-            textColor = Self.numberLabelColorNormal
-        case .notSelectable:
-            textColor = Self.numberLabelColorDisabled
-        case .highlight:
-            textColor = .yellow
-        }
-        text = String(number ?? 0)
+        super.bind(number: number, style: style)
     }
 }
 
 class MyMonthLabel: NumberLabel {
 
     private static let formatter = DateFormatter()
-    private static let numberLabelFont = Fonts.regular(Fonts.fontSizeXLarge)
-    private static let numberLabelColorNormal: UIColor = .black
-    private static let numberLabelColorDisabled: UIColor = .lightGray
 
     open override func bind(number: Int?, style: Style) {
-        self.number = number
-        backgroundColor = .clear
-        padding = Dimens.marginMedium
-        textAlignment = .left
-        font = Self.numberLabelFont
-        switch style {
-        case .selectable:
-            textColor = Self.numberLabelColorNormal
-        case .notSelectable:
-            textColor = Self.numberLabelColorDisabled
-        case .highlight:
-            textColor = .yellow
-        }
+        super.bind(number: number, style: style)
         text = Self.formatter.monthSymbols[safe: (number ?? 1) - 1] ?? "" + String(number ?? 0)
     }
 }

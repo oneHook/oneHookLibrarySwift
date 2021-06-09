@@ -1,6 +1,6 @@
 import UIKit
 
-public class EGDatePicker<Year: NumberLabel, Month: NumberLabel, Day: NumberLabel>: LinearLayout {
+public class EGDatePicker<YearCell: NumberLabel, MonthCell: NumberLabel, DayCell: NumberLabel>: LinearLayout {
 
     public struct Date {
         var year: Int
@@ -14,11 +14,38 @@ public class EGDatePicker<Year: NumberLabel, Month: NumberLabel, Day: NumberLabe
         }
     }
 
-    private var yearHighlightCells = [Year]()
-    private var monthHighlightCells = [Month]()
-    private var dayHighlightCells = [Day]()
+    public var cellHeight = dp(48) {
+        didSet {
+            centerBar.layoutSize = CGSize(width: 0, height: cellHeight)
+            yearPicker.numberLabelHeight = cellHeight
+            monthPicker.numberLabelHeight = cellHeight
+            dayPicker.numberLabelHeight = cellHeight
+        }
+    }
+    public var highlightBackgroundColor = UIColor.ed_toolbarTextColor {
+        didSet {
+            centerBar.backgroundColor = highlightBackgroundColor
+        }
+    }
+    public var highlightTextColor = UIColor.ed_toolbarBackgroundColor {
+        didSet {
+            for cell in yearHighlightCells {
+                cell.textColor = highlightTextColor
+            }
+            for cell in monthHighlightCells {
+                cell.textColor = highlightTextColor
+            }
+            for cell in dayHighlightCells {
+                cell.textColor = highlightTextColor
+            }
+        }
+    }
 
-    private lazy var yearPicker = NumberInfiniteScrollView<Year>(start: 1900, end: 2100).apply {
+    private var yearHighlightCells = [YearCell]()
+    private var monthHighlightCells = [MonthCell]()
+    private var dayHighlightCells = [DayCell]()
+
+    private lazy var yearPicker = NumberInfiniteScrollView<YearCell>(start: 1900, end: 2100).apply {
         $0.orientation = .vertical
         $0.layoutWeight = 1
         $0.currentNumber = currentDate.year
@@ -31,7 +58,7 @@ public class EGDatePicker<Year: NumberLabel, Month: NumberLabel, Day: NumberLabe
         }
     }
 
-    private lazy var monthPicker = NumberInfiniteScrollView<Month>(start: 1, end: 13).apply {
+    private lazy var monthPicker = NumberInfiniteScrollView<MonthCell>(start: 1, end: 13).apply {
         $0.orientation = .vertical
         $0.layoutGravity = [.fillVertical]
         $0.layoutWeight = 2
@@ -44,7 +71,7 @@ public class EGDatePicker<Year: NumberLabel, Month: NumberLabel, Day: NumberLabe
         }
     }
 
-    private lazy var dayPicker = NumberInfiniteScrollView<Day>(start: 1, end: 32).apply {
+    private lazy var dayPicker = NumberInfiniteScrollView<DayCell>(start: 1, end: 32).apply {
         $0.orientation = .vertical
         $0.layoutGravity = [.fillVertical]
         $0.layoutWeight = 1
@@ -57,9 +84,9 @@ public class EGDatePicker<Year: NumberLabel, Month: NumberLabel, Day: NumberLabe
         }
     }
 
-    public let centerBar = BaseView().apply {
-        $0.backgroundColor = .purple
-        $0.layoutSize = CGSize(width: 0, height: dp(48))
+    private lazy var centerBar = BaseView().apply {
+        $0.backgroundColor = highlightBackgroundColor
+        $0.layoutSize = CGSize(width: 0, height: cellHeight)
         $0.shouldSkip = true
         $0.clipsToBounds = true
         $0.isUserInteractionEnabled = false
@@ -167,13 +194,19 @@ public class EGDatePicker<Year: NumberLabel, Month: NumberLabel, Day: NumberLabe
         }
         let cellFrame = picker.convert(centerCell.frame, to: centerBar)
         let isSelectable = picker.isNumberSelectable(centerCell.number)
-        cells[0].bind(number: centerCell.number, style: isSelectable ? .highlight : .notSelectable)
+        cells[0].bind(number: centerCell.number, style: .notSelectable)
+        if isSelectable {
+            cells[0].textColor = highlightTextColor
+        }
         cells[0].frame = cellFrame
 
         if let previous = picker.cells[safe: index - 1] {
             let cellFrame = picker.convert(previous.frame, to: centerBar)
             let isSelectable = picker.isNumberSelectable(previous.number)
-            cells[1].bind(number: previous.number, style: isSelectable ? .highlight : .notSelectable)
+            cells[1].bind(number: previous.number, style: .notSelectable)
+            if isSelectable {
+                cells[1].textColor = highlightTextColor
+            }
             cells[1].frame = cellFrame
         } else {
             cells[1].frame = .zero
@@ -182,7 +215,10 @@ public class EGDatePicker<Year: NumberLabel, Month: NumberLabel, Day: NumberLabe
         if let next = picker.cells[safe: index + 1] {
             let cellFrame = picker.convert(next.frame, to: centerBar)
             let isSelectable = picker.isNumberSelectable(next.number)
-            cells[2].bind(number: next.number, style: isSelectable ? .highlight : .notSelectable)
+            cells[2].bind(number: next.number, style: .notSelectable)
+            if isSelectable {
+                cells[2].textColor = highlightTextColor
+            }
             cells[2].frame = cellFrame
         } else {
             cells[2].frame = .zero

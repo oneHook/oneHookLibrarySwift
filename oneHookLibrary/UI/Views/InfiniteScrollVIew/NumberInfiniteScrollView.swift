@@ -2,15 +2,9 @@ import UIKit
 
 open class NumberLabel: EDLabel {
 
-    private static let numberLabelFont = Fonts.regular(Fonts.fontSizeXLarge)
-    private static let numberLabelColorNormal: UIColor = .black
-    private static let numberLabelColorDisabled: UIColor = .lightGray
-    private static let numberLabelColorHighlight: UIColor = .yellow
-
     public enum Style {
         case selectable
         case notSelectable
-        case highlight
     }
 
     public var number: Int?
@@ -18,15 +12,14 @@ open class NumberLabel: EDLabel {
     open func bind(number: Int?, style: Style) {
         self.number = number
         backgroundColor = .clear
-        padding = Dimens.marginMedium
         textAlignment = .center
-        font = Self.numberLabelFont
-        if style == .selectable {
-            textColor = Self.numberLabelColorNormal
-        } else if style == .notSelectable {
-            textColor = Self.numberLabelColorDisabled
-        } else {
-            textColor = Self.numberLabelColorHighlight
+        font = Fonts.regular(Fonts.fontSizeXLarge)
+        padding = Dimens.marginMedium
+        switch style {
+        case .selectable:
+            textColor = .ed_toolbarTextColor
+        case .notSelectable:
+            textColor = UIColor.ed_toolbarTextColor.lighter(alpha: 0.2)
         }
         text = String(number ?? 0)
     }
@@ -37,7 +30,11 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
     public var numberSelected: ((Int) -> Void)?
     public var didScroll: (() -> Void)?
 
-    public var numberLabelHeight = dp(48)
+    public var numberLabelHeight = dp(48) {
+        didSet {
+            cellDefaultWidth = numberLabelHeight
+        }
+    }
 
     /// Range starts. can be <= minNumber
     public var startingNumber: Int

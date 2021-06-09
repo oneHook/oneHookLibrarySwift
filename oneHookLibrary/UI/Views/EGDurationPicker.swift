@@ -1,6 +1,6 @@
 import UIKit
 
-public class EGDurationPicker<Hour: NumberLabel, Minute: NumberLabel>: LinearLayout {
+public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: LinearLayout {
 
     public struct Duration {
         var hour: Int
@@ -12,10 +12,33 @@ public class EGDurationPicker<Hour: NumberLabel, Minute: NumberLabel>: LinearLay
         }
     }
 
-    private var hourHighlightCells = [Hour]()
-    private var minuteHighlightCells = [Minute]()
+    public var cellHeight = dp(48) {
+        didSet {
+            centerBar.layoutSize = CGSize(width: 0, height: cellHeight)
+            hourPicker.numberLabelHeight = cellHeight
+            minutePicker.numberLabelHeight = cellHeight
+        }
+    }
+    public var highlightBackgroundColor = UIColor.ed_toolbarTextColor {
+        didSet {
+            centerBar.backgroundColor = highlightBackgroundColor
+        }
+    }
+    public var highlightTextColor = UIColor.ed_toolbarBackgroundColor {
+        didSet {
+            for cell in hourHighlightCells {
+                cell.textColor = highlightTextColor
+            }
+            for cell in minuteHighlightCells {
+                cell.textColor = highlightTextColor
+            }
+        }
+    }
 
-    private lazy var hourPicker = NumberInfiniteScrollView<Hour>(start: 0, end: 24).apply {
+    private var hourHighlightCells = [HourCell]()
+    private var minuteHighlightCells = [MinuteCell]()
+
+    private lazy var hourPicker = NumberInfiniteScrollView<HourCell>(start: 0, end: 24).apply {
         $0.orientation = .vertical
         $0.layoutWeight = 1
         $0.currentNumber = currentDuration.hour
@@ -28,7 +51,7 @@ public class EGDurationPicker<Hour: NumberLabel, Minute: NumberLabel>: LinearLay
         }
     }
 
-    private lazy var minutePicker = NumberInfiniteScrollView<Minute>(start: 0, end: 60, step: 5).apply {
+    private lazy var minutePicker = NumberInfiniteScrollView<MinuteCell>(start: 0, end: 60, step: 5).apply {
         $0.orientation = .vertical
         $0.layoutGravity = [.fillVertical]
         $0.layoutWeight = 1
@@ -41,21 +64,21 @@ public class EGDurationPicker<Hour: NumberLabel, Minute: NumberLabel>: LinearLay
         }
     }
 
-    public let centerBar = BaseView().apply {
-        $0.backgroundColor = .purple
-        $0.layoutSize = CGSize(width: 0, height: dp(48))
+    private lazy var centerBar = BaseView().apply {
+        $0.backgroundColor = highlightBackgroundColor
+        $0.layoutSize = CGSize(width: 0, height: cellHeight)
         $0.shouldSkip = true
         $0.clipsToBounds = true
         $0.isUserInteractionEnabled = false
     }
 
-    private let hourLabel = EDLabel().apply {
+    public let hourLabel = EDLabel().apply {
         $0.textAlignment = .center
         $0.font = Fonts.regular(Fonts.fontSizeXLarge)
         $0.textColor = .white
         $0.text = "Hours"
     }
-    private let minuteLabel = EDLabel().apply {
+    public let minuteLabel = EDLabel().apply {
         $0.textAlignment = .center
         $0.font = Fonts.regular(Fonts.fontSizeXLarge)
         $0.textColor = .white
@@ -144,13 +167,19 @@ public class EGDurationPicker<Hour: NumberLabel, Minute: NumberLabel>: LinearLay
         }
         let cellFrame = picker.convert(centerCell.frame, to: centerBar)
         let isSelectable = picker.isNumberSelectable(centerCell.number)
-        cells[0].bind(number: centerCell.number, style: isSelectable ? .highlight : .notSelectable)
+        cells[0].bind(number: centerCell.number, style: .notSelectable)
+        if isSelectable {
+            cells[0].textColor = highlightTextColor
+        }
         cells[0].frame = cellFrame
 
         if let previous = picker.cells[safe: index - 1] {
             let cellFrame = picker.convert(previous.frame, to: centerBar)
             let isSelectable = picker.isNumberSelectable(previous.number)
-            cells[1].bind(number: previous.number, style: isSelectable ? .highlight : .notSelectable)
+            cells[1].bind(number: previous.number, style: .notSelectable)
+            if isSelectable {
+                cells[1].textColor = highlightTextColor
+            }
             cells[1].frame = cellFrame
         } else {
             cells[1].frame = .zero
@@ -159,7 +188,10 @@ public class EGDurationPicker<Hour: NumberLabel, Minute: NumberLabel>: LinearLay
         if let next = picker.cells[safe: index + 1] {
             let cellFrame = picker.convert(next.frame, to: centerBar)
             let isSelectable = picker.isNumberSelectable(next.number)
-            cells[2].bind(number: next.number, style: isSelectable ? .highlight : .notSelectable)
+            cells[2].bind(number: next.number, style: .notSelectable)
+            if isSelectable {
+                cells[2].textColor = highlightTextColor
+            }
             cells[2].frame = cellFrame
         } else {
             cells[2].frame = .zero
