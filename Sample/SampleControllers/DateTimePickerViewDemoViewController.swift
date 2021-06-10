@@ -1,64 +1,6 @@
 import oneHookLibrary
 import UIKit
 
-private class DummyDayView: FrameLayout, DayCell {
-
-    private var maxLength = CGFloat(50)
-    var day: Int = 0
-    var month: Int = 0
-    var year: Int = 0
-
-    let titleLabel = EDLabel().apply {
-        $0.layoutGravity = .center
-        $0.textAlignment = .center
-        $0.textColor = .black
-    }
-
-    convenience init() {
-        self.init(frame: .zero)
-        layer.masksToBounds = true
-        backgroundColor = .lightGray
-        addSubview(titleLabel)
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        layer.cornerRadius = bounds.width / 8
-        maxLength = max(maxLength, bounds.width)
-        let scale = bounds.width / maxLength
-        titleLabel.layer.transform = CATransform3DMakeScale(scale, scale, scale)
-        titleLabel.font = UIFont.systemFont(ofSize: maxLength / 2.5)
-        if scale < 0.9 {
-            titleLabel.alpha = 0
-        } else {
-            titleLabel.alpha = 1
-        }
-    }
-
-    override func sizeThatFits(_ size: CGSize) -> CGSize {
-        CGSize(width: size.width, height: size.width)
-    }
-
-    func bind(day: Int, month: Int, year: Int, inMonth: Bool, userInfo: Any?) {
-        self.day = day
-        self.month = month
-        self.year = year
-
-        titleLabel.text = String(day)
-        alpha = inMonth ? 1.0 : 0.5
-
-        if let userInfo = userInfo as? [Int] {
-            titleLabel.textColor = .white
-            if userInfo.contains(day) {
-                backgroundColor = UIColor(hex: "075206")
-            } else {
-                backgroundColor = UIColor(hex: "ab100a")
-            }
-        }
-        setNeedsLayout()
-    }
-}
-
 class MyNumberLabel: NumberLabel {
 
     open override func bind(number: Int?, style: Style) {
@@ -88,7 +30,9 @@ class MyAmPmLabel: NumberLabel {
 
 class DateTimePickerViewDemoViewController: BaseScrollableDemoViewController {
 
-    private let calendarPicker = EGCalendarPicker<DummyDayView>()
+    private let calendarPicker = EGCalendarPicker().apply {
+        $0.spacing = dp(8)
+    }
 
     private let datePicker = EGDatePicker<MyNumberLabel, MyMonthLabel, MyNumberLabel>(
         year: 2020,
