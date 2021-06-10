@@ -141,9 +141,9 @@ class MenuViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        let controller = DateTimePickerViewDemoViewController()
-        navigationController?.pushViewController(controller, animated: true)
+//
+//        let controller = DateTimePickerViewDemoViewController()
+//        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
