@@ -93,6 +93,9 @@ public class EGTimePicker<HourCell: NumberLabel,
             $0.bind(number: 1, style: .selectable)
         })
         $0.addSubview(AmPmCell())
+        $0.addGestureRecognizer(
+            UITapGestureRecognizer(target: self, action: #selector(amPmPressed))
+        )
     }
 
     public lazy var centerBar = BaseView().apply {
@@ -169,6 +172,19 @@ public class EGTimePicker<HourCell: NumberLabel,
             bottom: (amPmPicker.bounds.height - cellHeight) / 2,
             right: 0
         )
+
+        /* Make sure Am/Pm Selection */
+        if currentTime.isAm {
+            amPmPicker.setContentOffset(
+                CGPoint(x: 0, y: -amPmPicker.contentInset.top),
+                animated: false
+            )
+        } else {
+            amPmPicker.setContentOffset(
+                CGPoint(x: 0, y: cellHeight - amPmPicker.contentInset.top),
+                animated: false
+            )
+        }
     }
 
     public override func viewDidFirstLayout() {
@@ -269,6 +285,28 @@ public class EGTimePicker<HourCell: NumberLabel,
         } else {
             cells[2].frame = .zero
         }
+    }
+
+    @objc private func amPmPressed() {
+        UIView.animate(
+            withDuration: .defaultAnimationSmall,
+            animations: {
+                if !self.currentTime.isAm {
+                    self.amPmPicker.setContentOffset(
+                        CGPoint(x: 0, y: -self.amPmPicker.contentInset.top),
+                        animated: false
+                    )
+                } else {
+                    self.amPmPicker.setContentOffset(
+                        CGPoint(x: 0, y: self.cellHeight - self.amPmPicker.contentInset.top),
+                        animated: false
+                    )
+                }
+            }, completion: { (_) in
+                self.amPmSelected()
+            })
+
+        onAmPmSelected(!currentTime.isAm)
     }
 
     @objc private func onHourSelected(_ hour: Int) {
