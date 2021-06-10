@@ -23,6 +23,8 @@ private class MyMonthView: BaseView {
         }
         for (index, cell) in cells.enumerated() {
             addSubview(cell)
+            cell.tag = index
+            cell.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
             cell.setTitle(String(index), for: .normal)
         }
     }
@@ -58,6 +60,10 @@ private class MyMonthView: BaseView {
         let height = cellLength * 6 + spacing * 5 + paddingTop + paddingBottom
         return CGSize(width: size.width, height: height)
     }
+
+    @objc private func buttonPressed(sender: EDButton) {
+        print("XXX", sender.tag)
+    }
 }
 
 open class EGCalendarPicker: LinearLayout {
@@ -79,6 +85,18 @@ open class EGCalendarPicker: LinearLayout {
         $0.addSubview(monthViewBack)
         $0.addSubview(monthViewFront)
         $0.isPagingEnabled = true
+        $0.isScrollEnabled = false
+    }
+
+    private lazy var leftSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeGesture(_:))).apply {
+        $0.direction = .left
+        $0.delegate = self
+        $0.cancelsTouchesInView = false
+    }
+    private lazy var rightSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeGesture(_:))).apply {
+        $0.direction = .right
+        $0.delegate = self
+        $0.cancelsTouchesInView = false
     }
 
     public override func commonInit() {
@@ -86,6 +104,8 @@ open class EGCalendarPicker: LinearLayout {
         orientation = .vertical
         addSubview(titleLabel)
         addSubview(scrollView)
+        addGestureRecognizer(leftSwipeGestureRecognizer)
+        addGestureRecognizer(rightSwipeGestureRecognizer)
     }
 
     open func createCell() -> EDButton {
@@ -116,5 +136,65 @@ open class EGCalendarPicker: LinearLayout {
             size: monthViewSize
         )
         monthViewBack.frame = monthViewFront.frame
+    }
+
+    @objc private func swipeGesture(_ gestureRecognizer: UISwipeGestureRecognizer) {
+        switch gestureRecognizer.direction {
+        case .right:
+            print("XXX right")
+            monthViewBack.frame = CGRect(
+                origin: .zero,
+                size: monthViewFront.bounds.size
+            )
+            UIView.animate(
+                withDuration: .defaultAnimation,
+                animations: {
+                    self.scrollView.setContentOffset(.zero, animated: false)
+                }, completion: { (_) in
+                    self.monthViewBack.frame = self.monthViewFront.frame
+                    self.bringSubviewToFront(self.monthViewBack)
+                    let temp = self.monthViewBack
+                    self.monthViewBack = self.monthViewFront
+                    self.monthViewFront = temp
+                    self.scrollView.setContentOffset(
+                        CGPoint(x: self.scrollView.bounds.width, y: 0),
+                        animated: false
+                    )
+                })
+        case .left:
+            print("XXX left")
+            monthViewBack.frame = CGRect(
+                origin: CGPoint(x: scrollView.bounds.width * 2, y: 0),
+                size: monthViewFront.bounds.size
+            )
+            UIView.animate(
+                withDuration: .defaultAnimation,
+                animations: {
+                    self.scrollView.setContentOffset(
+                        CGPoint(x: self.scrollView.bounds.width * 2, y: 0),
+                        animated: false
+                    )
+                }, completion: { (_) in
+                    self.monthViewBack.frame = self.monthViewFront.frame
+                    self.bringSubviewToFront(self.monthViewBack)
+                    let temp = self.monthViewBack
+                    self.monthViewBack = self.monthViewFront
+                    self.monthViewFront = temp
+                    self.scrollView.setContentOffset(
+                        CGPoint(x: self.scrollView.bounds.width, y: 0),
+                        animated: false
+                    )
+                })
+        default:
+            break
+        }
+    }
+}
+
+extension EGCalendarPicker: UIGestureRecognizerDelegate {
+
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
     }
 }
