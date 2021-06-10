@@ -2,6 +2,9 @@ import UIKit
 
 private class MyMonthView: BaseView {
 
+    var anyDayInMonth: Date?
+    private var firstDay = Date()
+
     private var cells = [EDButton]()
     private weak var parent: EGCalendarPicker?
 
@@ -45,6 +48,8 @@ private class MyMonthView: BaseView {
                 width: cellLength,
                 height: cellLength
             )
+            cells[i].layer.cornerRadius = cellLength / 2
+            cells[i].layer.masksToBounds = true
             currX += spacing + cellLength
             if i > 0 && (i + 1) % 7 == 0 {
                 currX = paddingStart
@@ -61,26 +66,184 @@ private class MyMonthView: BaseView {
         return CGSize(width: size.width, height: height)
     }
 
+    func bind(_ anyDayInMonth: Date) {
+        self.anyDayInMonth = anyDayInMonth
+        guard
+            let calendar = parent?.calendar,
+            let startOfMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: anyDayInMonth)),
+            let firstDay = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: startOfMonth)) else {
+            return
+        }
+        self.firstDay = firstDay
+        let currentMonth = calendar.dateComponents([.month], from: anyDayInMonth).month ?? -2
+        for i in 0..<42 {
+            if let date = calendar.date(byAdding: .day, value: i, to: firstDay) {
+                let components = calendar.dateComponents([.day, .month], from: date)
+                let day = components.day ?? 0
+                let month = components.month ?? -1
+                let cell = cells[i]
+
+                cell.isEnabled = true
+                cell.isSelected = false
+
+                if
+                    let minimumDate = parent?.minimumDate,
+                    minimumDate.timeIntervalSince1970 > date.timeIntervalSince1970 {
+                    cell.isEnabled = false
+                } else if
+                    let maximumDate = parent?.maximumDate,
+                    maximumDate.timeIntervalSince1970 < date.timeIntervalSince1970 {
+                    cell.isEnabled = false
+                } else if month != currentMonth {
+                    cell.isEnabled = false
+                } else if
+                    let selectedDate = parent?.selectedDate,
+                    calendar.isDate(date, inSameDayAs: selectedDate) {
+                    cell.isSelected = true
+                }
+
+                cell.setTitle(String(day), for: .normal)
+            }
+        }
+    }
+
     @objc private func buttonPressed(sender: EDButton) {
-        print("XXX", sender.tag)
+        if let date = parent?.calendar.date(byAdding: .day, value: sender.tag, to: firstDay) {
+            parent?.selectedDate = date
+            parent?.notifySelection()
+        }
     }
 }
 
 open class EGCalendarPicker: LinearLayout {
 
-    public var spacing: CGFloat = 0
+    public var dateSelected: ((Date) -> Void)?
+
+    public var spacing: CGFloat = 0 {
+        didSet {
+            weekdayLabelsRowLayout.spacing = spacing
+        }
+    }
+    public var calendar = Calendar.current
+    public var titleDateFormatter = DateFormatter().apply {
+        $0.dateFormat = "MMMM YYYY"
+    }
+    private var _minimumDate: Date?
+    public var minimumDate: Date? {
+        get {
+            _minimumDate
+        }
+        set {
+            _minimumDate = newValue.map { calendar.startOfDay(for: $0) }
+            monthViewFront.anyDayInMonth.map {
+                monthViewFront.bind($0)
+            }
+        }
+    }
+    private var _maximumDate: Date?
+    public var maximumDate: Date? {
+        get {
+            _maximumDate
+        }
+        set {
+            _maximumDate = newValue.map { calendar.startOfDay(for: $0) }
+            monthViewFront.anyDayInMonth.map {
+                monthViewFront.bind($0)
+            }
+        }
+    }
+    private var _selectedDate: Date?
+    public var selectedDate: Date? {
+        get {
+            _selectedDate
+        }
+        set {
+            _selectedDate = newValue.map { calendar.startOfDay(for: $0) }
+            monthViewFront.anyDayInMonth.map {
+                monthViewFront.bind($0)
+            }
+        }
+    }
 
     public let titleLabel = EDLabel().apply {
         $0.paddingTop = Dimens.marginSmall
         $0.paddingBottom = Dimens.marginSmall
-        $0.text = "December, 2020"
         $0.layoutGravity = .fill
-        $0.font = UIFont.boldSystemFont(ofSize: 15)
+        $0.font = Fonts.bold(Fonts.fontSizeXLarge)
         $0.marginBottom = Dimens.marginSmall
     }
 
+    public let weekdayLabels = [
+        EDLabel().apply {
+            $0.font = Fonts.bold(Fonts.fontSizeMedium)
+            $0.textColor = .ed_placeholderTextColor
+            $0.textAlignment = .center
+            $0.text = "S"
+        },
+        EDLabel().apply {
+            $0.font = Fonts.bold(Fonts.fontSizeMedium)
+            $0.textColor = .ed_placeholderTextColor
+            $0.textAlignment = .center
+            $0.text = "M"
+        },
+        EDLabel().apply {
+            $0.font = Fonts.bold(Fonts.fontSizeMedium)
+            $0.textColor = .ed_placeholderTextColor
+            $0.textAlignment = .center
+            $0.text = "T"
+        },
+        EDLabel().apply {
+            $0.font = Fonts.bold(Fonts.fontSizeMedium)
+            $0.textColor = .ed_placeholderTextColor
+            $0.textAlignment = .center
+            $0.text = "W"
+        },
+        EDLabel().apply {
+            $0.font = Fonts.bold(Fonts.fontSizeMedium)
+            $0.textColor = .ed_placeholderTextColor
+            $0.textAlignment = .center
+            $0.text = "T"
+        },
+        EDLabel().apply {
+            $0.font = Fonts.bold(Fonts.fontSizeMedium)
+            $0.textColor = .ed_placeholderTextColor
+            $0.textAlignment = .center
+            $0.text = "F"
+        },
+        EDLabel().apply {
+            $0.font = Fonts.bold(Fonts.fontSizeMedium)
+            $0.textColor = .ed_placeholderTextColor
+            $0.textAlignment = .center
+            $0.text = "S"
+        }
+    ]
+
+    private lazy var weekdayLabelsRowLayout = RowLayout().apply {
+        $0.spacing = spacing
+        for weekdayLabel in weekdayLabels {
+            $0.addSubview(weekdayLabel)
+        }
+    }
+
+    private lazy var previousMonthButton = EDButton().apply {
+        $0.padding = Dimens.marginSmall
+        $0.setTitle("Previous", for: .normal)
+        $0.setTitleColor(.ed_toolbarTextColor, for: .normal)
+        $0.addTarget(self, action: #selector(previousMonthButtonPressed), for: .touchUpInside)
+    }
+
+    private lazy var nextMonthButton = EDButton().apply {
+        $0.padding = Dimens.marginSmall
+        $0.setTitle("Next", for: .normal)
+        $0.setTitleColor(.ed_toolbarTextColor, for: .normal)
+        $0.marginStart = Dimens.marginMedium
+        $0.addTarget(self, action: #selector(nextMonthButtonPressed), for: .touchUpInside)
+    }
+
     private lazy var monthViewFront = MyMonthView(parent: self)
-    private lazy var monthViewBack = MyMonthView(parent: self)
+    private lazy var monthViewBack = MyMonthView(parent: self).apply {
+        $0.isHidden = true
+    }
     private lazy var scrollView = EDScrollView().apply {
         $0.addSubview(monthViewBack)
         $0.addSubview(monthViewFront)
@@ -102,15 +265,43 @@ open class EGCalendarPicker: LinearLayout {
     public override func commonInit() {
         super.commonInit()
         orientation = .vertical
-        addSubview(titleLabel)
+        addSubview(LinearLayout().apply {
+            $0.orientation = .horizontal
+            $0.paddingBottom = Dimens.marginSmall
+            $0.addSubview(titleLabel.apply {
+                $0.layoutGravity = .centerVertical
+                $0.layoutWeight = 1
+            })
+            $0.addSubview(previousMonthButton.apply {
+                $0.layoutGravity = .centerVertical
+            })
+            $0.addSubview(nextMonthButton.apply {
+                $0.layoutGravity = .centerVertical
+            })
+        })
+        addSubview(weekdayLabelsRowLayout.apply {
+            $0.marginTop = Dimens.marginSmall
+            $0.marginBottom = Dimens.marginSmall
+        })
         addSubview(scrollView)
         addGestureRecognizer(leftSwipeGestureRecognizer)
         addGestureRecognizer(rightSwipeGestureRecognizer)
+        goToMonth(Date())
+    }
+
+    func goToMonth(_ anyDayInMonth: Date) {
+        monthViewFront.bind(anyDayInMonth)
+        titleLabel.text = titleDateFormatter.string(from: anyDayInMonth)
     }
 
     open func createCell() -> EDButton {
-        EDButton().apply {
-            $0.backgroundColor = .red
+        SolidButton().apply {
+            $0.setTitleColor(UIColor.ed_toolbarTextColor.lighter(alpha: 0.2), for: .disabled)
+            $0.setTitleColor(UIColor.ed_toolbarTextColor, for: .normal)
+            $0.setTitleColor(UIColor.ed_toolbarBackgroundColor, for: .highlighted)
+            $0.setTitleColor(UIColor.ed_toolbarBackgroundColor, for: .selected)
+            $0.setBackgroundColor(UIColor.ed_toolbarTextColor, for: .selected)
+            $0.setBackgroundColor(UIColor.ed_toolbarTextColor, for: .highlighted)
         }
     }
 
@@ -138,55 +329,88 @@ open class EGCalendarPicker: LinearLayout {
         monthViewBack.frame = monthViewFront.frame
     }
 
+    private func gotoPreviousMonth() {
+        monthViewBack.isHidden = false
+        monthViewBack.frame = CGRect(
+            origin: .zero,
+            size: monthViewFront.bounds.size
+        )
+        let previousMonth = calendar.date(byAdding: .month, value: -1, to: (monthViewFront.anyDayInMonth ?? Date())) ?? Date()
+        monthViewBack.bind(previousMonth)
+
+        UIView.animate(
+            withDuration: .defaultAnimation,
+            animations: {
+                self.scrollView.setContentOffset(.zero, animated: false)
+            }, completion: { (_) in
+                self.titleLabel.text = self.titleDateFormatter.string(from: previousMonth)
+                self.monthViewBack.frame = self.monthViewFront.frame
+                self.scrollView.bringSubviewToFront(self.monthViewBack)
+                let temp = self.monthViewBack
+                self.monthViewBack = self.monthViewFront
+                self.monthViewFront = temp
+                self.scrollView.setContentOffset(
+                    CGPoint(x: self.scrollView.bounds.width, y: 0),
+                    animated: false
+                )
+                self.scrollView.setNeedsDisplay()
+                self.monthViewBack.isHidden = true
+            })
+    }
+
+    private func gotoNextMonth() {
+        monthViewBack.isHidden = false
+        monthViewBack.frame = CGRect(
+            origin: CGPoint(x: scrollView.bounds.width * 2, y: 0),
+            size: monthViewFront.bounds.size
+        )
+        let nextMonth = calendar.date(byAdding: .month, value: 1, to: (monthViewFront.anyDayInMonth ?? Date())) ?? Date()
+        monthViewBack.bind(nextMonth)
+        UIView.animate(
+            withDuration: .defaultAnimation,
+            animations: {
+                self.scrollView.setContentOffset(
+                    CGPoint(x: self.scrollView.bounds.width * 2, y: 0),
+                    animated: false
+                )
+            }, completion: { (_) in
+                self.titleLabel.text = self.titleDateFormatter.string(from: nextMonth)
+                self.monthViewBack.frame = self.monthViewFront.frame
+                self.scrollView.bringSubviewToFront(self.monthViewBack)
+                let temp = self.monthViewBack
+                self.monthViewBack = self.monthViewFront
+                self.monthViewFront = temp
+                self.scrollView.setContentOffset(
+                    CGPoint(x: self.scrollView.bounds.width, y: 0),
+                    animated: false
+                )
+                self.scrollView.setNeedsDisplay()
+                self.monthViewBack.isHidden = true
+            })
+    }
+
     @objc private func swipeGesture(_ gestureRecognizer: UISwipeGestureRecognizer) {
         switch gestureRecognizer.direction {
         case .right:
-            print("XXX right")
-            monthViewBack.frame = CGRect(
-                origin: .zero,
-                size: monthViewFront.bounds.size
-            )
-            UIView.animate(
-                withDuration: .defaultAnimation,
-                animations: {
-                    self.scrollView.setContentOffset(.zero, animated: false)
-                }, completion: { (_) in
-                    self.monthViewBack.frame = self.monthViewFront.frame
-                    self.bringSubviewToFront(self.monthViewBack)
-                    let temp = self.monthViewBack
-                    self.monthViewBack = self.monthViewFront
-                    self.monthViewFront = temp
-                    self.scrollView.setContentOffset(
-                        CGPoint(x: self.scrollView.bounds.width, y: 0),
-                        animated: false
-                    )
-                })
+            gotoPreviousMonth()
         case .left:
-            print("XXX left")
-            monthViewBack.frame = CGRect(
-                origin: CGPoint(x: scrollView.bounds.width * 2, y: 0),
-                size: monthViewFront.bounds.size
-            )
-            UIView.animate(
-                withDuration: .defaultAnimation,
-                animations: {
-                    self.scrollView.setContentOffset(
-                        CGPoint(x: self.scrollView.bounds.width * 2, y: 0),
-                        animated: false
-                    )
-                }, completion: { (_) in
-                    self.monthViewBack.frame = self.monthViewFront.frame
-                    self.bringSubviewToFront(self.monthViewBack)
-                    let temp = self.monthViewBack
-                    self.monthViewBack = self.monthViewFront
-                    self.monthViewFront = temp
-                    self.scrollView.setContentOffset(
-                        CGPoint(x: self.scrollView.bounds.width, y: 0),
-                        animated: false
-                    )
-                })
+            gotoNextMonth()
         default:
             break
+        }
+    }
+
+    @objc private func previousMonthButtonPressed() {
+        gotoPreviousMonth()
+    }
+
+    @objc private func nextMonthButtonPressed() {
+        gotoNextMonth()
+    }
+
+    func notifySelection() {
+        selectedDate.map {
+            dateSelected?($0)
         }
     }
 }

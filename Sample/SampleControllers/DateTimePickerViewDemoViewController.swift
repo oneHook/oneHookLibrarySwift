@@ -32,6 +32,7 @@ class DateTimePickerViewDemoViewController: BaseScrollableDemoViewController {
 
     private let calendarPicker = EGCalendarPicker().apply {
         $0.spacing = dp(8)
+        $0.minimumDate = Date()
     }
 
     private let datePicker = EGDatePicker<MyNumberLabel, MyMonthLabel, MyNumberLabel>(
