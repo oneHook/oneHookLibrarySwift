@@ -160,7 +160,7 @@ extension UIImage {
         let format = UIGraphicsImageRendererFormat()
         format.scale = scale
         return UIGraphicsImageRenderer(size: size, format: format).image { context in
-            context.fill(context.format.bounds)
+            context.fill(context.format.bounds, blendMode: .clear)
             draw(at: .zero, blendMode: .normal, alpha: value)
         }
     }

@@ -95,8 +95,8 @@ class MenuViewController: UIViewController {
             MenuItemUIModel(name: "Infinite Scroll View", makeController: {
                 InfiniteScrollViewDemoViewController()
             }),
-            MenuItemUIModel(name: "Time Picker View (WIP)", makeController: {
-                TimePickerViewDemoViewController()
+            MenuItemUIModel(name: "Date/Time Picker View", makeController: {
+                DateTimePickerViewDemoViewController()
             }),
             MenuItemUIModel(name: "OdometerLabel", makeController: {
                 OdometerDemoViewController()
@@ -142,8 +142,8 @@ class MenuViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-//        let controller = EGTextFieldDemoViewController()
-//        navigationController?.pushViewController(controller, animated: true)
+        let controller = DateTimePickerViewDemoViewController()
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
