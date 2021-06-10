@@ -24,6 +24,7 @@ public class EGTimePicker<HourCell: NumberLabel,
             setNeedsLayout()
         }
     }
+
     public var cellHeight = dp(48) {
         didSet {
             centerBar.layoutSize = CGSize(width: 0, height: cellHeight)
