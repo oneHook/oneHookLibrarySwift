@@ -1,6 +1,8 @@
 import UIKit
 
-public class EGTimePicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: LinearLayout {
+public class EGTimePicker<HourCell: NumberLabel,
+                          MinuteCell: NumberLabel,
+                          AmPmCell: NumberLabel>: LinearLayout, UIScrollViewDelegate {
 
     public struct Time {
         var hour: Int
@@ -14,6 +16,14 @@ public class EGTimePicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: Linea
         }
     }
 
+    public var cellWidth = dp(48) {
+        didSet {
+            hourPicker.cellDefaultWidth = cellWidth
+            minutePicker.cellDefaultWidth = cellWidth
+            amPmPicker.layoutSize = CGSize(width: cellWidth, height: 0)
+            setNeedsLayout()
+        }
+    }
     public var cellHeight = dp(48) {
         didSet {
             centerBar.layoutSize = CGSize(width: 0, height: cellHeight)
@@ -41,10 +51,11 @@ public class EGTimePicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: Linea
 
     private var hourHighlightCells = [HourCell]()
     private var minuteHighlightCells = [MinuteCell]()
+    private var amPmHighlightCells = [AmPmCell]()
 
     private lazy var hourPicker = NumberInfiniteScrollView<HourCell>(start: 0, end: 24).apply {
         $0.orientation = .vertical
-        $0.layoutWeight = 1
+        $0.cellDefaultWidth = cellWidth
         $0.currentNumber = currentTime.hour
         $0.layoutGravity = [.fillVertical]
         $0.numberSelected = { [weak self] (hour) in
@@ -57,8 +68,8 @@ public class EGTimePicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: Linea
 
     private lazy var minutePicker = NumberInfiniteScrollView<MinuteCell>(start: 0, end: 60, step: step).apply {
         $0.orientation = .vertical
+        $0.cellDefaultWidth = cellWidth
         $0.layoutGravity = [.fillVertical]
-        $0.layoutWeight = 1
         $0.currentNumber = currentTime.minute
         $0.numberSelected = { [weak self] (minute) in
             self?.onMinuteSelected(minute)
@@ -66,6 +77,21 @@ public class EGTimePicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: Linea
         $0.didScroll = { [weak self] in
             self?.minuteScrolled()
         }
+    }
+
+    private lazy var amPmPicker = EDScrollView().apply {
+        $0.layoutSize = CGSize(width: cellWidth, height: 0)
+        $0.layoutGravity = .fillVertical
+        $0.isPagingEnabled = true
+        $0.showsVerticalScrollIndicator = false
+        $0.delegate = self
+        $0.addSubview(AmPmCell().apply {
+            $0.bind(number: 0, style: .selectable)
+        })
+        $0.addSubview(AmPmCell().apply {
+            $0.bind(number: 1, style: .selectable)
+        })
+        $0.addSubview(AmPmCell())
     }
 
     public lazy var centerBar = BaseView().apply {
@@ -81,6 +107,17 @@ public class EGTimePicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: Linea
         didSet {
             hourPicker.setNumber(currentTime.hour, animated: true)
             minutePicker.setNumber(currentTime.minute, animated: true)
+            if currentTime.isAm {
+                amPmPicker.setContentOffset(
+                    CGPoint(x: 0, y: -amPmPicker.contentInset.top),
+                    animated: true
+                )
+            } else {
+                amPmPicker.setContentOffset(
+                    CGPoint(x: 0, y: cellHeight - amPmPicker.contentInset.top),
+                    animated: true
+                )
+            }
         }
     }
     public var timeSelected: ((Time) -> Void)?
@@ -97,16 +134,12 @@ public class EGTimePicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: Linea
 
     public override func commonInit() {
         super.commonInit()
+        contentGravity = .centerHorizontal
         backgroundColor = .clear
         orientation = .horizontal
         addSubview(hourPicker)
-        addSubview(BaseView().apply {
-            $0.layoutWeight = 1
-        })
         addSubview(minutePicker)
-        addSubview(BaseView().apply {
-            $0.layoutWeight = 1
-        })
+        addSubview(amPmPicker)
         addSubview(centerBar)
     }
 
@@ -117,6 +150,23 @@ public class EGTimePicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: Linea
             y: (bounds.height - centerBar.layoutSize.height) / 2,
             width: bounds.width,
             height: centerBar.layoutSize.height
+        )
+        amPmPicker.subviews[0].frame = CGRect(
+            x: 0,
+            y: 0,
+            width: cellWidth,
+            height: cellHeight
+        )
+        amPmPicker.subviews[1].frame = amPmPicker.subviews[0].frame.offsetBy(
+            dx: 0,
+            dy: cellHeight
+        )
+        amPmPicker.contentSize = CGSize(width: cellWidth, height: cellHeight * 2)
+        amPmPicker.contentInset = UIEdgeInsets(
+            top: (amPmPicker.bounds.height - cellHeight) / 2,
+            left: 0,
+            bottom: (amPmPicker.bounds.height - cellHeight) / 2,
+            right: 0
         )
     }
 
@@ -132,6 +182,45 @@ public class EGTimePicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: Linea
     }
     private func minuteScrolled() {
         pickerScrolled(picker: minutePicker, cells: &minuteHighlightCells)
+    }
+
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if amPmHighlightCells.isEmpty {
+            amPmHighlightCells.append(AmPmCell())
+            amPmHighlightCells.append(AmPmCell())
+            for cell in amPmHighlightCells {
+                centerBar.addSubview(cell)
+            }
+        }
+
+        let cellFrame1 = amPmPicker.convert(amPmPicker.subviews[0].frame, to: centerBar)
+        amPmHighlightCells[0].bind(number: 0, style: .selectable)
+        amPmHighlightCells[0].textColor = highlightTextColor
+        amPmHighlightCells[0].frame = cellFrame1
+
+        let cellFrame2 = amPmPicker.convert(amPmPicker.subviews[1].frame, to: centerBar)
+        amPmHighlightCells[1].bind(number: 1, style: .selectable)
+        amPmHighlightCells[1].textColor = highlightTextColor
+        amPmHighlightCells[1].frame = cellFrame2
+    }
+
+    private func amPmSelected() {
+        let offsetY = amPmPicker.contentOffset.y + amPmPicker.contentInset.top
+        if offsetY < cellHeight / 2 {
+            onAmPmSelected(true)
+        } else {
+            onAmPmSelected(false)
+        }
+    }
+
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        amPmSelected()
+    }
+
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            amPmSelected()
+        }
     }
 
     func pickerScrolled<T: NumberLabel>(picker: NumberInfiniteScrollView<T>, cells: inout [T]) {
@@ -181,7 +270,7 @@ public class EGTimePicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: Linea
         }
     }
 
-    @objc func onHourSelected(_ hour: Int) {
+    @objc private func onHourSelected(_ hour: Int) {
         guard currentTime.hour != hour else {
             return
         }
@@ -189,11 +278,19 @@ public class EGTimePicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: Linea
         timeSelected?(currentTime)
     }
 
-    @objc func onMinuteSelected(_ minute: Int) {
+    @objc private func onMinuteSelected(_ minute: Int) {
         guard currentTime.minute != minute else {
             return
         }
         currentTime.minute = minute
+        timeSelected?(currentTime)
+    }
+
+    private func onAmPmSelected(_ isAm: Bool) {
+        guard currentTime.isAm != isAm else {
+            return
+        }
+        currentTime.isAm = isAm
         timeSelected?(currentTime)
     }
 }

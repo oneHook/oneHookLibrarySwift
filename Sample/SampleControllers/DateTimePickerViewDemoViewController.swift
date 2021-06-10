@@ -18,6 +18,16 @@ class MyMonthLabel: NumberLabel {
     }
 }
 
+class MyAmPmLabel: NumberLabel {
+
+    private static let formatter = DateFormatter()
+
+    open override func bind(number: Int?, style: Style) {
+        super.bind(number: number, style: style)
+        text = number == 0 ? "AM" : "PM"
+    }
+}
+
 class DateTimePickerViewDemoViewController: BaseScrollableDemoViewController {
 
     private let datePicker = EGDatePicker<MyNumberLabel, MyMonthLabel, MyNumberLabel>(
@@ -50,7 +60,7 @@ class DateTimePickerViewDemoViewController: BaseScrollableDemoViewController {
         }
     }
 
-    private let timePicker = EGTimePicker<MyNumberLabel, MyNumberLabel>(
+    private let timePicker = EGTimePicker<MyNumberLabel, MyNumberLabel, MyAmPmLabel>(
         hour: 2,
         minute: 30,
         isAm: true,
@@ -68,9 +78,9 @@ class DateTimePickerViewDemoViewController: BaseScrollableDemoViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         toolbarTitle = "Date/Time Picker View"
+        contentLinearLayout.addSubview(timePicker)
         contentLinearLayout.addSubview(datePicker)
         contentLinearLayout.addSubview(durationPicker)
-        contentLinearLayout.addSubview(timePicker)
         contentLinearLayout.addSubview(SolidButton().apply {
             $0.padding = Dimens.marginMedium
             $0.layoutGravity = .centerHorizontal
@@ -84,5 +94,6 @@ class DateTimePickerViewDemoViewController: BaseScrollableDemoViewController {
     @objc private func debugButtonPressed() {
         datePicker.currentDate = EGDatePicker.Date(year: 2019, month: 2, day: 17)
         durationPicker.currentDuration = EGDurationPicker.Duration(hour: 2, minute: 50)
+        timePicker.currentTime = EGTimePicker.Time(hour: 9, minute: 15, isAm: false)
     }
 }

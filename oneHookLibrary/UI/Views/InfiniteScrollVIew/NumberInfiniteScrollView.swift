@@ -14,7 +14,6 @@ open class NumberLabel: EDLabel {
         backgroundColor = .clear
         textAlignment = .center
         font = Fonts.regular(Fonts.fontSizeXLarge)
-        padding = Dimens.marginMedium
         switch style {
         case .selectable:
             textColor = .ed_toolbarTextColor
