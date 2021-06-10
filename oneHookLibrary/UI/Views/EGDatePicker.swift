@@ -1,6 +1,6 @@
 import UIKit
 
-public class EGDatePicker<YearCell: NumberLabel, MonthCell: NumberLabel, DayCell: NumberLabel>: LinearLayout {
+open class EGDatePicker<YearCell: NumberLabel, MonthCell: NumberLabel, DayCell: NumberLabel>: LinearLayout {
 
     public struct Date {
         var year: Int
@@ -117,11 +117,11 @@ public class EGDatePicker<YearCell: NumberLabel, MonthCell: NumberLabel, DayCell
         super.init(frame: .zero)
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public override func commonInit() {
+    open override func commonInit() {
         super.commonInit()
         backgroundColor = .clear
         orientation = .horizontal

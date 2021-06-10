@@ -225,14 +225,14 @@ open class EGCalendarPicker: LinearLayout {
         }
     }
 
-    private lazy var previousMonthButton = EDButton().apply {
+    public lazy var previousMonthButton = EDButton().apply {
         $0.padding = Dimens.marginSmall
         $0.setTitle("Previous", for: .normal)
         $0.setTitleColor(.ed_toolbarTextColor, for: .normal)
         $0.addTarget(self, action: #selector(previousMonthButtonPressed), for: .touchUpInside)
     }
 
-    private lazy var nextMonthButton = EDButton().apply {
+    public lazy var nextMonthButton = EDButton().apply {
         $0.padding = Dimens.marginSmall
         $0.setTitle("Next", for: .normal)
         $0.setTitleColor(.ed_toolbarTextColor, for: .normal)
@@ -262,7 +262,7 @@ open class EGCalendarPicker: LinearLayout {
         $0.cancelsTouchesInView = false
     }
 
-    public override func commonInit() {
+    open override func commonInit() {
         super.commonInit()
         orientation = .vertical
         addSubview(LinearLayout().apply {

@@ -1,8 +1,8 @@
 import UIKit
 
-public class EGTimePicker<HourCell: NumberLabel,
-                          MinuteCell: NumberLabel,
-                          AmPmCell: NumberLabel>: LinearLayout, UIScrollViewDelegate {
+open class EGTimePicker<HourCell: NumberLabel,
+                        MinuteCell: NumberLabel,
+                        AmPmCell: NumberLabel>: LinearLayout, UIScrollViewDelegate {
 
     public struct Time {
         var hour: Int
@@ -54,7 +54,7 @@ public class EGTimePicker<HourCell: NumberLabel,
     private var minuteHighlightCells = [MinuteCell]()
     private var amPmHighlightCells = [AmPmCell]()
 
-    private lazy var hourPicker = NumberInfiniteScrollView<HourCell>(start: 0, end: 24).apply {
+    private lazy var hourPicker = NumberInfiniteScrollView<HourCell>(start: 1, end: 12).apply {
         $0.orientation = .vertical
         $0.cellDefaultWidth = cellWidth
         $0.currentNumber = currentTime.hour
@@ -132,11 +132,11 @@ public class EGTimePicker<HourCell: NumberLabel,
         super.init(frame: .zero)
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public override func commonInit() {
+    open override func commonInit() {
         super.commonInit()
         contentGravity = .centerHorizontal
         backgroundColor = .clear

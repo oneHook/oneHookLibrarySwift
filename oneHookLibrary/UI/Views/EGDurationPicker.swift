@@ -1,6 +1,6 @@
 import UIKit
 
-public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: LinearLayout {
+open class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: LinearLayout {
 
     public struct Duration {
         var hour: Int
@@ -42,6 +42,8 @@ public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: L
             for cell in minuteHighlightCells {
                 cell.textColor = highlightTextColor
             }
+            hourLabel.textColor = highlightTextColor
+            minuteLabel.textColor = highlightTextColor
         }
     }
 
@@ -113,11 +115,11 @@ public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: L
         super.init(frame: .zero)
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public override func commonInit() {
+    open override func commonInit() {
         super.commonInit()
         contentGravity = .centerHorizontal
         backgroundColor = .clear
