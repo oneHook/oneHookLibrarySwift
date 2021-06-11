@@ -55,7 +55,7 @@ open class EGTextView: BaseControl {
     open override func commonInit() {
         super.commonInit()
         addSubview(textView)
-        padding = dp(10)
+        padding = Dimens.marginSmall
         textView.font = Fonts.regular(Fonts.fontSizeMedium)
         layer.addSublayer(borderLayer)
         textView.onFirstResponderStateChanged = { [weak self] (_) in
@@ -107,8 +107,13 @@ open class EGTextView: BaseControl {
     private var lastHeight: CGFloat = 0
     open override func layoutSubviews() {
         super.layoutSubviews()
+        var placeholderTitleHeight = Fonts.semiBold(Fonts.fontSizeSmall).lineHeight
+        if let placeholder = floatingPlaceholder.value {
+            placeholder.sizeToFit()
+            placeholderTitleHeight = placeholder.bounds.height
+        }
         textView.matchParent(
-            top: paddingTop,
+            top: paddingTop + placeholderTitleHeight / 2,
             left: paddingStart,
             bottom: paddingBottom,
             right: paddingEnd
