@@ -147,7 +147,7 @@ open class EGTimePicker<HourCell: NumberLabel,
         addSubview(centerBar)
     }
 
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         centerBar.frame = CGRect(
             x: 0,

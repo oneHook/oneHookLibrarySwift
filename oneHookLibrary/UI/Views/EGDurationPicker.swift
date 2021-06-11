@@ -132,7 +132,7 @@ open class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: Lin
         })
     }
 
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         let hourLabelWidth = hourLabel.sizeThatFits(CGSize.max).width
         let minuteLabelWidth = minuteLabel.sizeThatFits(CGSize.max).width
         hourPicker.marginEnd = hourLabelWidth
