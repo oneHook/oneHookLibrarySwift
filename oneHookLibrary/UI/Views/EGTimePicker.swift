@@ -5,9 +5,9 @@ open class EGTimePicker<HourCell: NumberLabel,
                         AmPmCell: NumberLabel>: LinearLayout, UIScrollViewDelegate {
 
     public struct Time {
-        var hour: Int
-        var minute: Int
-        var isAm: Bool
+        public var hour: Int
+        public var minute: Int
+        public var isAm: Bool
 
         public init(hour: Int, minute: Int, isAm: Bool) {
             self.hour = hour

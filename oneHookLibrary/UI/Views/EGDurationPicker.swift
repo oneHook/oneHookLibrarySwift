@@ -3,8 +3,8 @@ import UIKit
 open class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: LinearLayout {
 
     public struct Duration {
-        var hour: Int
-        var minute: Int
+        public var hour: Int
+        public var minute: Int
 
         public init(hour: Int, minute: Int) {
             self.hour = hour
