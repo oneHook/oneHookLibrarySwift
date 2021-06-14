@@ -66,6 +66,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
         } else {
             fillContentVertically()
         }
+        scrollViewDidScroll(self)
     }
 
     open override func sizeThatFits(_ size: CGSize) -> CGSize {

@@ -177,6 +177,12 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
 
     public override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         didScroll?()
+        for cell in cells {
+            let cellCenterY = cell.center.y
+            let centerOffset = cellCenterY - (scrollView.contentOffset.y + scrollView.bounds.height / 2)
+            let progress = 1 - (abs(centerOffset) / (scrollView.bounds.height / 2))
+            cell.alpha = max(0, progress)
+        }
     }
 
     public override func scrollViewDidEndInteraction(_ scrollView: UIScrollView) {
