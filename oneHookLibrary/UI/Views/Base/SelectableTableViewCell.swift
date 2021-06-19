@@ -16,13 +16,10 @@ open class SelectableTableViewCell: UITableViewCell {
         selectionStyle = .none
     }
 
-    open var highlightBackgroundColor: UIColor {
-        .ed_cellBackgroundColorHighlight
-    }
+    open var highlightBackgroundColor: UIColor = .ed_cellBackgroundColorHighlight
 
-    open var normalBackgroundColor: UIColor {
+    open var normalBackgroundColor: UIColor =
         .ed_cellBackgroundColor
-    }
 
     override open func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
