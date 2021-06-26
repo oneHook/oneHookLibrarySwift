@@ -3,14 +3,21 @@ import UIKit
 open class EGDatePicker<YearCell: NumberLabel, MonthCell: NumberLabel, DayCell: NumberLabel>: LinearLayout {
 
     public struct Date {
-        var year: Int
-        var month: Int
-        var day: Int
+        public var year: Int
+        public var month: Int
+        public var day: Int
 
         public init(year: Int, month: Int, day: Int) {
             self.year = year
             self.month = month
             self.day = day
+        }
+
+        public init(date: Foundation.Date, calendar: Calendar) {
+            let components = calendar.dateComponents([.year, .month, .day], from: date)
+            self.year = components.year ?? 0
+            self.month = components.month ?? 0
+            self.day = components.day ?? 0
         }
     }
 
