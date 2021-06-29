@@ -1,5 +1,6 @@
 import UIKit
 
+
 open class EGTimePicker<HourCell: NumberLabel,
                         MinuteCell: NumberLabel,
                         AmPmCell: NumberLabel>: LinearLayout, UIScrollViewDelegate {
@@ -83,7 +84,6 @@ open class EGTimePicker<HourCell: NumberLabel,
     private lazy var amPmPicker = EDScrollView().apply {
         $0.layoutSize = CGSize(width: cellWidth, height: 0)
         $0.layoutGravity = .fillVertical
-        $0.isPagingEnabled = true
         $0.showsVerticalScrollIndicator = false
         $0.delegate = self
         $0.addSubview(AmPmCell().apply {
@@ -96,6 +96,7 @@ open class EGTimePicker<HourCell: NumberLabel,
         $0.addGestureRecognizer(
             UITapGestureRecognizer(target: self, action: #selector(amPmPressed))
         )
+        $0.isScrollEnabled = true
     }
 
     public lazy var centerBar = BaseView().apply {
@@ -224,8 +225,10 @@ open class EGTimePicker<HourCell: NumberLabel,
     private func amPmSelected() {
         let offsetY = amPmPicker.contentOffset.y + amPmPicker.contentInset.top
         if offsetY < cellHeight / 2 {
+            amPmPicker.setContentOffset(amPmPicker.topOffset, animated: true)
             onAmPmSelected(true)
         } else {
+            amPmPicker.setContentOffset(amPmPicker.bottomOffset, animated: true)
             onAmPmSelected(false)
         }
     }
@@ -332,4 +335,17 @@ open class EGTimePicker<HourCell: NumberLabel,
         currentTime.isAm = isAm
         timeSelected?(currentTime)
     }
+
+    open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let result = super.hitTest(point, with: event)
+        if result == self {
+            if point.x < bounds.width / 2 {
+                return hourPicker.centerCell
+            } else {
+                return minutePicker.centerCell
+            }
+        }
+        return result
+    }
 }
+

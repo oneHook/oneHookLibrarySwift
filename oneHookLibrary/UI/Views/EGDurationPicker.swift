@@ -235,4 +235,16 @@ open class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: Lin
         currentDuration.minute = minute
         durationSelected?(currentDuration)
     }
+
+    open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let result = super.hitTest(point, with: event)
+        if result == self {
+            if point.x < bounds.width / 2 {
+                return hourPicker.centerCell
+            } else {
+                return minutePicker.centerCell
+            }
+        }
+        return result
+    }
 }
