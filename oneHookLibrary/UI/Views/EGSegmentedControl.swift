@@ -97,11 +97,13 @@ open class EGSegmentedControl: BaseView {
         topLinearLayout.matchParent()
         bottomLinearLayout.matchParent()
         let tabWidth = bounds.width / CGFloat(tabCount)
+        CATransaction.setDisableActions(true)
         tabMaskLayer.bounds = CGRect(
             origin: .zero,
             size: CGSize(width: tabWidth, height: bounds.height)
         )
         setSelectedIndex(_selectedIndex, animated: false)
+        CATransaction.setDisableActions(false)
     }
 
     private func makeTab() -> EDLabel {
