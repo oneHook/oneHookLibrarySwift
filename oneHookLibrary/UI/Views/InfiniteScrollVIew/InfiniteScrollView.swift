@@ -32,7 +32,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
         }
     }
 
-    public override func commonInit() {
+    open override func commonInit() {
         super.commonInit()
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
@@ -127,7 +127,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
         }
         cell.frame = CGRect(
             x: minX,
-            y:  cellY,
+            y: cellY,
             width: cellWidth,
             height: cellHeight
         )
@@ -172,7 +172,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
                     cell: $0,
                     maxHeight: maxHeight,
                     referenceX: leftMostView.frame.minX,
-                    direction: .center
+                    direction: .before
                 )
                 leftMostView = $0
             }, at: 0)
@@ -186,14 +186,14 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
             rightMostView = cells.last!
         }
 
-        while rightMostView.frame.minX < rightEdge {
+        while rightMostView.frame.maxX < rightEdge {
             cells.append(getCell(direction: .after, referenceCell: rightMostView).apply {
                 addSubview($0)
                 layoutCellHorizontally(
                     cell: $0,
                     maxHeight: maxHeight,
                     referenceX: rightMostView.frame.maxX,
-                    direction: .center
+                    direction: .after
                 )
                 rightMostView = $0
             })
@@ -310,7 +310,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
             bottomMostView = cells.last!
         }
 
-        while bottomMostView.frame.minY < bottomEdge {
+        while bottomMostView.frame.maxY < bottomEdge {
             cells.append(getCell(direction: .after, referenceCell: bottomMostView).apply {
                 addSubview($0)
                 layoutCellVertically(
