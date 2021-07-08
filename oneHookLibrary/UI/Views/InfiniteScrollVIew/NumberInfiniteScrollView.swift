@@ -129,7 +129,7 @@ public class NumberInfiniteScrollView<T: NumberLabel>: InfiniteScrollView<T> {
 
     public func setNumber(_ number: Int, animated: Bool) {
         currentNumber = number
-        makeSureNumberRange(animated: animated)
+        _ = makeSureNumberRange(animated: animated)
     }
 
     public func isNumberSelectable(_ number: Int?) -> Bool {

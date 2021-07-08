@@ -16,6 +16,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
     private var recycledCells = [T]()
     private(set) var isInterationInProgress: Bool = false
 
+    public var cellDidTap: ((T) -> Void)?
     public var snapToCenter: Bool = false
 
     public var cellDefaultWidth: CGFloat?
@@ -343,7 +344,11 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
 
     @objc private func cellTapped(tapRec: UITapGestureRecognizer) {
         guard
-            let cell = tapRec.view as? T,
+            let cell = tapRec.view as? T else {
+            return
+        }
+        cellDidTap?(cell)
+        guard
             snapToCenter else {
             return
         }
