@@ -425,14 +425,23 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
 
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         guard
-            let cellHeight = cellDefaultHeight,
             snapToCenter else {
             return
         }
-        let referenceY = referenceCellCenterY - bounds.height / 2
-        let offset = (targetContentOffset.pointee.y - referenceY) / cellHeight
-        let targetY = referenceY + round(offset) * cellHeight
-        targetContentOffset.pointee = CGPoint(x: 0, y: targetY)
+        if
+            let cellHeight = cellDefaultHeight,
+            orientation == .vertical {
+            let referenceY = referenceCellCenterY - bounds.height / 2
+            let offset = (targetContentOffset.pointee.y - referenceY) / cellHeight
+            let targetY = referenceY + round(offset) * cellHeight
+            targetContentOffset.pointee = CGPoint(x: 0, y: targetY)
+        } else if
+            let cellWidth = cellDefaultWidth {
+            let referenceX = referenceCellCenterX - bounds.width / 2
+            let offset = (targetContentOffset.pointee.x - referenceX) / cellWidth
+            let targetX = referenceX + round(offset) * cellWidth
+            targetContentOffset.pointee = CGPoint(x: targetX, y: 0)
+        }
     }
 
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
