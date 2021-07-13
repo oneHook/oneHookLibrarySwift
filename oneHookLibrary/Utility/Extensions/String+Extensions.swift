@@ -1,7 +1,11 @@
 import UIKit
 
 extension String {
-    
+
+    public var isAlphanumeric: Bool {
+        !isEmpty && range(of: "[^a-zA-Z0-9]", options: .regularExpression) == nil
+    }
+
     public func formatPhoneNumber(keepCountryCode: Bool = true) -> String {
         String.format(phoneNumber: self, keepCountryCode: keepCountryCode)
     }
