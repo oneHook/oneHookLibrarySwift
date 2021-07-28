@@ -16,6 +16,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
     private var recycledCells = [T]()
     private(set) var isInterationInProgress: Bool = false
 
+    public var cellDidTap: ((T) -> Void)?
     public var snapToCenter: Bool = false
 
     public var cellDefaultWidth: CGFloat?
@@ -32,7 +33,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
         }
     }
 
-    public override func commonInit() {
+    open override func commonInit() {
         super.commonInit()
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
@@ -66,6 +67,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
         } else {
             fillContentVertically()
         }
+        scrollViewDidScroll(self)
     }
 
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -126,7 +128,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
         }
         cell.frame = CGRect(
             x: minX,
-            y:  cellY,
+            y: cellY,
             width: cellWidth,
             height: cellHeight
         )
@@ -171,7 +173,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
                     cell: $0,
                     maxHeight: maxHeight,
                     referenceX: leftMostView.frame.minX,
-                    direction: .center
+                    direction: .before
                 )
                 leftMostView = $0
             }, at: 0)
@@ -185,14 +187,14 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
             rightMostView = cells.last!
         }
 
-        while rightMostView.frame.minX < rightEdge {
+        while rightMostView.frame.maxX < rightEdge {
             cells.append(getCell(direction: .after, referenceCell: rightMostView).apply {
                 addSubview($0)
                 layoutCellHorizontally(
                     cell: $0,
                     maxHeight: maxHeight,
                     referenceX: rightMostView.frame.maxX,
-                    direction: .center
+                    direction: .after
                 )
                 rightMostView = $0
             })
@@ -309,7 +311,7 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
             bottomMostView = cells.last!
         }
 
-        while bottomMostView.frame.minY < bottomEdge {
+        while bottomMostView.frame.maxY < bottomEdge {
             cells.append(getCell(direction: .after, referenceCell: bottomMostView).apply {
                 addSubview($0)
                 layoutCellVertically(
@@ -342,7 +344,11 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
 
     @objc private func cellTapped(tapRec: UITapGestureRecognizer) {
         guard
-            let cell = tapRec.view as? T,
+            let cell = tapRec.view as? T else {
+            return
+        }
+        cellDidTap?(cell)
+        guard
             snapToCenter else {
             return
         }
@@ -419,14 +425,23 @@ open class InfiniteScrollView<T: UIView>: EDScrollView, UIScrollViewDelegate {
 
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         guard
-            let cellHeight = cellDefaultHeight,
             snapToCenter else {
             return
         }
-        let referenceY = referenceCellCenterY - bounds.height / 2
-        let offset = (targetContentOffset.pointee.y - referenceY) / cellHeight
-        let targetY = referenceY + round(offset) * cellHeight
-        targetContentOffset.pointee = CGPoint(x: 0, y: targetY)
+        if
+            let cellHeight = cellDefaultHeight,
+            orientation == .vertical {
+            let referenceY = referenceCellCenterY - bounds.height / 2
+            let offset = (targetContentOffset.pointee.y - referenceY) / cellHeight
+            let targetY = referenceY + round(offset) * cellHeight
+            targetContentOffset.pointee = CGPoint(x: 0, y: targetY)
+        } else if
+            let cellWidth = cellDefaultWidth {
+            let referenceX = referenceCellCenterX - bounds.width / 2
+            let offset = (targetContentOffset.pointee.x - referenceX) / cellWidth
+            let targetX = referenceX + round(offset) * cellWidth
+            targetContentOffset.pointee = CGPoint(x: targetX, y: 0)
+        }
     }
 
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

@@ -1,10 +1,10 @@
 import UIKit
 
-public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: LinearLayout {
+open class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: LinearLayout {
 
     public struct Duration {
-        var hour: Int
-        var minute: Int
+        public var hour: Int
+        public var minute: Int
 
         public init(hour: Int, minute: Int) {
             self.hour = hour
@@ -42,6 +42,8 @@ public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: L
             for cell in minuteHighlightCells {
                 cell.textColor = highlightTextColor
             }
+            hourLabel.textColor = highlightTextColor
+            minuteLabel.textColor = highlightTextColor
         }
     }
 
@@ -113,11 +115,11 @@ public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: L
         super.init(frame: .zero)
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public override func commonInit() {
+    open override func commonInit() {
         super.commonInit()
         contentGravity = .centerHorizontal
         backgroundColor = .clear
@@ -130,7 +132,7 @@ public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: L
         })
     }
 
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         let hourLabelWidth = hourLabel.sizeThatFits(CGSize.max).width
         let minuteLabelWidth = minuteLabel.sizeThatFits(CGSize.max).width
         hourPicker.marginEnd = hourLabelWidth
@@ -232,5 +234,17 @@ public class EGDurationPicker<HourCell: NumberLabel, MinuteCell: NumberLabel>: L
         }
         currentDuration.minute = minute
         durationSelected?(currentDuration)
+    }
+
+    open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let result = super.hitTest(point, with: event)
+        if result == self {
+            if point.x < bounds.width / 2 {
+                return hourPicker.centerCell
+            } else {
+                return minutePicker.centerCell
+            }
+        }
+        return result
     }
 }

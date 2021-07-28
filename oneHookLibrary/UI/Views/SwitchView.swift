@@ -81,7 +81,7 @@ public class SwitchView: BaseControl {
             toggleLayer.backgroundColor = circleNormalColor.cgColor
             backgroundColor = backgroundNormalColor
         }
-        layer.setNeedsLayout()
+        moveToggle()
     }
 
     public override func invalidateAppearance() {
@@ -96,12 +96,20 @@ public class SwitchView: BaseControl {
         super.layoutSubviews()
         layer.cornerRadius = bounds.height / 2
         let length = bounds.height - spacing * 2
+        CATransaction.setDisableActions(true)
         toggleLayer.bounds = CGRect(origin: .zero, size: CGSize(width: length, height: length))
         toggleLayer.cornerRadius = length / 2
+        CATransaction.setDisableActions(false)
     }
 
     public override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: layer)
+        CATransaction.setDisableActions(true)
+        moveToggle()
+        CATransaction.setDisableActions(false)
+    }
+
+    private func moveToggle() {
         if isOnInternal {
             toggleLayer.position = CGPoint(x: bounds.width - spacing - toggleLayer.bounds.width / 2 - dp(1),
                                            y: spacing + toggleLayer.bounds.height / 2)

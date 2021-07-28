@@ -22,6 +22,7 @@ open class GradientView: BaseView {
         self.init()
         self.firstColor = firstColor
         self.secondColor = secondColor
+        updateView()
     }
 
     private var gradient: CAGradientLayer? {

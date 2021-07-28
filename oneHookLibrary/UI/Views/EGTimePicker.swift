@@ -1,13 +1,14 @@
 import UIKit
 
-public class EGTimePicker<HourCell: NumberLabel,
-                          MinuteCell: NumberLabel,
-                          AmPmCell: NumberLabel>: LinearLayout, UIScrollViewDelegate {
+
+open class EGTimePicker<HourCell: NumberLabel,
+                        MinuteCell: NumberLabel,
+                        AmPmCell: NumberLabel>: LinearLayout, UIScrollViewDelegate {
 
     public struct Time {
-        var hour: Int
-        var minute: Int
-        var isAm: Bool
+        public var hour: Int
+        public var minute: Int
+        public var isAm: Bool
 
         public init(hour: Int, minute: Int, isAm: Bool) {
             self.hour = hour
@@ -54,7 +55,7 @@ public class EGTimePicker<HourCell: NumberLabel,
     private var minuteHighlightCells = [MinuteCell]()
     private var amPmHighlightCells = [AmPmCell]()
 
-    private lazy var hourPicker = NumberInfiniteScrollView<HourCell>(start: 0, end: 24).apply {
+    private lazy var hourPicker = NumberInfiniteScrollView<HourCell>(start: 1, end: 12).apply {
         $0.orientation = .vertical
         $0.cellDefaultWidth = cellWidth
         $0.currentNumber = currentTime.hour
@@ -83,7 +84,6 @@ public class EGTimePicker<HourCell: NumberLabel,
     private lazy var amPmPicker = EDScrollView().apply {
         $0.layoutSize = CGSize(width: cellWidth, height: 0)
         $0.layoutGravity = .fillVertical
-        $0.isPagingEnabled = true
         $0.showsVerticalScrollIndicator = false
         $0.delegate = self
         $0.addSubview(AmPmCell().apply {
@@ -96,6 +96,7 @@ public class EGTimePicker<HourCell: NumberLabel,
         $0.addGestureRecognizer(
             UITapGestureRecognizer(target: self, action: #selector(amPmPressed))
         )
+        $0.isScrollEnabled = true
     }
 
     public lazy var centerBar = BaseView().apply {
@@ -132,11 +133,11 @@ public class EGTimePicker<HourCell: NumberLabel,
         super.init(frame: .zero)
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public override func commonInit() {
+    open override func commonInit() {
         super.commonInit()
         contentGravity = .centerHorizontal
         backgroundColor = .clear
@@ -147,7 +148,7 @@ public class EGTimePicker<HourCell: NumberLabel,
         addSubview(centerBar)
     }
 
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         centerBar.frame = CGRect(
             x: 0,
@@ -224,8 +225,10 @@ public class EGTimePicker<HourCell: NumberLabel,
     private func amPmSelected() {
         let offsetY = amPmPicker.contentOffset.y + amPmPicker.contentInset.top
         if offsetY < cellHeight / 2 {
+            amPmPicker.setContentOffset(amPmPicker.topOffset, animated: true)
             onAmPmSelected(true)
         } else {
+            amPmPicker.setContentOffset(amPmPicker.bottomOffset, animated: true)
             onAmPmSelected(false)
         }
     }
@@ -332,4 +335,17 @@ public class EGTimePicker<HourCell: NumberLabel,
         currentTime.isAm = isAm
         timeSelected?(currentTime)
     }
+
+    open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let result = super.hitTest(point, with: event)
+        if result == self {
+            if point.x < bounds.width / 2 {
+                return hourPicker.centerCell
+            } else {
+                return minutePicker.centerCell
+            }
+        }
+        return result
+    }
 }
+
