@@ -62,25 +62,6 @@ class StringEntry:
         self.args = []
         self._process()
 
-    def extract_placeholder(s: str, index: int) -> Tuple[str, int]:
-        '''
-        >>> StringEntry.extract_placeholder("%1$d %2$d", 0)
-        ('%1$d', 4)
-        >>> StringEntry.extract_placeholder("%1$d %2$d", 5)
-        ('%2$d', 4)
-        >>> StringEntry.extract_placeholder("Count: %d", 7)
-        ('%d', 2)
-        '''
-        i = index
-        skip = 0
-        placeholder = ''
-        while True:
-            placeholder += s[i]
-            if i >= len(s) or s[i].isalpha():
-                break
-            i += 1
-        return placeholder, i - index + 1
-
     def _process(self) -> List[Tuple[str, str]]:
         '''
         >>> e = StringEntry('test1', 'simple')
@@ -94,47 +75,41 @@ class StringEntry:
         >>> e = StringEntry('test3', 'string %s number %d float %f')
         >>> e._process()
         [('arg1', 'String'), ('arg2', 'Int'), ('arg3', 'Float')]
+
+        >>> e = StringEntry('test4', '100% complete')
+        >>> e._process()
+        []
         '''
         self.args = []
-        if '%' in self.value:
-            # with arg
-            self.has_arg = True
-            index = 0
-            arg_count = 0
-            while True:
-                found = self.value.find('%', index)
-                if found == -1:
-                    break
-                next = self.value[found + 1]
-                # ignore %%
-                if next == '%':
-                    index = found + 2
-                    continue
 
-                extracts = StringEntry.extract_placeholder(self.value, found)
-                placeholder = extracts[0]
-                skip = extracts[1]
+        index = 1
+        placeholder_rx = r'\%\d*\$*[dsf@]'
+        existing_indices = set()
+        for found in re.finditer(placeholder_rx, self.value):
+            placeholder = self.value[found.start():found.end()]
+            arg_type = placeholder[-1]
 
-                if "$" in placeholder:
-                    arg_index = int(placeholder.split("$")[0].strip('%'))
-                    if arg_index <= arg_count:
-                        index = found + skip
-                        continue
-                arg_count += 1
-                arg_type = placeholder[-1]
-                if arg_type == 'd':
-                    self.args.append(('arg' + str(arg_count),\
-                                      'Int'))
-                elif arg_type == 's':
-                    self.args.append(('arg' + str(arg_count),\
-                                      'String'))
-                elif arg_type == 'f':
-                    self.args.append(('arg' + str(arg_count),\
-                                      'Float'))
-                index = found + skip
-        else:
-            # without arg
-            self.has_arg = False
+            # if placeholder contains index, use its index
+            if '$' in placeholder:
+                arg_index = placeholder[-3]
+            else:
+                arg_index = index
+
+            # do not add same index twice
+            if arg_index in existing_indices:
+                index += 1
+                continue
+
+            if arg_type == 'd':
+                self.args.append((f'arg{arg_index}', 'Int'))
+            elif arg_type == 's':
+                self.args.append((f'arg{arg_index}', 'String'))
+            elif arg_type == 'f':
+                self.args.append((f'arg{arg_index}', 'Float'))
+            existing_indices.add(arg_index)
+
+            index += 1
+        self.has_arg = len(self.args) > 0
         return self.args
 
     def __repr__(self):
@@ -170,7 +145,10 @@ class PluralStringEntry:
         self.entries = {}
         raw = json.loads(text)
         for quantity_key in raw:
-            self.entries[quantity_key] = StringEntry(key + "_" + quantity_key, raw[quantity_key])
+            local_key = quantity_key
+            if local_key == 'other':
+                local_key = 'plural'
+            self.entries[local_key] = StringEntry(key + "_" + local_key, raw[quantity_key])
 
     def __repr__(self):
         return self.key
@@ -186,7 +164,7 @@ class PluralStringEntry:
         for e in self.entries.values():
             result.extend(e.get_function_string())
 
-        other_entry = self.entries["other"]
+        other_entry = self.entries["plural"]
         params = ", " + ", ".join("_ " + x[0] + ": " + x[1] for x in other_entry.args)
         args = "(" + ", ".join(x[0] for x in other_entry.args) + ")"
         if other_entry.args == []:
@@ -195,7 +173,7 @@ class PluralStringEntry:
 
         function_content = ""
         for key in self.entries:
-            if key == "other":
+            if key == "plural":
                 continue
             if key == "zero":
                 body = TEMPLATE_IF.format(0, self.key + "_zero", args)
@@ -203,7 +181,7 @@ class PluralStringEntry:
             if key == "one":
                 body = TEMPLATE_IF.format(1, self.key + "_one", args)
                 function_content += body
-        function_content += "\t\t\treturn {}{}".format(self.key + "_other", args)
+        function_content += "\t\t\treturn {}{}".format(self.key + "_plural", args)
         function = TEMPLATE_PLURALS.format(self.key, params, function_content)
         result.append(function)
         return result
@@ -316,33 +294,33 @@ def check_if_changed(path: str, f: str) -> bool:
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
-    
+
     import sys
     if len(sys.argv) < 3:
         print("Not Enough Arguments provided")
         print("Usage: python3 [SCRIPT_NAME] [TARGET] [DESTINATION] -r [R FILE NAME] -f [String Function Name]")
-    
+
     target_path = sys.argv[1]
     destination_path = sys.argv[2]
     if '-r' in sys.argv:
         index = sys.argv.index('-r')
         if index + 1 < len(sys.argv):
             R_FILE_NAME = sys.argv[index + 1]
-    
+
     if '-f' in sys.argv:
         index = sys.argv.index('-f')
         if index + 1 < len(sys.argv):
             LOCALIZED_FUNCTION = sys.argv[index + 1]
-    
+
     print("Starting Localization Parsing Script")
     print(f"Target Path: {target_path}")
-    print(f"Destination Path: {destination_path}")   
-    print(f"R Extension File Name: {R_FILE_NAME}")   
+    print(f"Destination Path: {destination_path}")
+    print(f"R Extension File Name: {R_FILE_NAME}")
     print(f"Localized Function: {LOCALIZED_FUNCTION}")
-    
+
     if not check_if_changed(target_path, "en.lproj/Localizable.plist"):
         print("No changes found")
-    else:     
+    else:
         print("Parsing...")
         locales = find_locales(target_path)
         for locale in locales:
