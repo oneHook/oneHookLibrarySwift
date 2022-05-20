@@ -2,7 +2,7 @@
 
 ![CI](https://github.com/oneHook/oneHookLibrarySwift/workflows/CI/badge.svg?branch=release)
 
-oneHookLibrary is a very ambiguous Library that aim to make iOS development even easier for iOS11 +
+oneHookLibrary is a very ambitious Library that aim to make iOS development even easier for iOS11 +
 
 - [Kotlin Style Code](#kotlin-style-code)
 - [Assets Script](#assets-script)
